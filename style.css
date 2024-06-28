@@ -56,7 +56,7 @@ body{
 body.dark{
     --body-color: #ddd6fe;
     --nav-color:linear-gradient(to bottom right,#818cf8 ,#a5b4fc, #c7d2fe);
-    --side-nav: #818cf8;
+    --side-nav: #ddd6fe;
     --text-color: #701a75;
     --search-bar: #1e063a;
     --search-text: #ffffff;
