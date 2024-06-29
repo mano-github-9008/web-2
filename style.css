@@ -38,14 +38,14 @@ header {
 
 /* ===== Colours ===== */
 :root{
-    --body-color: #475569 ;
-    --nav-color: linear-gradient(to bottom right,#09090b, #1e1b4b, #172554);
-    --side-nav: #374151;
-    --text-color: #ffffff;
-    --search-bar: #F2F2F2;
-    --search-text: #ffffff;
-    --a-text : #22d3ee;
-    --b-text : #60f0fa ;
+  --body-color: #ddd6fe;
+  --nav-color:linear-gradient(to bottom right,#818cf8 ,#a5b4fc, #c7d2fe);
+  --side-nav: #a698e0;
+  --text-color: #000000;
+  --search-bar: #1e063a;
+  --search-text: #ffffff;
+  --a-text : #740bc5 ;
+  --b-text : #560f5a ;
 }
 
 body{
@@ -54,14 +54,14 @@ body{
 }
 
 body.dark{
-    --body-color: #ddd6fe;
-    --nav-color:linear-gradient(to bottom right,#818cf8 ,#a5b4fc, #c7d2fe);
-    --side-nav: #ddd6fe;
-    --text-color: #701a75;
-    --search-bar: #1e063a;
+    --body-color: #1b2a3f ;
+    --nav-color: linear-gradient(to bottom right,#09090b, #1e1b4b, #172554);
+    --side-nav: #374151;
+    --text-color: #ffffff;
+    --search-bar: #F2F2F2;
     --search-text: #ffffff;
-    --a-text : #581c87 ;
-    --b-text : #701a75 ;
+    --a-text : #22d3ee;
+    --b-text : #60f0fa ;
 }
 
 nav{
@@ -434,14 +434,15 @@ footer {
     width: 60px;
     margin: 0 5px;
     overflow: hidden;
-    background: var(--a-text);
+    background: var(--side-nav);
+    border: 0.1px solid var(--text-color);
     border-radius: 30px;
     cursor: pointer;
-    box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+    box-shadow: 0px 10px 10px rgba(0,1,0,0.5);
     transition: all 0.3s ease-out;
   }
   .wrapper .button:hover{
-    width: 200px;
+    width:  auto;
   }
   .wrapper .button .icon{
     display: inline-block;
@@ -454,16 +455,16 @@ footer {
     transition: all 0.3s ease-out;
   }
   .wrapper .button:nth-child(1):hover .icon{
-    background: #4267B2;
+    background: #002466;
   }
   .wrapper .button:nth-child(2):hover .icon{
-    background: #1DA1F2;
+    background: #317dd4;
   }
   .wrapper .button:nth-child(3):hover .icon{
-    background: #E1306C;
+    background: #ee009f;
   }
   .wrapper .button:nth-child(4):hover .icon{
-    background: #00a156;
+    background: #ffe600;
   }
   .wrapper .button:nth-child(5):hover .icon{
     background: #ff0000;
@@ -479,22 +480,23 @@ footer {
   }
   .wrapper .button span{
     font-size: 20px;
-    font-weight: 500;
+    font-weight: bold;
     line-height: 60px;
-    margin-left: 10px;
+    margin-left: 5px;
+    margin-right: 10px;
     transition: all 0.3s ease-out;
   }
   .wrapper .button:nth-child(1) span{
     color: #4267B2;
   }
   .wrapper .button:nth-child(2) span{
-    color: #1DA1F2;
+    color: #1d69af;
   }
   .wrapper .button:nth-child(3) span{
     color: #E1306C;
   }
   .wrapper .button:nth-child(4) span{
-    color: #00ad1d;
+    color: #ffbb00;
   }
   .wrapper .button:nth-child(5) span{
     color: #ff0000;
