@@ -129,3 +129,5 @@ document.addEventListener('scroll', function() {
     mount2.style.marginBottom = -value * 1.2 + 'px'
 })
 
+
+  	
