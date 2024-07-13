@@ -61,7 +61,7 @@ body.dark{
     --search-bar: #F2F2F2;
     --search-text: #ffffff;
     --a-text : #22d3ee;
-    --b-text : #60f0fa ;
+    --b-text : #ffe600 ;
 }
 
 nav{
@@ -157,6 +157,8 @@ nav .nav-bar .logo a{
 .nav-bar .darkLight-searchBox{
     display: flex;
     align-items: center;
+    text-align: center;
+    vertical-align: top;
     z-index: 60;
 }
 
