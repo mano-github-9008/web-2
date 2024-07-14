@@ -17,21 +17,16 @@ h1{
 
 }
 li{
-  text-align: left;
   color: var(--text-color);
   list-style-type: square;
   margin-left: 4px;
   text-align: left;
-  margin-top: 4px;
+
 
 }
-
 a{
   color: var(--b-text);
-  text-align: left;
-  margin-top: 4px;
 }
-
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
 header {
   background-image: linear-gradient(to bottom right,	rgb(10, 56, 56)  , 	#7403b6, #e100ff) ;
