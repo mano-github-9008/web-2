@@ -11,6 +11,27 @@ body {
   background-color: rgba(255, 250, 185, 0.144);
   cursor: url('images/cur.png'), auto;
 }
+
+h1{
+  color: var(--a-text);
+
+}
+li{
+  text-align: left;
+  color: var(--text-color);
+  list-style-type: square;
+  margin-left: 4px;
+  text-align: left;
+  margin-top: 4px;
+
+}
+
+a{
+  color: var(--b-text);
+  text-align: left;
+  margin-top: 4px;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
 header {
   background-image: linear-gradient(to bottom right,	rgb(10, 56, 56)  , 	#7403b6, #e100ff) ;
@@ -405,7 +426,7 @@ border-radius: 10px;
 
 
 footer {
-  background-image: var(--nav-color);
+  background-color: var(--side-nav);
   color: var(--text-color);
   text-align: left;
   font-size: 14px ;
@@ -416,6 +437,7 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+  border-top: 2px solid var(--text-color);
 }
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
