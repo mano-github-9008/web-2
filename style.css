@@ -358,6 +358,8 @@ section {
   position: relative;
 }
 
+
+
 .section2{
 border : 2px solid #011f4b;
 border-radius: 3px;
@@ -387,6 +389,8 @@ color: var(--text-color);
 background-color: rgba(31, 0, 80, 0.219);
 border-radius: 25px;
 display: inline-block;
+height: auto;
+width: auto;
 }
 
 aside a{
@@ -693,13 +697,10 @@ border: 4px;
 text-align: center;
 color: var(--text-color);
 align-items: center;
+justify-content: center;
 background-color: #37123f;
 border: 4px ridge rgb(53, 0, 50);
 border-radius: 6px;
-padding-left: 4%;
-padding-top: 6%;
-padding-right: 0%;
-padding-bottom: 2%;
 box-shadow: 40% 40% 0% 0%;
 margin-left: 60px;
 
@@ -715,10 +716,13 @@ margin-left: 60px;
   font-weight: 700;
   font-style: normal;
   border: 1px solid var(--text-color);
+  background-color: var(--side-nav);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  width: 215px;
+  width: 300px;
   height: auto;
+  justify-content: center;
+  align-items: center;
 }
 
 .chartitem a{
@@ -819,7 +823,7 @@ margin-left: 60px;
 
   @import url('https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap');
   .wrap {
-    width: 300px;
+    width: 360px;
     border-radius: 8px;
     padding: 30px;
     text-align: center;
