@@ -50,7 +50,7 @@ function authentication(username,password){
         return true
     }else if (username === "shalini"    && password === "shalu@tamilguys"){
         return true
-    }else if (username === "sakthi"    && password === "sakthi@tamilguys"){
+    }else if (username === "shakti"    && password === "shakti@tamilguys"){
         return true
     }else if (username === "jaiganesh"    && password === "jai@tamilguys"){
         return true
