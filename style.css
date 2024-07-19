@@ -54,8 +54,8 @@ header {
 
 /* ===== Colours ===== */
 :root{
-  --body-color: #ddd6fe;
-  --nav-color:linear-gradient(to bottom right,#818cf8 ,#a5b4fc, #c7d2fe);
+  --body-color: url('images/light.gif');
+  --nav-color:linear-gradient(to bottom right,#e196ff ,#a5b4fc, #c7d2fe);
   --side-nav: #a698e0;
   --text-color: #000000;
   --search-bar: #1e063a;
@@ -65,19 +65,21 @@ header {
 }
 
 body{
-    background-color: var(--body-color) ;
+    background-image: var(--body-color) ;
+    background-size: cover;
+    background-repeat: no-repeat;
     
 }
 
 body.dark{
-    --body-color: #1b2a3f ;
+    --body-color: url('images/dark.jpg') ;
     --nav-color: linear-gradient(to bottom right,#09090b, #1e1b4b, #172554);
     --side-nav: #374151;
     --text-color: #ffffff;
     --search-bar: #F2F2F2;
     --search-text: #ffffff;
-    --a-text : #22d3ee;
-    --b-text : #ffe600 ;
+    --a-text : #00f7ff;
+    --b-text : #fffb00 ;
 }
 
 nav{
@@ -713,13 +715,13 @@ margin-left: 60px;
   color: var(--b-text);
   font-weight: bold;
   font-family: "Rowdies", sans-serif;
-  font-weight: 700;
+  font-size: 14px;
   font-style: normal;
   border: 1px solid var(--text-color);
   background-color: var(--side-nav);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  width: 300px;
+  width: 240px;
   height: auto;
   justify-content: center;
   align-items: center;
@@ -739,7 +741,7 @@ margin-left: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #ffffff;
+    background: gray;
     z-index: 1000 ;
     transition: opacity 1.5s, visibility 1.5s;
   }
@@ -823,7 +825,7 @@ margin-left: 60px;
 
   @import url('https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap');
   .wrap {
-    width: 360px;
+    width: 300px;
     border-radius: 8px;
     padding: 30px;
     text-align: center;

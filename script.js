@@ -88,6 +88,7 @@ window.addEventListener("load", () => {
     // js code to keep user selected mode even page refresh or file reopen
     if(!body.classList.contains("dark")){
         localStorage.setItem("mode" , "light-mode");
+       
     }else{
         localStorage.setItem("mode" , "dark-mode");
     }
