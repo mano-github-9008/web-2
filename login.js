@@ -31,6 +31,7 @@ form.addEventListener("submit",(e)=>{
     const authenticated = authentication(username,password)
 
     if(authenticated){
+        alert("YOU LOGGED IN SUCCESSFULLY")
         window.location.href = "course.html"
     }else{
         alert("You are not allowed !")

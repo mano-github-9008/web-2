@@ -68,6 +68,7 @@ body{
     background-image: var(--body-color) ;
     background-size: cover;
     background-repeat: no-repeat;
+
     
 }
 
@@ -79,7 +80,7 @@ body.dark{
     --search-bar: #F2F2F2;
     --search-text: #ffffff;
     --a-text : #00f7ff;
-    --b-text : #fffb00 ;
+    --b-text : #ffbb00 ;
 }
 
 nav{
@@ -383,25 +384,25 @@ backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(2px);
 }
 
-aside {
+.box {
 margin-bottom: 10px;
-border: 2px solid rgb(126, 9, 9);
+border: 2px solid var(--b-text);
 font-family:sans-serif;
 color: var(--text-color);
-background-color: rgba(31, 0, 80, 0.219);
+background-color:transparent;
 border-radius: 25px;
 display: inline-block;
 height: auto;
 width: auto;
 }
 
-aside a{
+.box a{
   color:var(--b-text);
   font-weight: bolder;
   text-decoration: none;
 }
 
-aside a:hover{
+.box a:hover{
   color:var(--a-text);
   font-weight: 19px;
   text-decoration: underline;
@@ -429,7 +430,7 @@ border-radius: 10px;
 footer {
   background-color: var(--side-nav);
   color: var(--text-color);
-  text-align: left;
+  text-align: center;
   font-size: 14px ;
   align-items: center;
   align-content: center;
@@ -718,7 +719,7 @@ margin-left: 60px;
   font-size: 14px;
   font-style: normal;
   border: 1px solid var(--text-color);
-  background-color: var(--side-nav);
+  background-color: transparent;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   width: 240px;
@@ -919,4 +920,11 @@ label{
     border-radius: 5px;
     margin-top: 30px;
     cursor: pointer;
+}
+
+.neon{
+  text-shadow: -2px -2px 30px  var(--b-text),
+  2px 2px 40px  var(--b-text),
+  0 0 10px  var(--b-text),
+  0 0 20px red;
 }

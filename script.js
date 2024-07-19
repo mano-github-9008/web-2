@@ -84,16 +84,26 @@ window.addEventListener("load", () => {
   modeToggle.addEventListener("click" , () =>{
     modeToggle.classList.toggle("active");
     body.classList.toggle("dark");
+    body.classList.toggle("neon")
 
     // js code to keep user selected mode even page refresh or file reopen
     if(!body.classList.contains("dark")){
-        localStorage.setItem("mode" , "light-mode");
+        localStorage.setItem("mode" , "light-mode");       
        
     }else{
         localStorage.setItem("mode" , "dark-mode");
+        
     }
   });
+  if (body.classList.contains("dark")){
+    body.classList.add("neon");
+    
+    
+  }else{
+    body.classList.remove("noen");
+  };
 
+    
 
   
 //   js code to toggle sidebar
