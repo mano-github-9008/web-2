@@ -25,7 +25,7 @@ const form = document.querySelector("form")
 form.addEventListener("submit",(e)=>{
     e.preventDefault()
 
-    const username = form.username.value
+    const username = form.username.value 
     const password = form.password.value
 
     const authenticated = authentication(username,password)
@@ -42,9 +42,30 @@ form.addEventListener("submit",(e)=>{
 
 function authentication(username,password){
     
-    if(username === "admin"    && password === "admin@tamilguys"){
+    if(username === "dods@admin1"    && password === "admin@dodslab"){
         return true
-    }else{
+    }else if (username === "mano"    && password === "mano@tamilguys"){
+        return true
+    }else if (username === "lathisha"    && password === "lathu@tamilguys"){
+        return true
+    }else if (username === "shalini"    && password === "shalu@tamilguys"){
+        return true
+    }else if (username === "sakthi"    && password === "sakthi@tamilguys"){
+        return true
+    }else if (username === "jaiganesh"    && password === "jai@tamilguys"){
+        return true
+    }else if (username === "vishwa"    && password === "vishwa@tamilguys"){
+        return true
+    }else if (username === "anusha"    && password === "anu@tamilguys"){
+        return true
+    }else if (username === "vinciya"    && password === "vinci@tamilguys"){
+        return true
+    }else if (username === "prakash"    && password === "jd@tamilguys"){
+        return true
+    }else if (username === "akash"    && password === "ak@tamilguys"){
+        return true
+    }
+    else{
         return false
     }
 }

@@ -889,16 +889,19 @@ input{
     margin-top: 10px;
     outline: none;
     background-color: transparent;
+    background: transparent;
+    color: var(--b-text);
 }
 
 label{
   color: var(--b-text);
+  background: transparent;
 }
 
 .login-btn{
     border: none;
-    background-color: var(--b-text);
-    color: var(--text-color);
+    background-color: var(--side-nav);
+    color: var(--b-text);
     font-size: 20px;
     padding: 10px;
     cursor: pointer;
