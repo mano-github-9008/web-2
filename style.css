@@ -54,14 +54,14 @@ header {
 
 /* ===== Colours ===== */
 :root{
-  --body-color: url('images/light.gif');
-  --nav-color:linear-gradient(to bottom right,#e196ff ,#a5b4fc, #c7d2fe);
-  --side-nav: #a698e0;
-  --text-color: #000000;
+  --body-color: url('images/light.JPEG');
+  --nav-color:linear-gradient(to bottom right,transparent ,transparent, transparent);
+  --side-nav: #a06ebd;
+  --text-color: #cabee7;
   --search-bar: #1e063a;
   --search-text: #ffffff;
-  --a-text : #740bc5 ;
-  --b-text : #560f5a ;
+  --a-text : #ffd000 ;
+  --b-text : #09d5f0 ;
 }
 
 body{
@@ -74,13 +74,13 @@ body{
 
 body.dark{
     --body-color: url('images/dark.jpg') ;
-    --nav-color: linear-gradient(to bottom right,#09090b, #1e1b4b, #172554);
+    --nav-color: linear-gradient(to bottom right,transparent, transparent, #172554);
     --side-nav: #374151;
     --text-color: #ffffff;
     --search-bar: #F2F2F2;
     --search-text: #ffffff;
-    --a-text : #00f7ff;
-    --b-text : #ffbb00 ;
+    --a-text : #00fff2;
+    --b-text : #1f008d ;
 }
 
 nav{
@@ -91,6 +91,7 @@ nav{
     width: 100%;
     background-image: var(--nav-color);
     border-bottom: 2px solid rgb(255, 255, 255);
+    backdrop-filter: blur(8px);
     z-index: 50;
 }
 
@@ -923,8 +924,8 @@ label{
 }
 
 .neon{
-  text-shadow: -2px -2px 30px  var(--b-text),
-  2px 2px 40px  var(--b-text),
-  0 0 10px  var(--b-text),
-  0 0 20px red;
+  text-shadow: -2px -2px 30px  var(--a-text),
+  2px 2px 40px  var(--a-text),
+  0 0 10px  var(--a-text),
+  0 0 20px rgb(0, 217, 255);
 }
