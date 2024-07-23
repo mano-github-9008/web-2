@@ -55,13 +55,13 @@ header {
 /* ===== Colours ===== */
 :root{
   --body-color: url('images/light.JPEG');
-  --nav-color:linear-gradient(to bottom right,transparent ,transparent, transparent);
+  --nav-color:linear-gradient(to bottom right,		#916BBF ,#C996CC, #F4ABC4);
   --side-nav: #a06ebd;
-  --text-color: #cabee7;
+  --text-color: #000000;
   --search-bar: #1e063a;
   --search-text: #ffffff;
-  --a-text : #ffd000 ;
-  --b-text : #09d5f0 ;
+  --a-text : #500068 ;
+  --b-text : #851685 ;
 }
 
 body{
@@ -80,7 +80,7 @@ body.dark{
     --search-bar: #F2F2F2;
     --search-text: #ffffff;
     --a-text : #00fff2;
-    --b-text : #1f008d ;
+    --b-text : #ffbb00 ;
 }
 
 nav{

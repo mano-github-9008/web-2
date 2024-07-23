@@ -84,7 +84,6 @@ window.addEventListener("load", () => {
   modeToggle.addEventListener("click" , () =>{
     modeToggle.classList.toggle("active");
     body.classList.toggle("dark");
-    body.classList.toggle("neon")
 
     // js code to keep user selected mode even page refresh or file reopen
     if(!body.classList.contains("dark")){
@@ -95,13 +94,7 @@ window.addEventListener("load", () => {
         
     }
   });
-  if (body.classList.contains("dark")){
-    body.classList.add("neon");
-    
-    
-  }else{
-    body.classList.remove("noen");
-  };
+
 
     
 
