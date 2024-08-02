@@ -35,7 +35,7 @@ header {
 /* ===== Colours ===== */
 :root{
   --body-color: #dddddd;
-  --nav-color:linear-gradient(to bottom right,	#5984c4  , 	#5391c4, #0063d4);
+  --nav-color:linear-gradient(to bottom right,	#7059c4  , 	#53a0c4, #3eb8ff);
   --side-nav: #3979c2;
   --text-color: #ffffff;
   --search-bar: #1e063a;
@@ -48,7 +48,7 @@ header {
 body{
     background: var(--body-color) ;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: bold;
+    font-weight: normal;
     font-style: normal;
     margin: 0;
     padding: 0;
@@ -70,14 +70,14 @@ body.dark{
 }
 
 nav{
-    
+
     top: 0;
     left: 0;
     height: 80px;
     width: 100%;
     background-image: var(--nav-color);
     border-bottom: 2px solid rgb(255, 255, 255);
-    backdrop-filter: blur(8px);
+    box-shadow: 3px 1px 3px 2px rgba(0, 0, 0, 0.623);
     z-index: 50;
 }
 
@@ -123,19 +123,19 @@ nav .nav-bar .logo a{
 .nav-bar .nav-links{
     display: flex;
     align-items: center;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 .nav-bar .nav-links li{
     margin: 0 5px;
     list-style: none;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 .nav-links li a{
     position: relative;
     font-size: 17px;
-    font-weight: bold;
+    font-weight: normal;
     color: var(--text-color);
     text-decoration: none;
     padding: 10px;
@@ -866,4 +866,22 @@ label{
     border-radius: 5px;
     margin-top: 30px;
     cursor: pointer;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap');
+.clock{
+  background: transparent;
+  height: 60px;
+  
+  line-height: 60px;
+  text-align: center;
+  padding: 0 30px;
+  box-shadow: -3px -3px 7px rgba(255,255,255,0.05),
+               3px 3px 5px rgba(0,0,0,0.5);
+}
+.clock .display{
+  font-size: 18px;
+  color: var(--a-text);
+  letter-spacing: 5px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
