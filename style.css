@@ -880,6 +880,7 @@ label{
                3px 3px 5px rgba(0,0,0,0.5);
 }
 .clock .display{
+  float: right;
   font-size: 18px;
   color: var(--a-text);
   letter-spacing: 5px;
