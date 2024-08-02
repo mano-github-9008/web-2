@@ -1,3 +1,26 @@
+
+
+document.oncontextmenu = () =>{
+  alert("Viewing source page is not allowed due to security key ")
+  return false
+}
+
+document.onkeydown = e =>{
+  if(e.key == "F12"){
+      alert("Viewing source page is not allowed due to security key")
+      return false
+  }
+  if(e.ctrlKey && e.key=="u"){
+      alert("Don't try to view the source code due to security key")
+      return false
+  }
+
+  if(e.ctrlKey && e.key=="s"){
+      alert("You are not allowed to save this file")
+      return false
+  }
+}
+
 const notifications = document.querySelector(".notifications"),
 buttons = document.querySelectorAll(".buttons .btn");
 
