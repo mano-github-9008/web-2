@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>DODS | Login</title>
+    <link rel="icon" type="image/png" href ="images/dods.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet"> 
+  </head>
+  <body style="background-color: var(--body-color);
+  display: grid;
+  place-items: center;
+  height: 100vh;">
+     <div class="wrap">
+      <h1 style="color: var(--text-color);">ADMIN</h1>
+     <form id="form" method="post">
+
+        <label for="username">USERNAME</label>
+        <input type="text" id="username" name="USERNAME" />
+        <label for="password">PASSWORD</label>
+        <input type="password" id="password" name="PASSWORD" />
+        <input type="submit" class="login-btn" value="NEXT" />
+      </form>
+      </div>
+    <script src="script.js"></script>
+    <script>
+      
+
+document.oncontextmenu = () =>{
+    alert("Viewing source page is not allowed")
+    return false
+}
+
+document.onkeydown = e =>{
+    if(e.key == "F12"){
+        alert("Viewing source page is not allowed")
+        return false
+    }
+    if(e.ctrlKey && e.key=="u"){
+        alert("Don't try to view the source code")
+        return false
+    }
+
+    if(e.ctrlKey && e.key=="c"){
+        alert("Don't try to copy")
+        return false
+    }
+}
+const form = document.querySelector("form")
+
+form.addEventListener("submit",(e)=>{
+    e.preventDefault()
+
+    const username = form.username.value 
+    const password = form.password.value
+
+    const authenticated = authentication(username,password)
+
+    if(authenticated){
+        alert("YOU LOGGED IN SUCCESSFULLY")
+        window.location.href = "https://drive.google.com/drive/u/3/home"
+    }else if (username === "mano"    && password === "github@mano123"){
+      window.location.href = "https://github.com/mano-github-9008/web-2"
+    }else{
+        alert("You are not allowed !")
+         window.location.href = "Files.html"
+    }
+})
+
+// function for checking username and password
+
+function authentication(username,password){
+    
+    if(username === "dods@admin1"    && password === "admin@dodslab"){
+        return true
+    }else if (username === "mano"    && password === "mano@2703"){
+        return true
+    }else{
+        return false
+    }
+}
+    </script>
+  </body>
+</html>
