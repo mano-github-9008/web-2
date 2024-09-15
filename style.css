@@ -891,3 +891,42 @@ label{
   letter-spacing: 5px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.file-item {
+  background-color: var(--box);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--b-text);
+}
+
+.download-btn {
+  padding: 10px 20px;
+  background-color: var(--b-text);
+  color: var(--text-color);
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+  background-color: var(--a-text);
+}
+
+footer {
+  margin-top: 50px;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+}
