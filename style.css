@@ -696,13 +696,18 @@ margin-left: 60px;
     z-index: 1000 ;
     transition: opacity 1.5s, visibility 1.5s;
   }
+
+  .loader img{
+    width: 600x;
+    height: 300px;
+  }
   
   .loader--hidden {
     opacity: 0;
     visibility: hidden;
   }
   
-  .loader::after {
+  /*.loader::after {
     content: "";
     width: 45px;
     height:45px;
@@ -713,7 +718,7 @@ margin-left: 60px;
     border-top-color: var(--a-text);
     border-radius: 50%;
     animation: loading 0.55s ease infinite;
-  }
+  }*/
   
   @keyframes loading {
     from {
