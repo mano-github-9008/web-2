@@ -181,3 +181,5 @@ setInterval(function(){
   }
   clock.textContent = hr + ':' + min + ':' + sec + " " + day;
 });
+
+
