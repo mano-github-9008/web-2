@@ -34,15 +34,15 @@ header {
 
 /* ===== Colours ===== */
 :root{
-  --body-color: #dddddd;
-  --nav-color:linear-gradient(to bottom right,	#7059c4  , 	#53a0c4, #3eb8ff);
-  --side-nav: #3979c2;
-  --text-color: #ffffff;
+  --body-color: #E4E0E1;
+  --nav-color:linear-gradient(to bottom right,	#643843  , 	#85586F, #AC7D88);
+  --side-nav: #85586F;
+  --text-color: #FFF2E1;
   --search-bar: #1e063a;
   --search-text: #ffffff;
-  --a-text : #420068 ;
-  --b-text : #00397a ;
-  --box : #c7c7c79d;
+  --a-text : #102C57 ;
+  --b-text : #411530 ;
+  --box : #FFE0B5;
 }
 
 body{
@@ -58,15 +58,15 @@ body{
 }
 
 body.dark{
-    --body-color: #2a3044 ;
-    --nav-color: linear-gradient(to bottom right,#030031, #0e052b, #030e33);
-    --side-nav: #374151;
-    --text-color: #ffffff;
+    --body-color: #6D5D6E ;
+    --nav-color: linear-gradient(to bottom right,#3E3232, #503C3C, #7E6363);
+    --side-nav: #A78295;
+    --text-color: #EFE1D1;
     --search-bar: #F2F2F2;
     --search-text: #ffffff;
-    --a-text : #00ccff;
-    --b-text : #ffa600 ;
-    --box : #1f1c35c9;
+    --a-text : #ECB365;
+    --b-text : #EAE7AF ;
+    --box : #503C3C;
 }
 
 nav{
