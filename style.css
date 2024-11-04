@@ -38,8 +38,8 @@ header {
   --nav-color:linear-gradient(to bottom right,	#643843  , 	#85586F, #AC7D88);
   --side-nav: #85586F;
   --text-color: #FFF2E1;
-  --search-bar: #1e063a;
-  --search-text: #ffffff;
+  --search-bar: #ffde92;
+  --search-text: #ede6d6;
   --a-text : #102C57 ;
   --b-text : #411530 ;
   --box : #FFE0B5;
@@ -54,16 +54,15 @@ body{
     padding: 0;
     text-align: center;
     color: #ffffff;
-    cursor: url('images/cur.png'), auto;
 }
 
 body.dark{
     --body-color: #6D5D6E ;
     --nav-color: linear-gradient(to bottom right,#3E3232, #503C3C, #7E6363);
     --side-nav: #A78295;
-    --text-color: #EFE1D1;
-    --search-bar: #F2F2F2;
-    --search-text: #ffffff;
+    --text-color: #c4b39f;
+    --search-bar: #b4a790;
+    --search-text: #9b805d;
     --a-text : #ECB365;
     --b-text : #EAE7AF ;
     --box : #503C3C;
@@ -341,13 +340,14 @@ section {
     padding: 5px;
     float: left;
     margin-left: 6px;
+    width: 47%;
 }
 
 
 aside{
     padding: 5px;
-    float: right;
-    background-color: transparent;
+    float: left;
+    width: 47%;
 }
 
 article{
@@ -922,14 +922,6 @@ label{
   background-color: var(--a-text);
 }
 
-footer {
-  margin-top: 50px;
-  padding: 10px;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-}
-
 button {
   margin-top: 10px;
   padding: 10px 20px;
@@ -958,4 +950,58 @@ ul {
 
 ul li {
   margin: 10px 0;
+}
+
+.accordion {
+  background-color: var(--box);
+  color: var(--b-text);
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.accordion:hover {
+  background-color: var(--search-bar); 
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: var(--search-text);
+  overflow: hidden;
+}
+
+.Accordion {
+  background-color: var(--search-bar);
+  color: var(--a-text);
+  cursor: pointer;
+  padding: 18px;
+  width: 90%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+  float: left;
+}
+
+.Accordion:hover {
+  background-color: var(--side-nav); 
+  color: var(--search-bar);
+}
+
+.paneL {
+  padding: 0 18px;
+  display: none;
+  background-color: var(--side-nav);
+  overflow: hidden;
+  width: 85%;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 }
