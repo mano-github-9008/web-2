@@ -59,11 +59,11 @@ body{
 body.dark{
     --body-color: #6D5D6E ;
     --nav-color: linear-gradient(to bottom right,#3E3232, #503C3C, #7E6363);
-    --side-nav: #A78295;
-    --text-color: #c4b39f;
+    --side-nav: #503C3C;
+    --text-color: #958a8a;
     --search-bar: #b4a790;
     --search-text: #9b805d;
-    --a-text : #ECB365;
+    --a-text : #d7b000;
     --b-text : #EAE7AF ;
     --box : #503C3C;
 }
