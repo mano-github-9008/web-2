@@ -35,14 +35,14 @@ header {
 /* ===== Colours ===== */
 :root{
   --body-color: #E4E0E1;
-  --nav-color:linear-gradient(to bottom right,	#643843  , 	#85586F, #AC7D88);
-  --side-nav: #85586F;
-  --text-color: #FFF2E1;
+  --nav-color:linear-gradient(to bottom right,	#4C1D3D  , 	#852E4E, #A33757);
+  --side-nav: #662249;
+  --text-color: #ED9E59;
   --search-bar: #ffde92;
   --search-text: #ede6d6;
-  --a-text : #102C57 ;
-  --b-text : #411530 ;
-  --box : #FFE0B5;
+  --a-text : #44174E ;
+  --b-text : #6E3482;
+  --box : #D4D8DD;
 }
 
 body{
@@ -57,15 +57,15 @@ body{
 }
 
 body.dark{
-    --body-color: #6D5D6E ;
-    --nav-color: linear-gradient(to bottom right,#3E3232, #503C3C, #7E6363);
-    --side-nav: #503C3C;
-    --text-color: #958a8a;
-    --search-bar: #b4a790;
-    --search-text: #9b805d;
-    --a-text : #d7b000;
-    --b-text : #EAE7AF ;
-    --box : #503C3C;
+    --body-color: #aab7b7 ;
+    --nav-color: linear-gradient(to bottom right,#1a2d42, #2e4156, #274d60);
+    --side-nav: #242e49;
+    --text-color: #a4d3de;
+    --search-bar: #6ba3be;
+    --search-text: #37415c;
+    --a-text : #032f30;
+    --b-text : #19305c ;
+    --box : #809999;
 }
 
 nav{
@@ -612,7 +612,7 @@ margin-left: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--side-nav);
+    background: var(--body-color);
     z-index: 1000 ;
     transition: opacity 1.5s, visibility 1.5s;
   }
