@@ -901,7 +901,7 @@ ul li {
   color: var(--a-text);
   cursor: pointer;
   padding: 18px;
-  width: 90%;
+  width: 100%;
   border: none;
   text-align: center;
   outline: none;
@@ -920,7 +920,7 @@ ul li {
   display: none;
   background-color: var(--side-nav);
   overflow: hidden;
-  width: 85%;
+  width: 95%;
   align-items: center;
   justify-content: center;
   align-content: center;
