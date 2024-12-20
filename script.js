@@ -1,5 +1,3 @@
-
-
 document.oncontextmenu = () =>{
   alert("Viewing source page is not allowed due to security key ")
   return false

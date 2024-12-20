@@ -39,7 +39,6 @@ body.dark {
   --box: #4a2d59; /* Dark purple box background for dark mode */
 }
 
-
 /* ===== Navigation Styling ===== */
 nav {
   top: 0;
@@ -189,7 +188,7 @@ nav .nav-bar .logo a {
   }
 
   nav.active .menu {
-    left: -0%;
+    left: 0%;
   }
 
   nav.active .nav-bar .navLogo a {
@@ -222,17 +221,25 @@ nav .nav-bar .logo a {
   }
 }
 
-/* Styling for section */
-section {
-  width: 48%;
-  padding: 25px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  display: inline-block;
+/* Fixing the issue with space on right side */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  width: 100%;
+}
+
+/* Global Reset for Margin and Padding */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-aside {
+/* Section Styling */
+section, aside {
   width: 48%;
   padding: 25px;
   margin-bottom: 20px;
@@ -248,16 +255,47 @@ article {
   display: block;
 }
 
+/* Media queries to adjust layout on smaller screens */
 @media (max-width: 768px) {
   section, aside {
-    width: 100%;
-    margin-bottom: 20px;
+    width: 100%; /* Full width for smaller screens */
+    padding: 15px; /* Reduced padding */
+    margin-bottom: 15px; /* Adjusted bottom margin */
+    display: block; /* Changed display to block for better stacking */
   }
 
   article {
-    padding: 20px;
+    padding: 18px; /* Reduced padding for article */
+  }
+
+  /* Optional: Prevent horizontal scrolling */
+  body, html {
+    overflow-x: hidden;
+    margin: 0; /* Ensure no margin is causing extra space */
+    padding: 0; /* Ensure no padding is causing extra space */
   }
 }
+
+/* Further adjustments for very small screens */
+@media (max-width: 480px) {
+  section, aside {
+    width: 100%; /* Full width for very small screens */
+    padding: 12px; /* Further reduced padding */
+    margin-bottom: 10px; /* Adjusted bottom margin */
+  }
+
+  article {
+    padding: 15px; /* Further reduced padding */
+  }
+
+  /* Prevent body overflow on very small screens */
+  body, html {
+    overflow-x: hidden;
+    margin: 0; /* Reset margin to remove unwanted left margin */
+    padding: 0; /* Reset padding */
+  }
+}
+
 
 /* Box Styling */
 .box {
@@ -350,7 +388,7 @@ footer:hover {
 
 /* General Box Styling */
 .box {
-  width: 50%;
+  width: 40%;
   margin: 10px auto;
   padding: 15px;
   border: 2px solid #ddd;
@@ -359,6 +397,7 @@ footer:hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
   background-color: var(--box);
+  box-sizing: border-box; /* Prevent overflow caused by padding and borders */
 }
 
 .box:hover {
@@ -399,21 +438,47 @@ footer:hover {
   padding: 5px 0;
 }
 
+/* Media Query for Phones */
 @media (max-width: 768px) {
+  /* Make sure the box fits on smaller screens */
   .box {
-    width: 95%;
-    padding: 15px;
-    margin-bottom: 15px;
+    width: 100%; /* Ensure full width on phones */
+    padding: 10px; /* Adjust padding for smaller screens */
+    margin-bottom: 10px; /* Reduce margin to save space */
   }
 
   .box-title {
-    font-size: 18px;
+    font-size: 18px; /* Adjusted title size for mobile */
   }
 
   .course-list a {
-    font-size: 14px;
+    font-size: 14px; /* Slightly smaller font size for links */
+    padding: 6px 0; /* Reduced padding for more compact layout */
+  }
+
+  /* Prevent horizontal scrolling */
+  body, html {
+    overflow-x: hidden; /* Prevent horizontal scrolling */
   }
 }
+
+/* Further adjustments for very small screens */
+@media (max-width: 480px) {
+  .box {
+    width: 100%; /* Ensure the box is full width on very small screens */
+    padding: 8px; /* Further reduced padding */
+  }
+
+  .box-title {
+    font-size: 16px; /* Smaller title size on very small screens */
+  }
+
+  .course-list a {
+    font-size: 12px; /* Smaller font size for links on very small screens */
+  }
+}
+
+
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap'); /* Funky font */
