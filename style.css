@@ -1,17 +1,34 @@
 /* ===== Google Font Import - Poppins ===== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-/* ===== Colours ===== */
+/* ===== Colors ===== */
 :root {
-  --body-color: #eeeeee; /* Soft light gray background for a clean, neutral look */
-  --nav-color: linear-gradient(to bottom right, #9b7ebd, #d4bee4); /* Gradient from lavender purple to pale lavender for dark mode navbar */
-  --side-nav: #9b7ebd; /* Lavender purple sidebar */
-  --text-color: #9132b9; /* Adjusted for better contrast - slightly darker deep purple */
-  --search-bar: #ffffff; /* White background for search bar */
-  --search-text: #555555; /* Dark gray text in search bar */
-  --a-text: #2c1b3d; /* Adjusted deep purple for links for better contrast */
-  --b-text: #9b7ebd; /* Lavender purple for secondary text */
-  --box: #d4bee4; /* Pale lavender background for boxes */
+  --body-color: #fdfdfd; /* Subtle off-white for a clean, elegant look */
+  --nav-color: linear-gradient(to bottom right, #ff7eb3, #ff758f); /* Eye-catching pink-orange gradient */
+  --side-nav: #ff758f; /* Vibrant pinkish-red for the sidebar */
+  --text-color: #2c2c54; /* Deep navy for strong readability */
+  --search-bar: #ffffff; /* Crisp white for the search bar */
+  --search-text: #4a4a4a; /* Neutral dark gray for search bar text */
+  --a-text: #ff7eb3; /* Bright pink for links and interactive elements */
+  --b-text: #ffa8c5; /* Soft pastel pink for secondary text */
+  --box: #ffffff; /* Pure white for container boxes */
+  --accent: #ff758f; /* Accent color for buttons or highlights */
+  --hover-highlight: #ffd1e3; /* Soft pink highlight for hover effects */
+}
+
+/* Dark Mode Colors */
+body.dark {
+  --body-color: #1a1a2e; /* Rich dark navy for background */
+  --nav-color: linear-gradient(to bottom right, #4e54c8, #8f94fb); /* Gradient of bold blue tones */
+  --side-nav: #4e54c8; /* Deep blue for sidebar */
+  --text-color: #dcdde1; /* Light silver for text in dark mode */
+  --search-bar: #2e2e5e; /* Subtle dark blue for search bar */
+  --search-text: #f5f5f5; /* Bright white text for dark search bar */
+  --a-text: #8f94fb; /* Bright lavender for links in dark mode */
+  --b-text: #6a82fb; /* Vibrant blue for secondary text */
+  --box: #22233a; /* Deep muted navy for box background */
+  --accent: #4e54c8; /* Accent color for buttons or highlights */
+  --hover-highlight: #6a82fb; /* Bright blue highlight for hover effects */
 }
 
 /* Body Styling */
@@ -19,7 +36,6 @@ body {
   background: var(--body-color);
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  font-style: normal;
   margin: 0;
   padding: 0;
   text-align: center;
@@ -27,17 +43,14 @@ body {
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
-body.dark {
-  --body-color: #3b1e54; /* Dark purple background for dark mode */
-  --nav-color: linear-gradient(to bottom right, #3b1e54, #9b7ebd); /* Gradient from deep purple to lavender purple for the navbar */
-  --side-nav: #3b1e54; /* Dark purple sidebar for dark mode */
-  --text-color: #ccb4e4; /* Light gray text for better contrast in dark mode */
-  --search-bar: #996bb0; /* Darker purple search bar */
-  --search-text: #f5f5f5; /* Light text for dark mode search bar */
-  --a-text: #d4bee4; /* Pale lavender for links in dark mode */
-  --b-text: #9b7ebd; /* Lavender purple for secondary text */
-  --box: #4a2d59; /* Dark purple box background for dark mode */
+/* Hover Effect Example */
+button:hover {
+  background-color: var(--hover-highlight);
+  color: var(--text-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
+
 
 /* ===== Navigation Styling ===== */
 nav {
@@ -248,12 +261,29 @@ section, aside {
   box-sizing: border-box;
 }
 
+/* Section Styling */
 article {
-  width: 100%;
-  padding: 25px;
+  display: flex;
+  justify-content: space-between; /* Ensures the boxes are spread out */
+  flex-wrap: wrap; /* Ensures that content wraps on smaller screens */
   margin-bottom: 20px;
-  display: block;
 }
+
+.box {
+  width: 48%; /* Makes each box take up half of the available space */
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  article {
+    flex-direction: column; /* Stacks the boxes vertically on smaller screens */
+  }
+
+  .box {
+    width: 100%; /* Full width for each box on small screens */
+  }
+}
+
 
 /* Media queries to adjust layout on smaller screens */
 @media (max-width: 768px) {
@@ -584,23 +614,44 @@ footer:hover {
 }
 
 /* Download Button */
+/* Attractive Download Button */
 .download-btn {
-  padding: 12px 25px;
-  background-color: var(--b-text);
-  color: white;
+  background: linear-gradient(45deg, var(--text-color), var(--a-text)); /* Gradient background for vibrancy */
+  color: var(--search-bar); /* Bright text color */
+  font-size: 18px;
+  font-weight: 600; /* Bold text for emphasis */
+  padding: 15px 30px;
   border: none;
-  border-radius: 50px; /* Rounded button edges for modern feel */
-  text-decoration: none;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  border-radius: 50px; /* Rounded corners for a modern look */
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Soft shadow for elevation */
+  outline: none; /* Remove outline on focus */
 }
 
+/* Hover Effect */
 .download-btn:hover {
-  background-color: var(--a-text);
-  transform: translateY(-2px); /* Slight lifting effect */
+  background: linear-gradient(45deg, var(--a-text), var(--text-color)); /* Reverse gradient on hover */
+  color: var(--search-bar); /* Bright text */
+  transform: translateY(-4px); /* Slight lift on hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Subtle text shadow */
 }
+
+/* Focus Effect (for accessibility) */
+.download-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4); /* Glow effect on focus */
+}
+
+/* Button inside Inner Box */
+.panel .download-btn,
+.paneL .download-btn {
+  margin: 20px auto; /* Centering the button inside the box */
+  display: inline-block;
+  font-size: 18px;
+}
+
 
 /* General Button Styling */
 button {
@@ -641,63 +692,78 @@ ul li {
 
 /* Accordion Button */
 .accordion {
-  background-color: var(--box);
-  color: var(--b-text);
+  background-color: var(--box); /* Light lavender for outer accordion */
+  color: var(--text-color); /* Dark purple text for contrast */
   cursor: pointer;
   padding: 18px;
   width: 100%;
-  border: none;
+  border: 1px solid var(--a-text); /* Subtle border for structure */
   text-align: center;
   outline: none;
   font-size: 16px;
-  transition: 0.4s;
+  font-weight: 500;
+  transition: background-color 0.4s ease, color 0.4s ease, transform 0.2s ease;
   border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for lift effect */
 }
 
 .accordion:hover {
-  background-color: var(--search-bar); /* Hover effect */
+  background-color: var(--hover-highlight); /* Highlighted color */
+  color: var(--a-text); /* Bright text for emphasis */
+  transform: translateY(-2px);
 }
 
-/* Accordion Panel */
+/* Accordion Panel (Inner Box) */
 .panel {
-  padding: 0 18px;
+  padding: 15px 18px;
   display: none;
-  background-color: var(--search-text);
+  background-color: var(--hover-highlight); /* Soft pink for strong inner contrast */
+  color: var(--a-text); /* Dark text for clarity */
+  border: 2px solid var(--side-nav); /* Visible border */
+  border-radius: 8px;
+  margin-top: 10px; /* Spacing from the button */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
   overflow: hidden;
 }
 
-/* Additional Accordion (with different hover effect) */
+/* Additional Accordion Button */
 .Accordion {
-  background-color: var(--search-bar);
-  color: var(--a-text);
+  background-color: var(--side-nav); /* Dark purple outer accordion */
+  color: var(--search-bar); /* Bright white text */
   cursor: pointer;
   padding: 18px;
   width: 90%;
-  border: none;
+  border: 1px solid var(--a-text); /* Subtle border for structure */
   text-align: center;
   outline: none;
   font-size: 16px;
-  transition: 0.4s;
+  font-weight: 500;
+  transition: background-color 0.4s ease, color 0.4s ease, transform 0.2s ease;
   border-radius: 8px;
   float: left;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for distinction */
 }
 
 .Accordion:hover {
-  background-color: var(--side-nav); /* Darker background on hover */
-  color: var(--search-bar);
+  background-color: var(--hover-highlight); /* Highlighted gradient */
+  color: var(--text-color); /* Dark text */
+  transform: scale(1.02);
 }
 
-/* Accordion Pane */
+/* Accordion Inner Pane */
 .paneL {
-  padding: 0 18px;
+  padding: 15px 18px;
   display: none;
-  background-color: var(--side-nav);
-  overflow: hidden;
+  background-color: var(--b-text); /* Light lavender for inner box */
+  color: var(--search-bar); /* Bright white text */
+  border: 2px solid var(--text-color); /* Bold border for visibility */
+  border-radius: 8px;
+  margin-top: 10px;
   width: 85%;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2); /* Inset shadow for depth */
+  overflow: hidden;
 }
+
 
 
 /*=============== BREAKPOINTS ===============*/
@@ -981,25 +1047,80 @@ ul li {
   }
 }
 /* finished block */
-.login-btn{
-  border: none;
-  background-color: var(--side-nav);
-  color: var(--b-text);
-  font-size: 20px;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-top: 30px;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  border: 2px solid var(--side-nav);
+  border-radius: 10px;
+  background-color: var(--form-bg);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
 }
 
-.logout-btn{
+label {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--b-text);
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid var(--search-bar);
+  border-radius: 5px;
+  margin-top: 5px;
+  outline: none;
+  background-color: var(--input-bg);
+  color: var(--b-text);
+  font-size: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+  border-color: var(--side-nav);
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+}
+
+.login-btn {
+  border: none;
+  background-color: var(--side-nav);
+  color: #FFFFFF; /* Set text color to white for contrast */
+  font-size: 18px;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-top: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: var(--side-nav-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.logout-btn {
   border: none;
   background-color: var(--a-text);
-  color:var(--text-color);
+  color: #FFFFFF; /* Set text color to white for contrast */
   height: 50px;
-  width: 100px;
-  font-size: 20px;
-  border-radius: 5px;
-  margin-top: 30px;
+  width: 120px;
+  font-size: 18px;
+  border-radius: 8px;
+  margin-top: 20px;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.logout-btn:hover {
+  background-color: var(--a-text-hover);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
