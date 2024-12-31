@@ -1,5 +1,3 @@
-
-
 document.oncontextmenu = () =>{
   alert("Viewing source page is not allowed due to security key ")
   return false
@@ -135,27 +133,6 @@ if(!clickedElm.classList.contains("sidebarOpen") && !clickedElm.classList.contai
 }
 });
 
-const title = document.querySelector('.title')
-const leaf1 = document.querySelector('.leaf1')
-const leaf2 = document.querySelector('.leaf2')
-const bush2 = document.querySelector('.bush2')
-const mount1 = document.querySelector('.mount1')
-const mount2 = document.querySelector('.mount2')
-
-document.addEventListener('scroll', function() {
-    let value = window.scrollY
-    // console.log(value)
-    title.style.marginTop = value * 1.1 + 'px'
-
-    leaf1.style.marginLeft = -value + 'px'
-    leaf2.style.marginLeft = value + 'px'
-
-    bush2.style.marginBottom = -value + 'px'
-
-    mount1.style.marginBottom = -value * 1.1 + 'px'
-    mount2.style.marginBottom = -value * 1.2 + 'px'
-})
-
 setInterval(function(){
   const clock = document.querySelector(".display");
   let time = new Date();
@@ -181,6 +158,17 @@ setInterval(function(){
   }
   clock.textContent = hr + ':' + min + ':' + sec + " " + day;
 });
+
+// Example to add animation on time change
+function updateTime() {
+  const timeDisplay = document.querySelector('.clock .display');
+  timeDisplay.classList.add('change-time');
+
+  // Remove the class after the animation to allow it to re-trigger
+  setTimeout(() => {
+    timeDisplay.classList.remove('change-time');
+  }, 500); // Match the duration of the animation
+}
 
 
 var acc = document.getElementsByClassName("accordion");
