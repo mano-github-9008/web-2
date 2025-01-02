@@ -200,3 +200,20 @@ for (i = 0; i < Acc.length; i++) {
     }
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const video = document.getElementById("introVideo");
+
+  // Attempt to autoplay with sound
+  video.play().catch(error => {
+      console.warn("Autoplay with sound was blocked by the browser:", error);
+
+      // Fallback: Mute the video and retry autoplay
+      video.muted = true;
+      video.play().then(() => {
+          console.log("Autoplay with muted video succeeded.");
+      }).catch(err => {
+          console.error("Autoplay failed even after muting:", err);
+      });
+  });
+});
