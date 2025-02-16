@@ -1,250 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>DODS-About</title>
-    <link rel="icon" type="image/png" href ="images/ODS.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet"> 
+  <title>DODS-About</title>
+  <link rel="icon" type="image/png" href="images/fav.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+  <script src="script.js" defer></script>
 
 </head>
-<style>
- /* Slideshow container */
-.slideshow-container {
-  position: relative;
-  background: var(--text-color);
-  width: 100%;
-  max-width: 1000px;
-  margin: auto;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-}
 
-/* Slides */
-.mySlides {
-  display: none;
-  padding: 80px;
-  text-align: center;
-  color: var(--a-text);
-  font-size: 1.2em;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
+<body>
 
-/* Show slides with fade effect */
-.mySlides.fade {
-  display: block;
-  opacity: 1;
-}
+  <!-- Top Blue Bar -->
+  <div class="top-bar">
+    <span><i class="fas fa-envelope"></i> datascience@sies.edu.in</span>
+    <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
+    <div class="top-links">
+        <a href="#">RTI</a>
+        <a href="#">Magazine</a>
+        <a href="#">RUSA</a>
+        <a href="#">Endowments</a>
+        <a href="#">NAAC</a>
+        <a href="#">ISR / Extension Activities</a>
+        <a href="#">Alumni</a>
+        <a href="#">Contact</a>
+        <a href="#" class="prospectus-btn">Enroll Now</a>
+    </div>
+</div>
 
-/* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  padding: 16px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: var(--box);
-  font-weight: bold;
-  font-size: 20px;
-  border: none;
-  border-radius: 50%;
-  transition: background-color 0.3s ease;
-  user-select: none;
-}
-
-.prev {
-  left: 10px;
-  transform: translateY(-50%);
-}
-
-.next {
-  right: 10px;
-  transform: translateY(-50%);
-}
-
-/* On hover, change button background color */
-.prev:hover, .next:hover {
-  background-color: var(--a-text);
-  color: var(--box);
-}
-
-/* The dot/bullet/indicator container */
-.dot-container {
-  position: absolute;
-  bottom: 10px;
-  width: 100%;
-  text-align: center;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 0 0 10px 10px;
-}
-
-/* The dots/bullets/indicators */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 5px;
-  background-color: var(--a-text);
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease, transform 0.3s ease;
-}
-
-/* Add a background color to the active dot/circle */
-.active, .dot:hover {
-  background-color: var(--box);
-  transform: scale(1.2);
-}
-
-/* Add an italic font style to all quotes */
-q {
-  font-style: italic;
-  font-size: 1.1em;
-  color: var(--b-text);
-  margin: 0;
-}
-
-/* Add a blue color to the author */
-.author {
-  color: var(--b-text);
-  font-weight: bold;
-  font-size: 1.1em;
-  text-align: center;
-}
-
-/* Optional: Add a subtle transition to text color on hover */
-.author:hover {
-  color: var(--a-text);
-}
-
-</style>
-
-<body style=" background-image: var(--body-color) ;
-background-size: auto;
-background-repeat: no-repeat;">
-    
-    <nav>
-        <div class="nav-bar">
-            <i class='bx bx-menu sidebarOpen' ></i>
-            <span class="logo navLogo"><a href="index.html"><img src="images/ODS1.png" alt="#" style="height: 140px;width: 200px;vertical-align: middle;"></a></span>
-
-            <div class="menu">
-                <div class="logo-toggle">
-                    <span class="logo"><a href="index.html">DODSLab</a></span>
-                    <i class='bx bx-x siderbarClose'></i>
+      <!-- Header Section -->
+      <header>
+        <div class="logo">
+            <img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo">
+        </div>
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <!-- Navigation -->
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="active">Department</a></li>
+                        <li><a href="index.html#Facilities">Facilities</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="syllabus.html">Syllabus</a></li>
+                    </ul>
+                </li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="Files.html">Files</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="Achivements.html">Achievements</a></li>
+                
+                <li>
+                  <div class="darkLight-searchBox" style="font-size:25px;  ">
+                  <div class="dark-light" style="margin-right: 30px;">
+                      <p><i class="fa-solid fa-brush"></i></p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                <div class="darkLight-searchBox" style="font-size:25px;  ">
+                  <div class="dark-light" style="margin-right: 25px;">
+                    <p>
+                      <a href="login.html"><i class="fa-solid fa-user"></i></a>
+                    </p>
+                  </div>
                 </div>
+              </li>
+            </ul>
+            
+        </nav>
+    </header><br>
 
-                <ul class="nav-links">
-                    <li><a href="index.html">HOME</a></li>
-                    <li><a href="#">ABOUT</a></li>
-                    <li><a href="Files.html">FILES</a></li>
-                    <li><a href="contact.html">CONTACT</a></li>
-                    
-                </ul>
-            </div>
+    <div class="tabs">
+        <button class="tab-button active" onclick="openTab('mission')">Mission</button>
+        <button class="tab-button" onclick="openTab('vision')">Vision</button>
+        <button class="tab-button" onclick="openTab('staffs')">Faculties</button>
+        <button class="tab-button" onclick="openTab('values')">Values</button>
+        <button class="tab-button" onclick="openTab('gallery')">Image Gallery</button>
+        <button class="tab-button" onclick="openTab('Creator')">Creator</button>
+        <button class="tab-button" onclick="window.location.href='contact.html'">Contact</button>
+    </div>
 
-            <div class="darkLight-searchBox">
-                <p style="font-size: 14px;vertical-align: bottom;color: var(--text-color);">SWITCH THEME</p>
-                <div class="dark-light">
-                    <i class="fa-solid fa-brush"></i>
+    <div id="mission" class="tab-content active">
+        <h2>Our Mission</h2>
+        <p>Our mission is to provide students and researchers with structured and reliable data science materials,
+            enabling them to excel in their learning journey.</p>
+    </div>
+
+    <div id="vision" class="tab-content">
+        <h2>Department Vision</h2>
+        <p>To evolve as a center of excellence in Data Analytics and develop high-quality professionals and researchers
+            who solve grand challenges and innovate through world-class research.</p>
+    </div>
+
+    <div id="staffs" class="tab-content">
+        <div class="container">
+            <div class="faculty-grid">
+                <!-- Faculty Member 1 -->
+                <div class="faculty-card">
+                    <img src="images/faculties/Leeba_Mam.jpg" alt="Dr. John Doe">
+                    <h3>Ms Leeba John</h3>
+                    <p>Assistant Professor of Data Science</p>
+                    <p><b>Qualification</b></p>
+                    <p>
+                        <li>GSET Computer Science And Applications</li>
+                        <li>PG Information Technology</li>
+                        <li>UG Information Technology</li>
+                    </p>
+                    <a href="https://siesascs.edu.in/faculty/view-faculty-214" target="_blank">View Profile</a>
+                </div>
+                <!-- Faculty Member 2 -->
+                <div class="faculty-card">
+                    <img src="images/faculties/Heena_Mam.jpg" alt="Dr. Jane Smith">
+                    <h3>Ms Heena Shaikh</h3>
+                    <p>Associate Professor of Data Science</p>
+                    <p><b>Qualification</b></p>
+                    <p>
+                        <li>NTA UGC NET Computer Science And Application</li>
+                        <li>MH-SET Computer Science And Application</li>
+                        <li>PG I.T</li>
+                        <li>UG Information Technology</li>
+                    </p>
+                    <a href="https://siesascs.edu.in/faculty/view-faculty-213" target="_blank">View Profile</a>
+                </div>
+                <!-- Faculty Member 3 -->
+                <div class="faculty-card">
+                    <img src="images/faculties/Smita_Mam.jpg" alt="Dr. Michael Brown">
+                    <h3>Mrs Smita Junnarkar</h3>
+                    <p>Assistant Professor of Data Science</p>
+                    <p>
+                        <li>PG Computer Application</li>
+                        <li>B.Ed Maths, Science</li>
+                    </p>
+                    <a href="https://siesascs.edu.in/faculty/view-faculty-261" target="_blank">View Profile</a>
                 </div>
             </div>
         </div>
-    </nav>
-<br>
-    <div class="box" style="color: var(--b-text); background-color: var(--box); padding: 20px;">
-        <h2><i>This website is designed for educational purposes only.</i></h2>
-        <hr><br>
-        <p>All practical files and documents are available here. Please do not misuse or engage in improper behavior on this website. <br>
-            We are not responsible for any consequences arising from such actions.</p><br>
-        <p>For any inquiries, please visit the <b>Contact</b> section.</p><br>
-        <p>Created by students of the <b>Data Science Department</b>, established in 2023.</p><br>
-        <p><b>&copy; 2023 All rights reserved.</b></p><br>
-        <p><b>`DODS ~ Department of Data Science </b></p><br>
     </div>
-    <!-- Slideshow container -->
-    <div class="slideshow-container">
-      <!-- Slide 1 -->
-      <div class="mySlides fade">
-        <q>"Big Data is like a puzzle, you just need to find the right pieces."</q>
-        <p class="author">John Doe</p>
+
+    <div id="values" class="tab-content">
+        <h2>Department Values</h2>
+        <ul>
+            <li>Providing top-quality teaching and learning opportunities with a carefully crafted curriculum.</li>
+            <li>Integrating curriculum into practical, real-world business and societal challenges.</li>
+            <li>Empowering students with knowledge and skills for a rapidly evolving data science landscape.</li>
+            <li>Pushing the boundaries of data science through cutting-edge research.</li>
+        </ul>
+    </div>
+
+    <div id="gallery" class="tab-content">
+        <h2>Image Gallery</h2>
+        <div class="gallery">
+            <img src="images/prize.jpg" alt="Gallery Image 1">
+            <img src="images/Library.jpg" alt="Gallery Image 2">
+            <img src="images/collabration.jpg" alt="Gallery Image 3">
+            <img src="images/solar.jpg" alt="Gallery Image 4">
+            <img src="images/EVENTS/Ev (10).JPG" alt="Gallery Image 4">
+            <img src="images/EVENTS/Ev (11).JPG" alt="Gallery Image 4">
+            <img src="images/EVENTS/Ev (2).jpg" alt="Gallery Image 4">
+            <img src="images/EVENTS/Ev (7).JPG" alt="Gallery Image 4">
+            <img src="images/EVENTS/Ev (7).JPG" alt="Gallery Image 4">
+            <img src="images/EVENTS/Ev (8).JPG" alt="Gallery Image 4">
+            <img src="images/EVENTS/Ev (9).JPG" alt="Gallery Image 4">
+        </div>
+    </div>
+
+    <div id="Creator" class="tab-content">
+      <h2>Creator</h2>
+      <div class="faculty-card">
+        <img src="images/creator.JPG" alt="Dr. Michael Brown">
+        <h3>Mano Arvind</h3>
+        <p>Student of Data Science Department</p><br>
+        <!-- <div class="box"> -->
+          <h2><i>This website is designed for educational purposes only.</i></h2><br>
+          <p><b>&copy; 2025 All rights reserved.</b></p><br>
+          <p><b>`DODS ~ Department of Data Science </b></p><br>
+      <!-- </div> -->
+  
+        <a href="MANO ARVIND.pdf" target="_blank">View Certificate</a>
+    </div>
+  </div>
+
+    <script>
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+ <footer>
+    <p style="text-align: left; color: var(--side-nav);"><b>Important Links Section</b></p>
+    <div class="footer-links">
+      <div>
+        <ul>
+          <li><a href="#">Faculty Login</a></li>
+          <li><a href="#">Exam Calendar</a></li>
+          <li><a href="#">Sports</a></li>
+          <li><a href="#">Students Council</a></li>
+          <li><a href="#">Prajnya Vision Center</a></li>
+          <li><a href="#">FIST</a></li>
+          <li><a href="#">Placement</a></li>
+        </ul>
       </div>
-    
-      <!-- Slide 2 -->
-      <div class="mySlides fade">
-        <q>"Data science is not just about learning algorithms, it's about solving real-world problems."</q>
-        <p class="author">Jane Smith</p>
+      <div>
+        <ul>
+          <li><a href="#">Download Study Material</a></li>
+          <li><a href="#">Photo Gallery</a></li>
+          <li><a href="#">Results</a></li>
+          <li><a href="#">Lifelong Learning And Extension (LLE)</a></li>
+          <li><a href="#">Admission 2024 - 2025</a></li>
+          <li><a href="#">Courses & Syllabus</a></li>
+          <li><a href="#">STAR DBT</a></li>
+          <li><a href="#">Leadership Training</a></li>
+        </ul>
       </div>
-    
-      <!-- Navigation buttons -->
-      <button class="prev">&#10094;</button>
-      <button class="next">&#10095;</button>
-    
-      <!-- Dot indicators -->
-      <div class="dot-container">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
+      <div>
+        <ul>
+          <li><a href="#">Library</a></li>
+          <li><a href="#">Clean & Green Environment</a></li>
+          <li><a href="#">National Service Scheme (NSS)</a></li>
+          <li><a href="#">Annual Quality Assurance Report (AQAR)</a></li>
+          <li><a href="#">College Publications</a></li>
+          <li><a href="#">College Committees</a></li>
+          <li><a href="#">National Cadet Corps (NCC)</a></li>
+          <li><a href="#">Nirmitee Kendra</a></li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li><a href="#">Value Lab</a></li>
+          <li><a href="#">University Grant Commission</a></li>
+          <li><a href="#">Anti ragging</a></li>
+          <li><a href="#">University of Mumbai</a></li>
+          <li><a href="#">Cultural Association</a></li>
+          <li><a href="#">Gender sensitization cell</a></li>
+          <li><a href="#">Indian Research in Progress</a></li>
+          <li><a href="#">Online Dictionary</a></li>
+        </ul>
       </div>
     </div>
-    
+
+    <!-- Research Hub Section -->
+    <div class="research-hub">
+      JIGNYASA - The Research Hub
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="copyright">
+     <p class="footer-copy">&copy; 2025 DEPARTMENT OF DATA SCIENCE | SIES All Rights Reserved.</p>
+    </div>
+
+    <!-- Footer Content -->
+    <div class="footer-content">
+      <div class="footer-left">
+        <p class="footer-version">Version: 4.0.0</p>
+      </div>
+
+      <div class="footer-center">
+        <div class="footer-links">
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+          <a href="#" class="footer-link">Sitemap</a>
+        </div>
+      </div>
+
+      <div class="footer-right">
+        <div class="footer-socials">
+          <a href="#" class="footer-social-link"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <div class="footer-contact">
+          <p>Contact Us:</p>
+          <p>Email: <a href="mailto:datascience@sies.edu.in" class="footer-email">datascience@sies.edu.in</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
 </body>
-<footer>
-    <p style="margin-left: 8px;">Version : 2.0.1</p>
-    
-</footer>
-<script src="script.js" defer></script>
-<script>
-   var slideIndex = 1;
-showSlides(slideIndex);
 
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-
-  // Wrap around if we go beyond the last slide or before the first slide
-  if (n > slides.length) { slideIndex = 1; }
-  if (n < 1) { slideIndex = slides.length; }
-
-  // Hide all slides and reset the active dot
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].classList.remove("active");
-  }
-
-  // Show the current slide and set the active dot
-  slides[slideIndex - 1].style.display = "block";  
-  dots[slideIndex - 1].classList.add("active");
-}
-
-// Optionally, if you want automatic slideshow
-setInterval(function() {
-  plusSlides(1);
-}, 3000); // Change slide every 3 seconds (adjust as needed)
-
-</script>
 </html>

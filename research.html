@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>DODS-Research</title>
+  <link rel="icon" type="image/png" href="images/fav.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+  <script src="script.js" defer></script>
+  <style>
+
+    /* General Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--body-color);
+      color: var(--text-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    header {
+      background: var(--nav-color);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .research-card {
+      background: var(--box);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .research-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .research-card h3 {
+      margin: 0 0 15px;
+      font-size: 1.4em;
+      color: var(--accent);
+    }
+
+    .research-card p {
+      font-size: 0.95em;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .research-card a {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-size: 0.9em;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .research-card a:hover {
+      background: var(--b-text);
+      transform: scale(1.05);
+    }
+
+    /* Dark Mode Toggle */
+    .dark-mode-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--box);
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      padding: 10px 15px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .dark-mode-toggle:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .research-card {
+      animation: fadeInUp 0.8s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Blue Bar -->
+  <div class="top-bar">
+    <span><i class="fas fa-envelope"></i> datascience@sies.edu.in</span>
+    <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
+    <div class="top-links">
+        <a href="#">RTI</a>
+        <a href="#">Magazine</a>
+        <a href="#">RUSA</a>
+        <a href="#">Endowments</a>
+        <a href="#">NAAC</a>
+        <a href="#">ISR / Extension Activities</a>
+        <a href="#">Alumni</a>
+        <a href="#">Contact</a>
+        <a href="#" class="prospectus-btn">Enroll Now</a>
+    </div>
+</div>
+
+      <!-- Header Section -->
+      <header>
+        <div class="logo">
+            <img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo">
+        </div>
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <!-- Navigation -->
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="About.html">Department</a></li>
+                        <li><a href="index.html#Facilities">Facilities</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="syllabus.html">Syllabus</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="active">Research</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="Files.html">Files</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="Achivements.html">Achievements</a></li>
+                
+                <li>
+                  <div class="darkLight-searchBox" style="font-size:25px;  ">
+                  <div class="dark-light" style="margin-right: 30px;">
+                      <p><i class="fa-solid fa-brush"></i></p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                <div class="darkLight-searchBox" style="font-size:25px;  ">
+                  <div class="dark-light" style="margin-right: 25px;">
+                    <p>
+                      <a href="login.html"><i class="fa-solid fa-user"></i></a>
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            
+        </nav>
+    </header><br>
+
+  <div class="container">
+    <div class="research-grid">
+      <!-- Research Card 1 -->
+      <div class="research-card">
+        <h3>Artificial Intelligence Research Lab</h3>
+        <p>Our AI lab focuses on cutting-edge research in machine learning, natural language processing, and computer vision. Explore our latest projects and publications.</p>
+        <a href="https://example.com/ai-lab" target="_blank">Visit Lab</a>
+      </div>
+
+      <!-- Research Card 2 -->
+      <div class="research-card">
+        <h3>Renewable Energy Projects</h3>
+        <p>We are working on innovative solutions for sustainable energy, including solar power optimization and energy storage systems. Learn more about our ongoing projects.</p>
+        <a href="https://example.com/renewable-energy" target="_blank">View Projects</a>
+      </div>
+
+      <!-- Research Card 3 -->
+      <div class="research-card">
+        <h3>Biomedical Engineering Innovations</h3>
+        <p>Our team is developing advanced medical devices and technologies to improve healthcare outcomes. Check out our featured publications and research breakthroughs.</p>
+        <a href="https://example.com/biomedical-engineering" target="_blank">Read Publications</a>
+      </div>
+
+      <!-- Research Card 4 -->
+      <div class="research-card">
+        <h3>Data Science and Analytics</h3>
+        <p>We specialize in big data analytics, predictive modeling, and data visualization. Discover how our research is transforming industries.</p>
+        <a href="https://example.com/data-science" target="_blank">Explore Research</a>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+</html>

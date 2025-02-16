@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>DODS-Enrollment Form</title>
+    <link rel="icon" type="image/png" href="images/fav.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+    <script src="script.js" defer></script>
+
+
+</head>
+<body>
+    <div class="container">
+        <h2>Enrollment Form</h2>
+        <form id="enrollmentForm" onsubmit="return validateForm()" action="success.html">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" required>
+            <div id="fullNameError" class="error"></div>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+            <div id="emailError" class="error"></div>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}">
+            <div id="phoneError" class="error"></div>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+            <div id="dobError" class="error"></div>
+
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="course">Course</label>
+            <select id="course" name="course" required>
+                <option value="ai">Artificial Intelligence</option>
+                <option value="ds">Data Science</option>
+                <option value="web">Web Development</option>
+                <option value="ml">Machine Learning</option>
+            </select>
+
+            <label for="address">Home Address</label>
+            <textarea id="address" name="address" rows="4" required></textarea>
+            <div id="addressError" class="error"></div>
+
+            <button type="submit">Submit Enrollment</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+            
+            // Clear previous errors
+            document.querySelectorAll('.error').forEach(e => e.innerHTML = "");
+
+            // Validate Full Name
+            let fullName = document.getElementById('fullName').value;
+            if (fullName.trim() === "") {
+                document.getElementById('fullNameError').innerText = "Full Name is required.";
+                isValid = false;
+            }
+
+            // Validate Email
+            let email = document.getElementById('email').value;
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('emailError').innerText = "Please enter a valid email address.";
+                isValid = false;
+            }
+
+            // Validate Phone Number
+            let phone = document.getElementById('phone').value;
+            const phonePattern = /^[0-9]{10}$/;
+            if (!phonePattern.test(phone)) {
+                document.getElementById('phoneError').innerText = "Phone number must be 10 digits.";
+                isValid = false;
+            }
+
+            // Validate Date of Birth
+            let dob = document.getElementById('dob').value;
+            if (dob === "") {
+                document.getElementById('dobError').innerText = "Date of Birth is required.";
+                isValid = false;
+            }
+
+            // Validate Home Address
+            let address = document.getElementById('address').value;
+            if (address.trim() === "") {
+                document.getElementById('addressError').innerText = "Home Address is required.";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script

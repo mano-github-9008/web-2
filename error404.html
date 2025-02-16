@@ -2,103 +2,175 @@
 <html lang="en">
 
 <head>
+  <title>DODS-Home</title>
+  <link rel="icon" type="image/png" href="images/ODS.png">
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Error 404 !</title>
-  <link rel="icon" type="image/png" href ="images/dods.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+  <script src="script.js" defer></script>
+    <style>
+        /* ===== Color Variables ===== */
+        :root {
+            --primary-accent: #084ca4;
+            --secondary-accent: #0a66c2;
+            --text-primary: #1a1a1a;
+            --text-secondary: #ffffff;
+            --bg-color: #ffffff;
+            --error-color: #f26d21;
+            --hover-bg: #ffeac9;
+        }
 
+        body.dark {
+            --primary-accent: #0a3d91;
+            --secondary-accent: #084ca4;
+            --text-primary: #e0e0e0;
+            --bg-color: #121826;
+            --error-color: #ff784e;
+            --hover-bg: #3a496f;
+        }
+
+        /* ===== Base Styles ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .error-container {
+            max-width: min(90%, 650px);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .error-gif {
+            width: min(100%, 320px);
+            height: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .error-heading {
+            color: var(--error-color);
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .error-message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--primary-accent);
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            background-color: transparent;
+        }
+
+        .action-link:hover {
+            background-color: var(--primary-accent);
+            color: var(--text-secondary);
+            transform: translateY(-2px);
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-accent);
+            border-radius: 2rem;
+            background: transparent;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode-toggle:hover {
+            background-color: var(--primary-accent);
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 480px) {
+            .error-container {
+                padding: 1rem;
+            }
+            
+            .action-link {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 
-<style>
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
-}
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100vh;
-    width: 100vw;
-    background: #ffffff;
-}
-#error-page{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-#error-page .content{
-    max-width: 650px;
-    text-align: center;
-}
-#error-page .header img{
-    width: 320px;
-}
-#error-page h4{
-    position: relative;
-    color: #000;
-    font-size: 2em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-}
-#error-page h4::before{
-    position: absolute;
-    content: attr(data-text);
-    top: 0;
-    left: 0;
-    right: 0;
-    text-shadow: 1px 1px 2px rgba(255,255,255,0.4);
-    
-      -webkit-text-fill-color: transparent;
-}
-#error-page p{
-    font-size: 1.2em;
-    color: #0d0d0d;
-}
-#error-page .btns{
-    margin: 25px 0px;
-    display: inline-flex;
-}
-#error-page .btns a{
-    display: inline-block;
-    text-decoration: none;
-    padding: 10px 25px;
-    border: 2px solid #270b5a;
-    color: #2e003a;
-    border-radius: 25px;
-    font-weight: 500;
-    margin: 0px 10px;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-}
-#error-page .btns a:hover{
-    background: #2d0349;
-    color: #fff;
-}
-</style>
 <body>
-  <div id="error-page">
 
-    <div class="content">
-      <div class="header">
-        <img src="images/404 Error.gif" alt="">
-      </div>
-      <h4 data-text="Opps! Page not found">Opps! Page not found</h4>
-      <p>Sorry, the page you are looking for does not exist or the Admin might have blocked for some speacial cases. If you think something
-        is broken, report a problem.</p>
 
-      <div class="btns">
-        <a href="index.html">Return Home</a>
-        <a href="mailto:manoarvind27@gmail.com">Report Problem</a>
-      </div>
-    </div>
-  </div>
+    <main class="error-container">
+        <img src="images/404 Error.jpg" 
+             alt="Animation showing page not found concept" 
+             class="error-gif"
+             loading="lazy">
+
+        <h1 class="error-heading">Page Not Found</h1>
+        
+        <p class="error-message">
+            The page you're looking for might have been moved, removed, or doesn't exist. 
+            Please check the URL or return to the homepage. If you believe this is an error, 
+            contact our support team.
+        </p>
+
+        <div class="action-buttons">
+            <a href="index.html" class="action-link" aria-label="Return to homepage">
+                Return Home
+            </a>
+            <a href="mailto:support@yourdomain.com" 
+               class="action-link"
+               aria-label="Report a problem">
+                Report Issue
+            </a>
+        </div>
+    </main>
+
+
 </body>
-
 </html>

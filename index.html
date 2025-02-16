@@ -2,148 +2,338 @@
 <html lang="en">
 
 <head>
-    <title>DODS-Home</title>
-    <link rel="icon" type="image/png" href="images/ODS.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
-        rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+  <title>DODS-Home</title>
+  <link rel="icon" type="image/png" href="images/fav.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+  <script src="script.js" defer></script>
 
 </head>
 
 <body>
-    <div class="loader">
-        <img src="images/ODS pre.gif" alt="">
+  <div class="loader">
+    <img src="images/dods_pre.gif" alt="" style="height: auto;width: 150px;">
+  </div>
+
+  <!-- Top Blue Bar -->
+  <div class="top-bar">
+    <span><i class="fas fa-envelope"></i> datascience@sies.edu.in</span>
+    <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
+    <div class="top-links">
+        <a href="#">RTI</a>
+        <a href="#">Magazine</a>
+        <a href="#">RUSA</a>
+        <a href="#">Endowments</a>
+        <a href="#">NAAC</a>
+        <a href="#">ISR / Extension Activities</a>
+        <a href="#">Alumni</a>
+        <a href="#">Contact</a>
+        <a href="enrollment.html" class="prospectus-btn">Enroll Now</a>
     </div>
-    <nav>
-        <div class="nav-bar">
-            
-            <i class='bx bx-menu sidebarOpen'></i>
-            <span class="logo navLogo"><a href="index.html"><img src="images/ODS1.png" alt="#" style="height: 140px;width: 200px;vertical-align: middle;"></a></span>
+</div>
 
-            <div class="menu">
-                <div class="logo-toggle">
-                    <span class="logo"><a href="index.html">DODSLab</a></span>
-                    <i class='bx bx-x siderbarClose'></i>
-                </div>
-
-                <ul class="nav-links">
-                    <li><a href="#" class="active">HOME</a></li>
-                    <li><a href="About.html">ABOUT</a></li>
-                    <li><a href="Files.html">FILES</a></li>
-                    <li><a href="contact.html">CONTACT</a></li>
-
-                </ul>
-            </div>
-
-            <div class="darkLight-searchBox" style="font-size:25px;  ">
-
-
-                <div class="dark-light" style="margin-right: 30px;">
-                    <p
-                        style="font-size: 10px;vertical-align: middle;color: var(--body-color);border-radius: 5px;border: 0.5px solid var(--body-color); text-align: center;align-items: center;justify-content: center;padding: 5px;">
-                        SWITCH <br> &nbsp; <i class="fa-solid fa-brush"
-                            style="font-size: 20px;color: var(--text-color);"></i>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <br> <br>
-                        THEME </p>
-                </div>
-                <div class="dark-light" style="margin-right: 25px;">
-                    <p
-                        style="font-size: 10px;vertical-align: bottom;color: var(--body-color);border: 1px solid var(--body-color);padding: 8px;border-radius: 5px;align-items: center;justify-content: center;text-align: center;">
-                        ADMIN <br>
-                        <a href="login.html"
-                            style="font-size: 25px;vertical-align: bottom;color: var(--text-color);text-decoration: none;">&nbsp;<i
-                                class="fa-solid fa-user" style="color: var(--text-color);"></i>&nbsp;&nbsp;</a>&nbsp; &nbsp;
+      <!-- Header Section -->
+      <header>
+        <div class="logo">
+            <img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo">
+        </div>
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <!-- Navigation -->
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="#" class="active">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="About.html">Department</a></li>
+                        <li><a href="index.html#Facilities">Facilities</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="syllabus.html">Syllabus</a></li>
+                    </ul>
+                </li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="Files.html">Files</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="Achivements.html">Achievements</a></li>
+                
+                <li>
+                  <div class="darkLight-searchBox" style="font-size:25px;  ">
+                  <div class="dark-light" style="margin-right: 30px;">
+                      <p><i class="fa-solid fa-brush"></i></p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                <div class="darkLight-searchBox" style="font-size:25px;  ">
+                  <div class="dark-light" style="margin-right: 25px;">
+                    <p>
+                      <a href="login.html"><i class="fa-solid fa-user"></i></a>
                     </p>
+                  </div>
                 </div>
+              </li>
+            </ul>
+            
+        </nav>
+    </header><br>
 
 
-            </div>
-        </div>
-    </nav><br>
-    <!--<nav style="height: 15px;background: var(--side-nav);">
-        <marquee behavior="" direction="left" scrollamount="6" style="font-size: small;">
-             <a href="#" style="color: var(--text-color);">NEW FILES WERE UPDATED KINDLY CHECK</a> &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
-             <a href="#" style="color: var(--a-text);">ALL_QUESTIONS AND ANSWER OF R&nbsp;WERE UPLOADED KINDLY CHECK</a> &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
-             <a href="https://drive.google.com/drive/folders/1OWlmcxeobWBsdD4D6E_MVGmVlI2TaayZ?usp=drive_link" style="color: var(--b-text);vertical-align: top;">R_CSV</a> &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
-             <a href="https://drive.google.com/drive/folders/1j2BJ9HQ2b5yGv4FpN39z0wMhWdjTkpEe?usp=drive_link" style="color: var(--b-text);vertical-align: top;">R_XLSX</a> &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
-             <a href="https://drive.google.com/drive/folders/19QrCyaSRVcQl_mSrhej8lKWj5bnSNQup?usp=drive_link" style="color: var(--b-text);">R_Programming_Basics_files</a> &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
-             <a href="https://drive.google.com/drive/folders/1XIobgHKsieYW_OtDJ9jXUGVMWYhidart?usp=drive_link" style="color: var(--b-text);vertical-align: top;">R_dplyr</a> &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
-         </marquee>
-    </nav>-->
 
-    <div class="clock">
-        <div class="display">
-        </div><br>
-    </div><br>
-   
-    <article>
-        <!-- Mini Responsive Intro Video Section -->
-        <div class="video-section">
-            <h3 class="video-title">How to use DODSLab ?</h3>
-            <div class="video-container">
-                <video controls autoplay loop class="intro-video">
-                    <source src="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/how_to_use_dods.mp4?t=2025-01-02T13%3A48%3A45.422Z" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+
+
+  <div class="slider-container">
+    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+    <div class="slider">
+      <div class="slide"><img src="images/s1.jpg" alt="Image 1"></div>
+      <div class="slide"><img src="images/s2.jpg" alt="Image 2"></div>
+      <div class="slide"><img src="images/s3.jpg" alt="Image 3"></div>
+      <div class="slide"><img src="images/s4.jpg" alt="Image 4"></div>
+    </div>
+    <button class="next" onclick="moveSlide(1)">&#10095;</button>
+  </div>
+  <!-- announcement -->
+  <div class="announcement-container">
+    <div class="announcement">
+      <h2>Important Announcement</h2>
+      <p>We are excited to announce the launch of our new online courses starting from next week. Don't miss out on the
+        opportunity to expand your knowledge and skills!</p>
+      <a href="#" class="cta-button">Learn More</a>
+    </div>
+  </div>
+  <!-- HOD's Message  -->
+  <div class="hod-section">
+    <div class="hod-box">
+      <img src="images/faculties/hod.jpg" alt="HOD" class="hod-image">
+    </div>
+    <div class="hod-quote">
+      <h3>HEAD OF DEPARTMENT</h3>
+      <h4>Dr. Abuzar Ansari</h4>
+      <p>
+        "Education is the most powerful weapon which you can use to change the world.
+        With this power, we can shape our future and bring positive changes to society."
+      </p>
+      <p id="quote-text" class="read-more">
+        Education serves as a powerful catalyst for change, empowering individuals with knowledge, skills, and critical thinking. It enables people to shape their future, break barriers, and contribute to societal progress. Through education, we can address global challenges, promote equality, and foster innovation, ultimately creating a better world for future generations.
+      </p>
+      <button id="toggle-button" class="toggle-button">Read More</button>
+    </div>
+  </div>
+
+
+
+  <!-- Landmarks -->
+
+  <section class="landmarks-section" id="Facilities">
+    <h2>Our Facilities</h2>
+    <div class="landmarks-container">
+        <div class="landmark">
+            <img src="images/DS-lab.jpg" alt="Data Science Lab">
+            <div class="info">
+                <h3>Data Science Lab</h3>
+                <p>Our cutting-edge Data Science Lab is equipped with high-performance computing systems, providing the perfect environment for AI and machine learning research.</p>
             </div>
         </div>
-    </article>
-    
-    
-    <article>
-        <div class="box">
-            <h3 class="box-title">SEMESTER-IV COURSES</h3>
-            <div class="course-list">
-                <a href="#">Big Data Analytics through Spark</a><br>
-                <a href="#">Matrix Theory and Linear Algebra</a><br>
-                <a href="#">Database Technology-II</a><br>
-                <a href="#">WEB TECHNOLOGY - 1</a><br>
-            </div>
-        </div><br>
-    
-        <div class="box">
-            <h3 class="box-title">Assignments & Home Works</h3>
-            <div class="course-list">
-                <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/Web%20Technology/Assignment-1.zip?t=2025-01-01T10%3A03%3A47.144Z"><img src="images/new1.gif" alt="New++" style="height: 20px;width: 40px;vertical-align: middle;">  Web_Tech-Assignment_1 (.zip)</a><br>
-                <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/Web%20Technology/Assignment-2.zip?t=2025-01-01T10%3A04%3A11.425Z"><img src="images/new1.gif" alt="New++" style="height: 20px;width: 40px;vertical-align: middle;">  Web_Tech-Assignment_2 (.zip)</a><br>
-            </div>
-        </div><br>
-    </article>
-    
-    <article>
-        <div class="box">
-            <h3 class="box-title">DATABASE TECHNOLOGY - II</h3>
-            <div class="course-list">
-                <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/DBT-II/DBT-2_Theory.pdf?t=2025-01-01T09%3A51%3A15.904Z" ><img src="images/new1.gif" alt="New++" style="height: 20px;width: 40px;vertical-align: middle;">  DBT_2 Theory</a><br>
-                <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/DBT-II/DBT-2%20PRAC_1.docx?t=2024-12-31T16%3A32%3A33.267Z" ><img src="images/new1.gif" alt="New++" style="height: 20px;width: 40px;vertical-align: middle;">  DBT-2 Practical-1</a><br>
-            </div>
-        </div><br>
-    
-        <div class="box">
-            <h3 class="box-title">Matrix Theory and Linear Algebra</h3>
-            <div class="course-list">
-                <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/MTLA/MTLA_Practical-1.docx"><img src="images/new1.gif" alt="New++" style="height: 20px;width: 40px;vertical-align: middle;">  MTLA Practical-1(.docx)</a><br>
-                <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/MTLA/MTLA_Practical_1.zip?t=2025-01-07T11%3A48%3A11.156Z" ><img src="images/new1.gif" alt="New++" style="height: 20px;width: 40px;vertical-align: middle;">  MTLA Practical-1_full (.zip)</a><br>
+        <div class="landmark">
+            <img src="images/solar.jpg" alt="Solar Panel Facility">
+            <div class="info">
+                <h3>Solar Panel Facility</h3>
+                <p>We have a state-of-the-art solar panel installation that powers our servers and computing systems, ensuring sustainability and reducing carbon footprint.</p>
             </div>
         </div>
-    </article>
-    
-    
-    
-    
+        <div class="landmark">
+            <img src="images/server-room.jpg" alt="Server Room">
+            <div class="info">
+                <h3>Server Room</h3>
+                <p>Our secure and highly efficient server room houses the latest hardware, ensuring fast data processing and secure storage for all our data science projects.</p>
+            </div>
+        </div>
+        <div class="landmark">
+            <img src="images/collabration.jpg" alt="Collaboration Room">
+            <div class="info">
+                <h3>Collaboration Room</h3>
+                <p>Our collaboration room provides a space for team discussions, brainstorming, and collaborative work, equipped with the latest communication tools.</p>
+            </div>
+        </div>
+        <div class="landmark">
+            <img src="images/reading.jpg" alt="Research Library">
+            <div class="info">
+                <h3>Research Library</h3>
+                <p>The library is stocked with the latest books, journals, and resources on data science, machine learning, and AI to keep our team up-to-date with the latest trends.</p>
+            </div>
+        </div>
+        <div class="landmark">
+            <img src="images/Ai.jpg" alt="AI Workshop">
+            <div class="info">
+                <h3>AI Workshop</h3>
+                <p>Our AI workshop is a creative space for hands-on experimentation and prototyping, where ideas come to life through coding and testing of AI models.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <section class="department-vision-mission" id="vision-mission">
+    <div class="container">
+      <h2 class="animated-text">Department Vision</h2>
+      <p class="vision-text animated-text">
+        To evolve as a centre of proficiency in Data Analytics, and develop high-quality professionals and researchers
+        who will solve grand challenges and innovate through world-class research in the field of Data Science.
+      </p>
+      <h2 class="animated-text">Department Mission</h2>
+      <p class="mission-text animated-text">
+        Our Mission is to provide highest quality of teaching, learning opportunities with well researched and carefully
+        crafted curriculum.
+        We integrate curriculum into practical, relevant solutions to address business and societal challenges.
+        To empower students with the knowledge and skills to excel in the rapidly evolving field of data science. We
+        provide a comprehensive and interdisciplinary education that fosters critical thinking, problem-solving, and
+        ethical data practices.
+        Pushing the boundaries of data science through cutting-edge research that addresses real-world challenges. We
+        strive to advance in this field, contribute to knowledge creation, and drive innovations that benefit the
+        society.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- course -->
+  <h2 style="color: var(--b-text);">On Trending Courses !</h2>
+  <div class="course-cards-container">
+    <div class="course-card">
+      <img src="images/course/web_tech.png" alt="Course 1" class="course-image">
+      <div class="course-info">
+        <h3>WEB TECHNOLOGY</h3>
+        <p>A "Web Technology" course teaches the fundamental tools and programming languages needed to build and maintain websites and web applications</p>
+        <button onclick="window.location.href='enrollment.html'">Enroll Now</button>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <img src="images/course/py-course.jpg" alt="Course 2" class="course-image">
+      <div class="course-info">
+        <h3>Data structure with Python</h3>
+        <p>Data Science is an interdisciplinary field that uses scientific methods, algorithms, and programming to extract valuable insights from large datasets</p>
+        <button onclick="window.location.href='enrollment.html'">Enroll Now</button>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <img src="images/course/R-course.jpg" alt="Course 3" class="course-image">
+      <div class="course-info">
+        <h3>Data Science With R</h3>
+        <p>R programming course teaches the fundamentals of the R language, a powerful open-source tool primarily used for statistical analysis, data visualization, and modeling</p>
+        <button onclick="window.location.href='enrollment.html'">Enroll Now</button>
+      </div>
+    </div>
+  </div>
 </body>
 <footer>
-    <p style="margin-left: 8px;">Version : 2.0.1</p>
-</footer>
-<script src="script.js" defer></script>
+  <p style="text-align: left; color: var(--side-nav);"><b>Important Links Section</b></p>
+  <div class="footer-links">
+    <div>
+      <ul>
+        <li><a href="rsearch.html">Research and Projects</a></li>
+        <li><a href="#">Exam Calendar</a></li>
+        <li><a href="#">Sports</a></li>
+        <li><a href="#">Students Council</a></li>
+        <li><a href="#">Prajnya Vision Center</a></li>
+        <li><a href="#">FIST</a></li>
+        <li><a href="#">Placement</a></li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><a href="#">Download Study Material</a></li>
+        <li><a href="#">Photo Gallery</a></li>
+        <li><a href="#">Results</a></li>
+        <li><a href="#">Lifelong Learning And Extension (LLE)</a></li>
+        <li><a href="#">Admission 2024 - 2025</a></li>
+        <li><a href="#">Courses & Syllabus</a></li>
+        <li><a href="#">STAR DBT</a></li>
+        <li><a href="#">Leadership Training</a></li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><a href="#">Library</a></li>
+        <li><a href="#">Clean & Green Environment</a></li>
+        <li><a href="#">National Service Scheme (NSS)</a></li>
+        <li><a href="#">Annual Quality Assurance Report (AQAR)</a></li>
+        <li><a href="#">College Publications</a></li>
+        <li><a href="#">College Committees</a></li>
+        <li><a href="#">National Cadet Corps (NCC)</a></li>
+        <li><a href="#">Nirmitee Kendra</a></li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><a href="#">Value Lab</a></li>
+        <li><a href="#">University Grant Commission</a></li>
+        <li><a href="#">Anti ragging</a></li>
+        <li><a href="#">University of Mumbai</a></li>
+        <li><a href="#">Cultural Association</a></li>
+        <li><a href="#">Gender sensitization cell</a></li>
+        <li><a href="#">Indian Research in Progress</a></li>
+        <li><a href="#">Online Dictionary</a></li>
+      </ul>
+    </div>
+  </div>
 
+  <!-- Research Hub Section -->
+  <div class="research-hub">
+    JIGNYASA - The Research Hub
+  </div>
+
+  <!-- Copyright Section -->
+  <div class="copyright">
+   <p class="footer-copy">&copy; 2025 DEPARTMENT OF DATA SCIENCE | SIES All Rights Reserved.</p>
+  </div>
+
+  <!-- Footer Content -->
+  <div class="footer-content">
+    <div class="footer-left">
+      <p class="footer-version">Version: 4.0.0</p>
+    </div>
+
+    <div class="footer-center">
+      <div class="footer-links">
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link">Terms of Service</a>
+        <a href="#" class="footer-link">Sitemap</a>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <div class="footer-socials">
+        <a href="#" class="footer-social-link"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+      </div>
+      <div class="footer-contact">
+        <p>Contact Us:</p>
+        <p>Email: <a href="mailto:datascience@sies.edu.in" class="footer-email">datascience@sies.edu.in</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
 </html>

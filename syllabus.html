@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>DODS-Syllabus</title>
+    <link rel="icon" type="image/png" href="images/fav.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+  <script src="script.js" defer></script>
+    
+    <style>
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: var(--box);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .course {
+            border-bottom: 1px solid var(--box2);
+            padding: 15px 0;
+        }
+
+        .course:last-child {
+            border-bottom: none;
+        }
+
+        .course-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .syllabus-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .syllabus-links li {
+            margin: 5px 0;
+        }
+
+        .syllabus-links a {
+            text-decoration: none;
+            color: var(--a-text);
+            font-size: 16px;
+        }
+
+        .syllabus-links a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+      <!-- Top Blue Bar -->
+  <div class="top-bar">
+    <span><i class="fas fa-envelope"></i> datascience@sies.edu.in</span>
+    <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
+    <div class="top-links">
+        <a href="#">RTI</a>
+        <a href="#">Magazine</a>
+        <a href="#">RUSA</a>
+        <a href="#">Endowments</a>
+        <a href="#">NAAC</a>
+        <a href="#">ISR / Extension Activities</a>
+        <a href="#">Alumni</a>
+        <a href="#">Contact</a>
+        <a href="#" class="prospectus-btn">Enroll Now</a>
+    </div>
+</div>
+
+      <!-- Header Section -->
+      <header>
+        <div class="logo">
+            <img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo">
+        </div>
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <!-- Navigation -->
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="index.html" >Home</a></li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="About.html" >Department</a></li>
+                        <li><a href="index.html#Facilities">Facilities</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="#" class="active">Syllabus</a></li>
+                    </ul>
+                </li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="Files.html">Files</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="Achivements.html">Achievements</a></li>
+                <!-- <li><a href="#">NEP</a></li>
+                <li><a href="#">COE</a></li> -->
+                <li>
+                  <div class="darkLight-searchBox" style="font-size:25px;  ">
+                  <div class="dark-light" style="margin-right: 30px;">
+                      <p><i class="fa-solid fa-brush"></i></p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                <div class="darkLight-searchBox" style="font-size:25px;  ">
+                  <div class="dark-light" style="margin-right: 25px;">
+                    <p>
+                      <a href="login.html"><i class="fa-solid fa-user"></i></a>
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            
+        </nav>
+    </header><br>
+
+    <div class="container">
+        <div class="course">
+            <div class="course-title">F.Y.B.Sc. Data Science</div>
+            <ul class="syllabus-links">
+                <li><a href="#">Vocational Skill Courses (2023-2024)</a></li>
+                <li><a href="#">Skill Enhancement Course (2023-2024)</a></li>
+                <li><a href="#">Open Elective (2023-2024)</a></li>
+                <li><a href="#">Ability Enhancement Course (AEC) (2023-2024)</a></li>
+                <li><a href="#">Indian Knowledge System (2023-2024)</a></li>
+                <li><a href="#">Core Courses (2023-2024)</a></li>
+                <li><a href="#">FYBSc Data Science Syllabus (w.e.f. AY 2022-23) (2022-2023)</a></li>
+            </ul>
+        </div>
+
+        <div class="course">
+            <div class="course-title">S.Y.B.Sc. Data Science</div>
+            <ul class="syllabus-links">
+                <li><a href="#">Core Courses (2023-2024)</a></li>
+                <li><a href="#">Skill Enhancement Course (2023-2024)</a></li>
+                <li><a href="#">Ability Enhancement Course (2023-2024)</a></li>
+                <li><a href="#">Indian Knowledge System (2023-2024)</a></li>
+                <li><a href="#">SYBSc Data Science Syllabus (2022-2023)</a></li>
+            </ul>
+        </div>
+
+        <div class="course">
+            <div class="course-title">T.Y.B.Sc. Data Science</div>
+            <ul class="syllabus-links">
+                <li><a href="#">Major Discipline Core (2023-2024)</a></li>
+                <li><a href="#">Elective Courses (2023-2024)</a></li>
+                <li><a href="#">Project & Internship (2023-2024)</a></li>
+                <li><a href="#">TYBSc Data Science Syllabus (2022-2023)</a></li>
+            </ul>
+        </div>
+
+        <div class="course">
+            <div class="course-title">M.Sc. Data Science Part-I</div>
+            <ul class="syllabus-links">
+                <li><a href="#">Core Courses (2023-2024)</a></li>
+                <li><a href="#">Research Methodology (2023-2024)</a></li>
+                <li><a href="#">Elective Courses (2023-2024)</a></li>
+                <li><a href="#">MSC Data Science Part-I Syllabus (2022-2023)</a></li>
+            </ul>
+        </div>
+
+        <div class="course">
+            <div class="course-title">M.Sc. Data Science Part-II</div>
+            <ul class="syllabus-links">
+                <li><a href="#">Advanced Core Courses (2023-2024)</a></li>
+                <li><a href="#">Research & Thesis (2023-2024)</a></li>
+                <li><a href="#">Internship & Project (2023-2024)</a></li>
+                <li><a href="#">MSC Data Science Part-II Syllabus (2022-2023)</a></li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

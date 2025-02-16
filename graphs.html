@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DODS-Graphs</title>
+    <link rel="icon" type="image/png" href="images/fav.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--body-color);
+            color: var(--text-color);
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: var(--box);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid var(--box2);
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: var(--nav-color);
+            color: white;
+        }
+
+        tr:hover {
+            background-color: var(--hover-highlight);
+        }
+
+        #attendanceChart {
+            width: 100%;
+            height: 400px;
+            margin-top: 30px;
+            background: var(--box);
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+  <!-- Top Blue Bar -->
+  <div class="top-bar">
+    <span><i class="fas fa-envelope"></i> datascience@sies.edu.in</span>
+    <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
+    <div class="top-links">
+        <a href="#">RTI</a>
+        <a href="#">Magazine</a>
+        <a href="#">RUSA</a>
+        <a href="#">Endowments</a>
+        <a href="#">NAAC</a>
+        <a href="#">ISR / Extension Activities</a>
+        <a href="#">Alumni</a>
+        <a href="#">Contact</a>
+        <a href="#" class="prospectus-btn">Enroll Now</a>
+    </div>
+</div>
+
+      <!-- Header Section -->
+      <header>
+        <div class="logo">
+            <img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo">
+        </div>
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <!-- Navigation -->
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="index.html" >Home</a></li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="About.html">Department</a></li>
+                        <li><a href="index.html#Facilities">Facilities</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="syllabus.html">Syllabus</a></li>
+                    </ul>
+                </li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="Files.html">Files</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="Achivements.html">Achievements</a></li>
+                
+                <li>
+                  <div class="darkLight-searchBox" style="font-size:25px;  ">
+                  <div class="dark-light" style="margin-right: 30px;">
+                      <p><i class="fa-solid fa-brush"></i></p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                <div class="darkLight-searchBox" style="font-size:25px;  ">
+                  <div class="dark-light" style="margin-right: 25px;">
+                    <p>
+                      <a href="login.html"><i class="fa-solid fa-user"></i></a>
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            
+        </nav>
+    </header><br>
+
+      <ul class="breadcrumb">
+        <li><a href="apps.html">APPS</a></li>
+        <li><a href="attendance.html">Attendance Calculator</a></li>
+        <li><a href="#">Performance Graph</a></li>
+      </ul>
+    
+    <h2>Attendance Tracker</h2>
+    <div id="attendanceTableContainer">
+        <table id="attendanceTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Roll Number</th>
+                    <th>Total Classes</th>
+                    <th>Attended Classes</th>
+                    <th>Attendance Percentage</th>
+                </tr>
+            </thead>
+            <tbody id="attendanceBody">
+                <!-- Data will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="attendanceChartContainer">
+        <canvas id="attendanceChart"></canvas>
+    </div>
+
+    <script>
+        async function fetchData() {
+            const sheetDBUrl = 'https://sheetdb.io/api/v1/e5y9utr4ydlu8'; // Replace with your SheetDB URL
+
+            const response = await fetch(sheetDBUrl);
+            const data = await response.json();
+
+            if (!data || data.length === 0) {
+                console.error("No data found in the sheet.");
+                return;
+            }
+
+            const attendanceData = data.map(entry => ({
+                name: entry.name,
+                roll_number: entry.roll_number,
+                total_classes: parseInt(entry.total_classes),
+                attended_classes: parseInt(entry.attended_classes),
+                attendance_percentage: parseFloat(entry.attendance_percentage),
+            }));
+
+            renderTable(attendanceData);
+            renderChart(attendanceData);
+        }
+
+        function renderTable(attendanceData) {
+            const tableBody = document.getElementById('attendanceBody');
+            tableBody.innerHTML = '';
+
+            attendanceData.forEach(student => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${student.name}</td>
+                    <td>${student.roll_number}</td>
+                    <td>${student.total_classes}</td>
+                    <td>${student.attended_classes}</td>
+                    <td>${student.attendance_percentage}%</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function renderChart(attendanceData) {
+            const ctx = document.getElementById('attendanceChart').getContext('2d');
+            const labels = attendanceData.map(student => student.name);
+            const percentages = attendanceData.map(student => student.attendance_percentage);
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Attendance Percentage',
+                        data: percentages,
+                        backgroundColor: 'orange',
+                        borderColor: 'red',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        }
+
+        fetchData();
+    </script>
+</body>
+
+</html>

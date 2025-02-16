@@ -1,36 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>DODS | Login</title>
-    <link rel="icon" type="image/png" href ="images/ODS.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet"> 
-  </head>
-  <body style="background-color: var(--body-color);
-  display: grid;
-  place-items: center;
-  height: 100vh;">
-     <div class="wrap">
-      <h1 style="color: var(--text-color);">LOGIN</h1>
-     <form id="form" method="post">
 
+<head>
+  <title>DODS | Login</title>
+  <link rel="icon" type="image/png" href="images/ODS.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+  <style>
+    /* Centering Everything */
+    body {
+  background: var(--animation);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  font-family: 'Rowdies', sans-serif;
+}
+
+/* Keyframe for gradient animation */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+    /* Styling the Form */
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* Centering form content */
+      gap: 15px;
+      padding: 20px;
+      border: 2px solid var(--side-nav);
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.695);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      /* Align text inside the form */
+      animation: formSlideIn 1s ease-out;
+      background: var(--animation);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+    }
+
+    /* Form Labels */
+    label {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-color);
+      margin-bottom: 5px;
+      transition: transform 0.3s ease-in-out;
+      text-align: center;
+      /* Ensures text is centered */
+    }
+
+    label:hover {
+      transform: scale(1.1);
+    }
+
+    /* Input Fields */
+    input {
+      padding: 12px 15px;
+      border: 2px solid var(--text-color);
+      border-radius: 8px;
+      background-color: var(--box2);
+      color: var(--search-text);
+      font-size: 16px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      width: 100%;
+      /* Ensures it stretches within the form */
+      max-width: 300px;
+      /* Keeps it neatly sized */
+      text-align: center;
+      /* Centers text inside input */
+    }
+
+    input:focus {
+      border-color: var(--side-nav);
+      background-color: #ffffff;
+      box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+      transform: scale(1.05);
+    }
+
+    /* Buttons */
+    button {
+      border: none;
+      font-size: 18px;
+      padding: 14px 20px;
+      cursor: pointer;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      animation: buttonFadeIn 0.5s ease-out;
+      text-align: center;
+      width: 100%;
+      max-width: 200px;
+      /* Keeps button size consistent */
+    }
+
+    /* Login Button */
+    .login-btn {
+      background-color: var(--side-nav);
+      color: #fff;
+    }
+
+    .login-btn:hover {
+      background-color: var(--a-text);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Logout Button */
+    .logout-btn {
+      background-color: var(--a-text);
+      color: #fff;
+    }
+
+    .logout-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Animations */
+    @keyframes buttonFadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes formSlideIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    h1{
+      color: var(--box);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="loader">
+    <img src="images/dods_pre.gif" alt="" style="height: auto;width: 200px;">
+  </div>
+  <!-- Top Blue Bar -->
+  <div class="top-bar">
+    <span><i class="fas fa-envelope"></i> datascience@sies.edu.in</span>
+    <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
+    <div class="top-links">
+        <a href="#">RTI</a>
+        <a href="#">Magazine</a>
+        <a href="#">RUSA</a>
+        <a href="#">Endowments</a>
+        <a href="#">NAAC</a>
+        <a href="#">ISR / Extension Activities</a>
+        <a href="#">Alumni</a>
+        <a href="#">Contact</a>
+        <a href="#" class="prospectus-btn">Enroll Now</a>
+    </div>
+</div>
+
+      <!-- Header Section -->
+      <header>
+        <div class="logo">
+            <img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo">
+        </div>
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <!-- Navigation -->
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="#" class="active">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="About.html">Department</a></li>
+                        <li><a href="index.html#Facilities">Facilities</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Courses</a></li>
+                        <li><a href="#">abc</a></li>
+                    </ul>
+                </li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="Files.html">Files</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="events.html">Achievements</a></li>
+                <!-- <li><a href="#">NEP</a></li>
+                <li><a href="#">COE</a></li> -->
+                <li>
+                  <div class="darkLight-searchBox" style="font-size:25px;  ">
+                  <div class="dark-light" style="margin-right: 30px;">
+                      <p><i class="fa-solid fa-brush"></i></p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                <div class="darkLight-searchBox" style="font-size:25px;  ">
+                  <div class="dark-light" style="margin-right: 25px;">
+                    <p>
+                      <a href="login.html"><i class="fa-solid fa-user"></i></a>
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            
+        </nav>
+    </header><br>
+
+  <div class="main-content">
+    <div class="wrap">
+      <h1>LOGIN</h1>
+      <form id="form" method="post">
         <label for="username">USERNAME</label>
         <input type="text" id="username" name="USERNAME" />
         <label for="password">PASSWORD</label>
         <input type="password" id="password" name="PASSWORD" />
         <input type="submit" class="login-btn" value="LOGIN" />
       </form>
-      </div>
-    <script src="login.js"></script>
-    <script src="script.js"></script>
-  </body>
+    </div>
+  </div>
+  <script src="login.js"></script>
+  <script src="script.js"></script>
+</body>
+
 </html>

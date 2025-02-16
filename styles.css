@@ -1,0 +1,129 @@
+/* ===== Colors ===== */
+:root {
+    --body-color: #f4f7fc;
+    --header-color: linear-gradient(to bottom right, #084ca4, #0a66c2);
+    --nav-color: linear-gradient(to bottom right, #e1d8c6, #bcb3aa);
+    --side-nav: #084ca4;
+    --text-color: #1a1a1a;
+    --search-bar: #ffffff;
+    --search-text: #2d2d2d;
+    --a-text: #f26d21;
+    --b-text: #ff9b5e;
+    --box: #ffffff;
+    --box2: #bfc1d1;
+    --accent: #f26d21;
+    --hover-highlight: #c9e8ff;
+    --animation: linear-gradient(45deg, #0a66c2, #084ca4, #ffeac9, #f26d21);
+    --footer: #d6cece;
+  
+  }
+  
+  /* Dark Mode Colors */
+  body.dark {
+    --body-color: #2b3141;
+    --header-color: linear-gradient(to bottom right, #0a3d91, #084ca4);
+    --nav-color: linear-gradient(to bottom right, #1c1f2e, #3a496f);
+    --side-nav: #0a5adb;
+    --text-color: #e0e0e0;
+    --search-bar: #1c2541;
+    --search-text: #ffffff;
+    --a-text: #ff784e;
+    --b-text: #ff9b5e;
+    --box: #1c1f2e;
+    --box2: #293145;
+    --accent: #ff784e;
+    --hover-highlight: #3a496f;
+    --animation: linear-gradient(45deg, #0a66c2, #084ca4, #47005d, #44008c);
+    --footer: #111d5f;
+  }
+
+  body {
+    background-color: var(--body-color);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+}
+
+  .container {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--box);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h2 {
+    text-align: center;
+    color: var(--side-nav);
+}
+
+form{
+    width: 96%;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+    color: var(--text-color);
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid var(--box2);
+    border-radius: 8px;
+    background-color: var(--search-bar);
+    color: var(--search-text);
+    display: ;
+}
+
+select{
+    width: 103%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid var(--box2);
+    border-radius: 8px;
+    background-color: var(--search-bar);
+    color: var(--search-text);
+    display: ;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid var(--box2);
+    border-radius: 8px;
+    background-color: var(--search-bar);
+    color: var(--search-text);
+    display: ;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--hover-highlight);
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+input[type="submit"]:hover, button:hover {
+    background-color: var(--a-text);
+}

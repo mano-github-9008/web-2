@@ -19,55 +19,25 @@ document.onkeydown = e =>{
   }
 }
 
-const notifications = document.querySelector(".notifications"),
-buttons = document.querySelectorAll(".buttons .btn");
-
-// Object containing details for different types of toasts
-const toastDetails = {
-    timer: 5000,
-    success: {
-        icon: 'fa-circle-check',
-        text: 'Success: This is a success toast.',
-    },
-    error: {
-        icon: 'fa-circle-xmark',
-        text: 'Error: This is an error toast.',
-    },
-    warning: {
-        icon: 'fa-triangle-exclamation',
-        text: 'Warning: This is a warning toast.',
-    },
-    info: {
-        icon: 'fa-circle-info',
-        text: 'Not yet Uploaded !',
-    }
+//  toggle hamburger menu
+function toggleMenu() {
+  const navMenu = document.getElementById("nav-menu");
+  navMenu.classList.toggle("active");
 }
 
-const removeToast = (toast) => {
-    toast.classList.add("hide");
-    if(toast.timeoutId) clearTimeout(toast.timeoutId); // Clearing the timeout for the toast
-    setTimeout(() => toast.remove(), 500); // Removing the toast after 500ms
+function toggleDropdown(event) {
+  event.preventDefault();
+  const dropdownMenu = event.target.nextElementSibling;
+  dropdownMenu.classList.toggle("active");
 }
 
-const createToast = (id) => {
-    // Getting the icon and text for the toast based on the id passed
-    const { icon, text } = toastDetails[id];
-    const toast = document.createElement("li"); // Creating a new 'li' element for the toast
-    toast.className = `toast ${id}`; // Setting the classes for the toast
-    // Setting the inner HTML for the toast
-    toast.innerHTML = `<div class="column">
-                         <i class="fa-solid ${icon}"></i>
-                         <span>${text}</span>
-                      </div>
-                      <i class="fa-solid fa-xmark" onclick="removeToast(this.parentElement)"></i>`;
-    notifications.appendChild(toast); // Append the toast to the notification ul
-    // Setting a timeout to remove the toast after the specified duration
-    toast.timeoutId = setTimeout(() => removeToast(toast), toastDetails.timer);
-}
-
-// Adding a click event listener to each button to create a toast when clicked
-buttons.forEach(btn => {
-    btn.addEventListener("click", () => createToast(btn.id));
+// Close dropdowns when clicking outside
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('.dropdown')) {
+      document.querySelectorAll('.dropdown-menu').forEach(menu => {
+          menu.classList.remove('active');
+      });
+  }
 });
 
 
@@ -80,21 +50,11 @@ window.addEventListener("load", () => {
       document.body.removeChild(loader);
     });
   });
-  window.addEventListener("load", () => {
-    const loader = document.querySelector(".loader2");
-  
-    loader.classList.add("loader--hidden");
-  
-    loader.addEventListener("transitionend", () => {
-      document.body.removeChild(loader);
-    });
-  });
+
   const body = document.querySelector("body"),
   nav = document.querySelector("nav"),
   modeToggle = document.querySelector(".dark-light"),
-  searchToggle = document.querySelector(".searchToggle"),
-  sidebarOpen = document.querySelector(".sidebarOpen"),
-  siderbarClose = document.querySelector(".siderbarClose");
+  searchToggle = document.querySelector(".searchToggle");
 
   let getMode = localStorage.getItem("mode");
       if(getMode && getMode === "dark-mode"){
@@ -117,60 +77,7 @@ window.addEventListener("load", () => {
   });
 
 
-    
-
-  
-//   js code to toggle sidebar
-sidebarOpen.addEventListener("click" , () =>{
-nav.classList.add("active");
-});
-
-body.addEventListener("click" , e =>{
-let clickedElm = e.target;
-
-if(!clickedElm.classList.contains("sidebarOpen") && !clickedElm.classList.contains("menu")){
-    nav.classList.remove("active");
-}
-});
-
-setInterval(function(){
-  const clock = document.querySelector(".display");
-  let time = new Date();
-  let sec = time.getSeconds();
-  let min = time.getMinutes();
-  let hr = time.getHours();
-  let day = 'AM';
-  if(hr > 12){
-    day = 'PM';
-    hr = hr - 12;
-  }
-  if(hr == 0){
-    hr = 12;
-  }
-  if(sec < 10){
-    sec = '0' + sec;
-  }
-  if(min < 10){
-    min = '0' + min;
-  }
-  if(hr < 10){
-    hr = '0' + hr;
-  }
-  clock.textContent = hr + ':' + min + ':' + sec + " " + day;
-});
-
-// Example to add animation on time change
-function updateTime() {
-  const timeDisplay = document.querySelector('.clock .display');
-  timeDisplay.classList.add('change-time');
-
-  // Remove the class after the animation to allow it to re-trigger
-  setTimeout(() => {
-    timeDisplay.classList.remove('change-time');
-  }, 500); // Match the duration of the animation
-}
-
-
+// files section
 var acc = document.getElementsByClassName("accordion");
 var i;
 
@@ -201,19 +108,171 @@ for (i = 0; i < Acc.length; i++) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const video = document.getElementById("introVideo");
+// sliders
+let currentIndex = 0;
+const slider = document.querySelector('.slider');
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+const intervalTime = 3000; // Change slides every 3 seconds
 
-  // Attempt to autoplay with sound
-  video.play().catch(error => {
-      console.warn("Autoplay with sound was blocked by the browser:", error);
+function moveSlide() {
+    currentIndex++;
 
-      // Fallback: Mute the video and retry autoplay
-      video.muted = true;
-      video.play().then(() => {
-          console.log("Autoplay with muted video succeeded.");
-      }).catch(err => {
-          console.error("Autoplay failed even after muting:", err);
-      });
+    if (currentIndex >= totalSlides) {
+        currentIndex = 0; // Reset to the first slide
+    }
+
+    updateSlide();
+}
+
+function updateSlide() {
+    slider.style.transform = `translateX(${-currentIndex * 100}%)`;
+}
+
+// Auto slide function
+function startAutoSlide() {
+    setInterval(moveSlide, intervalTime);
+}
+
+// Start the auto-slide when the page loads
+startAutoSlide();
+
+
+    //HOD's Section 
+
+    document.getElementById("toggle-button").addEventListener("click", function() {
+      var quoteText = document.getElementById("quote-text");
+      var button = document.getElementById("toggle-button");
+    
+      // Toggle between showing and hiding the extra part of the quote
+      quoteText.classList.toggle("show");
+    
+      // Change button text depending on the state
+      if (quoteText.classList.contains("show")) {
+        button.textContent = "Read Less";
+      } else {
+        button.textContent = "Read More";
+      }
+    });
+    
+    // Over View
+    // Intersection Observer to trigger animation on scroll
+const elements = document.querySelectorAll('.animated-text');
+
+const observerOptions = {
+  threshold: 0.5  // Trigger when 50% of the element is in view
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view'); // Add class when element is in view
+      observer.unobserve(entry.target); // Stop observing after animation
+    }
   });
+}, observerOptions);
+
+// Observe each animated element
+elements.forEach(element => {
+  observer.observe(element);
 });
+
+
+// attendance calculator
+document.getElementById("csvFile").addEventListener("change", function(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  
+  reader.onload = function(e) {
+      const content = e.target.result;
+      const lines = content.split(/\r?\n/).map(line => line.split(','));
+
+      // Assuming CSV structure: Name, Roll Number
+      const names = [];
+      const rollNumbers = [];
+
+      for (let i = 1; i < lines.length; i++) {  // Skip header
+          const [name, rollNumber] = lines[i];
+          if (name && rollNumber) {
+              names.push(name.trim());
+              rollNumbers.push(rollNumber.trim());
+          }
+      }
+
+      // Populate dropdowns
+      populateDropdown(names, rollNumbers);
+  };
+
+  reader.readAsText(file);
+});
+
+function populateDropdown(names, rollNumbers) {
+  const nameSelect = document.getElementById("name");
+  const rollNumberSelect = document.getElementById("rollNumber");
+
+  // Clear existing options
+  nameSelect.innerHTML = "<option value=''>Select Name</option>";
+  rollNumberSelect.innerHTML = "<option value=''>Select Roll Number</option>";
+
+  // Add new options
+  names.forEach((name, index) => {
+      const nameOption = document.createElement("option");
+      nameOption.value = name;
+      nameOption.textContent = name;
+      nameSelect.appendChild(nameOption);
+
+      const rollNumberOption = document.createElement("option");
+      rollNumberOption.value = rollNumbers[index];
+      rollNumberOption.textContent = rollNumbers[index];
+      rollNumberSelect.appendChild(rollNumberOption);
+  });
+
+  // Show the form after CSV is loaded
+  document.getElementById("attendance-form").style.display = "block";
+}
+
+document.getElementById("attendance-form").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const rollNumber = document.getElementById("rollNumber").value;
+  const totalClasses = parseInt(document.getElementById("totalClasses").value);
+  const attendedClasses = parseInt(document.getElementById("attendedClasses").value);
+
+  if (isNaN(totalClasses) || isNaN(attendedClasses)) {
+      alert("Please enter valid numbers for both fields.");
+      return;
+  }
+
+  const attendancePercentage = (attendedClasses / totalClasses) * 100;
+  let status = '';
+  if (attendancePercentage < 75) {
+      status = `Defaulter! Attendance: ${attendancePercentage.toFixed(2)}%`;
+  } else {
+      status = `Good Standing! Attendance: ${attendancePercentage.toFixed(2)}%`;
+  }
+
+  // Display the result
+  document.getElementById("status").textContent = `Name: ${name}, Roll Number: ${rollNumber} - ${status}`;
+  document.getElementById("result").style.display = "block";
+});
+
+
+function showTab(tabId) {
+  // Hide all tab content
+  const tabContents = document.querySelectorAll('.tab-content');
+  tabContents.forEach(content => content.classList.remove('active'));
+
+  // Remove active class from all buttons
+  const tabButtons = document.querySelectorAll('.tab-button');
+  tabButtons.forEach(button => button.classList.remove('active'));
+
+  // Show the selected tab content
+  document.getElementById(tabId).classList.add('active');
+
+  // Set the clicked button as active
+  const activeButton = tabButtons[Array.from(tabButtons).findIndex(button => button.textContent === tabId.split('-').join(' ').replace(/(^|\s)[a-z]/g, match => match.toUpperCase()))];
+  activeButton.classList.add('active');
+}

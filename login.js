@@ -32,7 +32,7 @@ form.addEventListener("submit",(e)=>{
 
     if(authenticated){
         alert("YOU LOGGED IN SUCCESSFULLY")
-        window.location.href = "course.html"
+        window.location.href = "error404.html"
     }else{
         alert("You are not allowed !")
          window.location.href = "index.html"

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>DODS-Attendance</title>
+    <link rel="icon" type="image/png" href="images/fav.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--body-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: var(--box);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        input[type="number"], input[type="file"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: var(--hover-highlight);
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: var(--box2);
+            border-radius: 4px;
+        }
+
+        #status {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: var(--text-color);
+        }
+
+        #download-section {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+  <!-- Top Blue Bar -->
+  <div class="top-bar">
+    <span><i class="fas fa-envelope"></i> datascience@sies.edu.in</span>
+    <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
+    <div class="top-links">
+        <a href="#">RTI</a>
+        <a href="#">Magazine</a>
+        <a href="#">RUSA</a>
+        <a href="#">Endowments</a>
+        <a href="#">NAAC</a>
+        <a href="#">ISR / Extension Activities</a>
+        <a href="#">Alumni</a>
+        <a href="#">Contact</a>
+        <a href="#" class="prospectus-btn">Enroll Now</a>
+    </div>
+</div>
+
+<!-- Header Section -->
+<header>
+        <div class="logo">
+            <img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo">
+        </div>
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <!-- Navigation -->
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="index.html" >Home</a></li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="About.html">Department</a></li>
+                        <li><a href="index.html#Facilities">Facilities</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="syllabus.html">Syllabus</a></li>
+                    </ul>
+                </li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="apps.html" class="active">Apps</a></li>
+                <li><a href="Files.html">Files</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="Achivements.html">Achievements</a></li>
+                
+                <li>
+                  <div class="darkLight-searchBox" style="font-size:25px;  ">
+                  <div class="dark-light" style="margin-right: 30px;">
+                      <p><i class="fa-solid fa-brush"></i></p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                <div class="darkLight-searchBox" style="font-size:25px;  ">
+                  <div class="dark-light" style="margin-right: 25px;">
+                    <p>
+                      <a href="login.html"><i class="fa-solid fa-user"></i></a>
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            
+        </nav>
+    </header><br>
+    
+    <div class="container">
+        <h1>Student Attendance Calculator</h1>
+        
+        <!-- File upload for CSV -->
+        <label for="csvFile">Upload CSV file:</label>
+        <input type="file" id="csvFile" accept=".csv">
+        
+        <form id="attendance-form" style="display: none;">
+            <label for="name">Name:</label>
+            <select id="name">
+                <option value="">Select Name</option>
+            </select>
+
+            <label for="rollNumber">Roll Number:</label>
+            <select id="rollNumber">
+                <option value="">Select Roll Number</option>
+            </select>
+
+            <label for="totalClasses">Total Classes:</label>
+            <input type="number" id="totalClasses" required>
+
+            <label for="attendedClasses">Attended Classes:</label>
+            <input type="number" id="attendedClasses" required>
+
+            <button type="submit">Calculate Attendance</button>
+        </form>
+        
+        <div id="result" style="display: none;">
+            <h2>Attendance Status:</h2>
+            <p id="status"></p>
+        </div>
+
+        <div id="download-section" style="display: none;">
+            <button id="download-btn">Download Attendance as CSV</button>
+        </div>
+    </div>
+    <div class="container">
+        <button onclick="window.location.href='graphs.html'">View Performance Graph</button>
+    </div>
+    
+    <script>
+        // Function to read CSV and populate dropdowns
+        document.getElementById("csvFile").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const content = e.target.result;
+                const lines = content.split('\n').map(line => line.split(','));
+
+                // Assuming CSV structure: Name, Roll Number
+                const names = [];
+                const rollNumbers = [];
+
+                for (let i = 1; i < lines.length; i++) {  // Skip header
+                    const [name, rollNumber] = lines[i];
+                    if (name && rollNumber) {
+                        names.push(name);
+                        rollNumbers.push(rollNumber);
+                    }
+                }
+
+                // Populate dropdowns
+                populateDropdown(names, rollNumbers);
+            };
+
+            reader.readAsText(file);
+        });
+
+        function populateDropdown(names, rollNumbers) {
+            const nameSelect = document.getElementById("name");
+            const rollNumberSelect = document.getElementById("rollNumber");
+
+            // Clear existing options
+            nameSelect.innerHTML = "<option value=''>Select Name</option>";
+            rollNumberSelect.innerHTML = "<option value=''>Select Roll Number</option>";
+
+            // Add new options
+            names.forEach((name, index) => {
+                const nameOption = document.createElement("option");
+                nameOption.value = name;
+                nameOption.textContent = name;
+                nameSelect.appendChild(nameOption);
+
+                const rollNumberOption = document.createElement("option");
+                rollNumberOption.value = rollNumbers[index];
+                rollNumberOption.textContent = rollNumbers[index];
+                rollNumberSelect.appendChild(rollNumberOption);
+            });
+
+            // Show the form after CSV is loaded
+            document.getElementById("attendance-form").style.display = "block";
+        }
+
+        // Handle form submission for attendance calculation
+        document.getElementById("attendance-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const rollNumber = document.getElementById("rollNumber").value;
+            const totalClasses = parseInt(document.getElementById("totalClasses").value);
+            const attendedClasses = parseInt(document.getElementById("attendedClasses").value);
+
+            if (isNaN(totalClasses) || isNaN(attendedClasses)) {
+                alert("Please enter valid numbers for both fields.");
+                return;
+            }
+
+            const attendancePercentage = (attendedClasses / totalClasses) * 100;
+
+            const data = {
+                name: name,
+                roll_number: rollNumber,
+                total_classes: totalClasses,
+                attended_classes: attendedClasses,
+                attendance_percentage: attendancePercentage.toFixed(2)
+            };
+
+            // Log the data to ensure it's correct
+            console.log("Data being sent to SheetDB:", data);
+
+            // POST data to SheetDB API endpoint
+            fetch('https://sheetdb.io/api/v1/e5y9utr4ydlu8', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Success:', result);
+                document.getElementById("status").textContent = `Name: ${name}, Roll Number: ${rollNumber} - Attendance: ${attendancePercentage.toFixed(2)}%`;
+                document.getElementById("result").style.display = "block";
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
