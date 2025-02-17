@@ -628,26 +628,29 @@ footer {
 /* Department Vision and Mission Styling */
 .department-vision-mission {
   background-color: var(--box2);
-  /* Light gray background */
   padding: 50px 20px;
   text-align: center;
   width: 90%;
-}
-
-.department-vision-mission .container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
+/* Container for Better Layout */
+.department-vision-mission .container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Text and Animation */
 .department-vision-mission h2,
 .department-vision-mission p {
   opacity: 0;
-  /* Initially hidden */
   transform: translateY(30px);
-  /* Initially positioned below */
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
+/* Heading Styles */
 .department-vision-mission h2 {
   font-size: 2.5em;
   margin-bottom: 20px;
@@ -655,20 +658,70 @@ footer {
   color: var(--text-color);
 }
 
+/* Paragraph Styles */
 .department-vision-mission p {
   font-size: 1.2em;
   color: var(--text-color);
   line-height: 1.6;
   margin-bottom: 30px;
   font-family: 'freeman', serif;
-  text-align: left;
+  text-align: justify;
   text-overflow: clip;
 }
 
+/* Animation Trigger */
 .animated-text.in-view {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .department-vision-mission {
+    width: 95%;
+    padding: 40px 15px;
+  }
+
+  .department-vision-mission h2 {
+    font-size: 2.2em;
+  }
+
+  .department-vision-mission p {
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 768px) {
+  .department-vision-mission {
+    width: 100%;
+    padding: 30px 10px;
+  }
+
+  .department-vision-mission h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+  }
+
+  .department-vision-mission p {
+    font-size: 1em;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .department-vision-mission {
+    padding: 20px 5px;
+  }
+
+  .department-vision-mission h2 {
+    font-size: 1.8em;
+  }
+
+  .department-vision-mission p {
+    font-size: 0.95em;
+  }
+}
+
 
 /* Bread Nav */
 ul.breadcrumb {
@@ -1060,7 +1113,7 @@ article {
   }
 }
 
-/* Significant landmarks */
+/* Significant Landmarks */
 .landmarks-section {
   background: var(--box2);
   padding: 50px 20px;
@@ -1068,6 +1121,7 @@ article {
   width: 100%;
 }
 
+/* Section Heading */
 .landmarks-section h2 {
   font-size: 36px;
   font-weight: bold;
@@ -1075,27 +1129,27 @@ article {
   margin-bottom: 30px;
 }
 
+/* Landmarks Container */
 .landmarks-container {
   display: flex;
-  justify-content: space-between;
-  /* Spaces items evenly */
+  justify-content: center;
+  /* Center-align on small screens */
   gap: 30px;
   flex-wrap: wrap;
-  /* Allows wrapping if necessary */
   max-width: 1200px;
-  /* Increased max width for the container */
   margin: 0 auto;
-  /* Centers the container */
 }
 
+/* Individual Landmark Cards */
 .landmark {
   background: var(--box);
   width: calc(33.33% - 40px);
-  /* Increased width for cards, adjusted for gap */
+  /* Adjusted for proper spacing */
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
 }
 
 .landmark img {
@@ -1104,6 +1158,7 @@ article {
   object-fit: cover;
 }
 
+/* Card Info */
 .landmark .info {
   padding: 20px;
 }
@@ -1120,6 +1175,7 @@ article {
   line-height: 1.6;
 }
 
+/* Hover Effects */
 .landmark:hover {
   transform: scale(1.05);
   box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.2);
@@ -1127,6 +1183,59 @@ article {
 
 .landmark:hover .info {
   background: var(--hover-highlight);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .landmarks-container {
+    justify-content: center;
+  }
+
+  .landmark {
+    width: calc(50% - 30px);
+    /* Two cards per row */
+  }
+}
+
+@media (max-width: 768px) {
+  .landmark {
+    width: calc(100% - 20px);
+    /* Single column layout */
+  }
+
+  .landmarks-section h2 {
+    font-size: 30px;
+  }
+
+  .landmark .info h3 {
+    font-size: 22px;
+  }
+
+  .landmark .info p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .landmarks-section {
+    padding: 30px 10px;
+  }
+
+  .landmarks-section h2 {
+    font-size: 28px;
+  }
+
+  .landmark {
+    width: 100%;
+  }
+
+  .landmark .info h3 {
+    font-size: 20px;
+  }
+
+  .landmark .info p {
+    font-size: 12px;
+  }
 }
 
 
@@ -1288,44 +1397,50 @@ article {
   }
 }
 
-/* hod's quotes */
+/* HOD's Quotes Section */
 .hod-section {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  flex-wrap: wrap;
+  padding: 40px 20px;
+  gap: 30px;
+  text-align: center;
 }
 
+/* Image Box */
 .hod-box {
-  margin-right: 20px;
+  flex-shrink: 0;
 }
 
 .hod-image {
-  width: 300px;
-  height: 300px;
+  width: 280px;
+  height: 280px;
   border-radius: 25px;
   border: 4px dotted var(--a-text);
   object-fit: cover;
 }
 
+/* Quote Box */
 .hod-quote {
   max-width: 600px;
   background-color: var(--box);
-  padding: 20px;
+  padding: 25px;
   border-radius: 10px;
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
   font-family: 'Rowdies', sans-serif;
-  /* Rowdies for the body text */
+  text-align: left;
 }
 
+/* Quote Title */
 .hod-quote h3 {
-  font-size: 1.5em;
+  font-size: 1.6em;
   color: var(--a-text);
   margin-bottom: 15px;
   font-family: 'Freeman', serif;
-  /* Freeman for the heading */
 }
 
+/* Quote Text */
 .hod-quote p {
   font-size: 1.2em;
   font-style: italic;
@@ -1334,11 +1449,9 @@ article {
   line-height: 1.6;
   transition: all 0.5s ease-in-out;
   font-family: 'Freeman', serif;
-  /* Rowdies for paragraph text */
 }
 
-
-/* Hide the extra part of the quote */
+/* Read More Section */
 .read-more {
   opacity: 0;
   max-height: 0;
@@ -1352,6 +1465,7 @@ article {
   padding-top: 10px;
 }
 
+/* Read More Button */
 .toggle-button {
   background-color: transparent;
   color: var(--a-text);
@@ -1367,6 +1481,90 @@ article {
   color: var(--b-text);
   background-color: transparent;
 }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hod-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hod-box {
+    margin-bottom: 20px;
+  }
+
+  .hod-quote {
+    max-width: 80%;
+    text-align: center;
+  }
+
+  .hod-quote h3 {
+    font-size: 1.4em;
+  }
+
+  .hod-quote p {
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 768px) {
+  .hod-section {
+    padding: 30px 15px;
+  }
+
+  .hod-image {
+    width: 240px;
+    height: 240px;
+  }
+
+  .hod-quote {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  .hod-quote h3 {
+    font-size: 1.3em;
+  }
+
+  .hod-quote p {
+    font-size: 1em;
+  }
+
+  .toggle-button {
+    font-size: 1em;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hod-section {
+    padding: 25px 10px;
+  }
+
+  .hod-image {
+    width: 200px;
+    height: 200px;
+  }
+
+  .hod-quote {
+    max-width: 95%;
+    padding: 18px;
+  }
+
+  .hod-quote h3 {
+    font-size: 1.2em;
+  }
+
+  .hod-quote p {
+    font-size: 0.95em;
+  }
+
+  .toggle-button {
+    font-size: 0.95em;
+    padding: 6px 14px;
+  }
+}
+
 
 
 /* File List Container */
