@@ -268,6 +268,8 @@ nav ul li a {
 
 nav ul li a:hover {
   color: var(--side-nav);
+  border-radius: 25px;
+  border: 3px solid var(--accent);
 }
 
 nav ul li a.active {
@@ -474,6 +476,7 @@ footer {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Footer Links */
 .footer-links {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -507,53 +510,58 @@ footer {
   color: var(--a-text);
 }
 
+/* Research Hub */
 .research-hub {
   margin: 30px 0;
   font-size: 1.5em;
   color: var(--accent);
 }
 
+/* Copyright */
 .copyright {
   font-size: 0.9em;
   color: var(--text-color);
 }
 
+/* Footer Content */
 .footer-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   margin-top: 20px;
   padding-top: 20px;
   border-top: 1px solid var(--box2);
 }
 
-.footer-left,
-.footer-center,
-.footer-right {
+.footer-left {
   flex: 1;
+  text-align: left;
+}
+
+.footer-center {
+  flex: 3;
   text-align: center;
 }
 
+.footer-right {
+  flex: 1;
+  text-align: right;
+}
+
+/* Footer Version & Copyright */
 .footer-version,
 .footer-copy {
   margin: 5px 0;
 }
 
-.footer-links a {
-  color: var(--text-color);
-  text-decoration: none;
-  margin: 0 10px;
-  transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: var(--a-text);
-}
-
+/* Footer Social Links */
 .footer-socials {
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  justify-content: flex-end;
+  gap: 30px;
+  margin-right: 4%;
+  font-size: 22px;
 }
 
 .footer-social-link {
@@ -566,6 +574,7 @@ footer {
   color: var(--a-text);
 }
 
+/* Footer Email */
 .footer-email {
   color: var(--text-color);
   text-decoration: none;
@@ -577,16 +586,41 @@ footer {
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    flex: unset;
+    text-align: center;
+    width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   .footer-links {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    text-align: center;
   }
 
-  .footer-content {
-    flex-direction: column;
-    gap: 20px;
+  .footer-socials {
+    justify-content: center;
+    margin-right: 0;
   }
 }
+
+@media (max-width: 480px) {
+  .footer-links {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 
 /* INDEX PAGE */
