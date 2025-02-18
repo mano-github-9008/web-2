@@ -9,7 +9,7 @@
   --search-text: #2d2d2d;
   --a-text: #f26d21;
   --b-text: #ff9b5e;
-  --box: #ffffff;
+  --box: #d6d6d6;
   --box2: #bfc1d1;
   --accent: #f26d21;
   --hover-highlight: #c9e8ff;
@@ -21,20 +21,20 @@
 /* Dark Mode Colors */
 body.dark {
   --body-color: #121826;
-  --header-color: linear-gradient(to bottom right, #0a3d91, #084ca4);
-  --nav-color: linear-gradient(to bottom right, #1c1f2e, #3a496f);
-  --side-nav: #0a5adb;
+  --header-color: linear-gradient(to right, #303030, #3a4354);
+  --nav-color: linear-gradient(to bottom right, #323649, #3a496f);
+  --side-nav: #5952d5;
   --text-color: #e0e0e0;
-  --search-bar: #1c2541;
+  --search-bar: #000000;
   --search-text: #ffffff;
-  --a-text: #ff784e;
-  --b-text: #ff9b5e;
+  --a-text: #00eeff;
+  --b-text: #ffb300;
   --box: #1c1f2e;
-  --box2: #293145;
-  --accent: #ff784e;
+  --box2: #3c4764;
+  --accent: #00f7ff;
   --hover-highlight: #3a496f;
-  --animation: linear-gradient(45deg, #0a66c2, #084ca4, #47005d, #44008c);
-  --footer: #111d5f;
+  --animation: linear-gradient(45deg, #0a66c2, #505c6b, #47005d, #44008c);
+  --footer: #373f6d;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@400;700&display=swap');
@@ -79,15 +79,28 @@ button:hover {
   font-size: 14px;
 }
 
-.top-bar .top-links a {
-  color: var(--box);
+.top-bar a {
+  color: var(--b-text);
   text-decoration: none;
   margin-left: 12px;
   font-weight: 500;
 }
 
+.top-bar .top-links a {
+  color: var(--search-text);
+  text-decoration: none;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: bold;
+  margin-left: 12px;
+  font-weight: 500;
+}
+
+.top-bar .top-links a:hover {
+  color: var(--search-bar);
+}
 .top-bar .prospectus-btn {
   background-color: var(--accent);
+  color: var(--search-bar);
   padding: 6px 12px;
   border-radius: 20px;
   font-weight: bold;
@@ -208,7 +221,7 @@ header {
 nav {
   top: 0;
   left: 0;
-  height: 80px;
+  height: 40px;
   width: 100%;
   background: transparent;
   z-index: 50;
@@ -252,6 +265,7 @@ nav .nav-bar .sidebarOpen {
 nav ul {
   list-style: none;
   display: flex;
+  margin-left: 8%;
 }
 
 nav ul li {
@@ -269,7 +283,8 @@ nav ul li a {
 nav ul li a:hover {
   color: var(--side-nav);
   border-radius: 25px;
-  border: 3px solid var(--accent);
+  border-bottom: 3px inset var(--accent);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.29);
 }
 
 nav ul li a.active {
@@ -564,13 +579,13 @@ footer {
   font-size: 22px;
 }
 
-.footer-social-link {
+.footer-social-link, .footer-link {
   color: var(--text-color);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.footer-social-link:hover {
+.footer-social-link,.footer-link:hover {
   color: var(--a-text);
 }
 
@@ -2564,7 +2579,7 @@ li {
 .contact-container {
   max-width: 900px;
   margin: 20px auto;
-  background: #ffffff;
+  background: var(--box2);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

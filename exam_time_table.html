@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-    <title>DODS-Success-Message</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Timetable</title>
     <link rel="icon" type="image/png" href="images/fav.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,69 +13,49 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
     <script src="script.js" defer></script>
     <style>
 
-        .container {
-            background-color: var(--box);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: inline-block;
-            max-width: 500px;
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+            background: var(--box);
         }
 
-        h1 {
-            color: var(--header-color);
-            font-size: 24px;
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
         }
 
-        p {
-            font-size: 18px;
-            margin: 10px 0;
-        }
-
-        .success-icon {
-            font-size: 50px;
-            color: var(--accent);
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: var(--accent);
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: var(--hover-highlight);
-            color: black;
+        th {
+            background: var(--nav-color);
         }
     </style>
 </head>
-<body>
 
+<body>
   <!-- Top Blue Bar -->
   <div class="top-bar">
-    <span><i class="fas fa-envelope"></i> datascience@sies.edu.in</span>
+    <span><i class="fas fa-envelope"></i><a href="mailto:datascience@sies.edu.in"> datascience@sies.edu.in</a></span>
     <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
     <div class="top-links">
-        <a href="#">RTI</a>
-        <a href="#">Magazine</a>
-        <a href="#">RUSA</a>
-        <a href="#">Endowments</a>
-        <a href="#">NAAC</a>
-        <a href="#">ISR / Extension Activities</a>
-        <a href="#">Alumni</a>
-        <a href="#">Contact</a>
+        <a href="#">Results</a>
+        <a href="#">Exam Time table</a>
+        <a href="#">Time Table</a>
+        <a href="#">NEP</a>
+        <a href="#">CC</a>
+        <a href="#">DZenith</a>
+        <a href="#">Secret Alley</a>
+        <a href="#">Connect</a>
         <a href="enrollment.html" class="prospectus-btn">Enroll Now</a>
     </div>
 </div>
@@ -133,11 +115,53 @@
             
         </nav>
     </header><br>
-    <div class="container">
-        <div class="success-icon">✔️</div>
-        <h1>Enrollment Successful!</h1>
-        <p>Thank you for enrolling. Your submission has been received.</p>
-        <a href="index.html" class="btn">Go Back to Home</a>
-    </div>
+
+    <h2>SIES College of Arts, Science & Commerce</h2>
+    <h3>Regular Fourth Semester End Examination Timetable - March 2025</h3>
+    <h4>For the students enrolled in 2024-25 (SYBSC-DS)</h4>
+    <table>
+        <tr>
+            <th>Day</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Subject</th>
+        </tr>
+        <tr>
+            <td>Monday</td>
+            <td>17-03-2025</td>
+            <td>8:30 AM - 10:30 AM</td>
+            <td>Big Data Analytics through Spark SIUDSMJ221</td>
+        </tr>
+        <tr>
+            <td>Tuesday</td>
+            <td>18-03-2025</td>
+            <td>8:30 AM - 10:30 AM</td>
+            <td>Matrix Theory and Linear Algebra SIUDSMJ222</td>
+        </tr>
+        <tr>
+            <td>Wednesday</td>
+            <td>19-03-2025</td>
+            <td>8:30 AM - 10:30 AM</td>
+            <td>Database Technology – II SIUDSMN221</td>
+        </tr>
+        <tr>
+            <td>Thursday</td>
+            <td>20-03-2025</td>
+            <td>8:30 AM - 9:30 AM</td>
+            <td>
+                <b>OE:</b><br>
+                Introduction to Environmental Pollution SIUESOE221<br>
+                Media and Marketing Communication Practices SIUMMOE221<br>
+                Organisational Behaviour II SIUMSOE221
+            </td>
+        </tr>
+        <tr>
+            <td>Friday</td>
+            <td>21-03-2025</td>
+            <td>8:30 AM - 10:00 AM</td>
+            <td><b>AEC:</b> Hindi Bhasha evam Prayojanmulak Hindi SIUHNAE221</td>
+        </tr>
+    </table>
 </body>
+
 </html>

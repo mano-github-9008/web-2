@@ -36,25 +36,16 @@ form {
 }
 
 /* Styling for input fields */
-input {
+input, textarea {
   padding: 12px 15px;
   border: 2px solid var(--search-bar);
   border-radius: 8px;
-  background-color: var(--input-bg);
+  background-color: var(--box);
   color: var(--b-text);
   font-size: 16px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
-/* Styling for input fields */
-input {
-  padding: 12px 15px;
-  border: 2px solid var(--search-bar);
-  border-radius: 8px;
-  background-color: var(--input-bg);
-  color: var(--b-text);
-  font-size: 16px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-}
+
 </style>
 <body>
   <!-- Top Blue Bar -->
@@ -77,8 +68,8 @@ input {
       <!-- Header Section -->
       <header>
         <div class="logo">
-            <img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo">
-        </div>
+          <a href="index.html"><img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo"></a>
+      </div>
         <!-- Hamburger Menu -->
         <div class="hamburger" onclick="toggleMenu()">
             <i class="fas fa-bars"></i>
@@ -146,7 +137,7 @@ input {
             </div>
         </div>
 
-        <div class="contact-container">
+        <!-- <div class="contact-container"> -->
         <h2>MAKE AN ENQUIRY</h2>
         <form id="form-section" class="form-section">
             <label for="name">Name *</label>
