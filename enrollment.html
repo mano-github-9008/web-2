@@ -19,6 +19,80 @@
 
 </head>
 <body>
+    <!-- Top Blue Bar -->
+    <div class="top-bar">
+      <span><i class="fas fa-envelope"></i><a href="mailto:datascience@sies.edu.in"> datascience@sies.edu.in</a></span>
+      <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
+      <div class="top-links">
+        <a href="coming_soon.html">Results</a>
+        <a href="exam_time_table.html">Exam Time table</a>
+        <a href="timetable.html">Time Table</a>
+        <a href="coming_soon.html">NEP</a>
+        <a href="coming_soon.html">CC</a>
+        <a href="https://dzenith.siesvisions.com/">DZenith</a>
+        <a href="coming_soon.html">Secret Alley</a>
+        <a href="coming_soon.html">Connect</a>
+        <a href="enrollment.html" class="prospectus-btn">Enroll Now</a>
+      </div>
+    </div>
+  
+    <!-- Header Section -->
+    <header>
+  
+      <div class="logo">
+        <a href="index.html"><img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo"></a>
+      </div>
+      <!-- Hamburger Menu -->
+      <div class="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+      <!-- Navigation -->
+      <nav>
+        <ul id="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li class="dropdown">
+            <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
+            <ul class="dropdown-menu">
+              <li><a href="About.html">Department</a></li>
+              <li><a href="index.html#Facilities">Facilities</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
+            <ul class="dropdown-menu">
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="syllabus.html">Syllabus</a></li>
+            </ul>
+          </li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="apps.html">Apps</a></li>
+          <li><a href="Files.html">Files</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="Achivements.html">Achievements</a></li>
+  
+          <li>
+            <div class="darkLight-searchBox" style="font-size:25px;  ">
+              <div class="dark-light" style="margin-right: 30px;">
+                <p><i class="fa-solid fa-brush"></i></p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="darkLight-searchBox" style="font-size:25px;  ">
+              <div class="dark-light" style="margin-right: 25px;">
+                <p>
+                  <a href="login.html"><i class="fa-solid fa-user"></i></a>
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+  
+      </nav>
+    </header><br>
+  
     <div class="container">
         <h2>Enrollment Form</h2>
         <form id="enrollmentForm" onsubmit="return validateForm()" action="success.html">
