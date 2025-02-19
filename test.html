@@ -1,11 +1,975 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <title>DODS-Files</title>
+    <link rel="icon" type="image/png" href="images/fav.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+    <script src="script.js" defer></script>
+
 </head>
+
+<style>
+    /* ✅ Sidebar - Default Style (for Large Screens) */
+.sidebar {
+    background-color: var(--box2);
+    padding: 15px;
+    color: var(--a-text);
+    height: 100vh;
+    overflow-y: auto;
+    float: left;
+    width: 30%;
+    position: relative;
+    border: 2px solid var(--b-text);
+}
+
+/* ✅ Tab Content (Default View) */
+.tabcontent {
+    float: left;
+    padding: 12px;
+    border: 1px solid var(--accent);
+    width: 70%;
+    border-left: none;
+    height: 100vh;
+    background-color: var(--box);
+    overflow-y: auto;
+}
+
+/* ✅ Responsive Design */
+@media screen and (max-width: 1024px) {
+    .sidebar {
+        width: 35%; /* Adjusts sidebar width for tablets */
+    }
+    .tabcontent {
+        width: 65%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 100%; /* Sidebar takes full width */
+        height: auto;
+        position: relative;
+    }
+
+    .tabcontent {
+        width: 100%;
+        height: auto;
+        float: none;
+        border-left: none;
+    }
+
+    /* ✅ Make Sidebar Collapsible */
+    .sidebar button {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        text-align: left;
+        font-size: 18px;
+        border: none;
+        background: var(--side-nav);
+        color: var(--a-text);
+        cursor: pointer;
+    }
+
+    .sidebar button:hover {
+        background: var(--hover-highlight);
+    }
+}
+
+/* ✅ Mobile Optimization */
+@media screen and (max-width: 480px) {
+    .sidebar {
+        width: 100%;
+    }
+
+    .tabcontent {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+
+
+    .panel {
+        display: none;
+        padding-left: 15px;
+        background: var(--side-nav);
+    }
+
+    .panel button {
+        width: 100%;
+        background: var(--side-nav);
+        color: var(--a-text);
+        border: 1px solid var(--box);
+        text-align: left;
+        padding: 15px;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .panel button:hover {
+        color: var(--b-text);
+    }
+
+    .file-list {
+        background: var(--box2);
+        padding: 10px;
+        border-radius: 5px;
+        width: 60%;
+    }
+
+    .file-item {
+        padding: 10px;
+        border-bottom: 1px solid var(--box);
+    }
+
+
+    /* File Item */
+    .file-item {
+        background-color: var(--box);
+        /* White background for items */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        /* Subtle shadow */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--b-text);
+        transition: box-shadow 0.3s ease-in-out;
+        /* Smooth shadow transition */
+        width: 100%;
+        /* Ensure the item fills the container */
+        min-height: 70px;
+        /* Set a minimum height to keep the layout consistent */
+    }
+
+    .file-item:hover {
+        box-shadow: 0 6px 15px rgba(59, 30, 84, 0.2);
+        /* Darker shadow on hover */
+    }
+
+    /* Content inside .file-item */
+    .file-item .file-content {
+        flex-grow: 1;
+        /* Allows the content to expand and take available space */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        /* Space between file name and other elements */
+    }
+
+    /* Download Button */
+    /* Attractive Download Button */
+    .download-btn {
+        background: linear-gradient(45deg, var(--b-text), var(--a-text));
+        /* Gradient background for vibrancy */
+        color: var(--search-bar);
+        /* Bright text color */
+        font-size: 18px;
+        font-weight: 600;
+        /* Bold text for emphasis */
+        padding: 15px 30px;
+        border: none;
+        border-radius: 50px;
+        /* Rounded corners for a modern look */
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        /* Soft shadow for elevation */
+        outline: none;
+        /* Remove outline on focus */
+    }
+
+    /* Hover Effect */
+    .download-btn:hover {
+        background: linear-gradient(45deg, var(--a-text), var(--b-text));
+        /* Reverse gradient on hover */
+        color: var(--search-bar);
+        /* Bright text */
+        transform: translateY(-4px);
+        /* Slight lift on hover */
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        /* Enhanced shadow on hover */
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        /* Subtle text shadow */
+    }
+
+    /* Focus Effect (for accessibility) */
+    .download-btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+        /* Glow effect on focus */
+    }
+
+    /* Button inside Inner Box */
+    .panel .download-btn,
+    .paneL .download-btn {
+        margin: 20px auto;
+        /* Centering the button inside the box */
+        display: inline-block;
+        font-size: 18px;
+    }
+
+    /* File Name Text */
+    #fileName {
+        margin-top: 12px;
+        font-size: 16px;
+        color: #666666;
+        /* Lighter gray for file name */
+        font-weight: 400;
+    }
+
+    /* Accordion Styling */
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    ul li {
+        margin: 15px 0;
+    }
+
+    /* Accordion Button */
+    .accordion {
+        background-color: var(--box);
+        /* Light lavender for outer accordion */
+        color: var(--text-color);
+        /* Dark purple text for contrast */
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: 1px solid var(--a-text);
+        /* Subtle border for structure */
+        text-align: center;
+        outline: none;
+        font-size: 16px;
+        font-weight: 500;
+        transition: background-color 0.4s ease, color 0.4s ease, transform 0.2s ease;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        /* Shadow for lift effect */
+    }
+
+    .accordion:hover {
+        background-color: var(--hover-highlight);
+        /* Highlighted color */
+        color: var(--a-text);
+        /* Bright text for emphasis */
+        transform: translateY(-2px);
+    }
+
+    /* Accordion Panel (Inner Box) */
+    .panel {
+        padding: 15px 18px;
+        display: none;
+        background-color: var(--hover-highlight);
+        /* Soft pink for strong inner contrast */
+        color: var(--a-text);
+        /* Dark text for clarity */
+        border: 2px solid var(--side-nav);
+        /* Visible border */
+        border-radius: 8px;
+        margin-top: 10px;
+        /* Spacing from the button */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        /* Shadow for depth */
+        overflow: hidden;
+    }
+
+    /* Additional Accordion Button */
+    .Accordion {
+        background-color: var(--side-nav);
+        /* Dark purple outer accordion */
+        color: var(--search-bar);
+        /* Bright white text */
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: 1px solid var(--a-text);
+        /* Subtle border for structure */
+        text-align: center;
+        outline: none;
+        font-size: 16px;
+        font-weight: 500;
+        transition: background-color 0.4s ease, color 0.4s ease, transform 0.2s ease;
+        border-radius: 8px;
+        float: left;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        /* Shadow for distinction */
+    }
+
+    .Accordion:hover {
+        background-color: var(--hover-highlight);
+        /* Highlighted gradient */
+        color: var(--text-color);
+        /* Dark text */
+        transform: scale(1.02);
+    }
+
+    /* Accordion Inner Pane */
+    .paneL {
+        padding: 15px 18px;
+        display: none;
+        background-color: var(--b-text);
+        /* Light lavender for inner box */
+        color: var(--search-bar);
+        /* Bright white text */
+        border: 2px solid var(--text-color);
+        /* Bold border for visibility */
+        border-radius: 8px;
+        margin-top: 10px;
+        width: 100%;
+        justify-content: center;
+        box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
+        /* Inset shadow for depth */
+        overflow: hidden;
+    }
+
+  
+</style>
+
 <body>
-    
+
+    <!-- Top Blue Bar -->
+    <div class="top-bar">
+        <span><i class="fas fa-envelope"></i><a href="mailto:datascience@sies.edu.in">
+                datascience@sies.edu.in</a></span>
+        <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
+        <div class="top-links">
+            <a href="#">Results</a>
+            <a href="#">Exam Time table</a>
+            <a href="#">Time Table</a>
+            <a href="#">NEP</a>
+            <a href="#">CC</a>
+            <a href="#">DZenith</a>
+            <a href="#">Secret Alley</a>
+            <a href="#">Connect</a>
+            <a href="enrollment.html" class="prospectus-btn">Enroll Now</a>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo"></a>
+        </div>
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <!-- Navigation -->
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="About.html">Department</a></li>
+                        <li><a href="index.html#Facilities">Facilities</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="syllabus.html">Syllabus</a></li>
+                    </ul>
+                </li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="#" class="active">Files</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="Achivements.html">Achievements</a></li>
+
+                <li>
+                    <div class="darkLight-searchBox" style="font-size:25px;  ">
+                        <div class="dark-light" style="margin-right: 30px;">
+                            <p><i class="fa-solid fa-brush"></i></p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="darkLight-searchBox" style="font-size:25px;  ">
+                        <div class="dark-light" style="margin-right: 25px;">
+                            <p>
+                                <a href="login.html"><i class="fa-solid fa-user"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+<section>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <button class="accordion">Semester I <i class="fa-solid fa-angle-down"></i></button>
+        <div class="panel">
+            <button onclick="showContent('fds')">Fundamentals of Data Science</button>
+            <button onclick="showContent('cost')">Computer Oriented Statistical Technique</button>
+            <button onclick="showContent('pp1')">Python Programming I</button>
+            <button onclick="showContent('dpe')">Data Processing Using Excel</button>
+        </div>
+
+        <button class="accordion">Semester II <i class="fa-solid fa-angle-down"></i></button>
+        <div class="panel">
+            <button onclick="showContent('dsp')">Data Structure using Python</button>
+            <button onclick="showContent('tsa')">Time Series Analysis</button>
+            <button onclick="showContent('pp2')">Python Programming II</button>
+            <button onclick="showContent('sas')">Statistical Analysis Software (SAS)</button>
+        </div>
+        <button class="accordion">Semester III <i class="fa-solid fa-angle-down"></i></button>
+        <div class="panel">
+            <button onclick="showContent('dsr')">Data Science with R</button>
+            <button onclick="showContent('pd')">Probability & Distributions</button>
+            <button onclick="showContent('dbt1')">Database Technology-I</button>
+            <button onclick="showContent('kafka')">Introduction to Kafka</button>
+        </div>
+        <button class="accordion">Semester IV <i class="fa-solid fa-angle-down"></i></button>
+        <div class="panel">
+            <button onclick="showContent('spark')">Big Data Analysis through spark</button>
+            <button onclick="showContent('mtla')">Matrix Theory & Linear Algebra</button>
+            <button onclick="showContent('dbt2')">Database Technology-II</button>
+            <button onclick="showContent('wt1')">Web Technology-I</button>
+        </div>
+
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="tabcontent">
+        <h2>Click on a subject to view files</h2>
+
+        <div id="fds" class="content-section" style="display: none;">
+            <h3>Fundamentals Of Data Science (FDS)</h3>
+            <div class="file-list">
+                <div class="file-item">
+                    <p>FDS Practicals (.zip)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%201/FDS/FDS%20Practical%20&%20Assets.zip?t=2024-11-04T10%3A32%3A51.620Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>FDS Theory (.zip)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%201/FDS/FDS%20Theory.zip?t=2024-11-04T10%3A33%3A09.502Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>FDS Journal (.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%201/FDS/FDS%20JOURNAL.docx?t=2024-11-04T10%3A33%3A21.647Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <br>
+            </div>
+        </div>
+
+        <div id="cost" class="content-section" style="display: none;">
+            <h3>Computer Oriented Statistical Technique (COST)</h3>
+            <div class="file-list">
+                <div class="file-item">
+                    <p>COST_Practicals (.xlsx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%201/COST/COST_solutions.xlsx?t=2024-11-04T10%3A19%3A50.122Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>Stats_unit-1 (.pdf)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%201/COST/stats_unit1.pdf?t=2024-11-04T10%3A22%3A53.827Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <br>
+            </div>
+        </div>
+
+        <div id="pp1" class="content-section" style="display: none;">
+            <h3>Python Programming I (PP-I)</h3>
+            <div class="file-list">
+                <div class="file-item">
+                    <p>PP-I_Practicals (.zip)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%201/PP1/Python%20Programmin%20-1%20Practical.zip?t=2024-11-04T10%3A34%3A23.993Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <br>
+            </div>
+        </div>
+
+        <div id="dpe" class="content-section" style="display: none;">
+            <h3>Data Processing Using Excel (DPE)</h3>
+            <div class="file-list">
+                <div class="file-item">
+                    <p>DPE_Practicals (.xlsx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%201/DPE/DPE.xlsx?t=2024-11-04T10%3A35%3A42.687Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>DPE_Journal (.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%201/DPE/DPE%20JOURNAL.docx?t=2024-11-04T10%3A36%3A37.534Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <br>
+            </div>
+        </div>
+
+        <div id="dsp" class="content-section" style="display: none;">
+            <h3>Data Structure using Python (DSP)</h3>
+            <div class="file-list">
+                <div class="file-item">
+                    <p>DSP Practicals (.zip)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%202/dsp/DSP%20PRACTICAL.zip?t=2024-11-04T10%3A40%3A42.620Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>DSP Theory (.zip)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%202/dsp/DSP%20THEORY.zip?t=2024-11-04T10%3A41%3A07.149Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>DSP Journal (.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%202/dsp/DSP%20JOURNAL.docx?t=2024-11-04T10%3A40%3A25.676Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>DSP PRACTICAL Assignmet (.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%202/dsp/DSP%20Practical%20Assignment-1.docx?t=2024-11-04T10%3A41%3A39.916Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <br>
+            </div>
+        </div>
+
+        <div id="tsa" class="content-section" style="display: none;">
+            <h3>Time Series Analysis (TSA)</h3>
+            <div class="file-list">
+                <div class="file-item">
+                    <p>TSA Practicals (.zip)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%202/TSA/TSA%20Practicals.zip?t=2024-11-04T11%3A00%3A29.487Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>TSA Journal (.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%202/TSA/TSA%20practical%20Journel.docx?t=2024-11-04T11%3A03%3A34.118Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div id="pp2" class="content-section" style="display: none;">
+            <h3>PYTHON PROGRAMMING - II [PP-II]</h3>
+            <div class="file-list">
+                <div class="file-item">
+                    <p>PP-II Practicals (.zip)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%202/PP2/PP2%20PRATICALS.zip?t=2024-11-04T11%3A06%3A53.596Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>PP-II-PART-1(.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%202/PP2/PP-II-part-1.pdf?t=2024-11-04T11%3A08%3A10.536Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>PP-II-PART-2(.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%202/PP2/PP-II-part-2.pdf"
+                        download class="download-btn">Download</a>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div id="sas" class="content-section" style="display: none;">
+            <h3>STATISTICAL ANALYSIS SOFTWARE [SAS]</h3>
+            <div class="file-list">
+                <div class="file-item">
+                    <p>SAS Journal (.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%202/SAS/SAS%20JOURNAL.docx?t=2024-11-04T11%3A02%3A33.049Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div id="dsr" class="content-section" style="display: none;">
+            <h3>Data Science with R [DSR]</h3>
+            <div class="file-list">
+                <div class="file-item">
+                    <p>DSR Practicals (.rar)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%203/R%20PROGRAMMING/R_Programming%20Practicals.rar?t=2024-11-04T11%3A12%3A11.445Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>DSR Theory (.zip)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%203/R%20PROGRAMMING/R_Pragramming%20Theory.zip?t=2024-11-04T11%3A13%3A04.906Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>DSP Journal (.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%203/R%20PROGRAMMING/R%20Programming%20Practical%20Journal.docx?t=2024-11-04T11%3A13%3A42.587Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div id="pd" class="content-section" style="display: none;">
+            <h3>Probability & Distributions [PD]</h3>
+            <div class="file-list">
+                <div class="file-item">
+                    <p>PD PRACTICAL (.xlsx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%203/probability/PD%20PRAC%20EXCEL%20SHEET.xlsx?t=2024-11-04T11%3A32%3A50.900Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div id="dbt1" class="content-section" style="display: none;">
+            <h3>Database Technology-I [DBT-I]</h3>
+            <div class="file-list">
+                <div class="file-item">
+                    <p>DBT-1 Practicals (.rar)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%203/DB%20TECH%20-%201/Practical/DBT-1%20Practical.zip?t=2024-11-04T11%3A28%3A09.672Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>DBT-I Theory (.zip)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%203/DB%20TECH%20-%201/Practical/DBT-1%20Theory.zip?t=2024-11-04T11%3A29%3A16.782Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>DBT-I Journal (.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%203/DB%20TECH%20-%201/Practical/DATABASE%20TECHNOLOGY-I-JOURNAL.docx?t=2024-11-04T11%3A29%3A40.659Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div id="kafka" class="content-section" style="display: none;">
+            <h3>Introduction to Kafka [Kafka]</h3>
+            <div class="file-list">
+                <div class="file-item">
+                    <p>KAFKA JOURNAL (.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%203/Kafka/Kafka%20Practical%20JOURNAL.docx?t=2024-11-04T11%3A31%3A45.667Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>KAFKA CONFIG PROMPT (.txt)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%203/Kafka/kafka%20config%20prompt.txt?t=2024-11-04T11%3A32%3A27.963Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div id="spark" class="content-section" style="display: none;">
+            <h3>Big Data Analytics Through Spark [SPARK]</h3>
+            <div class="file-list">
+                <div class="file-item">
+                    <p>Spark Practical_1 (.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/SPARK/spark%20practical%201.docx?t=2024-12-31T15%3A49%3A45.263Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>hello.sbt For Spark_Practical_1 (.sbt)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/SPARK/hello.sbt?t=2025-01-01T10%3A00%3A10.557Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>hello.scala For Spark_Practical_1 (.scala)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/SPARK/hello.scala?t=2025-01-01T10%3A00%3A22.664Z"
+                        download class="download-btn">Download</a>
+                </div>
+
+                <div class="file-item">
+                    <p>Spark Practical-2 (.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/SPARK/spark%20practical%202.docx?t=2024-12-31T15%3A50%3A03.490Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>Spark Practical-3 (.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/SPARK/spark%20practical%203.docx?t=2025-01-01T09%3A54%3A19.045Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>Spark Practical-4 (.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/SPARK/Spark%20practical%204.docx?t=2025-01-01T09%3A54%3A30.264Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>Spark Practical-5 (.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/SPARK/Spark%20practical%205.docx?t=2025-01-01T09%3A54%3A47.388Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>Spark Practical-6 (.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/SPARK/Spark%20practical%206.docx?t=2025-01-01T09%3A55%3A02.815Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>Spark Practical-7 (.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/SPARK/Spark%20practical%207.docx?t=2025-01-01T09%3A55%3A22.512Z"
+                        download class="download-btn">Download</a>
+                </div>
+
+                <div class="file-item">
+                    <p>Spark Theory (.zip)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/SPARK/Spark-theory.zip"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>SPARK-Journal (.docx)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/SPARK/SPARK_PRACTICAL_JOURNAL.docx"
+                        download class="download-btn">Download</a>
+                    <ul class="notifications"></ul>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div id="mtla" class="content-section" style="display: none;">
+            <h3>Matrix Theory & Linear Algebra [MTLA]</h3>
+            <div class="file-list">
+                <div class="file-item">
+                    <p>Practical-1 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/MTLA%2FPractical-1%20%5BMATRICES%5D.zip?alt=media&token=f20c2413-96bc-4cc5-b0fb-d8afb8511c96"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>Practical-2 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/MTLA%2FPractical-2%20%5BVECTORS%5D.zip?alt=media&token=1c7f5c63-e84f-4c96-a9ea-4aeecd3fff04"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>Practical-3 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/MTLA%2FPractical-3%20%5BORTHOGONAL%20VECTORS%5D.zip?alt=media&token=53ab8327-9cd1-4317-9935-a5ae53450572"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>Practical-4 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/MTLA%2FPractical-4%20%5BDETERMINANT%20OF%20MATRIX%5D.zip?alt=media&token=2c4274ed-4da5-4424-80e4-8163b4ecad6d"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>Practical-5 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/MTLA%2FPractical-5%20%5BEIGEN%20VALUE%20%26%20EIGEN%20VECTORS%5D.zip?alt=media&token=707e0a16-a82e-43ca-a8c5-af8f139c8947"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>Practical-6 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/MTLA%2FPractical-6%20%5BPOSITIVE%20DEFINITE%20%26%20QUADRATIC%20FORM%5D.zip?alt=media&token=e69fd5be-3234-444f-bafd-f98bc7cbda2b"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>Practical-7 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/MTLA%2FPractical-7%20%5BNETWORK%20MODEL%5D.zip?alt=media&token=4ac2ca9c-eb31-4038-9d75-de23033b6731"
+                        download class="download-btn">Download</a>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div id="dbt2" class="content-section" style="display: none;">
+            <h3>Database Technology-II [DBT-II]</h3>
+            <div class="file-list">
+                <div class="file-item">
+                    <p>DBT Practical-1 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/DBMS%2FPRACTICAL-1%20%5BUSE%20OF%20VARIABLES%5D.zip?alt=media&token=809e1e2f-d798-4172-8feb-8541b6bf6aea"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>DBT Practical-2 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/DBMS%2FPRACTICAL-2%20%5BCONTROL%20STRUCTRES%5D.zip?alt=media&token=9be38d11-a86f-4396-9c7e-5bc42b7a5587"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>DBT Practical-3 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/DBMS%2FPRACTICAL-3%20%5BCONDITIONAL%20STATEMENTS%5D.zip?alt=media&token=bdb0d136-2be0-4931-9183-6ad7f553f075"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>DBT Practical-4 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/DBMS%2FPRACTICAL-4%20%5BCURSORS%5D.zip?alt=media&token=412c6dae-8ec2-4aa1-bc6e-f6f9b2dbe86e"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>DBT Practical-5 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/DBMS%2FPRACTICAL-5%20%5BPROCEDURES%5D.zip?alt=media&token=311eb5af-023b-448a-8fed-be8de2ab9d23"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>DBT Practical-6 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/DBMS%2FPRACTICAL-6%20%5BFUNCTIONS%5D.zip?alt=media&token=ae7ba614-bc0a-42ca-a370-c895e448348e"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>DBT Practical-7 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/DBMS%2FPRACTICAL-7%20%5BTRIGGERS%5D.zip?alt=media&token=3b2dbabf-caf9-4e9b-a96d-3e048af4551f"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>DBT Theory (.pdf)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/DBT-II/DBT-2_Theory.pdf?t=2025-01-01T09%3A51%3A15.904Z"
+                        download class="download-btn">Download</a>
+                </div>
+
+                <br>
+            </div>
+        </div>
+        <div id="wt1" class="content-section" style="display: none;">
+            <h3>Web Technology-I [WT-I]</h3>
+            <div class="file-list">
+                <div class="file-item">
+                    <p>WT-I Assignment-1 (.zip)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/Web%20Technology/Assignment-1.zip?t=2024-12-31T15%3A51%3A14.064Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>WT-I Assignment-2 (.zip)</p>
+                    <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/Web%20Technology/Assignment-2.zip?t=2024-12-31T15%3A51%3A40.055Z"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>WT-I Practical-1 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/Webtech%2FPractical-1%5BBasic%20Tags%5D.zip?alt=media&token=3b8e9eba-f22c-4fa0-8c05-7d16be9e9f9a"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>WT-I Practical-2 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/Webtech%2FPractical-2%5BNavigation%2C%20list%20and%20paragraph%5D.zip?alt=media&token=00e25730-07e2-4814-b209-385410f5ddc2"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>WT-I Practical-3 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/Webtech%2FPractical-3%5BImageMap%2C%20Gallary%5D.zip?alt=media&token=99a374a9-3b35-449d-9576-cbf5da49ab51"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>WT-I Practical-4 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/Webtech%2Fpractical-4%20%5BCANVAS%20AND%20FORMS%5D.zip?alt=media&token=0b9ee1ad-dd9d-4048-8587-01394cef7fd3"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>WT-I Practical-5 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/Webtech%2Fpractical-5%20%5BCSS%5D.zip?alt=media&token=d00d69a7-398f-49a1-956d-b93e284530ce"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>WT-I Practical-6 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/Webtech%2Fpractical-6%20%5BCSS%20TRANSITIONS%20%26%20ANIMATIONS%5D.zip?alt=media&token=96f74221-e70e-4e5c-b4f7-5a89a165cdc6"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>WT-I Practical-7 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/Webtech%2FPractical-7%20%5BUSE%20OF%20JAVA%20SCRIPT%5D.zip?alt=media&token=b82f2724-458b-46d5-9001-719d69910488"
+                        download class="download-btn">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>WT-I Practical-8 (.zip)</p>
+                    <a href="https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/Webtech%2FPractical-8%20%5BFORM%20VALIDATION%20USING%20JS%5D.zip?alt=media&token=8eed6651-fa71-47a8-b240-25d3cc91a906"
+                        download class="download-btn">Download</a>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</section>
+
 </body>
+
+<footer>
+    <p style="text-align: left; color: var(--side-nav);"><b>Important Links Section</b></p>
+    <div class="footer-links">
+        <div>
+            <ul>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Exam Calendar</a></li>
+                <li><a href="#">Students Council</a></li>
+                <li><a href="#">Tutorials</a></li>
+                <li><a href="events.html#fest-list">FEST</a></li>
+                <li><a href="Text-Speech.html">Text-2-Speech</a></li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li><a href="Files.html">Download Study Material</a></li>
+                <li><a href="About.html#gallery">Photo Gallery</a></li>
+                <li><a href="#">Results</a></li>
+                <li><a href="#">Lifelong Learning And Extension (LLE)</a></li>
+                <li><a href="enrollment.html">Admission 2024 - 2025</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="syllabus.html">Syllabus</a></li>
+                <li><a href="#">Leadership Training</a></li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li><a href="#">Library</a></li>
+                <li><a href="#">Clean & Green Environment</a></li>
+                <li><a href="#">National Service Scheme (NSS)</a></li>
+                <li><a href="#">Annual Quality Assurance Report (AQAR)</a></li>
+                <li><a href="#">College Publications</a></li>
+                <li><a href="#">College Committees</a></li>
+                <li><a href="#">National Cadet Corps (NCC)</a></li>
+                <li><a href="#">Nirmitee Kendra</a></li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li><a href="#">Value Lab</a></li>
+                <li><a href="#">University Grant Commission</a></li>
+                <li><a href="#">Anti ragging</a></li>
+                <li><a href="#">University of Mumbai</a></li>
+                <li><a href="#">Cultural Association</a></li>
+                <li><a href="#">Gender sensitization cell</a></li>
+                <li><a href="#">Indian Research in Progress</a></li>
+                <li><a href="#">Online Dictionary</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Research Hub Section -->
+    <div class="research-hub">
+        JIGNYASA - The Research Hub
+    </div>
+
+    <!-- Footer Content -->
+    <div class="footer-content">
+        <div class="footer-left">
+            <p class="footer-version">Version: 4.0.0</p>
+        </div>
+
+        <div class="footer-center">
+            <div class="footer-links">
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Sitemap</a>
+            </div>
+        </div>
+
+        <div class="footer-right">
+            <div class="footer-socials">
+                <a href="#" class="footer-social-link"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <div class="footer-contact">
+                <p>Contact Us:</p>
+                <p>Email: <a href="mailto:datascience@sies.edu.in" class="footer-email">datascience@sies.edu.in</a></p>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright Section -->
+    <div class="copyright">
+        <p class="footer-copy">&copy; 2025 DEPARTMENT OF DATA SCIENCE | SIES All Rights Reserved.</p>
+    </div>
+</footer>
+
 </html>

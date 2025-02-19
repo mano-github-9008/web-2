@@ -1,21 +1,21 @@
-document.oncontextmenu = () =>{
+document.oncontextmenu = () => {
   alert("Viewing source page is not allowed due to security key ")
   return false
 }
 
-document.onkeydown = e =>{
-  if(e.key == "F12"){
-      alert("Viewing source page is not allowed due to security key")
-      return false
+document.onkeydown = e => {
+  if (e.key == "F12") {
+    alert("Viewing source page is not allowed due to security key")
+    return false
   }
-  if(e.ctrlKey && e.key=="u"){
-      alert("Don't try to view the source code due to security key")
-      return false
+  if (e.ctrlKey && e.key == "u") {
+    alert("Don't try to view the source code due to security key")
+    return false
   }
 
-  if(e.ctrlKey && e.key=="s"){
-      alert("You are not allowed to save this file")
-      return false
+  if (e.ctrlKey && e.key == "s") {
+    alert("You are not allowed to save this file")
+    return false
   }
 }
 
@@ -34,79 +34,65 @@ function toggleDropdown(event) {
 // Close dropdowns when clicking outside
 document.addEventListener('click', (event) => {
   if (!event.target.closest('.dropdown')) {
-      document.querySelectorAll('.dropdown-menu').forEach(menu => {
-          menu.classList.remove('active');
-      });
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+      menu.classList.remove('active');
+    });
   }
 });
 
 
 window.addEventListener("load", () => {
-    const loader = document.querySelector(".loader");
-  
-    loader.classList.add("loader--hidden");
-  
-    loader.addEventListener("transitionend", () => {
-      document.body.removeChild(loader);
-    });
-  });
+  const loader = document.querySelector(".loader");
 
-  const body = document.querySelector("body"),
+  loader.classList.add("loader--hidden");
+
+  loader.addEventListener("transitionend", () => {
+    document.body.removeChild(loader);
+  });
+});
+
+const body = document.querySelector("body"),
   nav = document.querySelector("nav"),
   modeToggle = document.querySelector(".dark-light"),
   searchToggle = document.querySelector(".searchToggle");
 
-  let getMode = localStorage.getItem("mode");
-      if(getMode && getMode === "dark-mode"){
-        body.classList.add("dark");
-      }
+let getMode = localStorage.getItem("mode");
+if (getMode && getMode === "dark-mode") {
+  body.classList.add("dark");
+}
 
 // js code to toggle dark and light mode
-  modeToggle.addEventListener("click" , () =>{
-    modeToggle.classList.toggle("active");
-    body.classList.toggle("dark");
+modeToggle.addEventListener("click", () => {
+  modeToggle.classList.toggle("active");
+  body.classList.toggle("dark");
 
-    // js code to keep user selected mode even page refresh or file reopen
-    if(!body.classList.contains("dark")){
-        localStorage.setItem("mode" , "light-mode");       
-       
-    }else{
-        localStorage.setItem("mode" , "dark-mode");
-        
-    }
-  });
+  // js code to keep user selected mode even page refresh or file reopen
+  if (!body.classList.contains("dark")) {
+    localStorage.setItem("mode", "light-mode");
 
+  } else {
+    localStorage.setItem("mode", "dark-mode");
 
+  }
+});
 // files section
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
-    }
+// Accordion Toggle
+let acc = document.querySelectorAll(".accordion");
+acc.forEach(button => {
+  button.addEventListener("click", function () {
+    this.nextElementSibling.classList.toggle("active");
+    this.nextElementSibling.style.display =
+      this.nextElementSibling.style.display === "block" ? "none" : "block";
   });
+});
+
+// Show Content on Click
+function showContent(id) {
+  let sections = document.querySelectorAll(".content-section");
+  sections.forEach(section => section.style.display = "none");
+  document.getElementById(id).style.display = "block";
 }
 
-var Acc = document.getElementsByClassName("Accordion");
-var i;
-
-for (i = 0; i < Acc.length; i++) {
-  Acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var paneL = this.nextElementSibling;
-    if (paneL.style.display === "block") {
-      paneL.style.display = "none";
-    } else {
-      paneL.style.display = "block";
-    }
-  });
-}
 
 // sliders
 let currentIndex = 0;
@@ -116,47 +102,47 @@ const totalSlides = slides.length;
 const intervalTime = 3000; // Change slides every 3 seconds
 
 function moveSlide() {
-    currentIndex++;
+  currentIndex++;
 
-    if (currentIndex >= totalSlides) {
-        currentIndex = 0; // Reset to the first slide
-    }
+  if (currentIndex >= totalSlides) {
+    currentIndex = 0; // Reset to the first slide
+  }
 
-    updateSlide();
+  updateSlide();
 }
 
 function updateSlide() {
-    slider.style.transform = `translateX(${-currentIndex * 100}%)`;
+  slider.style.transform = `translateX(${-currentIndex * 100}%)`;
 }
 
 // Auto slide function
 function startAutoSlide() {
-    setInterval(moveSlide, intervalTime);
+  setInterval(moveSlide, intervalTime);
 }
 
 // Start the auto-slide when the page loads
 startAutoSlide();
 
 
-    //HOD's Section 
+//HOD's Section 
 
-    document.getElementById("toggle-button").addEventListener("click", function() {
-      var quoteText = document.getElementById("quote-text");
-      var button = document.getElementById("toggle-button");
-    
-      // Toggle between showing and hiding the extra part of the quote
-      quoteText.classList.toggle("show");
-    
-      // Change button text depending on the state
-      if (quoteText.classList.contains("show")) {
-        button.textContent = "Read Less";
-      } else {
-        button.textContent = "Read More";
-      }
-    });
-    
-    // Over View
-    // Intersection Observer to trigger animation on scroll
+document.getElementById("toggle-button").addEventListener("click", function () {
+  var quoteText = document.getElementById("quote-text");
+  var button = document.getElementById("toggle-button");
+
+  // Toggle between showing and hiding the extra part of the quote
+  quoteText.classList.toggle("show");
+
+  // Change button text depending on the state
+  if (quoteText.classList.contains("show")) {
+    button.textContent = "Read Less";
+  } else {
+    button.textContent = "Read More";
+  }
+});
+
+// Over View
+// Intersection Observer to trigger animation on scroll
 const elements = document.querySelectorAll('.animated-text');
 
 const observerOptions = {
@@ -179,30 +165,30 @@ elements.forEach(element => {
 
 
 // attendance calculator
-document.getElementById("csvFile").addEventListener("change", function(event) {
+document.getElementById("csvFile").addEventListener("change", function (event) {
   const file = event.target.files[0];
   if (!file) return;
 
   const reader = new FileReader();
-  
-  reader.onload = function(e) {
-      const content = e.target.result;
-      const lines = content.split(/\r?\n/).map(line => line.split(','));
 
-      // Assuming CSV structure: Name, Roll Number
-      const names = [];
-      const rollNumbers = [];
+  reader.onload = function (e) {
+    const content = e.target.result;
+    const lines = content.split(/\r?\n/).map(line => line.split(','));
 
-      for (let i = 1; i < lines.length; i++) {  // Skip header
-          const [name, rollNumber] = lines[i];
-          if (name && rollNumber) {
-              names.push(name.trim());
-              rollNumbers.push(rollNumber.trim());
-          }
+    // Assuming CSV structure: Name, Roll Number
+    const names = [];
+    const rollNumbers = [];
+
+    for (let i = 1; i < lines.length; i++) {  // Skip header
+      const [name, rollNumber] = lines[i];
+      if (name && rollNumber) {
+        names.push(name.trim());
+        rollNumbers.push(rollNumber.trim());
       }
+    }
 
-      // Populate dropdowns
-      populateDropdown(names, rollNumbers);
+    // Populate dropdowns
+    populateDropdown(names, rollNumbers);
   };
 
   reader.readAsText(file);
@@ -218,22 +204,22 @@ function populateDropdown(names, rollNumbers) {
 
   // Add new options
   names.forEach((name, index) => {
-      const nameOption = document.createElement("option");
-      nameOption.value = name;
-      nameOption.textContent = name;
-      nameSelect.appendChild(nameOption);
+    const nameOption = document.createElement("option");
+    nameOption.value = name;
+    nameOption.textContent = name;
+    nameSelect.appendChild(nameOption);
 
-      const rollNumberOption = document.createElement("option");
-      rollNumberOption.value = rollNumbers[index];
-      rollNumberOption.textContent = rollNumbers[index];
-      rollNumberSelect.appendChild(rollNumberOption);
+    const rollNumberOption = document.createElement("option");
+    rollNumberOption.value = rollNumbers[index];
+    rollNumberOption.textContent = rollNumbers[index];
+    rollNumberSelect.appendChild(rollNumberOption);
   });
 
   // Show the form after CSV is loaded
   document.getElementById("attendance-form").style.display = "block";
 }
 
-document.getElementById("attendance-form").addEventListener("submit", function(event) {
+document.getElementById("attendance-form").addEventListener("submit", function (event) {
   event.preventDefault();
 
   const name = document.getElementById("name").value;
@@ -242,16 +228,16 @@ document.getElementById("attendance-form").addEventListener("submit", function(e
   const attendedClasses = parseInt(document.getElementById("attendedClasses").value);
 
   if (isNaN(totalClasses) || isNaN(attendedClasses)) {
-      alert("Please enter valid numbers for both fields.");
-      return;
+    alert("Please enter valid numbers for both fields.");
+    return;
   }
 
   const attendancePercentage = (attendedClasses / totalClasses) * 100;
   let status = '';
   if (attendancePercentage < 75) {
-      status = `Defaulter! Attendance: ${attendancePercentage.toFixed(2)}%`;
+    status = `Defaulter! Attendance: ${attendancePercentage.toFixed(2)}%`;
   } else {
-      status = `Good Standing! Attendance: ${attendancePercentage.toFixed(2)}%`;
+    status = `Good Standing! Attendance: ${attendancePercentage.toFixed(2)}%`;
   }
 
   // Display the result

@@ -9,10 +9,10 @@
   --search-text: #2d2d2d;
   --a-text: #f26d21;
   --b-text: #ff9b5e;
-  --box: #d6d6d6;
+  --box: #e0e0e0;
   --box2: #bfc1d1;
   --accent: #f26d21;
-  --hover-highlight: #c9e8ff;
+  --hover-highlight: #b5af9b;
   --animation: linear-gradient(45deg, #0a66c2, #084ca4, #ffeac9, #f26d21);
   --footer: #d6cece;
 
@@ -23,7 +23,7 @@ body.dark {
   --body-color: #121826;
   --header-color: linear-gradient(to right, #303030, #3a4354);
   --nav-color: linear-gradient(to bottom right, #323649, #3a496f);
-  --side-nav: #5952d5;
+  --side-nav: #005eff;
   --text-color: #e0e0e0;
   --search-bar: #000000;
   --search-text: #ffffff;
@@ -32,7 +32,7 @@ body.dark {
   --box: #1c1f2e;
   --box2: #3c4764;
   --accent: #00f7ff;
-  --hover-highlight: #3a496f;
+  --hover-highlight: #000e4d;
   --animation: linear-gradient(45deg, #0a66c2, #505c6b, #47005d, #44008c);
   --footer: #373f6d;
 }
@@ -774,11 +774,11 @@ ul.breadcrumb li a:hover {
 section,
 aside {
   width: 100%;
-  padding: 25px;
   margin-bottom: 20px;
   border-radius: 10px;
   display: inline-block;
   box-sizing: border-box;
+
 }
 
 /* Section Styling */
@@ -1693,120 +1693,6 @@ button:hover {
   /* Slight lifting effect */
 }
 
-/* File Name Text */
-#fileName {
-  margin-top: 12px;
-  font-size: 16px;
-  color: #666666;
-  /* Lighter gray for file name */
-  font-weight: 400;
-}
-
-/* Accordion Styling */
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-ul li {
-  margin: 15px 0;
-}
-
-/* Accordion Button */
-.accordion {
-  background-color: var(--box);
-  /* Light lavender for outer accordion */
-  color: var(--text-color);
-  /* Dark purple text for contrast */
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: 1px solid var(--a-text);
-  /* Subtle border for structure */
-  text-align: center;
-  outline: none;
-  font-size: 16px;
-  font-weight: 500;
-  transition: background-color 0.4s ease, color 0.4s ease, transform 0.2s ease;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* Shadow for lift effect */
-}
-
-.accordion:hover {
-  background-color: var(--hover-highlight);
-  /* Highlighted color */
-  color: var(--a-text);
-  /* Bright text for emphasis */
-  transform: translateY(-2px);
-}
-
-/* Accordion Panel (Inner Box) */
-.panel {
-  padding: 15px 18px;
-  display: none;
-  background-color: var(--hover-highlight);
-  /* Soft pink for strong inner contrast */
-  color: var(--a-text);
-  /* Dark text for clarity */
-  border: 2px solid var(--side-nav);
-  /* Visible border */
-  border-radius: 8px;
-  margin-top: 10px;
-  /* Spacing from the button */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  /* Shadow for depth */
-  overflow: hidden;
-}
-
-/* Additional Accordion Button */
-.Accordion {
-  background-color: var(--side-nav);
-  /* Dark purple outer accordion */
-  color: var(--search-bar);
-  /* Bright white text */
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: 1px solid var(--a-text);
-  /* Subtle border for structure */
-  text-align: center;
-  outline: none;
-  font-size: 16px;
-  font-weight: 500;
-  transition: background-color 0.4s ease, color 0.4s ease, transform 0.2s ease;
-  border-radius: 8px;
-  float: left;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* Shadow for distinction */
-}
-
-.Accordion:hover {
-  background-color: var(--hover-highlight);
-  /* Highlighted gradient */
-  color: var(--text-color);
-  /* Dark text */
-  transform: scale(1.02);
-}
-
-/* Accordion Inner Pane */
-.paneL {
-  padding: 15px 18px;
-  display: none;
-  background-color: var(--b-text);
-  /* Light lavender for inner box */
-  color: var(--search-bar);
-  /* Bright white text */
-  border: 2px solid var(--text-color);
-  /* Bold border for visibility */
-  border-radius: 8px;
-  margin-top: 10px;
-  width: 100%;
-justify-content: center;
-  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
-  /* Inset shadow for depth */
-  overflow:hidden;
-}
 
 
 
