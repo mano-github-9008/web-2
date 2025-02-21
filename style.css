@@ -2260,6 +2260,12 @@ input:focus {
     padding: 20px;
 }
 
+.containerr {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
 /* Faculty Grid */
 .faculty-grid {
     display: grid;
