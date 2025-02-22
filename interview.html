@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>DODS-Apps</title>
+  <link rel="icon" type="image/png" href="images/fav.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+  <script src="script.js" defer></script>
+</head>
+
+<body >
+    
+<!-- Top Blue Bar -->
+<div class="top-bar">
+  <span><i class="fas fa-envelope"></i><a href="mailto:datascience@sies.edu.in"> datascience@sies.edu.in</a></span>
+  <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
+  <div class="top-links">
+    <a href="coming_soon.html">Results</a>
+    <a href="exam_time_table.html">Exam Time table</a>
+    <a href="timetable.html">Time Table</a>
+    <a href="coming_soon.html">NEP</a>
+    <a href="coming_soon.html">CC</a>
+    <a href="https://dzenith.siesvisions.com/">DZenith</a>
+    <a href="coming_soon.html">Secret Alley</a>
+    <a href="coming_soon.html">Connect</a>
+    <a href="enrollment.html" class="prospectus-btn">Enroll Now</a>
+  </div>
+</div>
+
+      <!-- Header Section -->
+      <header>
+        <div class="logo">
+          <a href="index.html"><img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo"></a>
+      </div>
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <!-- Navigation -->
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="index.html" >Home</a></li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="About.html">Department</a></li>
+                        <li><a href="index.html#Facilities">Facilities</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="syllabus.html">Syllabus</a></li>
+                    </ul>
+                </li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="Files.html">Files</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="Achivements.html">Achievements</a></li>
+                
+                <li>
+                  <div class="darkLight-searchBox" style="font-size:25px;  ">
+                  <div class="dark-light" style="margin-right: 30px;">
+                      <p><i class="fa-solid fa-brush"></i></p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                <div class="darkLight-searchBox" style="font-size:25px;  ">
+                  <div class="dark-light" style="margin-right: 25px;">
+                    <p>
+                      <a href="login.html"><i class="fa-solid fa-user"></i></a>
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            
+        </nav>
+    </header><br>
+
+    <section>
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <button class="accordion">Semester I <i class="fa-solid fa-angle-down"></i></button>
+            <div class="panel">
+                <button onclick="showContent('fds')">Fundamentals of Data Science</button>
+                <button onclick="showContent('cost')">Computer Oriented Statistical Technique</button>
+                <button onclick="showContent('pp1')">Python Programming I</button>
+                <button onclick="showContent('dpe')">Data Processing Using Excel</button>
+            </div>
+
+            <button class="accordion">Semester II <i class="fa-solid fa-angle-down"></i></button>
+            <div class="panel">
+                <button onclick="showContent('dsp')">Data Structure using Python</button>
+                <button onclick="showContent('tsa')">Time Series Analysis</button>
+                <button onclick="showContent('pp2')">Python Programming II</button>
+                <button onclick="showContent('sas')">Statistical Analysis Software (SAS)</button>
+            </div>
+            <button class="accordion">Semester III <i class="fa-solid fa-angle-down"></i></button>
+            <div class="panel">
+                <button onclick="showContent('dsr')">Data Science with R</button>
+                <button onclick="showContent('pd')">Probability & Distributions</button>
+                <button onclick="showContent('dbt1')">Database Technology-I</button>
+                <button onclick="showContent('kafka')">Introduction to Kafka</button>
+            </div>
+            <button class="accordion">Semester IV <i class="fa-solid fa-angle-down"></i></button>
+            <div class="panel">
+                <button onclick="showContent('spark')">Big Data Analysis through spark</button>
+                <button onclick="showContent('mtla')">Matrix Theory & Linear Algebra</button>
+                <button onclick="showContent('dbt2')">Database Technology-II</button>
+                <button onclick="showContent('wt1')">Web Technology-I</button>
+            </div>
+
+        </div>
+
+        <!-- Main Content Section -->
+        <div class="tabcontent">
+            <h2>Click on a subject to view files</h2>
+
+            <div id="fds" class="content-section" style="display: none;">
+                <h3>Fundamentals Of Data Science (FDS)</h3>
+                <div class="file-list">
+                    <div class="file-item">
+                        <p>FDS Practicals (.zip)</p>
+                        <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%201/FDS/FDS%20Practical%20&%20Assets.zip?t=2024-11-04T10%3A32%3A51.620Z"
+                            download class="download-btn">Download</a>
+                    </div>
+                    <div class="file-item">
+                        <p>FDS Theory (.zip)</p>
+                        <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%201/FDS/FDS%20Theory.zip?t=2024-11-04T10%3A33%3A09.502Z"
+                            download class="download-btn">Download</a>
+                    </div>
+                    <div class="file-item">
+                        <p>FDS Journal (.docx)</p>
+                        <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%201/FDS/FDS%20JOURNAL.docx?t=2024-11-04T10%3A33%3A21.647Z"
+                            download class="download-btn">Download</a>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+     </body>
+     <footer>
+      <p style="text-align: left; color: var(--side-nav);"><b>Important Links Section</b></p>
+      <div class="footer-links">
+        <div>
+          <ul>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="coming_soon.html">Projects</a></li>
+            <li><a href="exam_time_table.html">Exam Calendar</a></li>
+            <li><a href="connect.html">Students Council</a></li>
+            <li><a href="coming_soon.html">Tutorials</a></li>
+            <li><a href="events.html#fest-list">FEST</a></li>
+            <li><a href="Text-Speech.html">Text-2-Speech</a></li>
+          </ul>
+        </div>
+        <div>
+          <ul>
+            <li><a href="Files.html">Download Study Material</a></li>
+            <li><a href="About.html#gallery">Photo Gallery</a></li>
+            <li><a href="coming_soon.html">Results</a></li>
+            <li><a href="coming_soon.html">Interveiw Materials</a></li>
+            <li><a href="enrollment.html">Admission 2024 - 2025</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="syllabus.html">Syllabus</a></li>
+            <li><a href="coming_soon.html">Presentation Materials</a></li>
+          </ul>
+        </div>
+        <div>
+          <ul>
+            <li><a href="coming_soon.html">Data Scince Road Map</a></li>
+            <li><a href="coming_soon.html">Data Analysis Road Map</a></li>
+            <li><a href="coming_soon.html">Data Engineer Road Map</a></li>
+            <li><a href="coming_soon.html">Data visualization Road Map</a></li>
+            <li><a href="coming_soon.html">Machine Learning Road Map</a></li>
+            <li><a href="coming_soon.html">Deep Learning Road Map</a></li>
+            <li><a href="coming_soon.html">Artificial Intelligence Road Map</a></li>
+            <li><a href="coming_soon.html">Statistics Road Map</a></li>
+          </ul>
+        </div>
+        <div>
+          <ul>
+            <li><a href="coming_soon.html">Data Scince Lab</a></li>
+            <li><a href="coming_soon.html">Data Science Case Studies</a></li>
+            <li><a href="coming_soon.html">Real-World AI Applications</a></li>
+            <li><a href="coming_soon.html">Ethics in AI & Data Privacy</a></li>
+            <li><a href="coming_soon.html">Cloud Computing for Data Science</a></li>
+            <li><a href="coming_soon.html">MLOps & Model Deployment</a></li>
+            <li><a href="coming_soon.html">Data Science Project Hub</a></li>
+            <li><a href="coming_soon.html">AI-Powered Research Papers</a></li>
+    
+          </ul>
+        </div>
+      </div>
+    
+      <!-- Research Hub Section -->
+      <div class="research-hub">
+        INFOGENIX - The Research Hub
+      </div>
+    
+      <!-- Footer Content -->
+      <div class="footer-content">
+        <div class="footer-left">
+          <p class="footer-version">Version: 4.0.0</p>
+        </div>
+    
+        <div class="footer-center">
+          <div class="footer-links">
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Terms of Service</a>
+            <a href="#" class="footer-link">Sitemap</a>
+          </div>
+        </div>
+    
+        <div class="footer-right">
+          <div class="footer-socials">
+            <a href="#" class="footer-social-link"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+          </div>
+          <div class="footer-contact">
+            <p>Contact Us:</p>
+            <p>Email: <a href="mailto:datascience@sies.edu.in" class="footer-email">datascience@sies.edu.in</a></p>
+          </div>
+        </div>
+      </div>
+      <!-- Copyright Section -->
+      <div class="copyright">
+        <p class="footer-copy">&copy; 2025 DEPARTMENT OF DATA SCIENCE | SIES All Rights Reserved.</p>
+      </div>
+    </footer>
+     </html>
+     
