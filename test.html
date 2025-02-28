@@ -1,388 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>DODS-Attendance</title>
-    <link rel="icon" type="image/png" href="images/fav.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">    
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
-    <script src="script.js" defer></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: var(--body-color);
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 80%;
-            max-width: 500px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: var(--box);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        h1 {
-            text-align: center;
-            color: var(--text-color);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-color);
-        }
-
-        input[type="number"], input[type="file"], select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: var(--hover-highlight);
-        }
-
-        #result {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: var(--box2);
-            border-radius: 4px;
-        }
-
-        #status {
-            font-weight: bold;
-            font-size: 1.2em;
-            color: var(--text-color);
-        }
-
-        #download-section {
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Files</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .file-list {
+      list-style: none;
+      padding: 0;
+    }
+    .file-item {
+      margin: 10px 0;
+    }
+    .file-link {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .file-link:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-<!-- Top Blue Bar -->
-<div class="top-bar">
-  <span><i class="fas fa-envelope"></i><a href="mailto:datascience@sies.edu.in"> datascience@sies.edu.in</a></span>
-  <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
-  <div class="top-links">
-    <a href="coming_soon.html">Results</a>
-    <a href="exam_time_table.html">Exam Time table</a>
-    <a href="timetable.html">Time Table</a>
-    <a href="coming_soon.html">NEP</a>
-    <a href="coming_soon.html">CC</a>
-    <a href="https://dzenith.siesvisions.com/">DZenith</a>
-    <a href="coming_soon.html">Secret Alley</a>
-    <a href="coming_soon.html">Connect</a>
-    <a href="enrollment.html" class="prospectus-btn">Enroll Now</a>
-  </div>
-</div>
+  <h1>Download Files</h1>
+  <ul class="file-list" id="file-list">
+    <!-- Files will be dynamically added here -->
+  </ul>
 
-<!-- Header Section -->
-<header>
-    <div class="logo">
-        <a href="index.html"><img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo"></a>
-    </div>
-        <!-- Hamburger Menu -->
-        <div class="hamburger" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </div>
-        <!-- Navigation -->
-        <nav>
-            <ul id="nav-menu">
-                <li><a href="index.html" >Home</a></li>
-                <li class="dropdown">
-                    <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="About.html">Department</a></li>
-                        <li><a href="index.html#Facilities">Facilities</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="courses.html">Courses</a></li>
-                        <li><a href="syllabus.html">Syllabus</a></li>
-                    </ul>
-                </li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="apps.html" class="active">Apps</a></li>
-                <li><a href="Files.html">Files</a></li>
-                <li><a href="news.html">News</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="Achivements.html">Achievements</a></li>
-                
-                <li>
-                  <div class="darkLight-searchBox" style="font-size:25px;  ">
-                  <div class="dark-light" style="margin-right: 30px;">
-                      <p><i class="fa-solid fa-brush"></i></p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                <div class="darkLight-searchBox" style="font-size:25px;  ">
-                  <div class="dark-light" style="margin-right: 25px;">
-                    <p>
-                      <a href="login.html"><i class="fa-solid fa-user"></i></a>
-                    </p>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            
-        </nav>
-    </header><br>
-    
-    <div class="container">
-        <h1>Student Attendance Calculator</h1>
+  <script>
+    // Ensure script runs after the page loads
+    window.onload = async function () {
+      console.log('Initializing Supabase...');
+
+      // Replace with your Supabase credentials
+      const supabaseUrl = 'https://ogsyqirnamraiyoqsttu.supabase.co';
+      const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9nc3lxaXJuYW1yYWl5b3FzdHR1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzM0MDQ1MjcsImV4cCI6MjA0ODk4MDUyN30.8JEmUtypCX7C7F1X0ZRLUthini1DsQI4SsWhN1hs0CQ'; // Replace with your actual key
+      const bucketName = 'files'; // Replace with your actual bucket name
+
+      // Initialize Supabase client
+      const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+      console.log('Supabase initialized:', supabase);
+
+      // Fetch files from Supabase storage
+      async function fetchFiles() {
+        console.log('Fetching files from Supabase...');
         
-        <!-- File upload for CSV -->
-        <label for="csvFile">Upload CSV file:</label>
-        <input type="file" id="csvFile" accept=".csv">
-        
-        <form id="attendance-form" style="display: none;">
-            <label for="name">Name:</label>
-            <select id="name">
-                <option value="">Select Name</option>
-            </select>
+        try {
+          const { data, error } = await supabase.storage.from(bucketName).list('');
 
-            <label for="rollNumber">Roll Number:</label>
-            <select id="rollNumber">
-                <option value="">Select Roll Number</option>
-            </select>
+          if (error) {
+            console.error('Error fetching files:', error);
+            alert('Error fetching files. Check the console for details.');
+            return;
+          }
 
-            <label for="totalClasses">Total Classes:</label>
-            <input type="number" id="totalClasses" required>
+          if (!data || data.length === 0) {
+            console.log('No files found.');
+            alert('No files found.');
+            return;
+          }
 
-            <label for="attendedClasses">Attended Classes:</label>
-            <input type="number" id="attendedClasses" required>
-
-            <button type="submit">Calculate Attendance</button>
-        </form>
-        
-        <div id="result" style="display: none;">
-            <h2>Attendance Status:</h2>
-            <p id="status"></p>
-        </div>
-    </div>
-    <div class="container">
-        <button onclick="window.location.href='graphs.html'">View Performance Graph</button>
-    </div>
-    
-    <script>
-        // Function to read CSV and populate dropdowns
-        document.getElementById("csvFile").addEventListener("change", function(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const content = e.target.result;
-                const lines = content.split('\n').map(line => line.split(','));
-
-                // Assuming CSV structure: Name, Roll Number
-                const names = [];
-                const rollNumbers = [];
-
-                for (let i = 1; i < lines.length; i++) {  // Skip header
-                    const [name, rollNumber] = lines[i];
-                    if (name && rollNumber) {
-                        names.push(name);
-                        rollNumbers.push(rollNumber);
-                    }
-                }
-
-                // Populate dropdowns
-                populateDropdown(names, rollNumbers);
-            };
-
-            reader.readAsText(file);
-        });
-
-        function populateDropdown(names, rollNumbers) {
-            const nameSelect = document.getElementById("name");
-            const rollNumberSelect = document.getElementById("rollNumber");
-
-            // Clear existing options
-            nameSelect.innerHTML = "<option value=''>Select Name</option>";
-            rollNumberSelect.innerHTML = "<option value=''>Select Roll Number</option>";
-
-            // Add new options
-            names.forEach((name, index) => {
-                const nameOption = document.createElement("option");
-                nameOption.value = name;
-                nameOption.textContent = name;
-                nameSelect.appendChild(nameOption);
-
-                const rollNumberOption = document.createElement("option");
-                rollNumberOption.value = rollNumbers[index];
-                rollNumberOption.textContent = rollNumbers[index];
-                rollNumberSelect.appendChild(rollNumberOption);
-            });
-
-            // Show the form after CSV is loaded
-            document.getElementById("attendance-form").style.display = "block";
+          console.log('Files retrieved:', data);
+          displayFiles(data);
+        } catch (err) {
+          console.error('Unexpected error:', err);
+          alert('An unexpected error occurred. Check the console for details.');
         }
+      }
 
-        // Handle form submission for attendance calculation
-        document.getElementById("attendance-form").addEventListener("submit", function(event) {
-            event.preventDefault();
+      // Display the list of files on the page
+      function displayFiles(files) {
+        const fileList = document.getElementById('file-list');
+        fileList.innerHTML = ''; // Clear existing list to prevent duplication
 
-            const name = document.getElementById("name").value;
-            const rollNumber = document.getElementById("rollNumber").value;
-            const totalClasses = parseInt(document.getElementById("totalClasses").value);
-            const attendedClasses = parseInt(document.getElementById("attendedClasses").value);
+        files.forEach(file => {
+          const fileItem = document.createElement('li');
+          fileItem.className = 'file-item';
 
-            if (isNaN(totalClasses) || isNaN(attendedClasses)) {
-                alert("Please enter valid numbers for both fields.");
-                return;
-            }
+          const fileLink = document.createElement('a');
+          fileLink.className = 'file-link';
+          fileLink.href = `${supabaseUrl}/storage/v1/object/public/${bucketName}/${file.name}`;
+          fileLink.textContent = file.name;
+          fileLink.download = file.name;
+          fileLink.target = '_blank';
 
-            const attendancePercentage = (attendedClasses / totalClasses) * 100;
-
-            const data = {
-                name: name,
-                roll_number: rollNumber,
-                total_classes: totalClasses,
-                attended_classes: attendedClasses,
-                attendance_percentage: attendancePercentage.toFixed(2)
-            };
-
-            // Log the data to ensure it's correct
-            console.log("Data being sent to SheetDB:", data);
-
-            // POST data to SheetDB API endpoint
-            fetch('https://sheetdb.io/api/v1/e5y9utr4ydlu8', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(result => {
-                console.log('Success:', result);
-                document.getElementById("status").textContent = `Name: ${name}, Roll Number: ${rollNumber} - Attendance: ${attendancePercentage.toFixed(2)}%`;
-                document.getElementById("result").style.display = "block";
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+          fileItem.appendChild(fileLink);
+          fileList.appendChild(fileItem);
         });
-    </script>
+      }
+
+      // Fetch files only after Supabase is initialized
+      await fetchFiles();
+    };
+  </script>
 </body>
-<footer>
-    <p style="text-align: left; color: var(--side-nav);"><b>Important Links Section</b></p>
-    <div class="footer-links">
-      <div>
-        <ul>
-          <li><a href="research.html">Research</a></li>
-          <li><a href="coming_soon.html">Projects</a></li>
-          <li><a href="exam_time_table.html">Exam Calendar</a></li>
-          <li><a href="connect.html">Students Council</a></li>
-          <li><a href="coming_soon.html">Tutorials</a></li>
-          <li><a href="events.html#fest-list">FEST</a></li>
-          <li><a href="Text-Speech.html">Text-2-Speech</a></li>
-        </ul>
-      </div>
-      <div>
-        <ul>
-          <li><a href="Files.html">Download Study Material</a></li>
-          <li><a href="About.html#gallery">Photo Gallery</a></li>
-          <li><a href="coming_soon.html">Results</a></li>
-          <li><a href="coming_soon.html">Interveiw Materials</a></li>
-          <li><a href="enrollment.html">Admission 2024 - 2025</a></li>
-          <li><a href="courses.html">Courses</a></li>
-          <li><a href="syllabus.html">Syllabus</a></li>
-          <li><a href="coming_soon.html">Presentation Materials</a></li>
-        </ul>
-      </div>
-      <div>
-        <ul>
-          <li><a href="coming_soon.html">Data Scince Road Map</a></li>
-          <li><a href="coming_soon.html">Data Analysis Road Map</a></li>
-          <li><a href="coming_soon.html">Data Engineer Road Map</a></li>
-          <li><a href="coming_soon.html">Data visualization Road Map</a></li>
-          <li><a href="coming_soon.html">Machine Learning Road Map</a></li>
-          <li><a href="coming_soon.html">Deep Learning Road Map</a></li>
-          <li><a href="coming_soon.html">Artificial Intelligence Road Map</a></li>
-          <li><a href="coming_soon.html">Statistics Road Map</a></li>
-        </ul>
-      </div>
-      <div>
-        <ul>
-          <li><a href="coming_soon.html">Data Scince Lab</a></li>
-          <li><a href="coming_soon.html">Data Science Case Studies</a></li>
-          <li><a href="coming_soon.html">Real-World AI Applications</a></li>
-          <li><a href="coming_soon.html">Ethics in AI & Data Privacy</a></li>
-          <li><a href="coming_soon.html">Cloud Computing for Data Science</a></li>
-          <li><a href="coming_soon.html">MLOps & Model Deployment</a></li>
-          <li><a href="coming_soon.html">Data Science Project Hub</a></li>
-          <li><a href="coming_soon.html">AI-Powered Research Papers</a></li>
-  
-        </ul>
-      </div>
-    </div>
-  
-    <!-- Research Hub Section -->
-    <div class="research-hub">
-      INFOGENIX - The Research Hub
-    </div>
-  
-    <!-- Footer Content -->
-    <div class="footer-content">
-      <div class="footer-left">
-        <p class="footer-version">Version: 4.0.0</p>
-      </div>
-  
-      <div class="footer-center">
-        <div class="footer-links">
-          <a href="#" class="footer-link">Privacy Policy</a>
-          <a href="#" class="footer-link">Terms of Service</a>
-          <a href="#" class="footer-link">Sitemap</a>
-        </div>
-      </div>
-  
-      <div class="footer-right">
-        <div class="footer-socials">
-          <a href="#" class="footer-social-link"><i class="fab fa-facebook"></i></a>
-          <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
-        </div>
-        <div class="footer-contact">
-          <p>Contact Us:</p>
-          <p>Email: <a href="mailto:datascience@sies.edu.in" class="footer-email">datascience@sies.edu.in</a></p>
-        </div>
-      </div>
-    </div>
-    <!-- Copyright Section -->
-    <div class="copyright">
-      <p class="footer-copy">&copy; 2025 DEPARTMENT OF DATA SCIENCE | SIES All Rights Reserved.</p>
-    </div>
-  </footer>
 </html>
