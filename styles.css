@@ -524,7 +524,7 @@ input {
     border-radius: 8px;
     background-color: var(--search-bar);
     color: var(--search-text);
-    display: ;
+    display: flex;
 }
 
 select{
@@ -535,7 +535,7 @@ select{
     border-radius: 8px;
     background-color: var(--search-bar);
     color: var(--search-text);
-    display: ;
+    display:flex ;
 }
 
 textarea {
@@ -546,7 +546,7 @@ textarea {
     border-radius: 8px;
     background-color: var(--search-bar);
     color: var(--search-text);
-    display: ;
+    display: flex;
 }
 
 button {
