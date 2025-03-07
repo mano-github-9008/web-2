@@ -14,6 +14,8 @@
   --accent: #f26d21;
   --hover-highlight: #dcc8ac;
   --animation: linear-gradient(45deg, #0a66c2, #084ca4, #ffeac9, #f26d21);
+  --alley: linear-gradient(45deg, #003973, #004e92, #00aaff, #a6e3e9);
+
   --footer: #d6cece;
 
 }
@@ -34,6 +36,7 @@ body.dark {
   --accent: #00f7ff;
   --hover-highlight: #000e4d;
   --animation: linear-gradient(45deg, #0a66c2, #505c6b, #47005d, #44008c);
+  --alley:linear-gradient(45deg, #0a66c2, #084ca4, #ffeac9, #f26d21);
   --footer: #373f6d;
 }
 
@@ -1372,22 +1375,7 @@ article {
   /* Softer pastel orange for the description text */
 }
 
-.cta-button {
-  background-color: var(--a-text);
-  /* Vibrant orange for the button */
-  color: var(--box);
-  /* White text on button */
-  padding: 12px 25px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 1.1em;
-  transition: background-color 0.3s ease;
-}
 
-.cta-button:hover {
-  background-color: var(--side-nav);
-  /* Light peach for hover effect */
-}
 
 /* Animation for sliding the announcement */
 @keyframes slideIn {
@@ -1673,25 +1661,7 @@ article {
 }
 
 
-/* General Button Styling */
-button {
-  margin-top: 20px;
-  padding: 12px 25px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-  border-radius: 50px;
-  font-weight: 600;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
 
-button:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
-  /* Slight lifting effect */
-}
 
 
 
@@ -1996,7 +1966,7 @@ button:hover {
 }
 
 .buttons .btn:hover {
-  background-color: #f0f0f0;
+  background-color: var(--side-nav);
   transform: scale(1.05);
   /* Slight scale effect */
 }
@@ -2233,7 +2203,7 @@ input:focus {
 }
 
 .cta-button:hover {
-  background-color: var(--hover-highlight);
+  background-color: var(--side-nav);
   /* Hover effect */
 }
 

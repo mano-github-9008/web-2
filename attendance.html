@@ -109,10 +109,10 @@
       <a href="coming_soon.html">Results</a>
       <a href="exam_time_table.html">Exam Time table</a>
       <a href="timetable.html">Time Table</a>
-      <a href="coming_soon.html">NEP</a>
+      <a href="nep.html">NEP</a>
       <a href="coming_soon.html">CC</a>
       <a href="https://dzenith.siesvisions.com/">DZenith</a>
-      <a href="coming_soon.html">Secret Alley</a>
+      <a href="secret_alley.html">Secret Alley</a>
       <a href="coming_soon.html">Connect</a>
       <a href="enrollment.html" class="prospectus-btn">Enroll Now</a>
     </div>
@@ -229,20 +229,20 @@
   </div>
 
   <script>
-   // Flag to track login status
-let isAuthorized = false;
+    // Flag to track login status
+    let isAuthorized = false;
 
-// Predefined credentials
-const validCredentials = {
-    user1: "pass123",
-    admin: "adminPass"
-};
+    // Predefined credentials
+    const validCredentials = {
+      user1: "pass123",
+      admin: "adminPass"
+    };
 
-function authorizeUser() {
-    const userID = document.getElementById("userID").value;
-    const passcode = document.getElementById("passcode").value;
+    function authorizeUser() {
+      const userID = document.getElementById("userID").value;
+      const passcode = document.getElementById("passcode").value;
 
-    if (validCredentials[userID] && validCredentials[userID] === passcode) {
+      if (validCredentials[userID] && validCredentials[userID] === passcode) {
         alert("Login successful!");
         isAuthorized = true;  // Set authorization flag
 
@@ -251,32 +251,32 @@ function authorizeUser() {
 
         // Hide login section
         document.querySelector(".container").style.display = "none";
-    } else {
+      } else {
         alert("Invalid ID or passcode!");
+      }
     }
-}
 
 
-// Prevent attendance calculation if not authorized
-document.getElementById("attendance-form").addEventListener("submit", function(event) {
-    if (!isAuthorized) {
+    // Prevent attendance calculation if not authorized
+    document.getElementById("attendance-form").addEventListener("submit", function (event) {
+      if (!isAuthorized) {
         event.preventDefault();
         alert("You must be logged in to calculate attendance.");
         return;
-    }
+      }
 
-    const totalClasses = parseInt(document.getElementById("totalClasses").value);
-    const attendedClasses = parseInt(document.getElementById("attendedClasses").value);
+      const totalClasses = parseInt(document.getElementById("totalClasses").value);
+      const attendedClasses = parseInt(document.getElementById("attendedClasses").value);
 
-    if (isNaN(totalClasses) || isNaN(attendedClasses)) {
+      if (isNaN(totalClasses) || isNaN(attendedClasses)) {
         alert("Please enter valid numbers.");
         return;
-    }
+      }
 
-    const attendancePercentage = (attendedClasses / totalClasses) * 100;
-    document.getElementById("status").textContent = `Attendance: ${attendancePercentage.toFixed(2)}%`;
-    document.getElementById("result").style.display = "block";
-});
+      const attendancePercentage = (attendedClasses / totalClasses) * 100;
+      document.getElementById("status").textContent = `Attendance: ${attendancePercentage.toFixed(2)}%`;
+      document.getElementById("result").style.display = "block";
+    });
 
 
 
