@@ -1,12 +1,14 @@
-/* ===== Colors ===== */
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@400;700&display=swap');
+
+/*=============================================== Colors =====================================================*/
 :root {
   --body-color: #f4f7fc;
   --header-color: linear-gradient(to bottom right, #084ca4, #0a66c2);
   --nav-color: linear-gradient(to bottom right, #e1d8c6, #bcb3aa);
   --side-nav: #084ca4;
   --text-color: #1a1a1a;
-  --search-bar: #ffffff;
-  --search-text: #2d2d2d;
+  --search-bar: #ffdd00;
+  --search-text: #ffffff;
   --a-text: #f26d21;
   --b-text: #ff9b5e;
   --box: #e0e0e0;
@@ -15,9 +17,7 @@
   --hover-highlight: #dcc8ac;
   --animation: linear-gradient(45deg, #0a66c2, #084ca4, #ffeac9, #f26d21);
   --alley: linear-gradient(45deg, #003973, #004e92, #00aaff, #a6e3e9);
-
   --footer: #d6cece;
-
 }
 
 /* Dark Mode Colors */
@@ -27,8 +27,8 @@ body.dark {
   --nav-color: linear-gradient(to bottom right, #323649, #3a496f);
   --side-nav: #005eff;
   --text-color: #e0e0e0;
-  --search-bar: #000000;
-  --search-text: #ffffff;
+  --search-bar: #ff9900;
+  --search-text: #fbff00;
   --a-text: #00eeff;
   --b-text: #ffb300;
   --box: #1c1f2e;
@@ -39,8 +39,6 @@ body.dark {
   --alley:linear-gradient(45deg, #0a66c2, #084ca4, #ffeac9, #f26d21);
   --footer: #373f6d;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@400;700&display=swap');
 
 /* Global reset */
 * {
@@ -71,7 +69,7 @@ button:hover {
   transition: all 0.3s ease;
 }
 
-/* --------------------------------------------Header & Nav Bar */
+/* --------------------------------------------Header & Nav Bar ---------------------------------------------------*/
 /* Top Bar */
 .top-bar {
   background: var(--header-color);
@@ -1247,9 +1245,7 @@ article {
 }
 
 
-
 /* course */
-
 .course-cards-container {
   display: flex;
   justify-content: space-around;
@@ -1344,16 +1340,12 @@ article {
 
 .announcement {
   background-color: var(--hover-highlight);
-  /* Soft peach background */
   color: var(--side-nav);
-  /* White text */
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   width: 90%;
-  /* Increased width */
   max-width: 10000px;
-  /* Max width increased for larger container */
   text-align: center;
   position: relative;
   transform: translateY(50px);
@@ -1362,17 +1354,14 @@ article {
 
 .announcement h2 {
   font-size: 2.2em;
-  /* Slightly larger heading */
   margin-bottom: 15px;
   color: var(--side-nav);
-  /* Deep blue for the title */
 }
 
 .announcement p {
   font-size: 1.1em;
   margin-bottom: 20px;
   color: var(--text-color);
-  /* Softer pastel orange for the description text */
 }
 
 
@@ -1575,87 +1564,66 @@ article {
 /* File Item */
 .file-item {
   background-color:var(--box);
-  /* White background for items */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  /* Subtle shadow */
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: var(--b-text);
   transition: box-shadow 0.3s ease-in-out;
-  /* Smooth shadow transition */
   width: 100%;
-  /* Ensure the item fills the container */
   min-height: 70px;
-  /* Set a minimum height to keep the layout consistent */
 }
 
 .file-item:hover {
   box-shadow: 0 6px 15px rgba(59, 30, 84, 0.2);
-  /* Darker shadow on hover */
 }
 
 /* Content inside .file-item */
 .file-item .file-content {
   flex-grow: 1;
-  /* Allows the content to expand and take available space */
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  /* Space between file name and other elements */
 }
 
 /* Download Button */
 /* Attractive Download Button */
 .download-btn {
   background: linear-gradient(45deg, var(--b-text), var(--a-text));
-  /* Gradient background for vibrancy */
   color: var(--search-bar);
-  /* Bright text color */
   font-size: 18px;
   font-weight: 600;
-  /* Bold text for emphasis */
   padding: 15px 30px;
   border: none;
   border-radius: 50px;
-  /* Rounded corners for a modern look */
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  /* Soft shadow for elevation */
   outline: none;
-  /* Remove outline on focus */
 }
 
 /* Hover Effect */
 .download-btn:hover {
   background: linear-gradient(45deg, var(--a-text), var(--text-color));
-  /* Reverse gradient on hover */
   color: var(--search-bar);
-  /* Bright text */
   transform: translateY(-4px);
-  /* Slight lift on hover */
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  /* Enhanced shadow on hover */
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  /* Subtle text shadow */
 }
 
 /* Focus Effect (for accessibility) */
 .download-btn:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
-  /* Glow effect on focus */
 }
 
 /* Button inside Inner Box */
 .panel .download-btn,
 .paneL .download-btn {
   margin: 20px auto;
-  /* Centering the button inside the box */
   display: inline-block;
   font-size: 18px;
 }
@@ -1669,7 +1637,6 @@ article {
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 
-/* Social media Bar */
 .wrapper {
   display: flex;
   justify-content: center;
@@ -1677,7 +1644,6 @@ article {
   margin-top: 2%;
   position: relative;
   gap: 15px;
-  /* Space between buttons */
 }
 
 .wrapper .button {
@@ -1697,9 +1663,7 @@ article {
 
 .wrapper .button:hover {
   transform: scale(1.1);
-  /* Slight scale effect on hover */
   box-shadow: 0 6px 16px rgba(0, 1, 0, 0.5);
-  /* Increase shadow on hover */
 }
 
 .wrapper .button .icon {
@@ -1711,50 +1675,40 @@ article {
   border-radius: 50%;
   box-sizing: border-box;
   transition: background-color 0.3s ease-out;
-  /* Smooth background transition */
 }
 
 .wrapper .button:nth-child(1):hover .icon {
   background: #4267B2;
-  /* Facebook color */
 }
 
 .wrapper .button:nth-child(2):hover .icon {
   background: #1d69af;
-  /* Twitter color */
 }
 
 .wrapper .button:nth-child(3):hover .icon {
   background: #E1306C;
-  /* Instagram color */
 }
 
 .wrapper .button:nth-child(4):hover .icon {
   background: #ffbb00;
-  /* Snapchat color */
 }
 
 .wrapper .button:nth-child(5):hover .icon {
   background: #ff0000;
-  /* YouTube color */
 }
 
 .wrapper .button .icon i {
   font-size: 25px;
   color: white;
-  /* White icon color for better contrast */
   transition: color 0.3s ease-out;
-  /* Smooth icon color transition */
 }
 
 .wrapper .button:hover .icon i {
   color: var(--text-color);
-  /* Change icon color on hover */
 }
 
 .wrapper .button span {
   display: none;
-  /* Initially hide text */
   font-size: 16px;
   font-weight: bold;
   color: var(--text-color);
@@ -1764,37 +1718,29 @@ article {
 
 .wrapper .button:hover span {
   display: inline-block;
-  /* Show text when hovered */
   margin-left: 15px;
   opacity: 1;
-  /* Ensure text appears smoothly */
   transition: opacity 0.3s ease-out, margin-left 0.3s ease-out;
-  /* Smooth transition for text */
 }
 
 .wrapper .button:nth-child(1) span {
   color: #4267B2;
-  /* Facebook color */
 }
 
 .wrapper .button:nth-child(2) span {
   color: #1d69af;
-  /* Twitter color */
 }
 
 .wrapper .button:nth-child(3) span {
   color: #E1306C;
-  /* Instagram color */
 }
 
 .wrapper .button:nth-child(4) span {
   color: #ffbb00;
-  /* Snapchat color */
 }
 
 .wrapper .button:nth-child(5) span {
   color: #ff0000;
-  /* YouTube color */
 }
 
 
@@ -1804,7 +1750,6 @@ article {
   top: 30px;
   right: 20px;
   z-index: 1000;
-  /* Ensure notifications stay on top */
 }
 
 .notifications .toast {
@@ -1812,10 +1757,8 @@ article {
   position: relative;
   list-style: none;
   border-radius: 8px;
-  /* Rounded corners */
   color: var(--b-text);
   font-family: 'Poppins', sans-serif;
-  /* Use modern font */
   font-weight: 600;
   padding: 16px 20px;
   margin-bottom: 15px;
@@ -1824,7 +1767,6 @@ article {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  /* Soft shadow */
   animation: show_toast 0.5s ease-out forwards;
 }
 
@@ -1912,7 +1854,6 @@ article {
 
 .toast .column i {
   font-size: 2rem;
-  /* Larger icon for better visibility */
   color: #fff;
   margin-right: 12px;
   transition: color 0.3s ease;
@@ -1968,7 +1909,6 @@ article {
 .buttons .btn:hover {
   background-color: var(--side-nav);
   transform: scale(1.05);
-  /* Slight scale effect */
 }
 
 @media screen and (max-width: 530px) {
@@ -2127,7 +2067,6 @@ input:focus {
 }
 
 /* testing */
-
 /* Featured Courses Styling */
 .featured-courses {
   background-color: var(--box2);
@@ -2158,11 +2097,9 @@ input:focus {
 
 .course-item {
   background-color: var(--box);
-  /* White background for each course item */
   padding: 30px;
   border-radius: 10px;
   width: 30%;
-  /* Set width for responsive layout */
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -2195,7 +2132,6 @@ input:focus {
   font-size: 1.2em;
   padding: 12px 30px;
   background-color: var(--accent);
-  /* Accent color */
   color: white;
   text-decoration: none;
   border-radius: 5px;
@@ -2204,22 +2140,34 @@ input:focus {
 
 .cta-button:hover {
   background-color: var(--side-nav);
-  /* Hover effect */
 }
 
 .course-item:hover {
   transform: translateY(-10px);
-  /* Hover effect to lift the course item */
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  /* Shadow effect */
 }
 
 /* Responsive Styling for Smaller Screens */
 @media (max-width: 768px) {
   .course-item {
     width: 100%;
-    /* Stack the course items on smaller screens */
   }
+}
+
+button {
+  font-size: 1em;
+  padding: 6px 12px;
+  margin-top: 10px;
+  background-color: var(--accent);
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--side-nav);
 }
 
 /* about */
@@ -2235,6 +2183,8 @@ input:focus {
   margin: 40px auto;
   padding: 20px;
 }
+
+
 
 /* Faculty Grid */
 .faculty-grid {
