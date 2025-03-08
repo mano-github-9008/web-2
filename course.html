@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>DODS</title>
-    <link rel="icon" type="image/png" href="images/ODS.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+  <title>DODS-Courses</title>
+  <link rel="icon" type="image/png" href="images/fav.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+  <script src="script.js" defer></script>
     <style>
 
         h1, h2 {
@@ -64,70 +72,84 @@ ul li a:hover {
             text-decoration: underline;
         }
 
-        footer {
-            text-align: center;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.9);
-            color: var(--b-text);
-            margin-top: 20px;
-        }
 
-        footer h2 {
-            color: var(--text-color);
-        }
 
-        @media (max-width: 768px) {
-            .nav-links {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            section, article {
-                margin: 10px;
-                padding: 15px;
-            }
-
-            li {
-                font-size: 14px;
-            }
-        }
 
     </style>
 </head>
 <body>
-<!-- Top Blue Bar -->
-<div class="top-bar">
+  <!-- Top Blue Bar -->
+  <div class="top-bar">
     <span><i class="fas fa-envelope"></i><a href="mailto:datascience@sies.edu.in"> datascience@sies.edu.in</a></span>
     <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
     <div class="top-links">
-      <a href="coming_soon.html">Results</a>
+      <a href="progress.html">SY-Exam_Process</a>
       <a href="exam_time_table.html">Exam Time table</a>
       <a href="timetable.html">Time Table</a>
-      <a href="coming_soon.html">NEP</a>
-      <a href="coming_soon.html">CC</a>
+      <a href="nep.html">NEP</a>
+      <a href="cc.html">CC</a>
       <a href="https://dzenith.siesvisions.com/">DZenith</a>
-      <a href="coming_soon.html">Secret Alley</a>
-      <a href="coming_soon.html">Connect</a>
+      <a href="secret_alley.html">Secret Alley</a>
+      <a href="connect.html">Connect</a>
       <a href="enrollment.html" class="prospectus-btn">Enroll Now</a>
     </div>
   </div>
-<nav>
-    <div class="nav-bar">
-        <i class='bx bx-menu sidebarOpen'></i>
-        <span class="logo navLogo"><a href="index.html">DODS-Lab</a></span>
-
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">HOME</a></li>
-            <li><a href="About.html">ABOUT</a></li>
-            <li><a href="Files.html">FILES</a></li>
-            <li><a href="contact.html">CONTACT</a></li>
-        </ul>
-
-        <div class="dark-light">
-            <i class="fa-solid fa-brush"></i>
+      <!-- Header Section -->
+      <header>
+        <div class="logo">
+          <a href="index.html"><img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo"></a>
+      </div>
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
         </div>
-    </div>
-</nav>
+        <!-- Navigation -->
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="About.html">Department</a></li>
+                        <li><a href="index.html#Facilities">Facilities</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="active">Courses</a></li>
+                        <li><a href="syllabus.html">Syllabus</a></li>
+                    </ul>
+                </li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="Files.html">Files</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="Achivements.html">Achievements</a></li>
+                
+                <li>
+                  <div class="darkLight-searchBox" style="font-size:25px;  ">
+                  <div class="dark-light" style="margin-right: 30px;">
+                      <p><i class="fa-solid fa-brush"></i></p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                <div class="darkLight-searchBox" style="font-size:25px;  ">
+                  <div class="dark-light" style="margin-right: 25px;">
+                    <p>
+                      <a href="login.html"><i class="fa-solid fa-user"></i></a>
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            
+        </nav>
+    </header><br>
+
 
 <div>
     <h1>COURSES</h1>

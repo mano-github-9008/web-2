@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DODS- Exam Task Progress Tracker</title>
+    <link rel="icon" type="image/png" href="images/fav.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+  <script src="script.js" defer></script>
+    <style>
+
+        .subject {
+            margin-bottom: 20px;
+            text-align: left;
+            display: inline-block;
+            width: 300px;
+            background: var(--body);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .progress-container {
+            width: 100%;
+            background: var(--box2);
+            border-radius: 5px;
+            overflow: hidden;
+            height: 20px;
+            margin-top: 10px;
+        }
+        .progress-bar {
+            height: 20px;
+            width: 0;
+            background: var(--side-nav);
+            text-align: center;
+            color: white;
+            transition: width 0.3s;
+        }
+        .overall-progress-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 20px auto;
+        }
+        .progress-circle {
+            fill: none;
+            stroke-width: 10;
+            stroke: var(--side-nav);
+        }
+        .progress-value {
+            fill: none;
+            stroke-width: 10;
+            stroke: var(--a-text);
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.5s ease-in-out;
+        }
+        .progress-text {
+            font-size: 20px;
+            font-weight: bold;
+            text-anchor: middle;
+        }
+
+        .container {
+  width: 80%;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: var(--box);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.containerr {
+  width: 80%;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: var(--box);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Checkbox Styling */
+input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--box2);
+    border-radius: 4px;
+    background-color: var(--body);
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+input[type="checkbox"]::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+    display: none;
+}
+
+input[type="checkbox"]:checked::after {
+    display: block;
+}
+
+/* Label alignment */
+label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+    </style>
+</head>
+<body>
+
+      <!-- Top Blue Bar -->
+  <div class="top-bar">
+    <span><i class="fas fa-envelope"></i><a href="mailto:datascience@sies.edu.in"> datascience@sies.edu.in</a></span>
+    <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
+    <div class="top-links">
+      <a href="#">SY-Exam_Process</a>
+      <a href="exam_time_table.html">Exam Time table</a>
+      <a href="timetable.html">Time Table</a>
+      <a href="nep.html">NEP</a>
+      <a href="cc.html">CC</a>
+      <a href="https://dzenith.siesvisions.com/">DZenith</a>
+      <a href="secret_alley.html">Secret Alley</a>
+      <a href="connect.html">Connect</a>
+      <a href="enrollment.html" class="prospectus-btn">Enroll Now</a>
+    </div>
+  </div>
+
+        <!-- Header Section -->
+        <header>
+            <div class="logo">
+              <a href="index.html"><img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo"></a>
+          </div>
+            <!-- Hamburger Menu -->
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <!-- Navigation -->
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html" >Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="About.html">Department</a></li>
+                            <li><a href="index.html#Facilities">Facilities</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="courses.html">Courses</a></li>
+                            <li><a href="syllabus.html">Syllabus</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="apps.html">Apps</a></li>
+                    <li><a href="Files.html">Files</a></li>
+                    <li><a href="news.html" >News</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="Achivements.html">Achievements</a></li>
+                    
+                    <li>
+                      <div class="darkLight-searchBox" style="font-size:25px;  ">
+                      <div class="dark-light" style="margin-right: 30px;">
+                          <p><i class="fa-solid fa-brush"></i></p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                    <div class="darkLight-searchBox" style="font-size:25px;  ">
+                      <div class="dark-light" style="margin-right: 25px;">
+                        <p>
+                          <a href="login.html"><i class="fa-solid fa-user"></i></a>
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                
+            </nav>
+        </header><br>
+
+    <div class="container">
+        <h2>Kindly Register</h2>
+        <label for="userID">Name (Only your name without space, Example: MANOARVIND):</label>
+        <input type="text" id="userID" required>
+
+        <label for="passcode">Roll_no (Only last 2 digit of Roll_no, Example:32):</label>
+        <input type="password" id="passcode" required>
+
+        <button id="task_but" onclick="authorizeUser()">Submit</button>
+    </div>
+<div id="task-manager" style="display: none;">
+    <h2 id="taskTrackerHeading">Task Progress Tracker</h2>
+    <div id="subjects">
+        <div class="subject">
+            <h3>Big Data Analytics through Spark</h3>
+            <div class="progress-container">
+                <div id="progress-Math" class="progress-bar">0%</div>
+            </div>
+            <label><input type="checkbox" data-subject="Math" onchange="updateProgress()"> Unit-1</label><br>
+            <label><input type="checkbox" data-subject="Math" onchange="updateProgress()"> Unit-2</label><br>
+            <label><input type="checkbox" data-subject="Math" onchange="updateProgress()"> Unit-3</label><br>
+        </div>
+        
+        <div class="subject">
+            <h3>Matrix Theory and Linear Algebra</h3>
+            <div class="progress-container">
+                <div id="progress-Science" class="progress-bar">0%</div>
+            </div>
+            <label><input type="checkbox" data-subject="Science" onchange="updateProgress()"> Unit-1</label><br>
+            <label><input type="checkbox" data-subject="Science" onchange="updateProgress()"> Unit-2</label><br>
+            <label><input type="checkbox" data-subject="Science" onchange="updateProgress()"> Unit-3</label><br>
+        </div>
+        
+        <div class="subject">
+            <h3>Database Technology – II</h3>
+            <div class="progress-container">
+                <div id="progress-History" class="progress-bar">0%</div>
+            </div>
+            <label><input type="checkbox" data-subject="History" onchange="updateProgress()">Unit-1</label><br>
+            <label><input type="checkbox" data-subject="History" onchange="updateProgress()">Unit-2</label><br>
+            <label><input type="checkbox" data-subject="History" onchange="updateProgress()">Unit-3</label><br>
+        </div>
+
+        <div class="subject">
+            <h3>OE</h3>
+            <div class="progress-container">
+                <div id="progress-History" class="progress-bar">0%</div>
+            </div>
+            <label><input type="checkbox" data-subject="History" onchange="updateProgress()">Unit-1</label><br>
+            <label><input type="checkbox" data-subject="History" onchange="updateProgress()">Unit-2</label><br>
+        </div>
+    </div>
+
+    <div class="subject">
+        <h3>Hindi Bhasha</h3>
+        <div class="progress-container">
+            <div id="progress-History" class="progress-bar">0%</div>
+        </div>
+        <label><input type="checkbox" data-subject="History" onchange="updateProgress()">COmpleted !</label><br>
+    </div><br>
+
+    <button onclick="updateProgress()">Update Progress</button><br>
+    
+    <h3>Overall Progress</h3>
+    <div class="overall-progress-container">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="50" class="progress-circle" />
+            <circle cx="60" cy="60" r="50" class="progress-value" stroke-dasharray="314" stroke-dashoffset="314" />
+            <text x="60" y="65" class="progress-text">0%</text>
+        </svg>
+    </div>
+</div>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+    <script>
+        
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAxCEdZzF954zN0rgqtjnJ3aThUHRXJqz0",
+            authDomain: "dodslab-fdb69.firebaseapp.com",
+            projectId: "dodslab-fdb69",
+            storageBucket: "dodslab-fdb69.appspot.com",
+            messagingSenderId: "942582634754",
+            appId: "1:942582634754:web:bde9e3741586357f5aca1b",
+            measurementId: "G-0DCKYNDH5M"
+        };
+    
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    
+        let currentUser = null;
+    
+        function authorizeUser() {
+    const name = document.getElementById('userID').value;
+    const rollno = document.getElementById('passcode').value;
+
+    if (!name || !rollno) {
+        alert("Please enter both name and roll number.");
+        return;
+    }
+
+    const userRef = db.collection("users").doc(rollno);
+
+    userRef.get().then((doc) => {
+        if (doc.exists) {
+            // User exists, load progress
+            alert("Welcome back, " + doc.data().name + "!");
+            currentUser = rollno;
+            document.getElementById("task-manager").style.display = "block";
+            document.querySelector(".container").style.display = "none";
+            document.getElementById('taskTrackerHeading').innerText = `${doc.data().name}'s Task Progress Tracker`;
+            loadProgress(doc.data().progress);
+        } else if(!doc.exists){
+            alert("Newly Registered !")
+            // New user, register and save empty progress
+            userRef.set({
+                name: name,
+                rollno: rollno,
+                progress: {}
+            }).then(() => {
+                alert("Registration successful!");
+                currentUser = rollno;
+                document.getElementById("task-manager").style.display = "block";
+                document.querySelector(".container").style.display = "none";
+                document.getElementById('taskTrackerHeading').innerText = `${name}'s Task Progress Tracker` ;
+                loadProgress({});
+            }).catch(() => {
+                alert("Registration failed. Please try again.");
+            });
+        }
+    }).catch((error) => {
+        console.error("Error checking user:", error);
+    });
+}
+
+    
+        function updateProgress() {
+            if (!currentUser) return;
+    
+            let progressData = {};
+            document.querySelectorAll('.subject').forEach(subject => {
+                let subjectName = subject.querySelector('h3').innerText;
+                let checkboxes = subject.querySelectorAll("input[type='checkbox']");
+                let completed = Array.from(checkboxes).filter(cb => cb.checked).length;
+                let progress = (completed / checkboxes.length) * 100 || 0;
+    
+                progressData[subjectName] = progress;
+    
+                let progressBar = subject.querySelector(".progress-bar");
+                progressBar.style.width = progress + "%";
+                progressBar.innerText = Math.round(progress) + "%";
+            });
+    
+            db.collection("users").doc(currentUser).update({
+                progress: progressData
+            });
+    
+            updateOverallProgress(progressData);
+        }
+    
+        function updateOverallProgress(progressData) {
+            let overallProgress = Object.values(progressData).reduce((a, b) => a + b, 0) / Object.keys(progressData).length || 0;
+            let progressCircle = document.querySelector(".progress-value");
+            let progressText = document.querySelector(".progress-text");
+            let circleOffset = 314 - (314 * overallProgress) / 100;
+            progressCircle.style.strokeDashoffset = circleOffset;
+            progressText.textContent = Math.round(overallProgress) + "%";
+        }
+    
+        function loadProgress(progress) {
+            document.querySelectorAll('.subject').forEach(subject => {
+                let subjectName = subject.querySelector('h3').innerText;
+                let progressValue = progress[subjectName] || 0;
+                let progressBar = subject.querySelector(".progress-bar");
+                progressBar.style.width = progressValue + "%";
+                progressBar.innerText = Math.round(progressValue) + "%";
+    
+                let checkboxes = subject.querySelectorAll("input[type='checkbox']");
+                let numTasks = checkboxes.length;
+                let numCompleted = Math.round((progressValue / 100) * numTasks);
+    
+                checkboxes.forEach((checkbox, index) => {
+                    checkbox.checked = index < numCompleted;
+                });
+            });
+    
+            updateOverallProgress(progress);
+        }
+    </script>
+    <br>
+</body>
+<footer>
+    <p style="text-align: left; color: var(--side-nav);"><b>Important Links Section</b></p>
+    <div class="footer-links">
+      <div>
+        <ul>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="coming_soon.html">Projects</a></li>
+          <li><a href="exam_time_table.html">Exam Calendar</a></li>
+          <li><a href="connect.html">Students Council</a></li>
+          <li><a href="coming_soon.html">Tutorials</a></li>
+          <li><a href="events.html#fest-list">FEST</a></li>
+          <li><a href="Text-Speech.html">Text-2-Speech</a></li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li><a href="Files.html">Download Study Material</a></li>
+          <li><a href="About.html#gallery">Photo Gallery</a></li>
+          <li><a href="coming_soon.html">Results</a></li>
+          <li><a href="coming_soon.html">Interveiw Materials</a></li>
+          <li><a href="enrollment.html">Admission 2024 - 2025</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="syllabus.html">Syllabus</a></li>
+          <li><a href="coming_soon.html">Presentation Materials</a></li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li><a href="coming_soon.html">Data Scince Road Map</a></li>
+          <li><a href="coming_soon.html">Data Analysis Road Map</a></li>
+          <li><a href="coming_soon.html">Data Engineer Road Map</a></li>
+          <li><a href="coming_soon.html">Data visualization Road Map</a></li>
+          <li><a href="coming_soon.html">Machine Learning Road Map</a></li>
+          <li><a href="coming_soon.html">Deep Learning Road Map</a></li>
+          <li><a href="coming_soon.html">Artificial Intelligence Road Map</a></li>
+          <li><a href="coming_soon.html">Statistics Road Map</a></li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li><a href="coming_soon.html">Data Scince Lab</a></li>
+          <li><a href="coming_soon.html">Data Science Case Studies</a></li>
+          <li><a href="coming_soon.html">Real-World AI Applications</a></li>
+          <li><a href="coming_soon.html">Ethics in AI & Data Privacy</a></li>
+          <li><a href="coming_soon.html">Cloud Computing for Data Science</a></li>
+          <li><a href="coming_soon.html">MLOps & Model Deployment</a></li>
+          <li><a href="coming_soon.html">Data Science Project Hub</a></li>
+          <li><a href="coming_soon.html">AI-Powered Research Papers</a></li>
+  
+        </ul>
+      </div>
+    </div>
+  
+    <!-- Research Hub Section -->
+    <div class="research-hub">
+      INFOGENIX - The Research Hub
+    </div>
+  
+    <!-- Footer Content -->
+    <div class="footer-content">
+      <div class="footer-left">
+        <p class="footer-version">Version: 4.0.0</p>
+      </div>
+  
+      <div class="footer-center">
+        <div class="footer-links">
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+          <a href="#" class="footer-link">Sitemap</a>
+        </div>
+      </div>
+  
+      <div class="footer-right">
+        <div class="footer-socials">
+          <a href="#" class="footer-social-link"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <div class="footer-contact">
+          <p>Contact Us:</p>
+          <p>Email: <a href="mailto:datascience@sies.edu.in" class="footer-email">datascience@sies.edu.in</a></p>
+        </div>
+      </div>
+    </div>
+    <!-- Copyright Section -->
+    <div class="copyright">
+      <p class="footer-copy">&copy; 2025 DEPARTMENT OF DATA SCIENCE | SIES All Rights Reserved.</p>
+    </div>
+  </footer>
+</html>
