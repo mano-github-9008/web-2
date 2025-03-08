@@ -26,7 +26,7 @@
             text-align: left;
             display: inline-block;
             width: 300px;
-            background: var(--body);
+            background: var(--box);
             padding: 15px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -212,10 +212,10 @@ label {
 
     <div class="container">
         <h2>Kindly Register</h2>
-        <label for="userID">Name (Only your name without space, Example: MANOARVIND):</label>
+        <label for="userID">Name: (Example: Akash => from fullName ) </label>
         <input type="text" id="userID" required>
 
-        <label for="passcode">Roll_no (Only last 2 digit of Roll_no, Example:32):</label>
+        <label for="passcode">Roll_no:(Only last 2 digit of Roll_no, Example:01)</label>
         <input type="password" id="passcode" required>
 
         <button id="task_but" onclick="authorizeUser()">Submit</button>
