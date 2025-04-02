@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Roadmap</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e0e5ec, #f8f9fa);
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: #b0b0b0;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .container {
+            padding: 20px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-in-out;
+        }
+        .container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .left {
+            left: 0;
+            justify-content: flex-end;
+            text-align: right;
+        }
+        .right {
+            left: 50%;
+            justify-content: flex-start;
+            text-align: left;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: #26728e;
+            border-radius: 50%;
+            top: 20px;
+            left: calc(50% - 8px);
+        }
+        .content {
+            background: #1f485f;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            max-width: 320px;
+            position: relative;
+        }
+        h2 {
+            color: #ffb74d;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        p {
+            color: white;
+            font-size: 14px;
+        }
+        a {
+            color: #ffb74d;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="timeline">
+        <div class="container right">
+            <div class="content">
+                <h2>Programming</h2>
+                <p>Learn <a href="https://www.python.org/" target="_blank">Python</a>, <a href="https://www.r-project.org/" target="_blank">R</a>, <a href="https://www.java.com/" target="_blank">Java</a>, <a href="https://www.w3schools.com/sql/" target="_blank">SQL</a>.</p>
+            </div>
+        </div>
+        <div class="container left">
+            <div class="content">
+                <h2>Math Fundamentals</h2>
+                <p>Statistics, Linear Algebra, Differential Calculus, Discrete Math.</p>
+            </div>
+        </div>
+        <div class="container right">
+            <div class="content">
+                <h2>Data Analysis</h2>
+                <p>Feature Engineering, Data Wrangling, Exploratory Data Analysis (EDA).</p>
+            </div>
+        </div>
+        <div class="container left">
+            <div class="content">
+                <h2>Machine Learning</h2>
+                <p>Classification, Regression, Reinforcement Learning, Clustering.</p>
+            </div>
+        </div>
+        <div class="container right">
+            <div class="content">
+                <h2>Web Scraping</h2>
+                <p>Use tools like <a href="https://www.crummy.com/software/BeautifulSoup/" target="_blank">Beautiful Soup</a>, <a href="https://scrapy.org/" target="_blank">Scrapy</a>, and APIs.</p>
+            </div>
+        </div>
+        <div class="container left">
+            <div class="content">
+                <h2>Visualization</h2>
+                <p>Tools like <a href="https://www.tableau.com/" target="_blank">Tableau</a>, <a href="https://powerbi.microsoft.com/" target="_blank">Power BI</a>, <a href="https://matplotlib.org/" target="_blank">Matplotlib</a>, <a href="https://seaborn.pydata.org/" target="_blank">Seaborn</a>.</p>
+            </div>
+        </div>
+        <div class="container right">
+            <div class="content">
+                <h2>Data Science</h2>
+                <p>Bringing everything together to solve real-world problems.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const containers = document.querySelectorAll(".container");
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            containers.forEach(container => {
+                observer.observe(container);
+            });
+        });
+    </script>
+</body>
+</html>
