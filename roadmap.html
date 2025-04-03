@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DODS || RoadMAp</title>
+    <link rel="icon" type="image/png" href="images/fav.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --beginner: #2ecc71;
+            --intermediate: #f39c12;
+            --advanced: #e74c3c;
+            --expert: #9b59b6;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var( --body-color);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        .timeline {
+            position: relative;
+            padding-left: 80px;
+        }
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--beginner), var(--expert));
+            border-radius: 10px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            background: var(--box);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -56px;
+            top: 30px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 5px solid white;
+            z-index: 1;
+        }
+        .level-beginner:before { background: var(--beginner); }
+        .level-intermediate:before { background: var(--intermediate); }
+        .level-advanced:before { background: var(--advanced); }
+        .level-expert:before { background: var(--expert); }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        .timeline-date i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+        .timeline-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--a-text);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        .timeline-title i {
+            margin-right: 12px;
+            font-size: 1.3rem;
+        }
+        .timeline-content ul {
+            padding-left: 5px;
+            list-style-type: none;
+        }
+        .timeline-content li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 30px;
+            line-height: 1.5;
+        }
+        .timeline-content li:before {
+            content: '▹';
+            position: absolute;
+            left: 10px;
+            color: #3498db;
+            font-size: 1.2rem;
+        }
+        .tool-link {
+            display: inline-block;
+            background: var(--box2);
+            color: var(--a-text);
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin: 0 2px;
+            font-weight: 500;
+            border: 1px solid var(--accent);
+            transition: all 0.2s ease;
+        }
+        .tool-link:hover {
+            background: var(--b-text);
+            color: white;
+            transform: translateY(-1px);
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        .beginner-badge { background: #e8f8f0; color: var(--beginner); }
+        .intermediate-badge { background: #fef5e7; color: var(--intermediate); }
+        .advanced-badge { background: #fdedec; color: var(--advanced); }
+        .expert-badge { background: #f4ecf7; color: var(--expert); }
+        
+        @media (max-width: 768px) {
+            .timeline {
+                padding-left: 60px;
+            }
+            .timeline:before {
+                left: 30px;
+            }
+            .timeline-item:before {
+                left: -46px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <ul class="breadcrumb">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="#daroadmap">Data Analyst - RoadMAp </a></li>
+      </ul>
+
+    <div id="daroadmap">
+        <h1>📈 Data Analyst Learning Timeline</h1>
+        
+        <div class="timeline">
+            <!-- Phase 1 -->
+            <div class="timeline-item level-beginner">
+                <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 1-2 (2024)</div>
+                <div class="timeline-title"><i class="fas fa-rocket"></i> Foundations Launchpad <span class="badge beginner-badge">Beginner</span></div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Introduction to Data Analysis concepts</li>
+                        <li>
+                            <a href="https://docs.python.org/3/tutorial/index.html" target="_blank" class="tool-link">Python</a> basics for analysis
+                            with <a href="https://jupyter.org/" target="_blank" class="tool-link">Jupyter</a> notebooks
+                        </li>
+                        <li>Basic statistics and probability</li>
+                        <li>
+                            Data manipulation with 
+                            <a href="https://pandas.pydata.org/docs/user_guide/10min.html#min" target="_blank" class="tool-link">Pandas</a>
+                        </li>
+                        <li>
+                            Visualization with 
+                            <a href="https://matplotlib.org/stable/tutorials/index.html" target="_blank" class="tool-link">Matplotlib</a> and 
+                            <a href="https://seaborn.pydata.org/tutorial.html" target="_blank" class="tool-link">Seaborn</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Phase 2 -->
+            <div class="timeline-item level-beginner">
+                <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 3-4 (2024)</div>
+                <div class="timeline-title"><i class="fas fa-database"></i> SQL & Data Wrangling <span class="badge beginner-badge">Beginner</span></div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Advanced data cleaning techniques</li>
+                        <li>Exploratory Data Analysis (EDA) best practices</li>
+                        <li>
+                            <a href="https://www.w3schools.com/mysql/default.asp" target="_blank" class="tool-link">SQL</a> mastery
+                            (<a href="https://www.w3schools.com/postgresql/index.php" target="_blank" class="tool-link">PostgreSQL</a>/
+                            <a href="https://www.w3schools.com/sql/" target="_blank" class="tool-link">MySQL</a>)
+                        </li>
+                        <li>
+                            Spreadsheet analysis with 
+                            <a href="https://support.microsoft.com/en-us/excel" target="_blank" class="tool-link">Excel</a> and 
+                            <a href="https://support.google.com/docs/answer/6000292?hl=en" target="_blank" class="tool-link">Google Sheets</a>
+                        </li>
+                        <li>
+                            Introduction to 
+                            <a href="https://powerbi.microsoft.com/en-us/learning/" target="_blank" class="tool-link">Power BI</a>/
+                            <a href="https://help.tableau.com/current/guides/get-started-tutorial/en-us/get-started-tutorial-home.htm" target="_blank" class="tool-link">Tableau</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Phase 3 -->
+            <div class="timeline-item level-intermediate">
+                <div class="timetime-date"><i class="fas fa-calendar-alt"></i> Month 5-6 (2024)</div>
+                <div class="timeline-title"><i class="fas fa-chart-line"></i> Business Intelligence & Visualization <span class="badge intermediate-badge">Intermediate</span></div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Advanced dashboard creation</li>
+                        <li>Data storytelling techniques</li>
+                        <li>
+                            <a href="https://help.tableau.com/current/guides/get-started-tutorial/en-us/get-started-tutorial-home.htm" target="_blank" class="tool-link">Tableau</a> 
+                            or <a href="https://powerbi.microsoft.com/en-us/learning/" target="_blank" class="tool-link">Power BI</a> certification prep
+                        </li>
+                        <li>
+                            <a href="https://www.sqlbi.com/guides/dax/" target="_blank" class="tool-link">DAX</a> for advanced calculations
+                        </li>
+                        <li>
+                            A/B testing and statistical significance
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Phase 4 -->
+            <div class="timeline-item level-advanced">
+                <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 7-9 (2024)</div>
+                <div class="timeline-title"><i class="fas fa-briefcase"></i> Advanced Analytics & Domain Specialization <span class="badge advanced-badge">Advanced</span></div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Predictive analytics fundamentals</li>
+                        <li>
+                            <a href="https://scikit-learn.org/1.4/tutorial/index.html" target="_blank" class="tool-link">Scikit-learn</a> for basic ML
+                        </li>
+                        <li>
+                            Industry-specific analytics (Finance, Marketing, Healthcare)
+                        </li>
+                        <li>
+                            Web analytics with 
+                            <a href="https://analytics.google.com/analytics/academy/" target="_blank" class="tool-link">Google Analytics</a>
+                        </li>
+                        <li>
+                            Big Data basics with 
+                            <a href="https://www.w3schools.com/sql/sql_intro.asp" target="_blank" class="tool-link">SQL</a> on large datasets
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Phase 5 -->
+            <div class="timeline-item level-expert">
+                <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 10-12 (2024)</div>
+                <div class="timeline-title"><i class="fas fa-project-diagram"></i> Real-World Projects & Deployment <span class="badge expert-badge">Expert</span></div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>
+                            Building end-to-end analytics pipelines
+                        </li>
+                        <li>
+                            Dashboard deployment with 
+                            <a href="https://help.tableau.com/current/server/en-us/deploy_dashboards.htm" target="_blank" class="tool-link">Tableau Server</a>/
+                            <a href="https://learn.microsoft.com/en-us/power-bi/developer/embedded/embed-service-principal" target="_blank" class="tool-link">Power BI Service</a>
+                        </li>
+                        <li>Automation with Python scripts</li>
+                        <li>
+                            Cloud analytics with 
+                            <a href="https://aws.amazon.com/big-data/datalakes-and-analytics/" target="_blank" class="tool-link">AWS</a>/
+                            <a href="https://cloud.google.com/bigquery" target="_blank" class="tool-link">BigQuery</a>
+                        </li>
+                        <li>Portfolio development with case studies</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ul class="breadcrumb">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="#dsroadmap">DataScience - RoadMAp </a></li>
+      </ul>
+      
+<div id="dsroadmap">
+    <h1>📊 Data Science Learning Timeline</h1>
+    
+    <div class="timeline">
+        <!-- Phase 1 -->
+        <div class="timeline-item level-beginner">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 1-2 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-rocket"></i> Foundations Launchpad <span class="badge beginner-badge">Beginner</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>Introduction to Data Science concepts</li>
+                    <li>
+                        <a href="https://docs.python.org/3/tutorial/index.html" target="_blank" class="tool-link">Python</a> programming fundamentals
+                        with <a href="https://jupyter.org/" target="_blank" class="tool-link">Jupyter</a> notebooks
+                    </li>
+                    <li>Basic statistics and probability</li>
+                    <li>
+                        Data manipulation with 
+                        <a href="https://pandas.pydata.org/docs/user_guide/10min.html#min" target="_blank" class="tool-link">Pandas</a> and 
+                        <a href="https://numpy.org/" target="_blank" class="tool-link">NumPy</a>
+                    </li>
+                    <li>
+                        Visualization with 
+                        <a href="https://matplotlib.org/stable/tutorials/index.html" target="_blank" class="tool-link">Matplotlib</a> and 
+                        <a href="https://seaborn.pydata.org/tutorial.html" target="_blank" class="tool-link">Seaborn</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 2 -->
+        <div class="timeline-item level-beginner">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 3-4 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-database"></i> Data Wrangling & Analysis <span class="badge beginner-badge">Beginner</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>Data cleaning and preprocessing</li>
+                    <li>Exploratory Data Analysis (EDA)</li>
+                    <li>
+                        <a href="https://www.w3schools.com/mysql/default.asp" target="_blank" class="tool-link">SQL</a> and database fundamentals
+                        (<a href="https://www.w3schools.com/postgresql/index.php" target="_blank" class="tool-link">PostgreSQL</a>)
+                    </li>
+                    <li>Feature engineering basics</li>
+                    <li>
+                        Version control with 
+                        <a href="https://git-scm.com/" target="_blank" class="tool-link">Git</a> and 
+                        <a href="https://github.com/" target="_blank" class="tool-link">GitHub</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 3 -->
+        <div class="timeline-item level-intermediate">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 5-6 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-robot"></i> Machine Learning Fundamentals <span class="badge intermediate-badge">Intermediate</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>Supervised learning algorithms</li>
+                    <li>Model evaluation metrics</li>
+                    <li>
+                        <a href="https://scikit-learn.org/1.4/tutorial/index.html" target="_blank" class="tool-link">Scikit-learn</a> comprehensive guide
+                    </li>
+                    <li>
+                        Basic model deployment with 
+                        <a href="https://flask.palletsprojects.com/" target="_blank" class="tool-link">Flask</a> or 
+                        <a href="https://fastapi.tiangolo.com/" target="_blank" class="tool-link">FastAPI</a>
+                    </li>
+                    <li>
+                        Introduction to cloud platforms: 
+                        <a href="https://aws.amazon.com/" target="_blank" class="tool-link">AWS</a>, 
+                        <a href="https://cloud.google.com/" target="_blank" class="tool-link">GCP</a>, 
+                        <a href="https://azure.microsoft.com/" target="_blank" class="tool-link">Azure</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 4 -->
+        <div class="timeline-item level-advanced">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 7-9 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-brain"></i> Advanced ML & Specializations <span class="badge advanced-badge">Advanced</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>Unsupervised learning techniques</li>
+                    <li>
+                        Deep learning with 
+                        <a href="https://www.tensorflow.org/tutorials" target="_blank" class="tool-link">TensorFlow</a> and 
+                        <a href="https://pytorch.org/tutorials/" target="_blank" class="tool-link">PyTorch</a>
+                    </li>
+                    <li>
+                        Natural Language Processing with 
+                        <a href="https://spacy.io/usage" target="_blank" class="tool-link">spaCy</a> and 
+                        <a href="https://huggingface.co/" target="_blank" class="tool-link">HuggingFace</a>
+                    </li>
+                    <li>
+                        Computer vision with 
+                        <a href="https://opencv.org/university/free-opencv-course/?utm_source=opcv&utm_medium=menu&utm_campaign=obc" target="_blank" class="tool-link">OpenCV</a>
+                    </li>
+                    <li>
+                        Big Data tools: 
+                        <a href="https://spark.apache.org/docs/latest/quick-start.html" target="_blank" class="tool-link">Spark</a>, 
+                        <a href="https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html" target="_blank" class="tool-link">Hadoop</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 5 -->
+        <div class="timeline-item level-expert">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 10-12 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-cogs"></i> Production & Real-World Applications <span class="badge expert-badge">Expert</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>
+                        MLOps with 
+                        <a href="https://mlflow.org/docs/latest/getting-started/index.html" target="_blank" class="tool-link">MLflow</a> and 
+                        <a href="https://www.kubeflow.org/docs/started/" target="_blank" class="tool-link">Kubeflow</a>
+                    </li>
+                    <li>
+                        Containerization with 
+                        <a href="https://www.docker.com/get-started/" target="_blank" class="tool-link">Docker</a> and 
+                        <a href="https://www.edx.org/learn/kubernetes/the-linux-foundation-introduction-to-kubernetes" target="_blank" class="tool-link">Kubernetes</a>
+                    </li>
+                    <li>Advanced deep learning architectures</li>
+                    <li>
+                        LLMs and generative AI with 
+                        <a href="https://openai.com/" target="_blank" class="tool-link">OpenAI</a> APIs
+                    </li>
+                    <li>End-to-end project implementation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ul class="breadcrumb">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="roadmap.html">Roadmap</a></li>
+    <li><a href="#deroadmap">Data Engineer - RoadMAp </a></li>
+  </ul>
+
+<div id="deroadmap">
+    <h1>⚙️ Data Engineering Learning Timeline</h1>
+    
+    <div class="timeline">
+        <!-- Phase 1 -->
+        <div class="timeline-item level-beginner">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 1-2 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-server"></i> Foundations & Databases <span class="badge beginner-badge">Beginner</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>Introduction to Data Engineering concepts</li>
+                    <li>
+                        <a href="https://www.python.org/doc/" target="_blank" class="tool-link">Python</a> for data engineering
+                        with <a href="https://jupyter.org/" target="_blank" class="tool-link">Jupyter</a>
+                    </li>
+                    <li>
+                        SQL mastery with 
+                        <a href="https://www.postgresql.org/docs/" target="_blank" class="tool-link">PostgreSQL</a> and 
+                        <a href="https://dev.mysql.com/doc/" target="_blank" class="tool-link">MySQL</a>
+                    </li>
+                    <li>
+                        Database design and normalization
+                    </li>
+                    <li>
+                        Basic Linux/Unix commands
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 2 -->
+        <div class="timeline-item level-beginner">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 3-4 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-ethernet"></i> Big Data Fundamentals <span class="badge beginner-badge">Beginner</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>
+                        Distributed systems fundamentals
+                    </li>
+                    <li>
+                        <a href="https://hadoop.apache.org/docs/stable/" target="_blank" class="tool-link">Hadoop</a> ecosystem
+                        (HDFS, MapReduce)
+                    </li>
+                    <li>
+                        <a href="https://spark.apache.org/docs/latest/" target="_blank" class="tool-link">Spark</a> (PySpark/SQL)
+                    </li>
+                    <li>
+                        NoSQL databases: 
+                        <a href="https://www.mongodb.com/docs/" target="_blank" class="tool-link">MongoDB</a>, 
+                        <a href="https://cassandra.apache.org/doc/latest/" target="_blank" class="tool-link">Cassandra</a>
+                    </li>
+                    <li>
+                        Version control with 
+                        <a href="https://git-scm.com/doc" target="_blank" class="tool-link">Git</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 3 -->
+        <div class="timeline-item level-intermediate">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 5-6 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-stream"></i> Data Pipelines & ETL <span class="badge intermediate-badge">Intermediate</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>
+                        ETL/ELT concepts
+                    </li>
+                    <li>
+                        <a href="https://airflow.apache.org/docs/" target="_blank" class="tool-link">Airflow</a> for workflow orchestration
+                    </li>
+                    <li>
+                        <a href="https://docs.prefect.io/" target="_blank" class="tool-link">Prefect</a> for modern pipelines
+                    </li>
+                    <li>
+                        Data warehousing: 
+                        <a href="https://cloud.google.com/bigquery/docs" target="_blank" class="tool-link">BigQuery</a>, 
+                        <a href="https://docs.snowflake.com/" target="_blank" class="tool-link">Snowflake</a>, 
+                        <a href="https://docs.aws.amazon.com/redshift/latest/dg/" target="_blank" class="tool-link">Redshift</a>
+                    </li>
+                    <li>
+                        Batch vs. Stream processing
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 4 -->
+        <div class="timeline-item level-advanced">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 7-9 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-cloud"></i> Cloud & Infrastructure <span class="badge advanced-badge">Advanced</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>
+                        Cloud platforms: 
+                        <a href="https://aws.amazon.com/" target="_blank" class="tool-link">AWS</a>, 
+                        <a href="https://cloud.google.com/" target="_blank" class="tool-link">GCP</a>, 
+                        <a href="https://azure.microsoft.com/" target="_blank" class="tool-link">Azure</a>
+                    </li>
+                    <li>
+                        Infrastructure as Code: 
+                        <a href="https://www.terraform.io/docs" target="_blank" class="tool-link">Terraform</a>, 
+                        <a href="https://docs.ansible.com/" target="_blank" class="tool-link">Ansible</a>
+                    </li>
+                    <li>
+                        Containerization: 
+                        <a href="https://docs.docker.com/" target="_blank" class="tool-link">Docker</a>, 
+                        <a href="https://kubernetes.io/docs/home/" target="_blank" class="tool-link">Kubernetes</a>
+                    </li>
+                    <li>
+                        Streaming platforms: 
+                        <a href="https://kafka.apache.org/documentation/" target="_blank" class="tool-link">Kafka</a>, 
+                        <a href="https://docs.confluent.io/platform/current/platform.html" target="_blank" class="tool-link">Confluent</a>
+                    </li>
+                    <li>
+                        Data quality and monitoring
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 5 -->
+        <div class="timeline-item level-expert">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 10-12 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-microchip"></i> Advanced Systems & Production <span class="badge expert-badge">Expert</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>
+                        Data lake architectures
+                    </li>
+                    <li>
+                        Data mesh concepts
+                    </li>
+                    <li>
+                        Performance optimization
+                    </li>
+                    <li>
+                        CI/CD for data pipelines
+                    </li>
+                    <li>
+                        End-to-end project implementation
+                        (ingestion → processing → storage → serving)
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ul class="breadcrumb">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="roadmap.html">Roadmap</a></li>
+    <li><a href="#dvroadmap">Data Visualization - RoadMAp </a></li>
+  </ul>
+
+  <div id="dvroadmap">
+    <h1>📊 Data Visualization Learning Timeline</h1>
+    
+    <div class="timeline">
+        <!-- Phase 1 -->
+        <div class="timeline-item level-beginner">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 1-2 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-paint-brush"></i> Visualization Fundamentals <span class="badge beginner-badge">Beginner</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>Principles of effective data visualization</li>
+                    <li>
+                        <a href="https://www.tableau.com/learn" target="_blank" class="tool-link">Tableau Public</a> basics
+                    </li>
+                    <li>
+                        <a href="https://powerbi.microsoft.com/en-us/learning/" target="_blank" class="tool-link">Power BI</a> fundamentals
+                    </li>
+                    <li>
+                        Chart types and when to use them
+                    </li>
+                    <li>
+                        Color theory and accessibility
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 2 -->
+        <div class="timeline-item level-beginner">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 3-4 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-chart-bar"></i> Advanced BI Tools <span class="badge beginner-badge">Beginner</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>
+                        Interactive dashboards in 
+                        <a href="https://help.tableau.com/current/guides/get-started-tutorial/en-us/get-started-tutorial-home.htm" target="_blank" class="tool-link">Tableau</a>
+                    </li>
+                    <li>
+                        <a href="https://learn.microsoft.com/en-us/power-bi/guidance/power-bi-implementation-planning" target="_blank" class="tool-link">Power BI</a> data modeling
+                    </li>
+                    <li>
+                        <a href="https://www.sqlbi.com/guides/dax/" target="_blank" class="tool-link">DAX</a> for advanced calculations
+                    </li>
+                    <li>
+                        Storytelling with data
+                    </li>
+                    <li>
+                        Dashboard design best practices
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 3 -->
+        <div class="timeline-item level-intermediate">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 5-6 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-code"></i> Programming for Visualization <span class="badge intermediate-badge">Intermediate</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>
+                        <a href="https://matplotlib.org/stable/tutorials/index.html" target="_blank" class="tool-link">Matplotlib</a> and 
+                        <a href="https://seaborn.pydata.org/tutorial.html" target="_blank" class="tool-link">Seaborn</a> in Python
+                    </li>
+                    <li>
+                        <a href="https://ggplot2.tidyverse.org/" target="_blank" class="tool-link">ggplot2</a> in R
+                    </li>
+                    <li>
+                        <a href="https://d3js.org/" target="_blank" class="tool-link">D3.js</a> fundamentals
+                    </li>
+                    <li>
+                        <a href="https://plotly.com/python/" target="_blank" class="tool-link">Plotly</a> interactive visualizations
+                    </li>
+                    <li>
+                        Geospatial visualization
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 4 -->
+        <div class="timeline-item level-advanced">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 7-9 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-project-diagram"></i> Advanced Techniques <span class="badge advanced-badge">Advanced</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>
+                        Custom visualizations with 
+                        <a href="https://d3js.org/" target="_blank" class="tool-link">D3.js</a>
+                    </li>
+                    <li>
+                        <a href="https://vega.github.io/vega-lite/" target="_blank" class="tool-link">Vega-Lite</a> for declarative visualization
+                    </li>
+                    <li>
+                        Animation and interactivity
+                    </li>
+                    <li>
+                        Dashboard deployment: 
+                        <a href="https://help.tableau.com/current/server/en-us/deploy_dashboards.htm" target="_blank" class="tool-link">Tableau Server</a>, 
+                        <a href="https://learn.microsoft.com/en-us/power-bi/developer/embedded/embed-service-principal" target="_blank" class="tool-link">Power BI Service</a>,
+                        <a href="https://plotly.com/dash/" target="_blank" class="tool-link">Dash</a>
+                    </li>
+                    <li>
+                        Visualization for big data
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 5 -->
+        <div class="timeline-item level-expert">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 10-12 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-star"></i> Mastery & Specialization <span class="badge expert-badge">Expert</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>
+                        Domain-specific visualization
+                        (Finance, Healthcare, Marketing)
+                    </li>
+                    <li>
+                        Advanced dashboard performance optimization
+                    </li>
+                    <li>
+                        Building custom visualization libraries
+                    </li>
+                    <li>
+                        Visualization testing and accessibility audits
+                    </li>
+                    <li>
+                        Portfolio development with case studies
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ul class="breadcrumb">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="roadmap.html">Roadmap</a></li>
+    <li><a href="#mlroadmap">Machine Learning - RoadMAp </a></li>
+  </ul>
+
+  <div id="mlroadmap">
+    <h1>🤖 Machine Learning Learning Timeline</h1>
+    
+    <div class="timeline">
+        <!-- Phase 1 -->
+        <div class="timeline-item level-beginner">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 1-2 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-brain"></i> Foundations & Python <span class="badge beginner-badge">Beginner</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>Introduction to ML concepts</li>
+                    <li>
+                        <a href="https://docs.python.org/3/tutorial/index.html" target="_blank" class="tool-link">Python</a> programming
+                        with <a href="https://jupyter.org/" target="_blank" class="tool-link">Jupyter</a> notebooks
+                    </li>
+                    <li>
+                        Data manipulation with 
+                        <a href="https://pandas.pydata.org/docs/user_guide/10min.html" target="_blank" class="tool-link">Pandas</a> and 
+                        <a href="https://numpy.org/doc/stable/user/quickstart.html" target="_blank" class="tool-link">NumPy</a>
+                    </li>
+                    <li>
+                        Visualization with 
+                        <a href="https://matplotlib.org/stable/tutorials/index.html" target="_blank" class="tool-link">Matplotlib</a> and 
+                        <a href="https://seaborn.pydata.org/tutorial.html" target="_blank" class="tool-link">Seaborn</a>
+                    </li>
+                    <li>Basic statistics and linear algebra</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 2 -->
+        <div class="timeline-item level-beginner">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 3-4 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-robot"></i> Machine Learning Basics <span class="badge beginner-badge">Beginner</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>
+                        <a href="https://scikit-learn.org/stable/tutorial/index.html" target="_blank" class="tool-link">Scikit-learn</a> fundamentals
+                    </li>
+                    <li>Supervised learning (Regression, Classification)</li>
+                    <li>Model evaluation metrics</li>
+                    <li>Feature engineering</li>
+                    <li>Basic model deployment with 
+                        <a href="https://flask.palletsprojects.com/" target="_blank" class="tool-link">Flask</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 3 -->
+        <div class="timeline-item level-intermediate">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 5-6 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-network-wired"></i> Advanced ML Techniques <span class="badge intermediate-badge">Intermediate</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>Unsupervised learning (Clustering, Dimensionality Reduction)</li>
+                    <li>Ensemble methods</li>
+                    <li>Hyperparameter tuning</li>
+                    <li>
+                        <a href="https://www.tensorflow.org/tutorials" target="_blank" class="tool-link">TensorFlow</a>/
+                        <a href="https://pytorch.org/tutorials/" target="_blank" class="tool-link">PyTorch</a> basics
+                    </li>
+                    <li>ML pipelines</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 4 -->
+        <div class="timeline-item level-advanced">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 7-9 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-project-diagram"></i> Deep Learning <span class="badge advanced-badge">Advanced</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>Neural networks fundamentals</li>
+                    <li>CNNs for computer vision</li>
+                    <li>RNNs/LSTMs for sequence data</li>
+                    <li>Transfer learning</li>
+                    <li>
+                        <a href="https://huggingface.co/course/" target="_blank" class="tool-link">Transformers</a> and NLP
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 5 -->
+        <div class="timeline-item level-expert">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 10-12 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-cogs"></i> Production & Specialization <span class="badge expert-badge">Expert</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>
+                        MLOps with 
+                        <a href="https://mlflow.org/docs/latest/index.html" target="_blank" class="tool-link">MLflow</a> and 
+                        <a href="https://www.kubeflow.org/docs/started/" target="_blank" class="tool-link">Kubeflow</a>
+                    </li>
+                    <li>
+                        Model deployment with 
+                        <a href="https://www.docker.com/get-started/" target="_blank" class="tool-link">Docker</a> and 
+                        <a href="https://kubernetes.io/docs/tutorials/" target="_blank" class="tool-link">Kubernetes</a>
+                    </li>
+                    <li>Model monitoring and maintenance</li>
+                    <li>Specialization (Computer Vision, NLP, etc.)</li>
+                    <li>End-to-end project implementation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <ul class="breadcrumb">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="roadmap.html">Roadmap</a></li>
+    <li><a href="#airoadmap">Artificial Intelligence - RoadMAp </a></li>
+  </ul>
+
+  <div id="airoadmap">
+    <h1>🧠 Artificial Intelligence Learning Timeline</h1>
+    
+    <div class="timeline">
+        <!-- Phase 1 -->
+        <div class="timeline-item level-beginner">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 1-3 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-microchip"></i> AI Foundations <span class="badge beginner-badge">Beginner</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>History and philosophy of AI</li>
+                    <li>
+                        <a href="https://docs.python.org/3/tutorial/index.html" target="_blank" class="tool-link">Python</a> for AI
+                        with <a href="https://jupyter.org/" target="_blank" class="tool-link">Jupyter</a>
+                    </li>
+                    <li>
+                        Mathematical foundations:
+                        <a href="https://www.khanacademy.org/math/linear-algebra" target="_blank" class="tool-link">Linear Algebra</a>,
+                        <a href="https://www.khanacademy.org/math/statistics-probability" target="_blank" class="tool-link">Probability</a>,
+                        Calculus
+                    </li>
+                    <li>
+                        <a href="https://numpy.org/doc/stable/user/quickstart.html" target="_blank" class="tool-link">NumPy</a> and 
+                        <a href="https://pandas.pydata.org/docs/user_guide/10min.html" target="_blank" class="tool-link">Pandas</a> essentials
+                    </li>
+                    <li>Search algorithms and problem solving</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 2 -->
+        <div class="timeline-item level-beginner">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 4-6 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-robot"></i> Machine Learning Core <span class="badge beginner-badge">Beginner</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>
+                        <a href="https://scikit-learn.org/stable/tutorial/index.html" target="_blank" class="tool-link">Scikit-learn</a> mastery
+                    </li>
+                    <li>Supervised vs. unsupervised learning</li>
+                    <li>Model evaluation and validation</li>
+                    <li>
+                        <a href="https://www.tensorflow.org/tutorials" target="_blank" class="tool-link">TensorFlow</a>/
+                        <a href="https://pytorch.org/tutorials/" target="_blank" class="tool-link">PyTorch</a> introduction
+                    </li>
+                    <li>Ethics in AI</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 3 -->
+        <div class="timeline-item level-intermediate">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 7-9 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-network-wired"></i> Advanced AI Systems <span class="badge intermediate-badge">Intermediate</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>
+                        Deep learning with 
+                        <a href="https://www.tensorflow.org/tutorials" target="_blank" class="tool-link">TensorFlow</a> and 
+                        <a href="https://pytorch.org/tutorials/" target="_blank" class="tool-link">PyTorch</a>
+                    </li>
+                    <li>
+                        <a href="https://huggingface.co/course/" target="_blank" class="tool-link">Transformers</a> and LLMs
+                    </li>
+                    <li>Computer vision architectures</li>
+                    <li>Reinforcement learning fundamentals</li>
+                    <li>Knowledge representation and reasoning</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 4 -->
+        <div class="timeline-item level-advanced">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 10-12 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-brain"></i> AI Specializations <span class="badge advanced-badge">Advanced</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>
+                        <strong>Natural Language Processing:</strong>
+                        <a href="https://huggingface.co/course/" target="_blank" class="tool-link">HuggingFace</a>,
+                        GPT architectures
+                    </li>
+                    <li>
+                        <strong>Computer Vision:</strong>
+                        <a href="https://opencv.org/" target="_blank" class="tool-link">OpenCV</a>,
+                        YOLO, GANs
+                    </li>
+                    <li>
+                        <strong>Robotics:</strong>
+                        ROS, motion planning
+                    </li>
+                    <li>
+                        <strong>AI Safety:</strong>
+                        Alignment, interpretability
+                    </li>
+                    <li>Multimodal AI systems</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 5 -->
+        <div class="timeline-item level-expert">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 13-15 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-cogs"></i> AI in Production <span class="badge expert-badge">Expert</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>
+                        Scaling AI systems with 
+                        <a href="https://www.docker.com/" target="_blank" class="tool-link">Docker</a> and 
+                        <a href="https://kubernetes.io/" target="_blank" class="tool-link">Kubernetes</a>
+                    </li>
+                    <li>
+                        <a href="https://mlflow.org/" target="_blank" class="tool-link">MLflow</a> for experiment tracking
+                    </li>
+                    <li>Edge AI deployment</li>
+                    <li>AI hardware optimization</li>
+                    <li>Building AI products</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Phase 6 -->
+        <div class="timeline-item level-expert">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 16-18 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-lightbulb"></i> Frontier AI <span class="badge expert-badge">Expert+</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>Generative AI architectures</li>
+                    <li>Neuro-symbolic AI</li>
+                    <li>AI for science</li>
+                    <li>AGI theory and approaches</li>
+                    <li>Cutting-edge research papers</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  <ul class="breadcrumb">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="roadmap.html">Roadmap</a></li>
+    <li><a href="#dlroadmap">Deep Learning - RoadMAp </a></li>
+  </ul>
+
+  <div id="dlroadmap">
+    <h1>🧠 Deep Learning Specialization Timeline</h1>
+    
+    <div class="timeline">
+        <!-- Phase 1 -->
+        <div class="timeline-item level-beginner">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 1-2 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-network-wired"></i> Neural Network Foundations <span class="badge beginner-badge">Beginner</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>Biological vs artificial neurons</li>
+                    <li>
+                        <a href="https://numpy.org/doc/stable/user/quickstart.html" target="_blank" class="tool-link">NumPy</a> for DL implementations
+                    </li>
+                    <li>
+                        Backpropagation mathematics
+                    </li>
+                    <li>
+                        First neural network with 
+                        <a href="https://www.tensorflow.org/tutorials/quickstart/beginner" target="_blank" class="tool-link">TensorFlow</a>/
+                        <a href="https://pytorch.org/tutorials/beginner/basics/intro.html" target="_blank" class="tool-link">PyTorch</a>
+                    </li>
+                    <li>Activation functions and loss landscapes</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 2 -->
+        <div class="timeline-item level-beginner">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 3-4 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-eye"></i> Computer Vision Mastery <span class="badge beginner-badge">Beginner+</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>
+                        CNN architectures:
+                        <a href="https://pytorch.org/hub/pytorch_vision_resnet/" target="_blank" class="tool-link">ResNet</a>,
+                        <a href="https://pytorch.org/hub/pytorch_vision_vgg/" target="_blank" class="tool-link">VGG</a>,
+                        EfficientNet
+                    </li>
+                    <li>
+                        <a href="https://opencv.org/" target="_blank" class="tool-link">OpenCV</a> integration
+                    </li>
+                    <li>Image augmentation techniques</li>
+                    <li>Transfer learning with pretrained models</li>
+                    <li>Object detection (YOLO, Faster R-CNN)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 3 -->
+        <div class="timeline-item level-intermediate">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 5-6 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-language"></i> Sequence Modeling <span class="badge intermediate-badge">Intermediate</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>RNNs and LSTM architectures</li>
+                    <li>Attention mechanisms</li>
+                    <li>
+                        <a href="https://huggingface.co/course/" target="_blank" class="tool-link">Transformer</a> architectures
+                    </li>
+                    <li>Text preprocessing pipelines</li>
+                    <li>Sequence-to-sequence models</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 4 -->
+        <div class="timeline-item level-advanced">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 7-9 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-magic"></i> Generative Models <span class="badge advanced-badge">Advanced</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>GAN architectures (DCGAN, StyleGAN)</li>
+                    <li>Diffusion models</li>
+                    <li>VAEs and latent spaces</li>
+                    <li>Multimodal generation</li>
+                    <li>Creative applications</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 5 -->
+        <div class="timeline-item level-expert">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 10-12 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-rocket"></i> Scaling & Optimization <span class="badge expert-badge">Expert</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>Distributed training strategies</li>
+                    <li>Mixed precision training</li>
+                    <li>Model quantization</li>
+                    <li>Neural architecture search</li>
+                    <li>Edge deployment (TFLite, ONNX)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Phase 6 -->
+        <div class="timeline-item level-expert">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 13-15 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-flask"></i> Research Frontiers <span class="badge expert-badge">Researcher</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>Graph neural networks</li>
+                    <li>Neural differential equations</li>
+                    <li>Continual/lifelong learning</li>
+                    <li>Neurosymbolic approaches</li>
+                    <li>Reading NeurIPS/ICML papers</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ul class="breadcrumb">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="roadmap.html">Roadmap</a></li>
+    <li><a href="#statsroadmap">Artificial Intelligence - RoadMAp </a></li>
+  </ul>
+
+<div id="statsroadmap">
+    <h1>📊 Statistics for Data Science Timeline</h1>
+    
+    <div class="timeline">
+        <!-- Phase 1 -->
+        <div class="timeline-item level-beginner">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 1-2 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-calculator"></i> Foundational Statistics <span class="badge beginner-badge">Beginner</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>Descriptive statistics (mean, median, variance)</li>
+                    <li>Probability fundamentals</li>
+                    <li>
+                        <a href="https://seeing-theory.brown.edu/" target="_blank" class="tool-link">Visual probability distributions</a>
+                    </li>
+                    <li>Data visualization for statistical analysis</li>
+                    <li>Correlation vs causation</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 2 -->
+        <div class="timeline-item level-beginner">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 3-4 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-chart-line"></i> Inferential Statistics <span class="badge beginner-badge">Beginner+</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>Sampling distributions</li>
+                    <li>Confidence intervals</li>
+                    <li>Hypothesis testing (t-tests, z-tests)</li>
+                    <li>ANOVA and chi-square tests</li>
+                    <li>p-values and statistical significance</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 3 -->
+        <div class="timeline-item level-intermediate">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 5-6 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-project-diagram"></i> Regression Analysis <span class="badge intermediate-badge">Intermediate</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>Linear regression</li>
+                    <li>Logistic regression</li>
+                    <li>Model diagnostics and assumptions</li>
+                    <li>Multicollinearity and feature selection</li>
+                    <li>Regularization techniques (Ridge, Lasso)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 4 -->
+        <div class="timeline-item level-advanced">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 7-9 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-chess-board"></i> Advanced Topics <span class="badge advanced-badge">Advanced</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>Bayesian statistics</li>
+                    <li>Time series analysis</li>
+                    <li>Experimental design (A/B testing)</li>
+                    <li>Non-parametric methods</li>
+                    <li>Bootstrapping and resampling</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Phase 5 -->
+        <div class="timeline-item level-expert">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 10-12 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-database"></i> Statistical Computing <span class="badge expert-badge">Expert</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>
+                        Statistical programming with 
+                        <a href="https://www.statsmodels.org/stable/index.html" target="_blank" class="tool-link">StatsModels</a>
+                    </li>
+                    <li>
+                        <a href="https://pandas.pydata.org/docs/user_guide/computation.html" target="_blank" class="tool-link">Pandas</a> for statistical analysis
+                    </li>
+                    <li>Monte Carlo simulations</li>
+                    <li>Statistical power analysis</li>
+                    <li>Reproducible research practices</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Phase 6 -->
+        <div class="timeline-item level-expert">
+            <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Month 13-15 (2024)</div>
+            <div class="timeline-title"><i class="fas fa-chart-pie"></i> Specialized Applications <span class="badge expert-badge">Practitioner</span></div>
+            <div class="timeline-content">
+                <ul>
+                    <li>Causal inference methods</li>
+                    <li>Survival analysis</li>
+                    <li>Multivariate statistics</li>
+                    <li>Statistical learning theory</li>
+                    <li>Case studies from real datasets</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -30,7 +30,7 @@ body.dark {
   --search-bar: #951556; /* Trendy vibrant purple */
   --search-text: #971549; /* Clean white text */
   --a-text: #4C0033; /* Modern neon red-pink */
-  --b-text: #EEB76B; /* Warm pastel orange for contrast */
+  --b-text: #ff9500; /* Warm pastel orange for contrast */
   --box: #BBBBBB; /* Subtle dark purple box */
   --box2: #726A95; /* Muted deep purple */
   --accent: #4C0033; /* Sleek modern magenta-purple */
@@ -2429,4 +2429,18 @@ input, textarea {
 .map-box {
   width: 100%;
   height: 300px;
+}
+
+/* Flip effect */
+.page {
+  position: fixed;
+  inset: 0;
+  background: white;
+  transform-origin: right center;
+  transform: rotateY(-90deg);
+  transition: transform 0.8s ease-in-out;
+}
+
+.page.show {
+  transform: rotateY(0deg);
 }

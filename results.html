@@ -1,11 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <title>DODS-Coming/soon !</title>
+  <link rel="icon" type="image/png" href="images/ODS.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+  <script src="script.js" defer></script>
+    <style>
+        /* ===== Color Variables ===== */
+        :root {
+            --primary-accent: #084ca4;
+            --secondary-accent: #0a66c2;
+            --text-primary: #1a1a1a;
+            --text-secondary: #ffffff;
+            --bg-color: #ffffff;
+            --error-color: #f26d21;
+            --hover-bg: #ffeac9;
+        }
+
+        body.dark {
+            --primary-accent: #0a3d91;
+            --secondary-accent: #084ca4;
+            --text-primary: #e0e0e0;
+            --bg-color: #121826;
+            --error-color: #ff784e;
+            --hover-bg: #3a496f;
+        }
+
+        /* ===== Base Styles ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .error-container {
+            max-width: min(90%, 650px);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .error-gif {
+            width: min(100%, 320px);
+            height: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .error-heading {
+            color: var(--error-color);
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .error-message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--primary-accent);
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            background-color: transparent;
+        }
+
+        .action-link:hover {
+            background-color: var(--primary-accent);
+            color: var(--text-secondary);
+            transform: translateY(-2px);
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-accent);
+            border-radius: 2rem;
+            background: transparent;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode-toggle:hover {
+            background-color: var(--primary-accent);
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 480px) {
+            .error-container {
+                padding: 1rem;
+            }
+            
+            .action-link {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    
+
+
+    <main class="error-container">
+        <img src="images/coming_soon.png" 
+             alt="Animation showing page not found concept" 
+             class="error-gif"
+             loading="lazy">
+
+        <h1 class="error-heading">Page Under Construction !</h1>
+        
+        <p class="error-message">
+            We're working hard to bring you something amazing. Stay tuned!
+        </p>
+
+        <div class="action-buttons">
+            <a href="index.html" class="action-link" aria-label="Return to homepage">
+                Return Home
+            </a>
+        </div>
+    </main>
+
+
 </body>
 </html>
