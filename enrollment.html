@@ -12,133 +12,92 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
     <script src="script.js" defer></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
+        // Your web app's Firebase configuration
+        // Replace with your actual Firebase project credentials
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID",
+            measurementId: "YOUR_MEASUREMENT_ID"
+        };
 
-</head>
-<body>
-  <!-- Top Blue Bar -->
-  <div class="top-bar">
-    <span><i class="fas fa-envelope"></i><a href="mailto:datascience@sies.edu.in"> datascience@sies.edu.in</a></span>
-    <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
-    <div class="top-links">
-      <a href="progress.html">SY-Exam_Process</a>
-      <a href="exam_time_table.html">Exam Time table</a>
-      <a href="timetable.html">Time Table</a>
-      <a href="nep.html">NEP</a>
-      <a href="cc.html">CC</a>
-      <a href="https://dzenith.siesvisions.com/">DZenith</a>
-      <a href="secret_alley.html">Secret Alley</a>
-      <a href="connect.html">Connect</a>
-      <a href="#" class="prospectus-btn">Enroll Now</a>
-    </div>
-  </div>
-  
-    <!-- Header Section -->
-    <header>
-  
-      <div class="logo">
-        <a href="index.html"><img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo"></a>
-      </div>
-      <!-- Hamburger Menu -->
-      <div class="hamburger" onclick="toggleMenu()">
-        <i class="fas fa-bars"></i>
-      </div>
-      <!-- Navigation -->
-      <nav>
-        <ul id="nav-menu">
-          <li><a href="index.html">Home</a></li>
-          <li class="dropdown">
-            <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
-            <ul class="dropdown-menu">
-              <li><a href="About.html">Department</a></li>
-              <li><a href="index.html#Facilities">Facilities</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
-            <ul class="dropdown-menu">
-              <li><a href="courses.html">Courses</a></li>
-              <li><a href="syllabus.html">Syllabus</a></li>
-            </ul>
-          </li>
-          <li><a href="research.html">Research</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="apps.html">Apps</a></li>
-          <li><a href="Files.html">Files</a></li>
-          <li><a href="news.html">News</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="Achivements.html">Achievements</a></li>
-  
-          <li>
-            <div class="darkLight-searchBox" style="font-size:25px;  ">
-              <div class="dark-light" style="margin-right: 30px;">
-                <p><i class="fa-solid fa-brush"></i></p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="darkLight-searchBox" style="font-size:25px;  ">
-              <div class="dark-light" style="margin-right: 25px;">
-                <p>
-                  <a href="login.html"><i class="fa-solid fa-user"></i></a>
-                </p>
-              </div>
-            </div>
-          </li>
-        </ul>
-  
-      </nav>
-    </header><br>
-  
-    <div class="container">
-        <h2>Enrollment Form</h2>
-        <form id="enrollmentForm" onsubmit="return validateForm()" action="success.html">
-            <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" name="fullName" required>
-            <div id="fullNameError" class="error"></div>
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
 
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" required>
-            <div id="emailError" class="error"></div>
+        // Get a reference to the database
+        const database = getDatabase(app);
 
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}">
-            <div id="phoneError" class="error"></div>
+        // Get the form element
+        const enrollmentForm = document.getElementById('enrollmentForm');
+        const formResponseDiv = document.getElementById('formResponse');
 
-            <label for="dob">Date of Birth</label>
-            <input type="date" id="dob" name="dob" required>
-            <div id="dobError" class="error"></div>
+        // Add an event listener to the form for submission
+        enrollmentForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
 
-            <label for="gender">Gender</label>
-            <select id="gender" name="gender" required>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-            </select>
+            if (validateForm()) { // Call the validation function
+                // Get the form data
+                const fullName = document.getElementById('fullName').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const dob = document.getElementById('dob').value;
+                const gender = document.getElementById('gender').value;
+                const course = document.getElementById('course').value;
+                const address = document.getElementById('address').value;
 
-            <label for="course">Course</label>
-            <select id="course" name="course" required>
-                <option value="ai">Artificial Intelligence</option>
-                <option value="ds">Data Science</option>
-                <option value="web">Web Development</option>
-                <option value="ml">Machine Learning</option>
-            </select>
+                // Create an object with the enrollment data
+                const enrollmentData = {
+                    fullName: fullName,
+                    email: email,
+                    phone: phone,
+                    dob: dob,
+                    gender: gender,
+                    course: course,
+                    address: address,
+                    timestamp: new Date().toISOString()
+                };
 
-            <label for="address">Home Address</label>
-            <textarea id="address" name="address" rows="4" required></textarea>
-            <div id="addressError" class="error"></div>
+                // Get a reference to the 'enrollments' node in the database
+                const enrollmentsRef = ref(database, 'enrollments');
 
-            <button type="submit">Submit Enrollment</button>
-        </form>
-    </div>
+                // Push the enrollment data to the database
+                push(enrollmentsRef, enrollmentData)
+                    .then(() => {
+                        // Optionally, you can redirect the user to a success page here
+                        window.location.href = 'success.html';
+                        // If you want to display a success message within the same page:
+                        // formResponseDiv.className = 'success-message';
+                        // formResponseDiv.textContent = 'Enrollment submitted successfully!';
+                        // alert('Enrollment submitted successfully!'); // Show alert message
+                        // enrollmentForm.reset(); // Clear the form
+                    })
+                    .catch((error) => {
+                        console.error("Error submitting enrollment:", error);
+                        // If you want to display an error message within the same page:
+                        // formResponseDiv.className = 'error-message';
+                        // formResponseDiv.textContent = 'Failed to submit enrollment. Please try again later.';
+                        alert('Failed to submit enrollment. Please try again later.'); // Show alert message
+                    });
+            } else {
+                // Validation failed, do not submit to Firebase
+                alert('Please correct the errors in the form.');
+            }
+        });
 
-    <script>
         function validateForm() {
             let isValid = true;
-            
+
             // Clear previous errors
             document.querySelectorAll('.error').forEach(e => e.innerHTML = "");
 
@@ -182,96 +141,201 @@
             return isValid;
         }
     </script>
+</head>
+<body>
+    <div class="top-bar">
+        <span><i class="fas fa-envelope"></i><a href="mailto:datascience@sies.edu.in"> datascience@sies.edu.in</a></span>
+        <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
+        <div class="top-links">
+            <a href="progress.html">SY-Exam_Process</a>
+            <a href="exam_time_table.html">Exam Time table</a>
+            <a href="timetable.html">Time Table</a>
+            <a href="nep.html">NEP</a>
+            <a href="cc.html">CC</a>
+            <a href="https://dzenith.siesvisions.com/">DZenith</a>
+            <a href="secret_alley.html">Secret Alley</a>
+            <a href="connect.html">Connect</a>
+            <a href="#" class="prospectus-btn">Enroll Now</a>
+        </div>
+    </div>
+
+    <header>
+
+        <div class="logo">
+            <a href="index.html"><img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo"></a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="About.html">Department</a></li>
+                        <li><a href="index.html#Facilities">Facilities</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="syllabus.html">Syllabus</a></li>
+                    </ul>
+                </li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="Files.html">Files</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="Achivements.html">Achievements</a></li>
+
+                <li>
+                    <div class="darkLight-searchBox" style="font-size:25px;  ">
+                        <div class="dark-light" style="margin-right: 30px;">
+                            <p><i class="fa-solid fa-brush"></i></p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="darkLight-searchBox" style="font-size:25px;  ">
+                        <div class="dark-light" style="margin-right: 25px;">
+                            <p>
+                                <a href="login.html"><i class="fa-solid fa-user"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </nav>
+    </header><br>
+
+    <div class="container">
+        <h2>Enrollment Form</h2>
+        <form id="enrollmentForm">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" required>
+            <div id="fullNameError" class="error"></div>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+            <div id="emailError" class="error"></div>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}">
+            <div id="phoneError" class="error"></div>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+            <div id="dobError" class="error"></div>
+
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="course">Course</label>
+            <select id="course" name="course" required>
+                <option value="ai">Artificial Intelligence</option>
+                <option value="ds">Data Science</option>
+                <option value="web">Web Development</option>
+                <option value="ml">Machine Learning</option>
+            </select>
+
+            <label for="address">Home Address</label>
+            <textarea id="address" name="address" rows="4" required></textarea>
+            <div id="addressError" class="error"></div>
+
+            <button type="submit">Submit Enrollment</button>
+        </form>
+        <div id="formResponse"></div>
+    </div>
+
+
 </body>
 <footer id="footer">
-  <p style="text-align: left; color: var(--side-nav);"><b>Important Links Section</b></p>
-  <div class="footer-links">
-    <div>
-      <ul>
-        <li><a href="research.html">Research</a></li>
-        <li><a href="coming_soon.html">Projects</a></li>
-        <li><a href="exam_time_table.html">Exam Calendar</a></li>
-        <li><a href="connect.html">Students Council</a></li>
-        <li><a href="coming_soon.html">Tutorials</a></li>
-        <li><a href="events.html#fest-list">FEST</a></li>
-        <li><a href="Text-Speech.html">Text-2-Speech</a></li>
-      </ul>
-    </div>
-    <div>
-      <ul>
-        <li><a href="Files.html">Download Study Material</a></li>
-        <li><a href="About.html#gallery">Photo Gallery</a></li>
-        <li><a href="results.html">Results</a></li>
-        <li><a href="materials.html">Interveiw Materials</a></li>
-        <li><a href="enrollment.html">Admission 2024 - 2025</a></li>
-        <li><a href="courses.html">Courses</a></li>
-        <li><a href="syllabus.html">Syllabus</a></li>
-        <li><a href="materials.html">Presentation Materials</a></li>
-      </ul>
-    </div>
-    <div>
-      <ul>
-        <li><a href="roadmap.html#dsroadmap">Data Scince Road Map</a></li>
-        <li><a href="roadmap.html#daroadmap">Data Analysis Road Map</a></li>
-        <li><a href="roadmap.html#deroadmap">Data Engineer Road Map</a></li>
-        <li><a href="roadmap.html#dvroadmap">Data visualization Road Map</a></li>
-        <li><a href="roadmap.html#mlroadmap">Machine Learning Road Map</a></li>
-        <li><a href="roadmap.html#dlroadmap">Deep Learning Road Map</a></li>
-        <li><a href="roadmap.html#airoadmap">Artificial Intelligence Road Map</a></li>
-        <li><a href="roadmap.html#statsroadmap">Statistics Road Map</a></li>
-      </ul>
-    </div>
-    <div>
-      <ul>
-        <li><a href="dslab.html">Data Scince Lab</a></li>
-        <li><a href="research.html">Data Science Case Studies</a></li>
-        <li><a href="research.html">Real-World AI Applications</a></li>
-        <li><a href="coming_soon.html">Ethics in AI & Data Privacy</a></li>
-        <li><a href="coming_soon.html">Cloud Computing for Data Science</a></li>
-        <li><a href="coming_soon.html">MLOps & Model Deployment</a></li>
-        <li><a href="coming_soon.html">Data Science Project Hub</a></li>
-        <li><a href="coming_soon.html">AI-Powered Research Papers</a></li>
+    <p style="text-align: left; color: var(--side-nav);"><b>Important Links Section</b></p>
+    <div class="footer-links">
+        <div>
+            <ul>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="coming_soon.html">Projects</a></li>
+                <li><a href="exam_time_table.html">Exam Calendar</a></li>
+                <li><a href="connect.html">Students Council</a></li>
+                <li><a href="coming_soon.html">Tutorials</a></li>
+                <li><a href="events.html#fest-list">FEST</a></li>
+                <li><a href="Text-Speech.html">Text-2-Speech</a></li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li><a href="Files.html">Download Study Material</a></li>
+                <li><a href="About.html#gallery">Photo Gallery</a></li>
+                <li><a href="results.html">Results</a></li>
+                <li><a href="materials.html">Interveiw Materials</a></li>
+                <li><a href="enrollment.html">Admission 2024 - 2025</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="syllabus.html">Syllabus</a></li>
+                <li><a href="materials.html">Presentation Materials</a></li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li><a href="roadmap.html#dsroadmap">Data Scince Road Map</a></li>
+                <li><a href="roadmap.html#daroadmap">Data Analysis Road Map</a></li>
+                <li><a href="roadmap.html#deroadmap">Data Engineer Road Map</a></li>
+                <li><a href="roadmap.html#dvroadmap">Data visualization Road Map</a></li>
+                <li><a href="roadmap.html#mlroadmap">Machine Learning Road Map</a></li>
+                <li><a href="roadmap.html#dlroadmap">Deep Learning Road Map</a></li>
+                <li><a href="roadmap.html#airoadmap">Artificial Intelligence Road Map</a></li>
+                <li><a href="roadmap.html#statsroadmap">Statistics Road Map</a></li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li><a href="dslab.html">Data Scince Lab</a></li>
+                <li><a href="research.html">Data Science Case Studies</a></li>
+                <li><a href="research.html">Real-World AI Applications</a></li>
+                <li><a href="coming_soon.html">Ethics in AI & Data Privacy</a></li>
+                <li><a href="coming_soon.html">Cloud Computing for Data Science</a></li>
+                <li><a href="coming_soon.html">MLOps & Model Deployment</a></li>
+                <li><a href="coming_soon.html">Data Science Project Hub</a></li>
+                <li><a href="coming_soon.html">AI-Powered Research Papers</a></li>
 
-      </ul>
-    </div>
-  </div>
-
-  <!-- Research Hub Section -->
-  <div class="research-hub">
-    INFOGENIX - The Research Hub
-  </div>
-
-  <!-- Footer Content -->
-  <div class="footer-content">
-    <div class="footer-left">
-      <p class="footer-version">Version: 4.0.0</p>
+            </ul>
+        </div>
     </div>
 
-    <!-- <div class="footer-center">
-      <div class="footer-links">
-        <a href="#" class="footer-link">Privacy Policy</a>
-        <a href="#" class="footer-link">Terms of Service</a>
-        <a href="#" class="footer-link">Sitemap</a>
-      </div>
-    </div> -->
-
-    <div class="footer-right">
-      <div class="footer-socials">
-        <a href="#" class="footer-social-link"><i class="fab fa-facebook"></i></a>
-        <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
-      </div>
-      <div class="footer-contact">
-        <p>Contact Us:</p>
-        <p>Email: <a href="mailto:datascience@sies.edu.in" class="footer-email">datascience@sies.edu.in</a></p>
-        <button id="topBtn"  onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" style="background-color: var(--a-text);color: var(--b-text);padding: 10px; border-radius: 8px;font-weight: bold;">TOP</button>
-      </div>
+    <div class="research-hub">
+        INFOGENIX - The Research Hub
     </div>
-  </div>
-  <!-- Copyright Section -->
-  <div class="copyright">
-    <p class="footer-copy">&copy; 2025 DEPARTMENT OF DATA SCIENCE | SIES All Rights Reserved.</p>
-  </div>
+
+    <div class="footer-content">
+        <div class="footer-left">
+            <p class="footer-version">Version: 4.0.0</p>
+        </div>
+
+        <div class="footer-right">
+            <div class="footer-socials">
+                <a href="#" class="footer-social-link"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <div class="footer-contact">
+                <p>Contact Us:</p>
+                <p>Email: <a href="mailto:datascience@sies.edu.in" class="footer-email">datascience@sies.edu.in</a></p>
+                <button id="topBtn"  onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" style="background-color: var(--a-text);color: var(--b-text);padding: 10px; border-radius: 8px;font-weight: bold;">TOP</button>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p class="footer-copy">&copy; 2025 DEPARTMENT OF DATA SCIENCE | SIES All Rights Reserved.</p>
+    </div>
 </footer>
 
 
