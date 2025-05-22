@@ -115,6 +115,8 @@ function showToast(message) {
   }, 3000); // Disappear after 3 seconds
 }
 
+
+
 // sliders
 let currentIndex = 0;
 const slider = document.querySelector('.slider');

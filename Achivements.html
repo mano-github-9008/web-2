@@ -26,6 +26,7 @@
             display: flex;
             border-bottom: 2px solid #ddd;
             margin-bottom: 20px;
+            
         }
 
         .tab-button {
@@ -43,16 +44,19 @@
 
         .tab-button:hover {
             background-color: var(--box);
+            border-radius: 25px;
         }
 
         .tab-button.active {
             background-color: var(--accent);
             color: #fff;
             border-bottom: 2px solid var(--accent);
+            border-radius: 25px;
         }
 
         .tab-content {
             display: none;
+            width: 80%;
         }
 
         .tab-content.active {
@@ -73,6 +77,7 @@
         ul li strong {
             font-weight: bold;
         }
+        
     </style>
 </head>
 <body>
@@ -161,9 +166,38 @@
 
         <div id="staff-achievements" class="tab-content active">
             <ul>
-                <li><strong>Ms. Leeba John:</strong> Certificate of completion in "Fundamentals of R" offered by Amity Future Academy on 24th April, 2020.</li>
-                <li><strong>Ms. Leeba John:</strong> Certificate of completion in "Fundamentals of Python" offered by Amity Future Academy on 25th April, 2020.</li>
-                <li><strong>Ms. Leeba John:</strong> Certificate of completion in "Cyber Security" offered by Amity Future Academy on 26th April, 2020.</li>
+              <table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+                <thead style="background-color: var(--side-nav);">
+                  <tr>
+                    <th>Academic Year</th>
+                    <th>Name</th> <!-- Name column moved here -->
+                    <th>Type</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>2015-2016</td>
+                    <td>Dr. Abuzar Ansari</td>
+                    <td>personal</td>
+                    <td>Organising committee member at the NAAC sponsored two-day national seminar on innovations in teaching - learning and evaluation in higher education held on 26 and 27 February, 2016, organized by Internal Quality Assurance Cell, SIES College of Arts, Science and Commerce, Sion-West.</td>
+                  </tr>
+                  <tr>
+                    <td>2015-2016</td>
+                    <td>Dr. Abuzar Ansari</td>
+                    <td>personal</td>
+                    <td>Organizing committee member at the JJT University GNVS's two-day international conference on strategies in business intelligence held on 05 and 06 March, 2016, organized by GNVS, Sion-W, Mumbai.</td>
+                  </tr>
+                  <tr>
+                    <td>2015-2016</td>
+                    <td>Dr. Abuzar Ansari</td>
+                    <td>personal</td>
+                    <td>Member of the syllabus committee in S.Y.B.Sc. Computer Science, University of Mumbai. Academic Year 2015-2016.</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              
             </ul>
         </div>
 

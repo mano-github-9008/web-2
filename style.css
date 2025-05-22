@@ -110,6 +110,65 @@ button:hover {
   font-weight: bold;
 }
 
+/* table styling */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--box2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+  background-color: var(--);
+}
+
+th, td {
+  text-align: left;
+  padding: 15px;
+  vertical-align: top;
+  border-bottom: 1px solid #dee2e6;
+}
+
+th {
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: var(--box2);
+}
+
+@media (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+    width: 100%;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 15px;
+    background-color: var(--box2);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 10px;
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    margin-right: 10px;
+  }
+}
+
 /* Header Section */
 header {
   display: flex;
