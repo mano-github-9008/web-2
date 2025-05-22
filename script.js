@@ -94,6 +94,27 @@ function showContent(id) {
 }
 
 
+// toast or notification
+
+function showToast(message) {
+  const container = document.getElementById("toast-container");
+
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.textContent = message;
+
+  container.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add("show");
+  }, 100);
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300);
+  }, 3000); // Disappear after 3 seconds
+}
+
 // sliders
 let currentIndex = 0;
 const slider = document.querySelector('.slider');

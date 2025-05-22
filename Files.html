@@ -82,9 +82,10 @@
             text-align: left;
             font-size: 18px;
             border: none;
-            background: var(--side-nav);
-            color: var(--a-text);
+            background: var(--box);
+            color: var(--accent);
             cursor: pointer;
+            margin-bottom: 6px;
         }
 
         .sidebar button:hover {
@@ -266,6 +267,7 @@
         transition: background-color 0.4s ease, color 0.4s ease, transform 0.2s ease;
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 4px;
         /* Shadow for lift effect */
     }
 
@@ -451,6 +453,32 @@
                 <button onclick="showContent('dbt2')">Database Technology-II</button>
                 <button onclick="showContent('wt1')">Web Technology-I</button>
             </div>
+
+            <!-- <button class="accordion">Semester V <i class="fa-solid fa-angle-down"></i></button>
+            <div class="panel">
+                <button onclick="showContent('aiml')">Big Data Analysis through spark</button>
+                <button onclick="showContent('nosql')">Matrix Theory & Linear Algebra</button>
+                <button onclick="showContent('rm')">Database Technology-II</button>
+                <button onclick="showContent('awt')">Web Technology-I</button>
+            </div> -->
+            <button class="accordion">Semester V <i class="fa-solid fa-angle-down"></i></button>
+            <div class="panel">
+                <button onclick="showToast('Files will be updated soon !')">Intro to AI & ML</button>
+                <button onclick="showToast('Files will be updated soon !')">Intro to NoSQL Database & Security</button>
+                <button onclick="showToast('Files will be updated soon !')">Research Methodology</button>
+                <button onclick="showToast('Files will be updated soon !')">Advanced Web Technology</button>
+                <button onclick="showToast('Files will be updated soon !')">Data Analysis & visualization with POWER BI</button>
+            </div>
+
+            <button class="accordion">Semester VI <i class="fa-solid fa-angle-down"></i></button>
+            <div class="panel">
+                <button onclick="showToast('Files will be updated soon !')">Cloud Computing</button>
+                <button onclick="showToast('Files will be updated soon !')">Natural Language Processing</button>
+                <button onclick="showToast('Files will be updated soon !')">Data Warehousing and Mining</button>
+                <button onclick="showToast('Files will be updated soon !')">Optimization Techniques</button>
+                <button onclick="showToast('Files will be updated soon !')">On JOb Training</button>
+            </div>
+            <!-- showToast('This is a toast message!') -->
 
         </div>
 
@@ -864,7 +892,7 @@
                     <div class="file-item">
                         <p>WT-I JOURNAL (.docx)</p>
                         <a href="https://unjsepgckxapcvpyumcd.supabase.co/storage/v1/object/public/dods/SEMESTER%204/Web%20Technology/WEB%20TECHNOLOGY%20-%20I%20JOURNAL.docx"
-                            download class="download-btn">Download</a>
+                            download class="download-btn" data-filename="wt Journal (.zip)">Download</a>
                     </div>
                     <div class="file-item">
                         <p>WT-I Assignment-1 (.zip)</p>
@@ -919,8 +947,58 @@
                     <br>
                 </div>
             </div>
+
+
+
+            <div id="aiml" class="content-section" style="display: none;">
+                <h3>Intro to AI & ML</h3>
+                <div class="file-list">
+                    <div class="file-item">
+                        <p>No files uploaded yet</p>
+                        <a href="#"  class="download-btn" data-filename="FDS Practicals (.zip)">Download</a>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="toast-container" id="toast-container"></div>
+
+
+
+
+            <!-- write codes before this -->
         </div>
+        <div id="fileNotification" class="file-notification">
+            <p id="fileNotificationText"></p>
+            <button onclick="closeNotification()">Close</button>
+          </div> 
     </section>
+
+<script>
+function closeNotification() {
+  document.getElementById('fileNotification').style.display = 'none';
+}
+
+document.querySelectorAll('.download-btn').forEach(btn => {
+  btn.addEventListener('click', function (event) {
+    const fileName = this.getAttribute('data-filename') || 'File';
+    
+    // Show Notification
+    const textElement = document.getElementById('fileNotificationText');
+    textElement.innerHTML = `<strong>${fileName}</strong> is being downloaded.`;
+
+    const notification = document.getElementById('fileNotification');
+    notification.style.display = 'block';
+
+    // Auto-close after 4s
+    setTimeout(() => {
+      notification.style.display = 'none';
+    }, 4000);
+  });
+});
+</script>
+
+
 
 </body>
 
