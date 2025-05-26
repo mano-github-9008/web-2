@@ -31,30 +31,6 @@ function toggleDropdown(event) {
   dropdownMenu.classList.toggle("active");
 }
 
-// gallary
-
-    // Open Lightbox
-    document.querySelectorAll('.gallery img').forEach(img => {
-        img.addEventListener('click', () => {
-            document.getElementById('lightbox').style.display = 'block';
-            document.getElementById('lightbox-img').src = img.getAttribute('data-full');
-        });
-    });
-
-    // Close Lightbox
-    document.querySelector('.lightbox .close').addEventListener('click', () => {
-        document.getElementById('lightbox').style.display = 'none';
-    });
-
-    // Close on outside click
-    document.getElementById('lightbox').addEventListener('click', (e) => {
-        if (e.target === e.currentTarget) {
-            e.currentTarget.style.display = 'none';
-        }
-    });
-
-
-
 // Close dropdowns when clicking outside
 document.addEventListener('click', (event) => {
   if (!event.target.closest('.dropdown')) {
@@ -138,8 +114,6 @@ function showToast(message) {
     setTimeout(() => toast.remove(), 300);
   }, 3000); // Disappear after 3 seconds
 }
-
-
 
 // sliders
 let currentIndex = 0;
