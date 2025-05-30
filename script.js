@@ -19,6 +19,7 @@ document.onkeydown = e => {
   }
 }
 
+
 //  toggle hamburger menu
 function toggleMenu() {
   const navMenu = document.getElementById("nav-menu");
@@ -76,15 +77,7 @@ modeToggle.addEventListener("click", () => {
   }
 });
 // files section
-// Accordion Toggle
-let acc = document.querySelectorAll(".accordion");
-acc.forEach(button => {
-  button.addEventListener("click", function () {
-    this.nextElementSibling.classList.toggle("active");
-    this.nextElementSibling.style.display =
-      this.nextElementSibling.style.display === "block" ? "none" : "block";
-  });
-});
+
 
 // Show Content on Click
 function showContent(id) {
@@ -116,51 +109,62 @@ function showToast(message) {
 }
 
 // sliders
-let currentIndex = 0;
-const slider = document.querySelector('.slider');
-const slides = document.querySelectorAll('.slide');
-const totalSlides = slides.length;
-const intervalTime = 3000; // Change slides every 3 seconds
+let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('dots');
 
-function moveSlide() {
-  currentIndex++;
+  // Create dots dynamically
+  slides.forEach((_, index) => {
+    const dot = document.createElement('span');
+    dot.addEventListener('click', () => goToSlide(index));
+    dotsContainer.appendChild(dot);
+  });
 
-  if (currentIndex >= totalSlides) {
-    currentIndex = 0; // Reset to the first slide
+  const dots = document.querySelectorAll('#dots span');
+  updateSlider();
+
+  function moveSlide(direction) {
+    currentSlide = (currentSlide + direction + slides.length) % slides.length;
+    updateSlider();
   }
 
-  updateSlide();
-}
+  function goToSlide(index) {
+    currentSlide = index;
+    updateSlider();
+  }
 
-function updateSlide() {
-  slider.style.transform = `translateX(${-currentIndex * 100}%)`;
-}
+  function updateSlider() {
+    const slider = document.querySelector('.slider');
+    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
 
-// Auto slide function
-function startAutoSlide() {
-  setInterval(moveSlide, intervalTime);
-}
-
-// Start the auto-slide when the page loads
-startAutoSlide();
+    dots.forEach(dot => dot.classList.remove('active'));
+    if (dots[currentSlide]) {
+      dots[currentSlide].classList.add('active');
+    }
+  }
 
 
 //HOD's Section 
 
-document.getElementById("toggle-button").addEventListener("click", function () {
-  var quoteText = document.getElementById("quote-text");
-  var button = document.getElementById("toggle-button");
-
-  // Toggle between showing and hiding the extra part of the quote
-  quoteText.classList.toggle("show");
-
-  // Change button text depending on the state
-  if (quoteText.classList.contains("show")) {
-    button.textContent = "Read Less";
-  } else {
-    button.textContent = "Read More";
-  }
+document.querySelectorAll('.toggle-button').forEach(button => {
+  button.addEventListener('click', () => {
+    // Find the related read-more content (assumes next sibling)
+    const readMore = button.previousElementSibling;
+    
+    if (readMore.classList.contains('show')) {
+      // Hide read more
+      readMore.classList.remove('show');
+      button.classList.remove('active');
+      button.textContent = 'Read More';
+    } else {
+      // Show read more
+      readMore.classList.add('show');
+      button.classList.add('active');
+      button.textContent = 'Read Less';
+    }
+  });
 });
+
 
 // Over View
 // Intersection Observer to trigger animation on scroll
@@ -283,3 +287,10 @@ function showTab(tabId) {
   const activeButton = tabButtons[Array.from(tabButtons).findIndex(button => button.textContent === tabId.split('-').join(' ').replace(/(^|\s)[a-z]/g, match => match.toUpperCase()))];
   activeButton.classList.add('active');
 }
+
+
+  fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    });

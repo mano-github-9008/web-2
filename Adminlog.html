@@ -14,6 +14,154 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet"> 
+
+<style>
+  /* Centering Everything */
+  body {
+background: var(--animation);
+background-size: 400% 400%;
+animation: gradientAnimation 15s ease infinite;
+font-family: 'Rowdies', sans-serif;
+}
+
+/* Keyframe for gradient animation */
+@keyframes gradientAnimation {
+0% {
+  background-position: 0% 50%;
+}
+50% {
+  background-position: 100% 50%;
+}
+100% {
+  background-position: 0% 50%;
+}
+}
+
+  /* Styling the Form */
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centering form content */
+    gap: 15px;
+    padding: 20px;
+    border: 2px solid var(--side-nav);
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.695);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    /* Align text inside the form */
+    animation: formSlideIn 1s ease-out;
+    background: var(--animation);
+background-size: 400% 400%;
+animation: gradientAnimation 15s ease infinite;
+  }
+
+  /* Form Labels */
+  label {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 5px;
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
+    /* Ensures text is centered */
+  }
+
+  label:hover {
+    transform: scale(1.1);
+  }
+
+  /* Input Fields */
+  input {
+    padding: 12px 15px;
+    border: 2px solid var(--text-color);
+    border-radius: 8px;
+    background-color: var(--box);
+    color: var(--a-text);
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    width: 100%;
+    /* Ensures it stretches within the form */
+    max-width: 300px;
+    /* Keeps it neatly sized */
+    text-align: center;
+    /* Centers text inside input */
+  }
+
+  input:focus {
+    border-color: var(--side-nav);
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(108, 21, 143, 0.5);
+    transform: scale(1.05);
+  }
+
+  /* Buttons */
+  button {
+    border: none;
+    font-size: 18px;
+    padding: 14px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    animation: buttonFadeIn 0.5s ease-out;
+    text-align: center;
+    width: 100%;
+    max-width: 200px;
+    /* Keeps button size consistent */
+  }
+
+  /* Login Button */
+  .login-btn {
+    background-color: var(--side-nav);
+    color: #fff;
+  }
+
+  .login-btn:hover {
+    background-color: var(--a-text);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Logout Button */
+  .logout-btn {
+    background-color: var(--a-text);
+    color: #fff;
+  }
+
+  .logout-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Animations */
+  @keyframes buttonFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes formSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
   </head>
   <body>
   <!-- Top Blue Bar -->
@@ -33,17 +181,18 @@
     </div>
   </div>
     
-     <div class="wrap">
-      <h1 style="color: var(--text-color);">ADMIN</h1>
-     <form id="form" method="post">
-
+  <div class="main-content">
+    <div class="wrap">
+      <h1>LOGIN</h1>
+      <form id="form" method="post">
         <label for="username">USERNAME</label>
         <input type="text" id="username" name="USERNAME" />
         <label for="password">PASSWORD</label>
         <input type="password" id="password" name="PASSWORD" />
-        <input type="submit" class="login-btn" value="NEXT" />
+        <input type="submit" class="login-btn" value="LOGIN" />
       </form>
-      </div>
+    </div>
+  </div><br>
     <script src="script.js"></script>
     <script>
       
@@ -101,95 +250,13 @@ function authentication(username,password){
 }
     </script>
   </body>
-  <footer id="footer">
-    <p style="text-align: left; color: var(--side-nav);"><b>Important Links Section</b></p>
-    <div class="footer-links">
-      <div>
-        <ul>
-          <li><a href="research.html">Research</a></li>
-          <li><a href="coming_soon.html">Projects</a></li>
-          <li><a href="exam_time_table.html">Exam Calendar</a></li>
-          <li><a href="connect.html">Students Council</a></li>
-          <li><a href="coming_soon.html">Tutorials</a></li>
-          <li><a href="events.html#fest-list">FEST</a></li>
-          <li><a href="Text-Speech.html">Text-2-Speech</a></li>
-        </ul>
-      </div>
-      <div>
-        <ul>
-          <li><a href="Files.html">Download Study Material</a></li>
-          <li><a href="About.html#gallery">Photo Gallery</a></li>
-          <li><a href="results.html">Results</a></li>
-          <li><a href="materials.html">Interveiw Materials</a></li>
-          <li><a href="enrollment.html">Admission 2024 - 2025</a></li>
-          <li><a href="courses.html">Courses</a></li>
-          <li><a href="syllabus.html">Syllabus</a></li>
-          <li><a href="materials.html">Presentation Materials</a></li>
-        </ul>
-      </div>
-      <div>
-        <ul>
-          <li><a href="roadmap.html#dsroadmap">Data Scince Road Map</a></li>
-          <li><a href="roadmap.html#daroadmap">Data Analysis Road Map</a></li>
-          <li><a href="roadmap.html#deroadmap">Data Engineer Road Map</a></li>
-          <li><a href="roadmap.html#dvroadmap">Data visualization Road Map</a></li>
-          <li><a href="roadmap.html#mlroadmap">Machine Learning Road Map</a></li>
-          <li><a href="roadmap.html#dlroadmap">Deep Learning Road Map</a></li>
-          <li><a href="roadmap.html#airoadmap">Artificial Intelligence Road Map</a></li>
-          <li><a href="roadmap.html#statsroadmap">Statistics Road Map</a></li>
-        </ul>
-      </div>
-      <div>
-        <ul>
-          <li><a href="dslab.html">Data Scince Lab</a></li>
-          <li><a href="research.html">Data Science Case Studies</a></li>
-          <li><a href="research.html">Real-World AI Applications</a></li>
-          <li><a href="coming_soon.html">Ethics in AI & Data Privacy</a></li>
-          <li><a href="coming_soon.html">Cloud Computing for Data Science</a></li>
-          <li><a href="coming_soon.html">MLOps & Model Deployment</a></li>
-          <li><a href="coming_soon.html">Data Science Project Hub</a></li>
-          <li><a href="coming_soon.html">AI-Powered Research Papers</a></li>
-  
-        </ul>
-      </div>
-    </div>
-  
-    <!-- Research Hub Section -->
-    <div class="research-hub">
-      INFOGENIX - The Research Hub
-    </div>
-  
-    <!-- Footer Content -->
-    <div class="footer-content">
-      <div class="footer-left">
-        <p class="footer-version">Version: 4.0.0</p>
-      </div>
-  
-      <!-- <div class="footer-center">
-        <div class="footer-links">
-          <a href="#" class="footer-link">Privacy Policy</a>
-          <a href="#" class="footer-link">Terms of Service</a>
-          <a href="#" class="footer-link">Sitemap</a>
-        </div>
-      </div> -->
-  
-      <div class="footer-right">
-        <div class="footer-socials">
-          <a href="#" class="footer-social-link"><i class="fab fa-facebook"></i></a>
-          <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
-        </div>
-        <div class="footer-contact">
-          <p>Contact Us:</p>
-          <p>Email: <a href="mailto:datascience@sies.edu.in" class="footer-email">datascience@sies.edu.in</a></p>
-          <button id="topBtn"  onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" style="background-color: var(--a-text);color: var(--b-text);padding: 10px; border-radius: 8px;font-weight: bold;">TOP</button>
-        </div>
-      </div>
-    </div>
-    <!-- Copyright Section -->
-    <div class="copyright">
-      <p class="footer-copy">&copy; 2025 DEPARTMENT OF DATA SCIENCE | SIES All Rights Reserved.</p>
-    </div>
-  </footer>
+  <div id="footer"></div>
+  <script>
+    fetch("footer.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
 
 </html>

@@ -46,6 +46,7 @@
 
   .sidebar h2 {
     margin-bottom: 25px;
+    color: var(--b-text);
     font-weight: 600;
     font-size: 1.8rem;
     text-align: center;
@@ -387,4 +388,12 @@
 </script>
 
 </body>
+<div id="footer"></div>
+<script>
+  fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    });
+</script>
 </html>
