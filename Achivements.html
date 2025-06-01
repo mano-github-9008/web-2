@@ -17,6 +17,97 @@
     <script src="script.js" defer></script>
     <title>Achievements</title>
     <style>
+
+h2 {
+      text-align: center;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      background: var(--box);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 800px;
+    }
+
+    thead {
+      background: var(--side-nav);
+      color: var(--search-bar);
+    }
+
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    th {
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    td {
+      font-size: 0.95rem;
+      color: var(--a-text);
+    }
+
+    tr:hover {
+      background: var(--animation);
+    }
+
+    @media (max-width: 768px) {
+      table {
+        font-size: 0.9rem;
+      }
+
+      th, td {
+        padding: 0.75rem;
+      }
+    }
+
+    @media (max-width: 500px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        margin-bottom: 1rem;
+        background: #fff;
+        padding: 1rem;
+        box-shadow: 0 0 8px rgba(0,0,0,0.05);
+        border-radius: 8px;
+      }
+
+      td {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        border-bottom: none;
+      }
+
+      td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: var(--side-nav);
+        flex-basis: 45%;
+      }
+
+      td:last-child {
+        border-bottom: none;
+      }
+    }
         h1 {
             text-align: center;
             color:var(--text-color);
@@ -202,12 +293,87 @@
         </div>
 
         <div id="student-achievements" class="tab-content">
-            <ul>
-                <li><strong>No Records Found !</li>
-                <li><strong></li>
-                <li><strong></li>
-            </ul>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Sr. No.</th>
+                  <th>Event Details</th>
+                  <th>Name of the Student</th>
+                  <th>Class</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-label="Sr. No.">1</td>
+                  <td data-label="Event Details">Winner of Diversity Challenge Competition 2023-24 in YTALKS event, held at Guru College of Commerce on 24th February, 2024</td>
+                  <td data-label="Name">Tanish Shetty</td>
+                  <td data-label="Class"><em>S.Y. B.Sc. Data Science</em></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Best Group Leader in Youth for Change 2023-24 in YTALKS event, held at Guru College of Commerce on 24th February, 2024</td>
+                  <td>Tanish Shetty</td>
+                  <td><em>S.Y. B.Sc. Data Science</em></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Intergroup Competition District Level - Consolation Prize in Extempore Speech in Basic Leadership Camp (Sep 27–Oct 6, 2023), held at Mata Saheb Gurudwara, Muga</td>
+                  <td>CDT Aditi Singh</td>
+                  <td><em>S.Y. B.Sc. Data Science</em></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>National Camp on Advanced Leadership Camp (Jan 10–21, 2024)</td>
+                  <td>CDT Aditi Singh</td>
+                  <td><em>S.Y. B.Sc. Data Science</em></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Intergroup Competition District Level held at GP HQ Pune (Oct 13–22, 2023)</td>
+                  <td>SGT Priyanka Sonkar</td>
+                  <td><em>S.Y. B.Sc. Data Science</em></td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>Won first prize in DEBATE at RAMNARAIN RUIA AUTONOMOUS COLLEGE, 2022</td>
+                  <td>HARIKRISHNAN AG</td>
+                  <td><em>F.Y. B.Sc Data Science</em></td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>Won second prize in LEGISLATURE at RAMNARAIN RUIA AUTONOMOUS COLLEGE, 2023</td>
+                  <td>HARIKRISHNAN AG, TANISH SHETTY</td>
+                  <td><em>S.Y. B.Sc. Data Science</em></td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>Won first prize in basketball competition, R. A. PODAR COLLEGE OF COMMERCE AND ECONOMICS, 2023</td>
+                  <td>ADITYAN NAIR</td>
+                  <td><em>F.Y. B.Sc Data Science</em></td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>Won football competition in Inter-university, 2023</td>
+                  <td>SAHIL VIBHUTE</td>
+                  <td><em>F.Y. B.Sc Data Science</em></td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td>Table Tennis competition in Inter-university, 2023</td>
+                  <td>Divesh Diveskar</td>
+                  <td><em>F.Y. B.Sc Data Science</em></td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>Won third prize in BEST OUT OF WASTE at Jai Hind College, 2023</td>
+                  <td>UMA MISHRA</td>
+                  <td><em>S.Y. B.Sc. Data Science</em></td>
+                </tr>
+              </tbody>
+            </table>
         </div>
+    </div>
     </div>
 </body>
 <div id="footer"></div>

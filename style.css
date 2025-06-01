@@ -26,9 +26,9 @@ body.dark {
   --body-color: #181818; /* Jet matte */
   --header-color: linear-gradient(to right, #2b5876, #4e4376); /* Gentle blue-purple */
   --nav-color: linear-gradient(to right, #222222, #333333); /* Flat black/gray */
-  --side-nav: #747474; /* Dark graphite */
+  --side-nav: #141e30; /* Dark graphite */
   --text-color: #ffdd00; /* Soft light gray */
-  --search-bar: #30336b; /* Dusty indigo */
+  --search-bar: #ed8e00; /* Dusty indigo */
   --search-text: #ffffff;
   --a-text: #70a1ff; /* Sky blue accent */
   --b-text: #ffb8b8; /* Soft coral pink */
@@ -222,8 +222,6 @@ header {
 .dropdown-menu a:hover {
   background: var(--hover-highlight);
 }
-
-
 
 /* Left Section */
 .left-section {
