@@ -1,390 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>DODS-Courses Video Library</title>
-    <link rel="icon" type="image/png" href="images/fav.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
-    <script src="script.js" defer></script>
-
-</head>
-
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-
-<style>
-  
-  .contain {
-    flex: 1;
-    display: flex;
-    overflow: hidden;
-    height: calc(100vh - 72px);
-  }
-
-  /* Sidebar */
-  .sidebar {
-    width: 320px;
-    background: var(--side-nav);
-    color: var(--search-text);
-    padding: 25px 20px;
-    overflow-y: auto;
-    box-shadow: 3px 0 8px var(--shadow);
-    border-radius: 0 15px 15px 0;
-  }
-
-  .sidebar h2 {
-    margin-bottom: 25px;
-    font-weight: 600;
-    font-size: 1.8rem;
-    text-align: center;
-    letter-spacing: 1px;
-    user-select: none;
-  }
-
-  /* Scrollbar Styling */
-  .sidebar::-webkit-scrollbar {
-    width: 8px;
-  }
-  .sidebar::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .sidebar::-webkit-scrollbar-thumb {
-    background: var(--accent);
-    border-radius: 10px;
-  }
-
-  /* Accordion Button */
-  .accordion {
-    background: var(--accent);
-    color: white;
-    cursor: pointer;
-    padding: 16px 20px;
-    width: 100%;
-    border: none;
-    outline: none;
-    font-size: 1.15rem;
-    border-radius: 12px;
-    margin-top: 15px;
-    transition: background 0.3s, box-shadow 0.3s;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 600;
-    user-select: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-  }
-
-  .accordion:hover,
-  .accordion.active {
-    background: var(--pros);
-    box-shadow: 0 6px 20px rgba(74, 86, 162, 0.6);
-  }
-
-  /* Accordion arrow */
-  .accordion::after {
-    content: '\25BC';
-    font-size: 1rem;
-    transition: transform 0.3s ease;
-  }
-  .accordion.active::after {
-    transform: rotate(-180deg);
-  }
-
-  /* Accordion panel */
-  .panel {
-    background: var(--box2);
-    border-radius: 0 0 12px 12px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s ease;
-    margin-bottom: 10px;
-  }
-
-  .topic {
-    padding: 14px 22px;
-    font-size: 1rem;
-    color: var(--text-color);
-    cursor: pointer;
-    border-left: 4px solid transparent;
-    transition: background 0.3s, border-color 0.3s;
-    user-select: none;
-  }
-
-  .topic:hover {
-    background: var(--hover-highlight);
-    border-left: 4px solid var(--b-text);
-  }
-
-  /* Main Content */
-  .main {
-    flex: 1;
-    padding: 30px 40px;
-    background: var(--box);
-    display: flex;
-    flex-direction: column;
-    border-radius: 20px 0 0 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  }
-
-  h1 {
-    color: var(--a-text);
-    margin-bottom: 25px;
-    font-weight: 700;
-    font-size: 2.4rem;
-    user-select: none;
-  }
-
-  video {
-    width: 100%;
-    max-height: 500px;
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(74, 86, 162, 0.25);
-    background: black;
-    transition: box-shadow 0.3s;
-  }
-
-  video:hover {
-    box-shadow: 0 20px 50px rgba(74, 86, 162, 0.45);
-  }
-
-  .description {
-    margin-top: 20px;
-    font-size: 1.1rem;
-    color: var(--b-text);
-    font-weight: 600;
-    user-select: none;
-  }
-
-  /* Responsive */
-  @media (max-width: 900px) {
-    .contain{
-      flex-direction: column;
-      height: auto;
+  <meta charset="UTF-8" />
+  <title>Multiple PDFs Grade Count Graphs</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f3f4f6;
+      padding: 20px;
     }
-
-    .sidebar {
-      width: 100%;
-      border-radius: 0 0 20px 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      max-height: 300px;
+    .container {
+      max-width: 900px;
+      background: #fff;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-
-    .main {
-      border-radius: 0 0 20px 20px;
-      padding: 20px 15px;
-      margin-top: 15px;
-      height: auto;
+    .chart-container {
+      margin-bottom: 50px;
     }
-
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 15px;
+    canvas {
+      width: 100% !important;
+      height: 350px !important;
     }
-
-    video {
-      max-height: 280px;
-      border-radius: 15px;
+    h3 {
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #333;
     }
-  }
-
-  @media (max-width: 480px) {
-    .accordion {
-      font-size: 1rem;
-      padding: 14px 15px;
-    }
-
-    .topic {
-      font-size: 0.95rem;
-      padding: 12px 16px;
-    }
-
-    h1 {
-      font-size: 1.5rem;
-    }
-
-    .description {
-      font-size: 1rem;
-    }
-  }
-</style>
+  </style>
 </head>
 <body>
-    <!-- Top Blue Bar -->
-    <div class="top-bar">
-        <span><i class="fas fa-envelope"></i><a href="mailto:datascience@sies.edu.in">
-                datascience@sies.edu.in</a></span>
-        <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
-        <div class="top-links">
-            <a href="progress.html">SY-Exam_Process</a>
-            <a href="exam_time_table.html">Exam Time table</a>
-            <a href="timetable.html">Time Table</a>
-            <a href="nep.html">NEP</a>
-            <a href="cc.html">CC</a>
-            <a href="https://dzenith.siesvisions.com/">DZenith</a>
-            <a href="secret_alley.html">Secret Alley</a>
-            <a href="connect.html">Connect</a>
-            <a href="enrollment.html" class="prospectus-btn">Enroll Now</a>
-        </div>
-    </div>
-    <!-- Header Section -->
-    <header>
-        <div class="logo">
-            <a href="index.html"><img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo"></a>
-        </div>
-        <!-- Hamburger Menu -->
-        <div class="hamburger" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </div>
-        <!-- Navigation -->
-        <nav>
-            <ul id="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li class="dropdown">
-                    <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="About.html">Department</a></li>
-                        <li><a href="index.html#Facilities">Facilities</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="courses.html">Courses</a></li>
-                        <li><a href="syllabus.html">Syllabus</a></li>
-                    </ul>
-                </li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="apps.html">Apps</a></li>
-                <li><a href="Files.html" >Files</a></li>
-                <li><a href="news.html">News</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="Achivements.html">Achievements</a></li>
-
-                <li>
-                    <div class="darkLight-searchBox" style="font-size:25px;  ">
-                        <div class="dark-light" style="margin-right: 30px;">
-                            <p><i class="fa-solid fa-brush"></i></p>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="darkLight-searchBox" style="font-size:25px;  ">
-                        <div class="dark-light" style="margin-right: 25px;">
-                            <p>
-                                <a href="Adminlog.html"><i class="fa-solid fa-user"></i></a>
-                            </p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-
-        </nav>
-    </header>
-<h1>DODS Course Video Library</h1>
-
-<div class="contain">
-    <div class="sidebar" role="navigation" aria-label="Course Topics">
-      <h2>Course Topics</h2>
-  
-      <button class="accordion" aria-expanded="false" aria-controls="html-panel" id="html-acc">HTML</button>
-      <div class="panel" id="html-panel" role="region" aria-labelledby="html-acc">
-        <div class="topic" tabindex="0" role="button" onclick="changeVideo('video/html_intro.mp4')">Intro to HTML</div>
-        <div class="topic" tabindex="0" role="button" onclick="changeVideo('video/html_tags.mp4')">HTML Tags</div>
-        <div class="topic" tabindex="0" role="button" onclick="changeVideo('video/html_forms.mp4')">Forms in HTML</div>
-      </div>
-  
-      <button class="accordion" aria-expanded="false" aria-controls="css-panel" id="css-acc">CSS</button>
-      <div class="panel" id="css-panel" role="region" aria-labelledby="css-acc">
-        <div class="topic" tabindex="0" role="button" onclick="changeVideo('video/css_basics.mp4')">CSS Basics</div>
-        <div class="topic" tabindex="0" role="button" onclick="changeVideo('video/css_flexbox.mp4')">Flexbox & Layout</div>
-        <div class="topic" tabindex="0" role="button" onclick="changeVideo('video/css_animations.mp4')">CSS Animations</div>
-      </div>
-  
-      <button class="accordion" aria-expanded="false" aria-controls="js-panel" id="js-acc">JavaScript</button>
-      <div class="panel" id="js-panel" role="region" aria-labelledby="js-acc">
-        <div class="topic" tabindex="0" role="button" onclick="changeVideo('video/js_intro.mp4')">JavaScript Intro</div>
-        <div class="topic" tabindex="0" role="button" onclick="changeVideo('video/js_dom.mp4')">DOM Manipulation</div>
-        <div class="topic" tabindex="0" role="button" onclick="changeVideo('video/js_events.mp4')">Event Handling</div>
-      </div>
-    </div>
-  
-    <main class="main">
-      <h1>Course Video Player</h1>
-      <video id="courseVideo" controls preload="metadata" playsinline>
-        <source src="video/html_intro.mp4" type="video/mp4" />
-        Sorry, your browser doesn't support embedded videos.
-      </video>
-      <div class="description" id="videoDesc">
-        <p>Choose a topic from the accordion menu to watch the lecture.</p>
-      </div>
-    </main>
+  <div class="container">
+    <h2>📊 Grade Count Bar Charts from Multiple PDFs</h2>
+    <div id="charts"></div>
   </div>
-  
 
 <script>
-  // Accordion toggling with ARIA updates
-  const accordions = document.querySelectorAll('.accordion');
-  accordions.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const panel = btn.nextElementSibling;
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
+  const gradeMap = { 'O': 10, 'A+': 9, 'A': 8, 'B+': 7, 'B': 6, 'C': 5, 'D': 4, 'F': 0 };
+  const pdfFiles = ['FYDS_SEM_1_October_2023.pdf', 'FYDS_SEM_2_October_2023.pdf','SYDS_SEM_4_October_2023']; // Add your PDF filenames here
 
-      // Close all panels except clicked
-      accordions.forEach(otherBtn => {
-        if (otherBtn !== btn) {
-          otherBtn.setAttribute('aria-expanded', 'false');
-          otherBtn.nextElementSibling.style.maxHeight = null;
-          otherBtn.classList.remove('active');
+  // To keep references to Chart instances, so we can manage if needed
+  const charts = [];
+
+  async function analyzePDF(pdfFile) {
+    try {
+      const loadingTask = pdfjsLib.getDocument(pdfFile);
+      const pdf = await loadingTask.promise;
+
+      let fullText = '';
+      for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+        const page = await pdf.getPage(pageNum);
+        const content = await page.getTextContent();
+        const pageText = content.items.map(i => i.str).join(' ');
+        fullText += pageText + ' ';
+      }
+
+      // Extract grades from remark section like "Grade : A+"
+      const gradeRegex = /Grade\s*:\s*(O|A\+|A|B\+|B|C|D|F)/g;
+      const gradeMatches = [...fullText.matchAll(gradeRegex)];
+
+      // Count grades
+      const gradeCount = {};
+      Object.keys(gradeMap).forEach(g => gradeCount[g] = 0);
+
+      for (const match of gradeMatches) {
+        const grade = match[1];
+        if (gradeCount.hasOwnProperty(grade)) {
+          gradeCount[grade]++;
+        } else {
+          gradeCount['F']++;
         }
-      });
+      }
 
-      if (!expanded) {
-        btn.setAttribute('aria-expanded', 'true');
-        panel.style.maxHeight = panel.scrollHeight + 'px';
-        btn.classList.add('active');
-      } else {
-        btn.setAttribute('aria-expanded', 'false');
-        panel.style.maxHeight = null;
-        btn.classList.remove('active');
+      return gradeCount;
+    } catch (error) {
+      console.error(`Error loading or parsing PDF ${pdfFile}:`, error);
+      return null;
+    }
+  }
+
+  function drawChart(containerId, grades, counts, title) {
+    const ctx = document.getElementById(containerId).getContext('2d');
+
+    const backgroundColors = grades.map(g => {
+      const p = gradeMap[g] ?? 0;
+      return p >= 9 ? '#4caf50' : p >= 7 ? '#2196f3' : p >= 5 ? '#ffc107' : '#f44336';
+    });
+
+    const chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: grades,
+        datasets: [{
+          label: 'Number of Students',
+          data: counts,
+          backgroundColor: backgroundColors,
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: { display: true, text: 'Number of Students' }
+          },
+          x: {
+            title: { display: true, text: 'Grade' }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => `Count: ${ctx.parsed.y}`
+            }
+          }
+        }
       }
     });
-  });
 
-  // Video change with description update
-  const videoDescriptions = {
-    'video/html_intro.mp4': 'Intro to HTML — Learn the basics of HTML structure and elements.',
-    'video/html_tags.mp4': 'HTML Tags — Detailed explanation of various tags used in HTML.',
-    'video/html_forms.mp4': 'Forms in HTML — Understanding form elements and user input handling.',
-    'video/css_basics.mp4': 'CSS Basics — Introduction to styling web pages with CSS.',
-    'video/css_flexbox.mp4': 'Flexbox & Layout — Responsive design with Flexbox layout techniques.',
-    'video/css_animations.mp4': 'CSS Animations — Creating smooth animations using CSS.',
-    'video/js_intro.mp4': 'JavaScript Intro — Fundamentals of JavaScript programming language.',
-    'video/js_dom.mp4': 'DOM Manipulation — Learn how to interact with the webpage DOM using JS.',
-    'video/js_events.mp4': 'Event Handling — Handling user interactions through event listeners.',
-  };
-
-  function changeVideo(src) {
-    const video = document.getElementById('courseVideo');
-    video.src = src;
-    video.play();
-
-    const desc = document.getElementById('videoDesc');
-    desc.textContent = videoDescriptions[src] || 'Enjoy your learning!';
+    charts.push(chart);
   }
-</script>
 
+  async function loadAllPDFs() {
+    const chartsDiv = document.getElementById('charts');
+    for (let i = 0; i < pdfFiles.length; i++) {
+      const pdfFile = pdfFiles[i];
+      const gradeCount = await analyzePDF(pdfFile);
+
+      if (!gradeCount) {
+        // Show error message if PDF failed
+        const errorMsg = document.createElement('p');
+        errorMsg.textContent = `Failed to load or parse ${pdfFile}`;
+        chartsDiv.appendChild(errorMsg);
+        continue;
+      }
+
+      // Create container and canvas for this chart
+      const container = document.createElement('div');
+      container.className = 'chart-container';
+
+      const title = document.createElement('h3');
+      title.textContent = `Grades from ${pdfFile}`;
+      container.appendChild(title);
+
+      const canvas = document.createElement('canvas');
+      canvas.id = `chart-${i}`;
+      container.appendChild(canvas);
+
+      chartsDiv.appendChild(container);
+
+      const grades = Object.keys(gradeCount);
+      const counts = grades.map(g => gradeCount[g]);
+
+      drawChart(canvas.id, grades, counts, pdfFile);
+    }
+  }
+
+  // Load and plot all PDFs on page load
+  window.onload = loadAllPDFs;
+</script>
 </body>
 </html>

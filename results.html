@@ -2,168 +2,570 @@
 <html lang="en">
 
 <head>
-  <title>DODS-Coming/soon !</title>
-  <link rel="icon" type="image/png" href="images/ODS.png">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
-    rel="stylesheet">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
-    rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
-  <script src="script.js" defer></script>
-    <style>
-        /* ===== Color Variables ===== */
-        :root {
-            --primary-accent: #084ca4;
-            --secondary-accent: #0a66c2;
-            --text-primary: #1a1a1a;
-            --text-secondary: #ffffff;
-            --bg-color: #ffffff;
-            --error-color: #f26d21;
-            --hover-bg: #ffeac9;
-        }
+    <title>DODS-Files</title>
+    <link rel="icon" type="image/png" href="images/fav.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+    <script src="script.js" defer></script>
 
-        body.dark {
-            --primary-accent: #0a3d91;
-            --secondary-accent: #084ca4;
-            --text-primary: #e0e0e0;
-            --bg-color: #121826;
-            --error-color: #ff784e;
-            --hover-bg: #3a496f;
-        }
-
-        /* ===== Base Styles ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .error-container {
-            max-width: min(90%, 650px);
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .error-gif {
-            width: min(100%, 320px);
-            height: auto;
-            margin-bottom: 1.5rem;
-        }
-
-        .error-heading {
-            color: var(--error-color);
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .error-message {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            color: var(--text-primary);
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .action-link {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            border: 2px solid var(--primary-accent);
-            border-radius: 2rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            color: var(--text-primary);
-            background-color: transparent;
-        }
-
-        .action-link:hover {
-            background-color: var(--primary-accent);
-            color: var(--text-secondary);
-            transform: translateY(-2px);
-        }
-
-        /* Dark Mode Toggle */
-        .dark-mode-toggle {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            padding: 0.5rem 1rem;
-            border: 2px solid var(--primary-accent);
-            border-radius: 2rem;
-            background: transparent;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dark-mode-toggle:hover {
-            background-color: var(--primary-accent);
-            color: var(--text-secondary);
-        }
-
-        @media (max-width: 480px) {
-            .error-container {
-                padding: 1rem;
-            }
-            
-            .action-link {
-                width: 100%;
-                text-align: center;
-            }
-        }
-    </style>
 </head>
+
+<style>
+/* ================= Sidebar ================= */
+.sidebar {
+    background: var(--box2);
+    padding: 15px;
+    color: var(--a-text);
+    height: 100vh;
+    overflow-y: auto;
+    float: left;
+    width: 30%;
+    position: relative;
+    border: 1px solid var(--b-text);
+    border-radius: 0px 25px 25px 0px;
+}
+
+/* ================= Tab Content ================= */
+.tabcontent {
+    float: left;
+    padding: 12px;
+    border: 1px solid var(--accent);
+    width: 70%;
+    border-left: none;
+    height: 100vh;
+    background: var(--box);
+    overflow-y: auto;
+    border-radius: 25px;
+}
+
+/* ================= Responsive Design ================= */
+@media screen and (max-width: 1024px) {
+    .sidebar {
+        width: 35%;
+    }
+
+    .tabcontent {
+        width: 65%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-radius: 0 0 12px 12px;
+    }
+
+    .tabcontent {
+        width: 100%;
+        height: auto;
+        float: none;
+        border-left: none;
+    }
+
+    /* Collapsible sidebar buttons on mobile */
+    .sidebar button {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        text-align: left;
+        font-size: 18px;
+        border: none;
+        background: var(--box);
+        color: var(--accent);
+        cursor: pointer;
+        margin-bottom: 6px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+    }
+
+    .sidebar button:hover {
+        background: var(--hover-highlight);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .sidebar {
+        width: 100%;
+    }
+
+    .tabcontent {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+/* ================= Accordion Styling ================= */
+.accordion {
+    background-color: var(--box);
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: 1px solid var(--a-text);
+    text-align: center;
+    outline: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.4s ease, color 0.4s ease, transform 0.2s ease;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 8px;
+    position: relative; /* for arrow positioning */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Accordion hover effect */
+.accordion:hover {
+    background-color: var(--hover-highlight);
+    color: var(--a-text);
+    transform: translateY(-2px);
+}
+
+/* Accordion arrow */
+.accordion::after {
+    content: '\25BC';
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+    position: absolute;
+    right: 20px;
+    color: var(--accent);
+}
+
+.accordion.active::after {
+    transform: rotate(-180deg);
+}
+
+/* Accordion panel */
+.panel {
+    padding: 15px 18px;
+    display: none; /* hide by default */
+    background-color: var(--hover-highlight);
+    color: var(--a-text);
+    border: 2px solid var(--side-nav);
+    border-radius: 8px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+/* ================= Other Buttons inside Panels ================= */
+.panel button {
+    width: 100%;
+    background: var(--animation);
+    color: var(--a-text);
+    border: 1px solid var(--box);
+    text-align: left;
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.panel button:hover {
+    color: var(--b-text);
+}
+
+/* ================= File List and Items ================= */
+.file-list {
+    background: var(--box2);
+    padding: 10px;
+    border-radius: 5px;
+    width: 60%;
+}
+
+.file-item {
+    background: var(--box);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--b-text);
+    transition: box-shadow 0.3s ease-in-out;
+    width: 100%;
+    min-height: 70px;
+    margin-bottom: 10px;
+}
+
+.file-item:hover {
+    box-shadow: 0 6px 15px rgba(59, 30, 84, 0.2);
+}
+
+.file-item .file-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ================= Download Button ================= */
+.download-btn {
+    background: var(--animation);
+    color: var(--b-text);
+    font-size: 18px;
+    font-weight: 600;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    outline: none;
+    display: inline-block;
+}
+
+.download-btn:hover {
+    background: linear-gradient(45deg, var(--a-text), var(--b-text));
+    color: var(--search-bar);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.download-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+/* Buttons inside panel */
+.panel .download-btn,
+.paneL .download-btn {
+    margin: 20px auto;
+    font-size: 18px;
+}
+
+/* File name text */
+#fileName {
+    margin-top: 12px;
+    font-size: 16px;
+    color: #666666;
+    font-weight: 400;
+}
+
+/* ================= Additional Accordion & Panel Variants ================= */
+.Accordion {
+    background-color: var(--side-nav);
+    color: var(--search-bar);
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: 1px solid var(--a-text);
+    text-align: center;
+    outline: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.4s ease, color 0.4s ease, transform 0.2s ease;
+    border-radius: 8px;
+    float: left;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.accordion::after {
+  content: '\25BC'; /* Down arrow */
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.accordion.active::after {
+  transform: rotate(180deg); /* Rotate arrow */
+}
+
+
+.Accordion:hover {
+    background-color: var(--hover-highlight);
+    color: var(--text-color);
+    transform: scale(1.02);
+}
+
+.paneL {
+    padding: 15px 18px;
+    display: none;
+    background-color: var(--b-text);
+    color: var(--search-bar);
+    border: 2px solid var(--text-color);
+    border-radius: 8px;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: center;
+    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+</style>
 
 <body>
 
-
-    <main class="error-container">
-        <img src="images/coming_soon.png" 
-             alt="Animation showing page not found concept" 
-             class="error-gif"
-             loading="lazy">
-
-        <h1 class="error-heading">Page Under Construction !</h1>
-        
-        <p class="error-message">
-            We're working hard to bring you something amazing. Stay tuned!
-        </p>
-
-        <div class="action-buttons">
-            <a href="index.html" class="action-link" aria-label="Return to homepage">
-                Return Home
-            </a>
+    <!-- Top Blue Bar -->
+    <div class="top-bar">
+        <span><i class="fas fa-envelope"></i><a href="mailto:datascience@sies.edu.in">
+                datascience@sies.edu.in</a></span>
+        <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
+        <div class="top-links">
+            <a href="progress.html">SY-Exam_Process</a>
+            <a href="exam_time_table.html">Exam Time table</a>
+            <a href="timetable.html">Time Table</a>
+            <a href="nep.html">NEP</a>
+            <a href="cc.html">CC</a>
+            <a href="https://dzenith.siesvisions.com/">DZenith</a>
+            <a href="secret_alley.html">Secret Alley</a>
+            <a href="connect.html">Connect</a>
+            <a href="enrollment.html" class="prospectus-btn">Enroll Now</a>
         </div>
-    </main>
+    </div>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo"></a>
+        </div>
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <!-- Navigation -->
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="About.html">Department</a></li>
+                        <li><a href="index.html#Facilities">Facilities</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="syllabus.html">Syllabus</a></li>
+                    </ul>
+                </li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="Files.html" >Files</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="Achivements.html">Achievements</a></li>
+
+                <li>
+                    <div class="darkLight-searchBox" style="font-size:25px;  ">
+                        <div class="dark-light" style="margin-right: 30px;">
+                            <p><i class="fa-solid fa-brush"></i></p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="darkLight-searchBox" style="font-size:25px;  ">
+                        <div class="dark-light" style="margin-right: 25px;">
+                            <p>
+                                <a href="Adminlog.html"><i class="fa-solid fa-user"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </nav>
+    </header><br>
+    <section>
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <button class="accordion">Result  [Batch 2023-2026] </button>
+            <div class="panel">
+                <button onclick="showContent('FYDS_2023')">FYDS_SEM_1 & 2_Result [Batch 2023-2026]</button>
+                <button onclick="showContent('SYDS_2024')">SYDS_SEM_3 & 4_Result [Batch 2023-2026]</button>
+            </div>
+
+            <button class="accordion">Result  [Batch 2024-2027]</button>
+            <div class="panel">
+                <button onclick="showContent('FYDS_2024')">FYDS_SEM_1 & 2_Result [Batch 2024-2027]</button>
+                <!-- <button onclick="showToast('Result will be updated soon !')">SYDS_SEM_3 & 4_Result [Batch 2024-2027]</button> -->
+                <!-- <button onclick="showContent('SYDS_2025')">SYDS_SEM_3 & 4_Result [Batch 2024-2027]</button> -->
+                <!-- <button onclick="showContent('SYDS_SEM_1_Result')">SYDS_SEM_3_Result [Batch 2024-2027]</button>
+                <button onclick="showContent('SYDS_SEM_1_Result')">SYDS_SEM_4_Result [Batch 2024-2027]</button> -->
+            </div>
+            <!-- <button class="accordion">Semester III </button>
+            <div class="panel">
+                <button onclick="showContent('dsr')">Data Science with R</button>
+                <button onclick="showContent('pd')">Probability & Distributions</button>
+                <button onclick="showContent('dbt1')">Database Technology-I</button>
+                <button onclick="showContent('kafka')">Introduction to Kafka</button>
+            </div>
+            <button class="accordion">Semester IV </button>
+            <div class="panel">
+                <button onclick="showContent('spark')">Big Data Analysis through spark</button>
+                <button onclick="showContent('mtla')">Matrix Theory & Linear Algebra</button>
+                <button onclick="showContent('dbt2')">Database Technology-II</button>
+                <button onclick="showContent('wt1')">Web Technology-I</button>
+            </div> -->
+
+            <!-- <button class="accordion">Semester V <i class="fa-solid fa-angle-down"></i></button>
+            <div class="panel">
+                <button onclick="showContent('aiml')">Big Data Analysis through spark</button>
+                <button onclick="showContent('nosql')">Matrix Theory & Linear Algebra</button>
+                <button onclick="showContent('rm')">Database Technology-II</button>
+                <button onclick="showContent('awt')">Web Technology-I</button>
+            </div> -->
+            <!-- <button class="accordion">Semester V </button>
+            <div class="panel">
+                <button onclick="showToast('Files will be updated soon !')">Intro to AI & ML</button>
+                <button onclick="showToast('Files will be updated soon !')">Intro to NoSQL Database & Security</button>
+                <button onclick="showToast('Files will be updated soon !')">Research Methodology</button>
+                <button onclick="showToast('Files will be updated soon !')">Advanced Web Technology</button>
+                <button onclick="showToast('Files will be updated soon !')">Data Analysis & visualization with POWER BI</button>
+            </div> -->
+
+            <!-- <button class="accordion">Semester VI </button>
+            <div class="panel">
+                <button onclick="showToast('Files will be updated soon !')">Cloud Computing</button>
+                <button onclick="showToast('Files will be updated soon !')">Natural Language Processing</button>
+                <button onclick="showToast('Files will be updated soon !')">Data Warehousing and Mining</button>
+                <button onclick="showToast('Files will be updated soon !')">Optimization Techniques</button>
+                <button onclick="showToast('Files will be updated soon !')">On JOb Training</button>
+            </div> -->
+            <!-- showToast('This is a toast message!') -->
+
+        </div>
+
+        <!-- Main Content Section -->
+        <div class="tabcontent">
+            <h2>Click on a subject to view files</h2>
+
+            <div id="FYDS_2023" class="content-section" style="display: none;">
+                <div class="file-item">
+                    <p>FYDS_SEM_1_JAN_2024</p>
+                    <a href="FYDS_SEM_1_OCT_2023.pdf"  class="download-btn" data-filename="FYDS_SEM_1_OCT_2023.pdf">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>FYDS_SEM_1_JAN_2024</p>
+                    <a href="FYDS_SEM_2_MAY_2024.pdf"  class="download-btn" data-filename="FYDS_SEM_2_MAY_2024.pdf">Download</a>
+                </div>
+            </div>
+
+            <div id="SYDS_2024" class="content-section" style="display: none;">
+                <div class="file-item">
+                    <p>SYDS_SEM_3_JAN_2025</p>
+                    <a href="SYDS_SEM_3_JAN_2025.pdf"  class="download-btn" data-filename="SYDS_SEM_3_JAN_2025.pdf">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>SYDS_SEM_4_MAY_2025</p>
+                    <a href="SYDS_SEM_4_MAY_2025.pdf"  class="download-btn" data-filename="SYDS_SEM_4_MAY_2025.pdf">Download</a>
+                </div>
+            </div>
+
+            <div id="FYDS_2024" class="content-section" style="display: none;">
+                <div class="file-item">
+                    <p>FYDS_SEM_1_OCT_2024</p>
+                    <a href="FYDS_SEM_1_OCT_2024.pdf"  class="download-btn" data-filename="FYDS_SEM_1_OCT_2024.pdf">Download</a>
+                </div>
+                <div class="file-item">
+                    <p>FYDS_SEM_2_MAR_2025</p>
+                    <a href="FYDS_SEM_2_MAR_2025.pdf"  class="download-btn" data-filename="FYDS_SEM_2_MAR_2025.pdf">Download</a>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+            <!-- <div id="aiml" class="content-section" style="display: none;">
+                <h3>Intro to AI & ML</h3>
+                <div class="file-list">
+                    <div class="file-item">
+                        <p>No files uploaded yet</p>
+                        <a href="#"  class="download-btn" data-filename="FDS Practicals (.zip)">Download</a>
+
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="toast-container" id="toast-container"></div>
+
+
+
+
+            <!-- write codes before this -->
+        </div>
+        <div id="fileNotification" class="file-notification">
+            <p id="fileNotificationText"></p>
+            <button onclick="closeNotification()">Close</button>
+          </div> 
+    </section>
+
+<script>
+function closeNotification() {
+  document.getElementById('fileNotification').style.display = 'none';
+}
+
+document.querySelectorAll('.download-btn').forEach(btn => {
+  btn.addEventListener('click', function (event) {
+    const fileName = this.getAttribute('data-filename') || 'File';
+    
+    // Show Notification
+    const textElement = document.getElementById('fileNotificationText');
+    textElement.innerHTML = `<strong>${fileName}</strong> is being downloaded.`;
+
+    const notification = document.getElementById('fileNotification');
+    notification.style.display = 'block';
+
+    // Auto-close after 4s
+    setTimeout(() => {
+      notification.style.display = 'none';
+    }, 4000);
+  });
+});
+
+let acc = document.querySelectorAll(".accordion");
+acc.forEach(button => {
+  button.addEventListener("click", function () {
+    // Toggle active class on the accordion button (for arrow rotation)
+    this.classList.toggle("active");
+
+    // Toggle the panel (next sibling)
+    const panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+});
+
+
+</script>
+
 
 
 </body>
+
+<div id="footer"></div>
+<script>
+  fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    });
+</script>
 </html>
