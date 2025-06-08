@@ -11,158 +11,162 @@
       background: #f3f4f6;
       padding: 20px;
     }
-    .container {
+
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    .chart-box {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 25px 30px;
+      margin: 25px auto;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       max-width: 900px;
-      background: #fff;
-      margin: auto;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-    .chart-container {
-      margin-bottom: 50px;
+
+    h3 {
+      margin: 0 0 15px;
+      font-size: 22px;
+      color: #222;
     }
+
     canvas {
       width: 100% !important;
-      height: 350px !important;
-    }
-    h3 {
-      margin-bottom: 10px;
-      font-weight: 600;
-      color: #333;
+      height: 400px !important;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>📊 Grade Count Bar Charts from Multiple PDFs</h2>
-    <div id="charts"></div>
-  </div>
+  <h2>📊 Grade Count Bar Charts from Multiple PDFs</h2>
+  <div id="charts"></div>
 
-<script>
-  const gradeMap = { 'O': 10, 'A+': 9, 'A': 8, 'B+': 7, 'B': 6, 'C': 5, 'D': 4, 'F': 0 };
-  const pdfFiles = ['FYDS_SEM_1_October_2023.pdf', 'FYDS_SEM_2_October_2023.pdf','SYDS_SEM_4_October_2023']; // Add your PDF filenames here
+  <script>
+    const gradeMap = {
+      'O': 10, 'A+': 9, 'A': 8, 'B+': 7, 'B': 6, 'C': 5, 'D': 4, 'F': 0
+    };
 
-  // To keep references to Chart instances, so we can manage if needed
-  const charts = [];
+    const pdfFiles = [
+      'FYDS_SEM_1_OCT_2023.pdf',
+      'FYDS_SEM_2_MAY_2024.pdf'
+    ];
 
-  async function analyzePDF(pdfFile) {
-    try {
-      const loadingTask = pdfjsLib.getDocument(pdfFile);
-      const pdf = await loadingTask.promise;
+    const charts = [];
 
-      let fullText = '';
-      for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-        const page = await pdf.getPage(pageNum);
-        const content = await page.getTextContent();
-        const pageText = content.items.map(i => i.str).join(' ');
-        fullText += pageText + ' ';
-      }
+    async function analyzePDF(pdfFile) {
+      try {
+        const loadingTask = pdfjsLib.getDocument(pdfFile);
+        const pdf = await loadingTask.promise;
 
-      // Extract grades from remark section like "Grade : A+"
-      const gradeRegex = /Grade\s*:\s*(O|A\+|A|B\+|B|C|D|F)/g;
-      const gradeMatches = [...fullText.matchAll(gradeRegex)];
-
-      // Count grades
-      const gradeCount = {};
-      Object.keys(gradeMap).forEach(g => gradeCount[g] = 0);
-
-      for (const match of gradeMatches) {
-        const grade = match[1];
-        if (gradeCount.hasOwnProperty(grade)) {
-          gradeCount[grade]++;
-        } else {
-          gradeCount['F']++;
+        let fullText = '';
+        for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+          const page = await pdf.getPage(pageNum);
+          const content = await page.getTextContent();
+          const pageText = content.items.map(i => i.str).join(' ');
+          fullText += pageText + ' ';
         }
-      }
 
-      return gradeCount;
-    } catch (error) {
-      console.error(`Error loading or parsing PDF ${pdfFile}:`, error);
-      return null;
-    }
-  }
+        const gradeRegex = /Grade\s*:\s*(O|A\+|A|B\+|B|C|D|F)/g;
+        const gradeMatches = [...fullText.matchAll(gradeRegex)];
 
-  function drawChart(containerId, grades, counts, title) {
-    const ctx = document.getElementById(containerId).getContext('2d');
+        const gradeCount = {};
+        Object.keys(gradeMap).forEach(g => gradeCount[g] = 0);
 
-    const backgroundColors = grades.map(g => {
-      const p = gradeMap[g] ?? 0;
-      return p >= 9 ? '#4caf50' : p >= 7 ? '#2196f3' : p >= 5 ? '#ffc107' : '#f44336';
-    });
-
-    const chart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: grades,
-        datasets: [{
-          label: 'Number of Students',
-          data: counts,
-          backgroundColor: backgroundColors,
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true,
-            title: { display: true, text: 'Number of Students' }
-          },
-          x: {
-            title: { display: true, text: 'Grade' }
+        for (const match of gradeMatches) {
+          const grade = match[1];
+          if (gradeCount.hasOwnProperty(grade)) {
+            gradeCount[grade]++;
+          } else {
+            gradeCount['F']++;
           }
+        }
+
+        return gradeCount;
+      } catch (error) {
+        console.error(`Error loading or parsing PDF ${pdfFile}:`, error);
+        return null;
+      }
+    }
+
+    function drawChart(containerId, grades, counts) {
+      const ctx = document.getElementById(containerId).getContext('2d');
+
+      const backgroundColors = grades.map(g => {
+        const p = gradeMap[g] ?? 0;
+        return p >= 9 ? '#1C6758' : p >= 7 ? '#6439FF' : p >= 5 ? '#F3C623' : '#C40C0C';
+      });
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: grades,
+          datasets: [{
+            label: 'Number of Students',
+            data: counts,
+            backgroundColor: backgroundColors,
+          }]
         },
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            callbacks: {
-              label: ctx => `Count: ${ctx.parsed.y}`
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: { display: true, text: 'Number of Students' }
+            },
+            x: {
+              title: { display: true, text: 'Grade' }
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: ctx => `Count: ${ctx.parsed.y}`
+              }
             }
           }
         }
-      }
-    });
-
-    charts.push(chart);
-  }
-
-  async function loadAllPDFs() {
-    const chartsDiv = document.getElementById('charts');
-    for (let i = 0; i < pdfFiles.length; i++) {
-      const pdfFile = pdfFiles[i];
-      const gradeCount = await analyzePDF(pdfFile);
-
-      if (!gradeCount) {
-        // Show error message if PDF failed
-        const errorMsg = document.createElement('p');
-        errorMsg.textContent = `Failed to load or parse ${pdfFile}`;
-        chartsDiv.appendChild(errorMsg);
-        continue;
-      }
-
-      // Create container and canvas for this chart
-      const container = document.createElement('div');
-      container.className = 'chart-container';
-
-      const title = document.createElement('h3');
-      title.textContent = `Grades from ${pdfFile}`;
-      container.appendChild(title);
-
-      const canvas = document.createElement('canvas');
-      canvas.id = `chart-${i}`;
-      container.appendChild(canvas);
-
-      chartsDiv.appendChild(container);
-
-      const grades = Object.keys(gradeCount);
-      const counts = grades.map(g => gradeCount[g]);
-
-      drawChart(canvas.id, grades, counts, pdfFile);
+      });
     }
-  }
 
-  // Load and plot all PDFs on page load
-  window.onload = loadAllPDFs;
-</script>
+    async function loadAllPDFs() {
+      const chartsDiv = document.getElementById('charts');
+
+      for (let i = 0; i < pdfFiles.length; i++) {
+        const pdfFile = pdfFiles[i];
+        const gradeCount = await analyzePDF(pdfFile);
+
+        if (!gradeCount) {
+          const errorMsg = document.createElement('p');
+          errorMsg.textContent = `❌ Failed to load or parse ${pdfFile}`;
+          chartsDiv.appendChild(errorMsg);
+          continue;
+        }
+
+        const chartId = `chart-${i}`;
+        const grades = Object.keys(gradeCount);
+        const counts = grades.map(g => gradeCount[g]);
+
+        const chartBox = document.createElement('div');
+        chartBox.className = 'chart-box';
+
+        const title = document.createElement('h3');
+        title.textContent = `📘 ${pdfFile.replace(/\\.pdf$/, '')}`;
+        chartBox.appendChild(title);
+
+        const canvas = document.createElement('canvas');
+        canvas.id = chartId;
+        chartBox.appendChild(canvas);
+
+        chartsDiv.appendChild(chartBox);
+
+        drawChart(chartId, grades, counts);
+      }
+    }
+
+    window.onload = loadAllPDFs;
+  </script>
 </body>
 </html>

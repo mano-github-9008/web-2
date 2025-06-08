@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>DODS-Home</title>
+  <link rel="icon" type="image/png" href="images/fav.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+  <script src="script.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <style>
+    .chart-box {
+      background: var(--box);
+      border-radius: 12px;
+      padding: 25px 30px;
+      margin: 25px auto;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      max-width: 900px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    h3 {
+      margin: 0 0 15px;
+      font-size: 22px;
+      color: var(--a-text);
+    }
+    canvas {
+      width: 100% !important;
+      height: 400px !important;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 15px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+    }
+    .color-box {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+    <div id="top-bar-placeholder"></div>
+
+    <script>
+      fetch('topbar.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('top-bar-placeholder').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading top bar:', error));
+    </script>
+
+      
+  <!-- Header Section -->
+  <header>
+
+    <div class="logo">
+      <a href="index.html"><img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo"></a>
+    </div>
+    <!-- Hamburger Menu -->
+    <div class="hamburger" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+    <!-- Navigation -->
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="index.html" >Home</a></li>
+        <li class="dropdown">
+          <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="About.html">Department</a></li>
+            <li><a href="index.html#Facilities">Facilities</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="syllabus.html">Syllabus</a></li>
+          </ul>
+        </li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="apps.html">Apps</a></li>
+        <li><a href="Files.html">Files</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="Achivements.html">Achievements</a></li>
+
+        <li>
+          <div class="darkLight-searchBox" style="font-size:25px;  ">
+            <div class="dark-light" style="margin-right: 30px;">
+              <p><i class="fa-solid fa-brush"></i></p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="darkLight-searchBox" style="font-size:25px;  ">
+            <div class="dark-light" style="margin-right: 25px;">
+              <p>
+                <a href="login.html"><i class="fa-solid fa-user"></i></a>
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+  </header><br>
+
+    
+  <h2>Result Analysis</h2>
+  <div id="charts"></div>
+
+  <div id="footer"></div>
+<script>
+  fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    });
+</script>
+
+  <script>
+    const gradeMap = {
+      'O': 10, 'A+': 9, 'A': 8, 'B+': 7, 'B': 6, 'C': 5, 'D': 4, 'F': 0
+    };
+  
+    const remarkBasedPDFs = [
+      'FYDS_SEM_1_OCT_2023.pdf',
+      'FYDS_SEM_2_MAY_2024.pdf'
+    ];
+  
+    function getGradeColor(grade) {
+      const p = gradeMap[grade] ?? 0;
+      return p >= 9 ? '#1C6758' : p >= 7 ? '#6439FF' : p >= 5 ? '#F3C623' : '#C40C0C';
+    }
+  
+    async function analyzeGradeFromRemarkPDF(pdfFile) {
+      try {
+        const loadingTask = pdfjsLib.getDocument(pdfFile);
+        const pdf = await loadingTask.promise;
+  
+        let fullText = '';
+        for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+          const page = await pdf.getPage(pageNum);
+          const content = await page.getTextContent();
+          fullText += content.items.map(i => i.str).join(' ') + ' ';
+        }
+  
+        const gradeRegex = /Grade\s*:\s*(O|A\+|A|B\+|B|C|D|F)/g;
+        const gradeMatches = [...fullText.matchAll(gradeRegex)];
+  
+        const gradeCount = {};
+        Object.keys(gradeMap).forEach(g => gradeCount[g] = 0);
+  
+        for (const match of gradeMatches) {
+          const grade = match[1];
+          gradeCount[grade] = (gradeCount[grade] || 0) + 1;
+        }
+  
+        return gradeCount;
+      } catch (error) {
+        console.error(`Error loading or parsing PDF ${pdfFile}:`, error);
+        return null;
+      }
+    }
+  
+    function drawGradeBarChart(containerId, grades, counts) {
+      const ctx = document.getElementById(containerId).getContext('2d');
+  
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: grades,
+          datasets: [{
+            label: 'Number of Students',
+            data: counts,
+            backgroundColor: grades.map(getGradeColor),
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: { display: true, text: 'Number of Students' }
+            },
+            x: {
+              title: { display: true, text: 'Grade' }
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: ctx => `Count: ${ctx.parsed.y}`
+              }
+            }
+          }
+        }
+      });
+    }
+  
+    function createLegend(grades) {
+      const legendDiv = document.createElement('div');
+      legendDiv.className = 'legend';
+  
+      grades.forEach(grade => {
+        const item = document.createElement('div');
+        item.className = 'legend-item';
+        item.style.display = 'inline-flex';
+        item.style.alignItems = 'center';
+        item.style.marginRight = '12px';
+  
+        const colorBox = document.createElement('span');
+        colorBox.style.display = 'inline-block';
+        colorBox.style.width = '16px';
+        colorBox.style.height = '16px';
+        colorBox.style.marginRight = '6px';
+        colorBox.style.backgroundColor = getGradeColor(grade);
+  
+        const label = document.createElement('span');
+        label.textContent = grade;
+  
+        item.appendChild(colorBox);
+        item.appendChild(label);
+        legendDiv.appendChild(item);
+      });
+  
+      return legendDiv;
+    }
+  
+    async function loadRemarkBasedPDFs() {
+      const chartsDiv = document.getElementById('charts');
+  
+      for (let i = 0; i < remarkBasedPDFs.length; i++) {
+        const pdfFile = remarkBasedPDFs[i];
+        const gradeCount = await analyzeGradeFromRemarkPDF(pdfFile);
+  
+        if (!gradeCount) {
+          const errorMsg = document.createElement('p');
+          errorMsg.textContent = `❌ Failed to load or parse ${pdfFile}`;
+          chartsDiv.appendChild(errorMsg);
+          continue;
+        }
+  
+        const chartId = `chart-remark-${i}`;
+        const grades = Object.keys(gradeCount);
+        const counts = grades.map(g => gradeCount[g]);
+  
+        const chartBox = document.createElement('div');
+        chartBox.className = 'chart-box';
+  
+        const title = document.createElement('h3');
+        title.textContent = `📘 ${pdfFile.replace(/\.pdf$/i, '')}`;  // .pdf removed
+        chartBox.appendChild(title);
+  
+        const canvas = document.createElement('canvas');
+        canvas.id = chartId;
+        chartBox.appendChild(canvas);
+  
+        const legend = createLegend(grades);
+        chartBox.appendChild(legend);
+  
+        chartsDiv.appendChild(chartBox);
+  
+        drawGradeBarChart(chartId, grades, counts);
+      }
+    }
+  
+    window.onload = loadRemarkBasedPDFs;
+  </script>
+  
+  
+  <script>
+    const gradeMapSGPI = {
+      'O': { point: 10, color: '#ff9900' },
+      'A+': { point: 9, color: '#43a047' },
+      'A': { point: 8, color: '#4A55A2' },
+      'B+': { point: 7, color: '#03a9f4' },
+      'B': { point: 6, color: '#C400C6' },
+      'C': { point: 5, color: '#E9B5D2' },
+      'P': { point: 4, color: '#065471' },
+      'F': { point: 0, color: '#DA0037' }
+    };
+  
+    const sgpiPDFs = [
+      'FYDS_SEM_1_OCT_2024.pdf',
+      'FYDS_SEM_2_MAR_2025.pdf',
+      'SYDS_SEM_3_JAN_2025.pdf',
+      'SYDS_SEM_4_MAY_2025.pdf'
+    ];
+  
+    async function extractSGPIGradesFromTextPDF(filename) {
+      const loadingTask = pdfjsLib.getDocument(filename);
+      const pdf = await loadingTask.promise;
+  
+      let fullText = '';
+      for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+        const page = await pdf.getPage(pageNum);
+        const content = await page.getTextContent();
+        fullText += content.items.map(i => i.str).join(' ') + '\n';
+      }
+  
+      const sgpiGradeRegex = /(\d{1,3}\.0)\s+(O|A\+|A|B\+|B|C|P|F)\b/g;
+      const gradeCount = {};
+      Object.keys(gradeMapSGPI).forEach(g => gradeCount[g] = 0);
+  
+      let match;
+      while ((match = sgpiGradeRegex.exec(fullText)) !== null) {
+        const grade = match[2];
+        if (grade in gradeCount) {
+          gradeCount[grade]++;
+        }
+      }
+  
+      return gradeCount;
+    }
+  
+    function drawSGPIBarChart(containerId, grades, counts) {
+      const ctx = document.getElementById(containerId).getContext('2d');
+  
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: grades,
+          datasets: [{
+            label: 'Number of Students',
+            data: counts,
+            backgroundColor: grades.map(g => gradeMapSGPI[g].color)
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: ctx => `Count: ${ctx.parsed.y}`
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: { display: true, text: 'Student Count' }
+            },
+            x: {
+              title: { display: true, text: 'Grade' }
+            }
+          }
+        }
+      });
+    }
+  
+    function createGradeLegend(grades) {
+      const legendDiv = document.createElement('div');
+      legendDiv.className = 'legend';
+  
+      grades.forEach(grade => {
+        const item = document.createElement('div');
+        item.className = 'legend-item';
+        item.innerHTML = `
+          <span class="color-box" style="background-color:${gradeMapSGPI[grade].color}"></span>
+          <span>${grade}</span>
+        `;
+        legendDiv.appendChild(item);
+      });
+  
+      return legendDiv;
+    }
+  
+    async function loadSGPIBasedPDFs() {
+      const chartsDiv = document.getElementById('charts');
+  
+      for (let i = 0; i < sgpiPDFs.length; i++) {
+        const filename = sgpiPDFs[i];
+        const gradeCount = await extractSGPIGradesFromTextPDF(filename);
+        const grades = Object.keys(gradeCount);
+        const counts = grades.map(g => gradeCount[g]);
+        const chartId = `chart-sgpi-${i}`;
+        const cleanTitle = filename.replace(/\.pdf$/i, '');
+  
+        const box = document.createElement('div');
+        box.className = 'chart-box';
+        box.innerHTML = `
+          <h3>📘 ${cleanTitle}</h3>
+          <canvas id="${chartId}"></canvas>
+        `;
+        box.appendChild(createGradeLegend(grades));
+  
+        chartsDiv.appendChild(box);
+        drawSGPIBarChart(chartId, grades, counts);
+      }
+    }
+  
+    // Load both sets of PDFs when the page loads
+    window.onload = async () => {
+      await loadRemarkBasedPDFs();
+      await loadSGPIBasedPDFs();
+    };
+  </script>
+  
+</body>
+</html>

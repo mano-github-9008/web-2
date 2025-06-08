@@ -43,21 +43,16 @@
 </head>
 
   <!-- Top Blue Bar -->
-  <div class="top-bar">
-    <span><i class="fas fa-envelope"></i><a href="mailto:datascience@sies.edu.in"> datascience@sies.edu.in</a></span>
-    <span><i class="fas fa-phone"></i> (022) 24 0271 71</span>
-    <div class="top-links">
-      <a href="progress.html">SY-Exam_Process</a>
-      <a href="#">Exam Time table</a>
-      <a href="timetable.html">Time Table</a>
-      <a href="nep.html">NEP</a>
-      <a href="cc.html">CC</a>
-      <a href="https://dzenith.siesvisions.com/">DZenith</a>
-      <a href="secret_alley.html">Secret Alley</a>
-      <a href="connect.html">Connect</a>
-      <a href="enrollment.html" class="prospectus-btn">Enroll Now</a>
-    </div>
-  </div>
+  <div id="top-bar-placeholder"></div>
+
+  <script>
+    fetch('topbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('top-bar-placeholder').innerHTML = data;
+      })
+      .catch(error => console.error('Error loading top bar:', error));
+  </script>
 
       <!-- Header Section -->
       <header>
