@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>DODS-Notes App </title>
+  <link rel="icon" type="image/png" href="images/fav.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+  <script src="script.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+
+
+#main {
+      width: 100%;
+      min-height: 100vh;
+      padding-bottom: 50px;
+      background: var(--body-color);
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .note {
+      width: 380px;
+      height: 260px;
+      background: var(--hover-highlight);
+      margin: 15px 20px 30px;
+      border-radius: 10px;
+      margin-top: 55px;
+    }
+
+    .icons {
+      width: 100%;
+      background: var(--pros);
+      color: var(--b-text);
+      padding: 5px;
+      display: flex;
+      justify-content: start;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .icons i {
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    .note textarea {
+      border: none;
+      width: 100%;
+      height: 87%;
+      resize: none;
+      padding: 10px;
+      font-size: 18px;
+      background-color: var(--hover-highlight);
+      color: var(--a-text);
+      border-radius: 0 0 10px 10px;
+    }
+
+    .title-div textarea {
+      background: var(--a-text);
+      color: var(--b-text);
+      font-weight: bold;
+      font-size: x-large;
+      margin-bottom: -4px;
+    }
+
+    .note textarea:focus {
+      outline: none;
+    }
+
+    .note-header {
+      padding: 20px;
+    }
+
+    .note-title {
+      color: var(--a-text);
+      font-size: 28px;
+      margin: 0;
+    }
+
+    /* Floating Add Note Button */
+    #addBtn.floating-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--pros);
+      color: var(--b-text);
+      padding: 14px 18px;
+      font-size: 16px;
+      border: none;
+      border-radius: 50px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    #addBtn.floating-btn:hover {
+      background-color: var(--a-text);
+      color: var(--hover-highlight);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="top-bar-placeholder"></div>
+  <script>
+    fetch('topbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('top-bar-placeholder').innerHTML = data;
+      })
+      .catch(error => console.error('Error loading top bar:', error));
+  </script>
+
+  <!-- Header Section -->
+  <header>
+
+    <div class="logo">
+      <a href="index.html"><img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo"></a>
+    </div>
+    <!-- Hamburger Menu -->
+    <div class="hamburger" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+    <!-- Navigation -->
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="index.html" >Home</a></li>
+        <li class="dropdown">
+          <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="About.html">Department</a></li>
+            <li><a href="index.html#Facilities">Facilities</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="syllabus.html">Syllabus</a></li>
+          </ul>
+        </li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="apps.html">Apps</a></li>
+        <li><a href="Files.html">Files</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="Achivements.html">Achievements</a></li>
+
+        <li>
+          <div class="darkLight-searchBox" style="font-size:25px;  ">
+            <div class="dark-light" style="margin-right: 30px;">
+              <p><i class="fa-solid fa-brush"></i></p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="darkLight-searchBox" style="font-size:25px;  ">
+            <div class="dark-light" style="margin-right: 25px;">
+              <p>
+                <a href="login.html"><i class="fa-solid fa-user"></i></a>
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+  </header><br>
+
+
+  <!-- Page Title -->
+  <div class="note-header">
+    <h1 class="note-title">Take a Note</h1>
+  </div>
+
+  <!-- Floating Button -->
+  <button id="addBtn" class="floating-btn">
+    <i class="fas fa-plus"></i> Add Note
+  </button>
+
+  <!-- Notes Area -->
+  <div id="main"></div>
+
+  <!-- footer -->
+  <div id="footer"></div>
+  <script>
+    fetch("footer.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+  <!-- Scripts -->
+  <script>
+    const addBtn = document.querySelector("#addBtn");
+    const main = document.querySelector("#main");
+
+    addBtn.addEventListener("click", function () {
+      addNote();
+    });
+
+    const saveNotes = () => {
+      const notes = document.querySelectorAll(".note .content");
+      const titles = document.querySelectorAll(".note .title");
+      const data = [];
+
+      notes.forEach((note, index) => {
+        const content = note.value;
+        const title = titles[index].value;
+        if (content.trim() !== "") {
+          data.push({ title, content });
+        }
+      });
+
+      const titlesData = data.map((item) => item.title);
+      const contentData = data.map((item) => item.content);
+      localStorage.setItem("titles", JSON.stringify(titlesData));
+      localStorage.setItem("notes", JSON.stringify(contentData));
+    };
+
+    const addNote = (text = "", title = "") => {
+      const note = document.createElement("div");
+      note.classList.add("note");
+      note.innerHTML = `
+        <div class="icons">
+          <i class="save fas fa-save" style="color:var(--b-text)"></i>
+          <i class="trash fas fa-trash" style="color:white"></i>
+        </div>
+        <div class="title-div">
+          <textarea class="title" placeholder="Write the title ...">${title}</textarea>
+        </div>
+        <textarea class="content" placeholder="Note down your thoughts ...">${text}</textarea>
+      `;
+      const delBtn = note.querySelector(".trash");
+      const saveButton = note.querySelector(".save");
+
+      delBtn.addEventListener("click", () => {
+        note.remove();
+        saveNotes();
+      });
+
+      saveButton.addEventListener("click", () => {
+        saveNotes();
+      });
+
+      main.appendChild(note);
+      saveNotes();
+    };
+
+    function loadNotes() {
+      const titlesData = JSON.parse(localStorage.getItem("titles")) || [];
+      const contentData = JSON.parse(localStorage.getItem("notes")) || [];
+
+      for (let i = 0; i < Math.max(titlesData.length, contentData.length); i++) {
+        addNote(contentData[i], titlesData[i]);
+      }
+    }
+
+    loadNotes();
+  </script>
+</body>
+</html>
