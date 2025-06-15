@@ -3,16 +3,16 @@
 /*=============================================== Colors =====================================================*/
 :root {
   --body-color: linear-gradient(135deg, #ECF2FF, #F6F1F1);;
-  --header-color: linear-gradient(to bottom right, #2E4374, #4A55A2);
+  --header-color: linear-gradient(to bottom right, #2E4374, #0048a0);
   --nav-color: linear-gradient(to bottom right, #E8E2E2, #F5EDED);
   --side-nav: #4A55A2;
-  --text-color: #83142C;
-  --search-bar: #ff9900;
+  --text-color: #004aad;
+  --search-bar: #ff7200;
   --search-text: #ffffff;
   --a-text: #4F1C51;
-  --b-text: #F99417;
+  --b-text: #ff7200;
   --box: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-  --box2: #BDBDD7;
+  --box2: linear-gradient(145deg, #d0c3e2, #ECF2FF);
   --accent: #640D5F;
   --hover-highlight: #F5EDED;
   --animation: linear-gradient(45deg, #F3CCFF, #FFE5F1, #FFE7E7, #FFBABA);
@@ -23,7 +23,7 @@
 
 /* Dark Mode Colors */
 body.dark {
-  --body-color: #181818; /* Jet matte */
+  --body-color: linear-gradient(135deg, #2f2a30, #2e222d); /* Jet matte */
   --header-color: linear-gradient(to right, #2b5876, #4e4376); /* Gentle blue-purple */
   --nav-color: linear-gradient(to right, #222222, #333333); /* Flat black/gray */
   --side-nav: #141e30; /* Dark graphite */
@@ -33,7 +33,7 @@ body.dark {
   --a-text: #70a1ff; /* Sky blue accent */
   --b-text: #ffb8b8; /* Soft coral pink */
   --box: linear-gradient(135deg, #141e30, #243b55); /* Deep steel blue */
-  --box2: #3b3f51; /* Muted indigo */
+  --box2: linear-gradient(135deg, #2b5876, #141e30); /* Muted indigo */
   --accent: #fab1a0; /* Muted pink-orange */
   --hover-highlight: #003e6e; /* Aqua mint */
   --animation: linear-gradient(45deg, #2a003f, #3e1f5e, #6d3f84, #d16ba5);
