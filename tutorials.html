@@ -2,22 +2,22 @@
 <html lang="en">
 
 <head>
-    <title>DODS-Courses Video Library</title>
-    <link rel="icon" type="image/png" href="images/fav.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
-    <script src="script.js" defer></script>
+  <title>DODS-Courses Video Library</title>
+  <link rel="icon" type="image/png" href="images/fav.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Rowdies:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
+  <script src="script.js" defer></script>
 
 </head>
 
@@ -25,7 +25,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
 <style>
-  
   .contain {
     flex: 1;
     display: flex;
@@ -58,9 +57,11 @@
   .sidebar::-webkit-scrollbar {
     width: 8px;
   }
+
   .sidebar::-webkit-scrollbar-track {
     background: transparent;
   }
+
   .sidebar::-webkit-scrollbar-thumb {
     background: var(--accent);
     border-radius: 10px;
@@ -84,7 +85,7 @@
     align-items: center;
     font-weight: 600;
     user-select: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   }
 
   .accordion:hover,
@@ -99,6 +100,7 @@
     font-size: 1rem;
     transition: transform 0.3s ease;
   }
+
   .accordion.active::after {
     transform: rotate(-180deg);
   }
@@ -136,7 +138,7 @@
     display: flex;
     flex-direction: column;
     border-radius: 20px 0 0 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   }
 
   h1 {
@@ -170,7 +172,7 @@
 
   /* Responsive */
   @media (max-width: 900px) {
-    .contain{
+    .contain {
       flex-direction: column;
       height: auto;
     }
@@ -178,7 +180,7 @@
     .sidebar {
       width: 100%;
       border-radius: 0 0 20px 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       max-height: 300px;
     }
 
@@ -221,166 +223,180 @@
   }
 </style>
 </head>
+
 <body>
-    <!-- Top Blue Bar -->
-    <div id="top-bar-placeholder"></div>
+  <!-- Top Blue Bar -->
+  <div id="top-bar-placeholder"></div>
 
-    <script>
-      fetch('topbar.html')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('top-bar-placeholder').innerHTML = data;
-        })
-        .catch(error => console.error('Error loading top bar:', error));
-    </script>
-    
-    <!-- Header Section -->
-    <header>
-        <div class="logo">
-            <a href="index.html"><img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo"></a>
-        </div>
-        <!-- Hamburger Menu -->
-        <div class="hamburger" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </div>
-        <!-- Navigation -->
-        <nav>
-            <ul id="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li class="dropdown">
-                    <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="About.html">Department</a></li>
-                        <li><a href="index.html#Facilities">Facilities</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="courses.html">Courses</a></li>
-                        <li><a href="syllabus.html">Syllabus</a></li>
-                    </ul>
-                </li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="apps.html">Apps</a></li>
-                <li><a href="Files.html" >Files</a></li>
-                <li><a href="news.html">News</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="Achivements.html">Achievements</a></li>
+  <script>
+    fetch('topbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('top-bar-placeholder').innerHTML = data;
+      })
+      .catch(error => console.error('Error loading top bar:', error));
+  </script>
 
-                <li>
-                    <div class="darkLight-searchBox" style="font-size:25px;  ">
-                        <div class="dark-light" style="margin-right: 30px;">
-                            <p><i class="fa-solid fa-brush"></i></p>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="darkLight-searchBox" style="font-size:25px;  ">
-                        <div class="dark-light" style="margin-right: 25px;">
-                            <p>
-                                <a href="Adminlog.html"><i class="fa-solid fa-user"></i></a>
-                            </p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+  <!-- Header Section -->
+  <header>
+    <div class="logo">
+      <a href="index.html"><img src="images/DODS.png" style="height: auto;width: 200px;" alt="College Logo"></a>
+    </div>
+    <!-- Hamburger Menu -->
+    <div class="hamburger" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+    <!-- Navigation -->
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="#" onclick="toggleDropdown(event)">About <span>▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="About.html">Department</a></li>
+            <li><a href="index.html#Facilities">Facilities</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" onclick="toggleDropdown(event)">Academics <span>▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="syllabus.html">Syllabus</a></li>
+          </ul>
+        </li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="apps.html">Apps</a></li>
+        <li><a href="Files.html">Files</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="Achivements.html">Achievements</a></li>
 
-        </nav>
-    </header>
-<h1>DODS Course Video Library</h1>
+        <li>
+          <div class="darkLight-searchBox" style="font-size:25px;  ">
+            <div class="dark-light" style="margin-right: 30px;">
+              <p><i class="fa-solid fa-brush"></i></p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="darkLight-searchBox" style="font-size:25px;  ">
+            <div class="dark-light" style="margin-right: 25px;">
+              <p>
+                <a href="Adminlog.html"><i class="fa-solid fa-user"></i></a>
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
 
-<div class="contain">
+    </nav>
+  </header>
+  <h1>DODS Course Video Library</h1>
+
+  <div class="contain">
     <div class="sidebar" role="navigation" aria-label="Course Topics">
       <h2>Course Topics</h2>
-  
-      <button class="accordion" aria-expanded="false" aria-controls="html-panel" id="html-acc">HTML</button>
+
+      <button class="accordion" aria-expanded="false" aria-controls="html-panel" id="html-acc">Kafka</button>
       <div class="panel" id="html-panel" role="region" aria-labelledby="html-acc">
-        <div class="topic" tabindex="0" role="button" onclick="changeVideo('video/html_intro.mp4')">Intro to HTML</div>
-        <div class="topic" tabindex="0" role="button" onclick="changeVideo('video/html_tags.mp4')">HTML Tags</div>
-        <div class="topic" tabindex="0" role="button" onclick="changeVideo('video/html_forms.mp4')">Forms in HTML</div>
+        <div class="topic" onclick="changeVideo('https://youtu.be/eZ9WuL9PWWM?si=dYQzHN3uMIWCw-Q8')">Kafka Installation</div>
+        
+
       </div>
-  
-      <button class="accordion" aria-expanded="false" aria-controls="css-panel" id="css-acc">CSS</button>
+
+      <button class="accordion" aria-expanded="false" aria-controls="css-panel" id="css-acc">Latex</button>
       <div class="panel" id="css-panel" role="region" aria-labelledby="css-acc">
-        <div class="topic" tabindex="0" role="button" onclick="changeVideo('video/css_basics.mp4')">CSS Basics</div>
-        <div class="topic" tabindex="0" role="button" onclick="changeVideo('video/css_flexbox.mp4')">Flexbox & Layout</div>
-        <div class="topic" tabindex="0" role="button" onclick="changeVideo('video/css_animations.mp4')">CSS Animations</div>
+        <div class="topic" onclick="changeVideo('https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/Latex_installion_guide.mp4?alt=media&token=7b8dab33-d136-42c8-b067-5e2a1dd04647')">Latex Installation</div>
       </div>
-  
-      <button class="accordion" aria-expanded="false" aria-controls="js-panel" id="js-acc">JavaScript</button>
+
+      <!-- <button class="accordion" aria-expanded="false" aria-controls="js-panel" id="js-acc">JavaScript</button>
       <div class="panel" id="js-panel" role="region" aria-labelledby="js-acc">
         <div class="topic" tabindex="0" role="button" onclick="changeVideo('video/js_intro.mp4')">JavaScript Intro</div>
         <div class="topic" tabindex="0" role="button" onclick="changeVideo('video/js_dom.mp4')">DOM Manipulation</div>
         <div class="topic" tabindex="0" role="button" onclick="changeVideo('video/js_events.mp4')">Event Handling</div>
-      </div>
+      </div> -->
     </div>
-  
+
     <main class="main">
       <h1>Course Video Player</h1>
-      <video id="courseVideo" controls preload="metadata" playsinline>
-        <source src="video/html_intro.mp4" type="video/mp4" />
-        Sorry, your browser doesn't support embedded videos.
-      </video>
+      <div id="videoContainer">
+        <iframe id="youtubePlayer" width="100%" height="500"
+                src="https://www.youtube.com/embed/eZ9WuL9PWWM"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+        </iframe>
+      </div>
+      
       <div class="description" id="videoDesc">
         <p>Choose a topic from the accordion menu to watch the lecture.</p>
       </div>
     </main>
+
   </div>
-  
 
-<script>
-  // Accordion toggling with ARIA updates
-  const accordions = document.querySelectorAll('.accordion');
-  accordions.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const panel = btn.nextElementSibling;
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
 
-      // Close all panels except clicked
-      accordions.forEach(otherBtn => {
-        if (otherBtn !== btn) {
-          otherBtn.setAttribute('aria-expanded', 'false');
-          otherBtn.nextElementSibling.style.maxHeight = null;
-          otherBtn.classList.remove('active');
+  <script>
+    // Accordion toggling with ARIA updates
+    const accordions = document.querySelectorAll('.accordion');
+    accordions.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const panel = btn.nextElementSibling;
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+
+        // Close all panels except clicked
+        accordions.forEach(otherBtn => {
+          if (otherBtn !== btn) {
+            otherBtn.setAttribute('aria-expanded', 'false');
+            otherBtn.nextElementSibling.style.maxHeight = null;
+            otherBtn.classList.remove('active');
+          }
+        });
+
+        if (!expanded) {
+          btn.setAttribute('aria-expanded', 'true');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          btn.classList.add('active');
+        } else {
+          btn.setAttribute('aria-expanded', 'false');
+          panel.style.maxHeight = null;
+          btn.classList.remove('active');
         }
       });
-
-      if (!expanded) {
-        btn.setAttribute('aria-expanded', 'true');
-        panel.style.maxHeight = panel.scrollHeight + 'px';
-        btn.classList.add('active');
-      } else {
-        btn.setAttribute('aria-expanded', 'false');
-        panel.style.maxHeight = null;
-        btn.classList.remove('active');
-      }
     });
-  });
 
-  // Video change with description update
-  const videoDescriptions = {
-    'video/html_intro.mp4': 'Intro to HTML — Learn the basics of HTML structure and elements.',
-    'video/html_tags.mp4': 'HTML Tags — Detailed explanation of various tags used in HTML.',
-    'video/html_forms.mp4': 'Forms in HTML — Understanding form elements and user input handling.',
-    'video/css_basics.mp4': 'CSS Basics — Introduction to styling web pages with CSS.',
-    'video/css_flexbox.mp4': 'Flexbox & Layout — Responsive design with Flexbox layout techniques.',
-    'video/css_animations.mp4': 'CSS Animations — Creating smooth animations using CSS.',
-    'video/js_intro.mp4': 'JavaScript Intro — Fundamentals of JavaScript programming language.',
-    'video/js_dom.mp4': 'DOM Manipulation — Learn how to interact with the webpage DOM using JS.',
-    'video/js_events.mp4': 'Event Handling — Handling user interactions through event listeners.',
-  };
+    // Video change with description update
+    const videoDescriptions = {
+      'https://youtu.be/eZ9WuL9PWWM?si=dYQzHN3uMIWCw-Q8': 'Kafka - Installation',
+      'https://firebasestorage.googleapis.com/v0/b/dodslab-fdb69.appspot.com/o/Latex_installion_guide.mp4?alt=media&token=7b8dab33-d136-42c8-b067-5e2a1dd04647': 'Latex - Installation Guide',
+    };
 
-  function changeVideo(src) {
-    const video = document.getElementById('courseVideo');
-    video.src = src;
-    video.play();
+    function changeVideo(src) {
+  const isYouTube = src.includes('youtu');
+  const videoContainer = document.getElementById('videoContainer');
+  const desc = document.getElementById('videoDesc');
 
-    const desc = document.getElementById('videoDesc');
-    desc.textContent = videoDescriptions[src] || 'Enjoy your learning!';
+  if (isYouTube) {
+    // Convert YouTube short link to embed format
+    const videoId = src.split('v=')[1] || src.split('/').pop();
+    const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+    videoContainer.innerHTML = `<iframe id="youtubePlayer" width="100%" height="500"
+                                 src="${embedUrl}" frameborder="0"
+                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                 allowfullscreen></iframe>`;
+  } else {
+    videoContainer.innerHTML = `<video id="courseVideo" controls controlsList="nodownload" preload="metadata" playsinline width="100%" height="500">
+                                  <source src="${src}" type="video/mp4" />
+                                  Your browser does not support HTML5 video.
+                                </video>`;
   }
-</script>
+
+  desc.textContent = videoDescriptions[src] || 'Enjoy your learning!';
+}
+
+
+  </script>
 
 </body>
 <div id="footer"></div>
@@ -391,4 +407,5 @@
       document.getElementById("footer").innerHTML = data;
     });
 </script>
+
 </html>
