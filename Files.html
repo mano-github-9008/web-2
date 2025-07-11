@@ -18,6 +18,17 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap">
     <script src="script.js" defer></script>
+    <script> // Check for session variable or referrer (example)
+        const allowed = sessionStorage.getItem("isSYStudent");
+      
+        if (allowed !== "true") {
+          // Not allowed - redirect or block
+          document.write("<h1 style='color:red;text-align:center;'>Access Denied</h1>");
+          setTimeout(() => {
+            window.location.href = "index.html"; // redirect to home or error page
+          }, 2000);
+        }</script>
+
 
 </head>
 

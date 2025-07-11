@@ -3,6 +3,17 @@ document.oncontextmenu = () => {
   return false
 }
 
+ // Check for session variable or referrer (example)
+ const allowed = sessionStorage.getItem("isSYStudent");
+
+ if (allowed !== "true") {
+   // Not allowed - redirect or block
+   document.write("<h1 style='color:red;text-align:center;'>Access Denied</h1>");
+   setTimeout(() => {
+     window.location.href = "index.html"; // redirect to home or error page
+   }, 2000);
+ }
+
 document.onkeydown = e => {
   if (e.key == "F12") {
     alert("Viewing source page is not allowed due to security key")
