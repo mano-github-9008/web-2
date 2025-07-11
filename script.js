@@ -11,7 +11,7 @@ document.oncontextmenu = () => {
    document.write("<h1 style='color:red;text-align:center;'>Access Denied</h1>");
    setTimeout(() => {
      window.location.href = "index.html"; // redirect to home or error page
-   }, 2000);
+   }, 200);
  }
 
 document.onkeydown = e => {
