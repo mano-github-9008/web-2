@@ -1,63 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>RM Topic Submission</title>
-  <style>
-    body { font-family: Arial; background-color: #f5f5f5; padding: 20px; }
-    .form-box { background: white; padding: 20px; max-width: 400px; margin: auto; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    input, button { width: 95%; padding: 8px; margin: 6px 0;color: blueviolet; }
-    .message { text-align: center; font-weight: bold; margin-top: 10px; }
-    .success { color: rgb(0, 204, 0); }
-    .error { color: red; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <body>
-  <div class="form-box">
-    <h2>Register Your Research Topic</h2>
-    <input type="text" id="roll_no" placeholder="Roll Number">
-    <input type="text" id="name" placeholder="Name">
-    <input type="text" id="topic" placeholder="Project Topic">
-    <button onclick="submitTopic()">Submit / Update</button>
-    <div id="message" class="message"></div>
-  </div>
-
-  <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzm4FVxMiCaw74tenRkJuKOuRKvpVkg9J--2IYREo_5HV7AGLQky47NsPaG851JkSdc/exec'; // Replace with your actual script URL
-
-    function submitTopic() {
-      let roll_no = document.getElementById('roll_no').value.trim().toUpperCase();
-      let name = document.getElementById('name').value.trim().toUpperCase();
-      let topic = document.getElementById('topic').value.trim();
-
-      const messageDiv = document.getElementById('message');
-
-      if (!roll_no || !name || !topic) {
-        messageDiv.textContent = 'All fields are required!';
-        messageDiv.className = 'message error';
-        return;
-      }
-
-      const nameRegex = /^[A-Z\s]+$/;
-      if (!nameRegex.test(name)) {
-        messageDiv.textContent = 'Name must contain only letters and spaces.';
-        messageDiv.className = 'message error';
-        return;
-      }
-
-      fetch(scriptURL, {
-        method: 'POST',
-        body: new URLSearchParams({ roll_no, name, topic })
-      })
-      .then(res => res.text())
-      .then(text => {
-        messageDiv.textContent = text;
-        messageDiv.className = text.includes('Success') ? 'message success' : 'message error';
-      })
-      .catch(err => {
-        messageDiv.textContent = 'Error: ' + err;
-        messageDiv.className = 'message error';
-      });
-    }
-  </script>
+  
 </body>
 </html>
