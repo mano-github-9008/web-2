@@ -1,64 +1,197 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Project Topic Submission</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-    body { font-family: Arial; background-color: #f5f5f5; padding: 20px; }
-    .form-box { background: white; padding: 20px; max-width: 400px; margin: auto; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    input, button { width: 95%; padding: 8px; margin: 6px 0; }
-    .message { text-align: center; font-weight: bold; margin-top: 10px; }
-    .success { color: rgb(0, 204, 0); }
-    .error { color: red; }
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .form-box {
+      background-color: #fff;
+      padding: 25px 20px;
+      margin: 40px auto;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+      max-width: 420px;
+      width: 100%;
+    }
+
+    .form-box h2 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    .form-box h4 {
+      color: #e22b2b;
+      text-align: center;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .button {
+      background-color: #9d00ff;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 25px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #0056b3;
+    }
+
+    .message {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+
+    @media (max-width: 480px) {
+      .form-box {
+        padding: 20px 15px;
+      }
+
+      input, button {
+        font-size: 0.95rem;
+        padding: 9px;
+      }
+
+      .form-box h2 {
+        font-size: 1.3rem;
+      }
+
+      .form-box h4 {
+        font-size: 0.85rem;
+      }
+    }
+
+    .loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
   </style>
 </head>
+
 <body>
   <div class="form-box">
     <h2>Register Your Project Topic</h2>
-    <h4 style="color: blueviolet;">You can Create/update the topics until the date : "21-07-25 & 23:59:59"</h4>
+    <h4>You can Create/update the topics until the date: "23-07-25 & 23:59:59"</h4>
     <input type="text" id="roll_no" placeholder="Roll Number">
     <input type="text" id="name" placeholder="Name">
     <input type="text" id="topic" placeholder="Project Topic">
     <button onclick="submitTopic()">Submit / Update</button>
-    <div id="message" class="message"></div>
+    <div id="message" class="message"><span id="spinner"></span><span id="msg-text"></span></div>
+
+  </div>
+  <div class="form-box">
+    <a class="button" href="https://docs.google.com/spreadsheets/d/1ntFvUVFDcHCwXVB7qyUCZsRa1_3adE5bFF-_AEeCkFU/edit?usp=sharing" target="_blank">View Submission</a>
   </div>
 
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzjxaBmlpak8T2nSFx-y4oPqRywqarQ79BmOURk-dLsjK0JMayLHWbkqXuF_xUwkYAvnQ/exec'; // Replace with your actual script URL
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzjxaBmlpak8T2nSFx-y4oPqRywqarQ79BmOURk-dLsjK0JMayLHWbkqXuF_xUwkYAvnQ/exec';
 
     function submitTopic() {
-      let roll_no = document.getElementById('roll_no').value.trim().toUpperCase();
-      let name = document.getElementById('name').value.trim().toUpperCase();
-      let topic = document.getElementById('topic').value.trim();
+  const roll_no = document.getElementById('roll_no').value.trim().toUpperCase();
+  const name = document.getElementById('name').value.trim().toUpperCase();
+  const topic = document.getElementById('topic').value.trim();
+  const messageDiv = document.getElementById('message');
+  const spinner = document.getElementById('spinner');
+  const msgText = document.getElementById('msg-text');
 
-      const messageDiv = document.getElementById('message');
+  if (!roll_no || !name || !topic) {
+    spinner.innerHTML = "";
+    msgText.textContent = 'All fields are required!';
+    messageDiv.className = 'message error';
+    return;
+  }
 
-      if (!roll_no || !name || !topic) {
-        messageDiv.textContent = 'All fields are required!';
-        messageDiv.className = 'message error';
-        return;
-      }
+  const nameRegex = /^[A-Z\s]+$/;
+  if (!nameRegex.test(name)) {
+    spinner.innerHTML = "";
+    msgText.textContent = 'Name must contain only letters and spaces.';
+    messageDiv.className = 'message error';
+    return;
+  }
 
-      const nameRegex = /^[A-Z\s]+$/;
-      if (!nameRegex.test(name)) {
-        messageDiv.textContent = 'Name must contain only letters and spaces.';
-        messageDiv.className = 'message error';
-        return;
-      }
+  // Show loading message and spinner
+  spinner.innerHTML = '<span class="loader"></span>';
+  msgText.textContent = 'Checking for similarity...';
+  messageDiv.className = 'message';
 
-      fetch(scriptURL, {
-        method: 'POST',
-        body: new URLSearchParams({ roll_no, name, topic })
-      })
-      .then(res => res.text())
-      .then(text => {
-        messageDiv.textContent = text;
-        messageDiv.className = text.includes('Success') ? 'message success' : 'message error';
-      })
-      .catch(err => {
-        messageDiv.textContent = 'Error: ' + err;
-        messageDiv.className = 'message error';
-      });
-    }
+  fetch(scriptURL, {
+    method: 'POST',
+    body: new URLSearchParams({ roll_no, name, topic })
+  })
+  .then(res => res.text())
+  .then(text => {
+    spinner.innerHTML = "";
+    msgText.textContent = text;
+    messageDiv.className = text.toLowerCase().includes('success') ? 'message success' : 'message error';
+  })
+  .catch(err => {
+    spinner.innerHTML = "";
+    msgText.textContent = 'Error: ' + err;
+    messageDiv.className = 'message error';
+  });
+}
+
   </script>
 </body>
 </html>
