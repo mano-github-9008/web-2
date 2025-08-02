@@ -1,60 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Example</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Topic Category Highlighter</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/colorthief@2.3.2/dist/color-thief.umd.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
+    input[type="file"] { margin-bottom: 20px; }
+    button { padding: 10px 20px; font-size: 16px; }
+    table { border-collapse: collapse; margin-top: 20px; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+  </style>
 </head>
 <body>
-    <div class="container text-center">
-        <div class="jumbotron">
-            <h5 class="lead">BOOTSTRAP TUTORIAL</h5>
-            <p>Bootstrap utilizes Sass for a modular and customizable architecture. Import only the components you need, enable global options like gradients and shadows, and write your own CSS with our variables, maps, functions, and mixins.</p>
-            <button type="button" class="btn btn-primary">main call to action</button>
-            <button type="button" class="btn btn-primary">secondary action</button>
-        </div><br><br>
+  <h2>Upload Excel File to Highlight Similar Topics</h2>
+  <input type="file" id="fileInput" accept=".xlsx" />
+  <button onclick="downloadHighlightedExcel()">Download Highlighted Excel</button>
+  <div id="preview"></div>
 
-        <div class="grid">
-            <div class="row flex">
-                <div class="col-4">
-                    <div class="card" style="width:18rem">
-                       <img src="C:/Users/Shraddha/Downloads/web tech/images/blueberry.png" style="width:15rem; height: 8rem;" class="card-img-top">
-                       <div class="card-body">
-                        <div class="card-title"><b>Blueberry Cheesecake</b></div>
-                        <p class="card-text">This blueberry cheesecake is rich, creamy, and not too sweet with a nice touch of tang. I’ve got a few tried and tested steps for making a gorgeous cheesecake in no time!</p>
-                        <div class="btn-group" role="group" aerial-label="basic example">
-                            <a href="https://www.fnp.com/gift/blueberry-dream-cheesecake?s_kwcid=AL!14757!10!75247983885069!2327047641114226&msclkid=0e7bd301a8371a6da53fbb576119959b&utm_source=bing&utm_medium=cpc&utm_campaign=Dynamic%20Feed%20Based%20Ads&utm_term=gift%20&utm_content=DSAbutton type=" class="btn btn-light">Order</a></button>
-                            <a href="https://www.recipetineats.com/blueberry-cheesecake/button type=" button type="button" class="btn btn-light">Recipe</a></button>
-                        </div>
-                       </div>
-                    </div>
-                </div>
+  <script>
+    let globalWorkbook = null;
+    let globalSheetName = null;
+    let globalData = null;
 
-                <div class="col-4">
-                    <div class="card" style="width:18rem">
-                        <img src="C:\Users\Shraddha\Downloads\web tech\images\buscuit.png" style="width:15rem; height:8rem;" class="card-img-top">
-                        <div class="card-body">
-                            <div class="card-title"><b>Buscuit CheeseCake</b></div>
-                            <p class="card-text">A biscuit base is a mixture of finely crushed biscuits combined with melted butter to make a simple crust for various desserts. Typically used for cheesecakes and tarts. </p>
-                            <div class="btn-group" role="group">
-                                <a href="https://www.bakingo.com/p/cake/biscolicious-cheesecake-cake3215bisc" button type="button" class="btn btn-light">Order</a></button>
-                                <a href="https://www.bbc.co.uk/food/recipes/biscoff_cheesecake_37320" button type="button" class="btn btn-light">Recipe</a></div></button>
-                            </div>
-                        </div>
-                  </div>
-                
+    function cosineSimilarity(str1, str2) {
+      const words1 = str1.toLowerCase().split(/\W+/);
+      const words2 = str2.toLowerCase().split(/\W+/);
+      const allWords = Array.from(new Set([...words1, ...words2]));
+      const vec1 = allWords.map(w => words1.filter(x => x === w).length);
+      const vec2 = allWords.map(w => words2.filter(x => x === w).length);
+      const dot = vec1.reduce((sum, v, i) => sum + v * vec2[i], 0);
+      const mag1 = Math.sqrt(vec1.reduce((sum, v) => sum + v * v, 0));
+      const mag2 = Math.sqrt(vec2.reduce((sum, v) => sum + v * v, 0));
+      return mag1 && mag2 ? dot / (mag1 * mag2) : 0;
+    }
 
-                <div class="col-4">
-                    <div class="card" style="width:18rem">
-                        <img src="C:/Users/Shraddha/Downloads/web tech/images/caramel.png" style="width:14rem;height:8rem;">
-                        <div class="card-title">Caramel Cheesecake</div>
-                        <p class="card-text">A creamy New York-style cheesecake infused with salted caramel sauce and topped with even more caramel. This caramel cheesecake has a luxuriously creamy texture.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    function assignColors(topics) {
+      const colors = {};
+      const assigned = Array(topics.length).fill(false);
+      let colorIndex = 0;
+      const baseColors = ["#fbb4ae", "#b3cde3", "#ccebc5", "#decbe4", "#fed9a6", "#ffffcc", "#e5d8bd", "#fddaec", "#f2f2f2"];
+
+      for (let i = 0; i < topics.length; i++) {
+        if (assigned[i]) continue;
+        colors[i] = baseColors[colorIndex % baseColors.length];
+        assigned[i] = true;
+        for (let j = i + 1; j < topics.length; j++) {
+          if (!assigned[j] && cosineSimilarity(topics[i], topics[j]) > 0.7) {
+            colors[j] = colors[i];
+            assigned[j] = true;
+          }
+        }
+        colorIndex++;
+      }
+      return colors;
+    }
+
+    document.getElementById("fileInput").addEventListener("change", async (event) => {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: "array" });
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+        const json = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+        globalWorkbook = workbook;
+        globalSheetName = sheetName;
+        globalData = json;
+
+        const topicIndex = json[0].findIndex(h => h.toLowerCase().includes("topic"));
+        const topics = json.slice(1).map(row => row[topicIndex] || "");
+        const colors = assignColors(topics);
+
+        const table = document.createElement("table");
+        const header = document.createElement("tr");
+        json[0].forEach(h => {
+          const th = document.createElement("th");
+          th.innerText = h;
+          header.appendChild(th);
+        });
+        table.appendChild(header);
+
+        json.slice(1).forEach((row, i) => {
+          const tr = document.createElement("tr");
+          tr.style.backgroundColor = colors[i] || "white";
+          row.forEach(cell => {
+            const td = document.createElement("td");
+            td.innerText = cell;
+            tr.appendChild(td);
+          });
+          table.appendChild(tr);
+        });
+
+        const preview = document.getElementById("preview");
+        preview.innerHTML = "";
+        preview.appendChild(table);
+      };
+      reader.readAsArrayBuffer(file);
+    });
+
+    function downloadHighlightedExcel() {
+      if (!globalWorkbook || !globalSheetName || !globalData) return;
+
+      const topicIndex = globalData[0].findIndex(h => h.toLowerCase().includes("topic"));
+      const topics = globalData.slice(1).map(row => row[topicIndex] || "");
+      const colors = assignColors(topics);
+
+      const ws = XLSX.utils.aoa_to_sheet(globalData);
+
+      for (let i = 1; i < globalData.length; i++) {
+        const range = XLSX.utils.decode_range(ws['!ref']);
+        for (let C = 0; C < globalData[0].length; C++) {
+          const cellAddr = { r: i, c: C };
+          const cellRef = XLSX.utils.encode_cell(cellAddr);
+          if (!ws[cellRef]) continue;
+          if (!ws[cellRef].s) ws[cellRef].s = {};
+          ws[cellRef].s.fill = { fgColor: { rgb: colors[i - 1].substring(1).toUpperCase() } };
+        }
+      }
+
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, globalSheetName);
+      XLSX.writeFile(wb, "highlighted_topics.xlsx", { cellStyles: true });
+    }
+  </script>
 </body>
 </html>
