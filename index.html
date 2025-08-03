@@ -54,7 +54,7 @@
     }
 
     .form-box h4 {
-      color: #666;
+      color: #8700b0;
       text-align: center;
       font-size: 0.9rem;
       font-weight: 400;
@@ -280,73 +280,74 @@
 <body>
   <div class="container">
     <!-- Main Form Container -->
-  <div class="form-box">
-    <h2>Register Your Project Topic</h2>
-    <h4>Last date to create/update topics: 23-07-2025 @ 23:59</h4>
+    <div class="form-box">
+      <h2>Register Your Project Topic</h2>
+      <h4>Last date to create/update topics: <span style="color: red;">04-08-2025 @ 23:59:59</span></h4>
 
-    <!-- Row 1: Roll No and Name -->
-    <div class="form-row">
-      <div class="form-group">
-        <label for="roll_no">Roll Number</label>
-        <input type="text" id="roll_no" placeholder="TDS2526000" autocomplete="off">
+      <!-- Row 1: Roll No and Name -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="roll_no">Roll Number</label>
+          <input type="text" id="roll_no" placeholder="TDS2526000" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="YOUR NAME" autocomplete="name">
+        </div>
       </div>
+
+      <!-- Full-width group for Topic -->
       <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" placeholder="YOUR NAME" autocomplete="name">
+        <label for="topic">Project Topic Can be from : [AI, ML, Web, IoT]</label>
+        <input type="text" id="topic" placeholder="e.g., Waste Segregation System using ML" autocomplete="off">
+      </div>
+
+      <!-- Row 2: Software and Hardware -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="software">Software going to use :</label>
+          <input type="text" id="software" placeholder="e.g., VS Code, Google Colab, Python" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label for="hardware">Hardware (if any)\ (if not give : NONE)</label>
+          <input type="text" id="hardware" placeholder="e.g., Raspberry Pi, Arduino, Sensors" autocomplete="off">
+        </div>
+      </div>
+
+      <!-- Full-width group for Tools -->
+      <div class="form-group">
+        <label for="tools">Tools & Technologies</label>
+        <input type="text" id="tools" placeholder="e.g., TensorFlow, React, OpenCV" autocomplete="off">
+      </div>
+
+      <!-- Full-width group for Doability -->
+      <div class="form-group">
+        <label for="doability">Can you complete this by <span style="color: red;">Sept 30, 2025</span>?</label>
+        <select id="doability">
+          <option value="">Select an Option</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+
+      <!-- Full-width group for Use Cases -->
+      <div class="form-group">
+        <label for="usecases">Use Cases</label>
+        <input type="text" id="usecases" placeholder="e.g., useful for Municipal workers, waste management agencies"
+          autocomplete="off">
+      </div>
+
+      <!-- Submit Button -->
+      <button type="button" onclick="submitTopic()">
+        <span id="spinner" class="loader" style="display: none;"></span>
+        <span>Submit / Update</span>
+      </button>
+
+      <!-- Message Area -->
+      <div id="message" class="message">
+        <span id="msg-text"></span>
       </div>
     </div>
-
-    <!-- Full-width group for Topic -->
-    <div class="form-group">
-      <label for="topic">Project Topic Can be from : [AI, ML, Web, IoT]</label>
-      <input type="text" id="topic" placeholder="e.g., Waste Segregation System using ML" autocomplete="off">
-    </div>
-
-    <!-- Row 2: Software and Hardware -->
-    <div class="form-row">
-      <div class="form-group">
-        <label for="software">Software going to use :</label>
-        <input type="text" id="software" placeholder="e.g., VS Code, Google Colab, Python" autocomplete="off">
-      </div>
-      <div class="form-group">
-        <label for="hardware">Hardware (if any)\ (if not give : NONE)</label>
-        <input type="text" id="hardware" placeholder="e.g., Raspberry Pi, Arduino, Sensors" autocomplete="off">
-      </div>
-    </div>
-
-    <!-- Full-width group for Tools -->
-    <div class="form-group">
-      <label for="tools">Tools & Technologies</label>
-      <input type="text" id="tools" placeholder="e.g., TensorFlow, React, OpenCV" autocomplete="off">
-    </div>
-
-    <!-- Full-width group for Doability -->
-    <div class="form-group">
-      <label for="doability">Can you complete this by Sept 30, 2025?</label>
-      <select id="doability">
-        <option value="">Select an Option</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
-    </div>
-
-    <!-- Full-width group for Use Cases -->
-    <div class="form-group">
-      <label for="usecases">Use Cases</label>
-      <input type="text" id="usecases" placeholder="e.g., useful for Municipal workers, waste management agencies" autocomplete="off">
-    </div>
-
-    <!-- Submit Button -->
-    <button type="button" onclick="submitTopic()">
-      <span id="spinner" class="loader" style="display: none;"></span>
-      <span>Submit / Update</span>
-    </button>
-
-    <!-- Message Area -->
-    <div id="message" class="message">
-      <span id="msg-text"></span>
-    </div>
-  </div>
 
 
     <div class="rules-box">
@@ -395,14 +396,14 @@
       if (!roll_no || !name || !topic) {
         spinner.style.display = "none";
         msgText.textContent = 'Roll Number, Name, and Topic are required!';
-        messageDiv.className = 'message error';
+        messageDiv.className = 'message error show';
         return;
       }
 
       if (doability !== "Yes" && doability !== "No") {
         spinner.style.display = "none";
         msgText.textContent = 'Please select Do-ability as either "Yes" or "No".';
-        messageDiv.className = 'message error';
+        messageDiv.className = 'message error show';
         return;
       }
 
@@ -410,7 +411,7 @@
       if (!nameRegex.test(name)) {
         spinner.style.display = "none";
         msgText.textContent = 'Name must contain only letters and spaces.';
-        messageDiv.className = 'message error';
+        messageDiv.className = 'message error show';
         return;
       }
 
@@ -435,24 +436,22 @@
           spinner.style.display = "none";
           msgText.textContent = text;
 
-          const success = text.toLowerCase().includes('success');
-          messageDiv.className = success ? 'message success show' : 'message error show';
+          const lower = text.toLowerCase();
 
-          if (success) {
-            // Reset all input fields
-            document.querySelectorAll("input, textarea, select").forEach(el => {
-              if (el.tagName.toLowerCase() === 'select') {
-                el.selectedIndex = 0;
-              } else {
-                el.value = '';
-              }
-            });
+          if (lower.includes('success')) {
+            messageDiv.className = 'message success show';
+            // Optional: Reset form
+          } else if (lower.includes('error')) {
+            messageDiv.className = 'message error show';
+          } else {
+            messageDiv.className = 'message show';
           }
         })
+
         .catch(err => {
           spinner.style.display = "none";
           msgText.textContent = 'Error: ' + err.message;
-          messageDiv.className = 'message error';
+          messageDiv.className = 'message error show';
         });
     }
 
