@@ -1,145 +1,462 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>RM Topic Submission</title>
+  <meta charset="UTF-8">
+  <title>Project Topic Submission</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+
+
   <style>
+    /* Import a modern font from Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #f0f0f0;
-      padding: 20px;
-    }
-    .form-box {
-      background: white;
-      padding: 25px;
-      max-width: 500px;
-      margin: auto;
-      border-radius: 15px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.1);
-    }
-    input, textarea, button, select {
-      width: 95%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-    label {
-      font-weight: bold;
-    }
-    .radio-group {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right top, #d4d3dd, #f1f1f3);
+      margin: 0;
+      padding: 40px 20px;
+      /* Add more vertical padding */
       display: flex;
-      gap: 10px;
-      margin: 6px 0;
+      flex-direction: column;
+      /* Stack form and link vertically */
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
+
+    .form-box {
+      background-color: #ffffff;
+      padding: 30px 35px;
+      margin: 0 auto 20px auto;
+      /* Margin bottom to space out from link */
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 420px;
+      /* Default max-width for mobile */
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: max-width 0.4s ease;
+      /* Smooth transition for resizing */
+    }
+
+    .form-box h2 {
+      margin: 0 0 10px 0;
+      text-align: center;
+      color: #333;
+      font-weight: 600;
+    }
+
+    .form-box h4 {
+      color: #666;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin-bottom: 30px;
+    }
+
+    /* New layout classes */
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      /* Stack on mobile by default */
+      gap: 0;
+      /* No gap on mobile stack */
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 16px;
+      /* Consistent bottom margin */
+      flex: 1;
+      /* Allows group to grow */
+    }
+
+    label {
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    /* Shared styles for input and select */
+    input,
+    select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9f9f9;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 0.7rem center;
+      background-repeat: no-repeat;
+      background-size: 1.25em;
+      padding-right: 2.5rem;
+    }
+
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: #6a11cb;
+      box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.15);
+    }
+
+    /* Primary Submit Button */
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      filter: brightness(1.1);
+    }
+
+    /* Secondary Link Button */
+    .view-submission-box {
+      text-align: center;
+    }
+
+    .button-secondary {
+      display: inline-block;
+      padding: 10px 20px;
+      background: linear-gradient(45deg, #a24aff 0%, #fc25d5 100%);
+      ;
+      color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .button-secondary:hover {
+      background-color: #dfdfe6;
+      color: #000;
+    }
+
+    /* Message styling */
     .message {
       text-align: center;
-      font-weight: bold;
-      margin-top: 10px;
+      font-weight: 500;
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      display: none;
+      /* Hide by default */
     }
-    .success { color: green; }
-    .error { color: red; }
+
+    .message.show {
+      display: block;
+      /* Show when needed */
+    }
+
+    .success {
+      color: #155724;
+      background-color: #d4edda;
+      border: 1px solid #c3e6cb;
+    }
+
+    .error {
+      color: #721c24;
+      background-color: #f8d7da;
+      border: 1px solid #f5c6cb;
+    }
+
+    /* Loader styling */
+    .loader {
+      border: 3px solid rgba(255, 255, 255, 0.4);
+      border-top: 3px solid #fff;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Responsive adjustments for bigger screens */
+    @media (min-width: 768px) {
+      .form-box {
+        max-width: 800px;
+        /* Wider form on desktop */
+        padding: 40px 50px;
+      }
+
+      .form-row {
+        flex-direction: row;
+        /* Side-by-side layout */
+        gap: 20px;
+        /* Space between columns */
+      }
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 30px;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+
+    .form-box,
+    .rules-box {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      padding: 30px;
+      max-width: 480px;
+      width: 100%;
+      transition: 0.3s;
+    }
+
+    .rules-box {
+      max-width: 320px;
+      background: #f9f9f9;
+      border-left: 5px solid #007bff;
+    }
+
+    .rules-box h3 {
+      margin-top: 0;
+      color: #007bff;
+    }
+
+    .rules-box ul {
+      padding-left: 20px;
+      color: #333;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 960px) {
+      .container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <div class="form-box" id="formBox">
-    <h2>Register Your Research Topic</h2>
-    
-    <label>Roll Number:</label>
-    <input type="text" id="roll_no" placeholder="Enter Roll Number">
+  <div class="container">
+    <!-- Main Form Container -->
+  <div class="form-box">
+    <h2>Register Your Project Topic</h2>
+    <h4>Last date to create/update topics: 23-07-2025 @ 23:59</h4>
 
-    <label>Name:</label>
-    <input type="text" id="name" placeholder="Enter Name">
+    <!-- Row 1: Roll No and Name -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="roll_no">Roll Number</label>
+        <input type="text" id="roll_no" placeholder="TDS2526000" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="YOUR NAME" autocomplete="name">
+      </div>
+    </div>
 
-    <label>Project Topic:</label>
-    <input type="text" id="topic" placeholder="Enter Project Topic">
+    <!-- Full-width group for Topic -->
+    <div class="form-group">
+      <label for="topic">Project Topic Can be from : [AI, ML, Web, IoT]</label>
+      <input type="text" id="topic" placeholder="e.g., Waste Segregation System using ML" autocomplete="off">
+    </div>
 
-    <label>Software (if any):</label>
-    <input type="text" id="software" placeholder="E.g., Python, MATLAB">
+    <!-- Row 2: Software and Hardware -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="software">Software going to use :</label>
+        <input type="text" id="software" placeholder="e.g., VS Code, Google Colab, Python" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="hardware">Hardware (if any)\ (if not give : NONE)</label>
+        <input type="text" id="hardware" placeholder="e.g., Raspberry Pi, Arduino, Sensors" autocomplete="off">
+      </div>
+    </div>
 
-    <label>Hardware (if any):</label>
-    <input type="text" id="hardware" placeholder="E.g., Arduino, Raspberry Pi">
+    <!-- Full-width group for Tools -->
+    <div class="form-group">
+      <label for="tools">Tools & Technologies</label>
+      <input type="text" id="tools" placeholder="e.g., TensorFlow, React, OpenCV" autocomplete="off">
+    </div>
 
-    <label>Tools/Resources:</label>
-    <input type="text" id="tools" placeholder="E.g., Google Colab, TensorFlow">
+    <!-- Full-width group for Doability -->
+    <div class="form-group">
+      <label for="doability">Can you complete this by Sept 30, 2025?</label>
+      <select id="doability">
+        <option value="">Select an Option</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </div>
 
-    <label>Use Cases / Purpose:</label>
-    <textarea id="usecases" rows="3" placeholder="Describe the expected output or purpose"></textarea>
+    <!-- Full-width group for Use Cases -->
+    <div class="form-group">
+      <label for="usecases">Use Cases</label>
+      <input type="text" id="usecases" placeholder="e.g., useful for Municipal workers, waste management agencies" autocomplete="off">
+    </div>
 
+    <!-- Submit Button -->
+    <button type="button" onclick="submitTopic()">
+      <span id="spinner" class="loader" style="display: none;"></span>
+      <span>Submit / Update</span>
+    </button>
 
-
-    <button onclick="submitTopic()">Submit</button>
-    <div id="message" class="message"></div>
+    <!-- Message Area -->
+    <div id="message" class="message">
+      <span id="msg-text"></span>
+    </div>
   </div>
 
+
+    <div class="rules-box">
+      <h3>Rules & Instructions</h3>
+      <ul>
+        <li>All fields are mandatory.</li>
+        <li>Topic must be unique.</li>
+        <li>Submit before deadline.</li>
+        <li>Do not refresh after submission.</li>
+      </ul>
+    </div>
+  </div>
+  <!-- Secondary Link Container -->
+  <div class="view-submission-box">
+    <a class="button-secondary"
+      href="https://docs.google.com/spreadsheets/d/1ntFvUVFDcHCwXVB7qyUCZsRa1_3adE5bFF-_AEeCkFU/edit?usp=sharing"
+      target="_blank">View All Submissions</a>
+  </div>
+
+
+
+
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwz0ANcU7pLq3v82NizWbp8LG0LZdaTju-xWapA0Qb8YLSfWEbaKDJYJSqXn6ZTCdiUCQ/exec'; // Replace with YOUR actual deployed script URL
-    const deadline = new Date("2025-08-05T23:59:59"); // Set your deadline here
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzjxaBmlpak8T2nSFx-y4oPqRywqarQ79BmOURk-dLsjK0JMayLHWbkqXuF_xUwkYAvnQ/exec';
 
     function submitTopic() {
-      const now = new Date();
-      if (now > deadline) {
-        document.getElementById("message").textContent = "The submission deadline has passed.";
-        document.getElementById("message").className = "message error";
+      const roll_no = document.getElementById('roll_no').value.trim().toUpperCase();
+      const name = document.getElementById('name').value.trim().toUpperCase();
+      const topic = document.getElementById('topic').value.trim().toUpperCase();
+      const software = document.getElementById('software').value.trim() || 'None';
+      const hardware = document.getElementById('hardware').value.trim() || 'None';
+      const tools = document.getElementById('tools').value.trim() || 'None';
+      const doability = document.getElementById('doability').value.trim();
+      const usecases = document.getElementById('usecases').value.trim() || 'General';
+
+      const messageDiv = document.getElementById('message');
+      const spinner = document.getElementById('spinner');
+      const msgText = document.getElementById('msg-text');
+
+      // Reset message box
+      msgText.textContent = '';
+      messageDiv.className = 'message';
+      spinner.style.display = "inline-block";
+
+      // Validation
+      if (!roll_no || !name || !topic) {
+        spinner.style.display = "none";
+        msgText.textContent = 'Roll Number, Name, and Topic are required!';
+        messageDiv.className = 'message error';
         return;
       }
 
-      const roll_no = document.getElementById('roll_no').value.trim().toUpperCase();
-      const name = document.getElementById('name').value.trim().toUpperCase();
-      const topic = document.getElementById('topic').value.trim();
-      const software = document.getElementById('software').value.trim();
-      const hardware = document.getElementById('hardware').value.trim();
-      const tools = document.getElementById('tools').value.trim();
-      const usecases = document.getElementById('usecases').value.trim();
-
-      const msgDiv = document.getElementById("message");
-
-      // Validation
-      if (!roll_no || !name || !topic || !software || !hardware || !tools || !usecases) {
-        msgDiv.textContent = "All fields are required.";
-        msgDiv.className = "message error";
+      if (doability !== "Yes" && doability !== "No") {
+        spinner.style.display = "none";
+        msgText.textContent = 'Please select Do-ability as either "Yes" or "No".';
+        messageDiv.className = 'message error';
         return;
       }
 
       const nameRegex = /^[A-Z\s]+$/;
       if (!nameRegex.test(name)) {
-        msgDiv.textContent = "Name must contain only letters and spaces.";
-        msgDiv.className = "message error";
+        spinner.style.display = "none";
+        msgText.textContent = 'Name must contain only letters and spaces.';
+        messageDiv.className = 'message error';
         return;
       }
 
-      const data = {
-        roll: roll_no,
-        name: name,
-        topic: topic,
-        software: software,
-        hardware: hardware,
-        tools: tools,
-        usecases: usecases
-      };
+      msgText.textContent = 'Checking for similarity...';
 
+      // Prepare and send form data
       fetch(scriptURL, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+        body: new URLSearchParams({
+          roll_no,
+          name,
+          topic,
+          software,
+          hardware,
+          tools,
+          doability,
+          usecases
+        })
       })
-      .then(response => response.json())
-      .then(res => {
-        if (res.status === "success") {
-          msgDiv.textContent = res.message;
-          msgDiv.className = "message success";
-        } else {
-          msgDiv.textContent = res.message;
-          msgDiv.className = "message error";
-        }
-      })
-      .catch(error => {
-        msgDiv.textContent = "Error: " + error.message;
-        msgDiv.className = "message error";
-      });
+        .then(res => res.text())
+        .then(text => {
+          spinner.style.display = "none";
+          msgText.textContent = text;
+
+          const success = text.toLowerCase().includes('success');
+          messageDiv.className = success ? 'message success show' : 'message error show';
+
+          if (success) {
+            // Reset all input fields
+            document.querySelectorAll("input, textarea, select").forEach(el => {
+              if (el.tagName.toLowerCase() === 'select') {
+                el.selectedIndex = 0;
+              } else {
+                el.value = '';
+              }
+            });
+          }
+        })
+        .catch(err => {
+          spinner.style.display = "none";
+          msgText.textContent = 'Error: ' + err.message;
+          messageDiv.className = 'message error';
+        });
     }
+
   </script>
 </body>
+
 </html>
