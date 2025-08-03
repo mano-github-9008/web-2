@@ -194,6 +194,13 @@
       border: 1px solid #f5c6cb;
     }
 
+    .warning {
+      color: #721c24;
+      background-color: #f8efd7;
+      border: 1px solid #f5ecc6;
+    }
+
+
     /* Loader styling */
     .loader {
       border: 3px solid rgba(255, 255, 255, 0.4);
@@ -239,26 +246,25 @@
       padding: 20px;
     }
 
-    .form-box,
     .rules-box {
-      background: #ffffff;
       border-radius: 16px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
       padding: 30px;
-      max-width: 480px;
+      max-width: 600px;
       width: 100%;
       transition: 0.3s;
+      border-left: 5px solid #007bff;
     }
 
     .rules-box {
-      max-width: 320px;
+      max-width: 600px;
       background: #f9f9f9;
       border-left: 5px solid #007bff;
     }
 
     .rules-box h3 {
       margin-top: 0;
-      color: #007bff;
+      color: #ff0055;
     }
 
     .rules-box ul {
@@ -280,6 +286,17 @@
 <body>
   <div class="container">
     <!-- Main Form Container -->
+      <div class="rules-box">
+        <h3>Rules & Instructions</h3>
+        <ul>
+          <li><span style="color: red;">*</span> fields are mandatory.</li>
+          <li>Topic must be unique.</li>
+          <li>Submit before deadline.</li>
+          <li>Topic will not be approved if usecases is not mentioned</li>
+          <li>Do not refresh after submission until getting submited message !</li>
+          
+        </ul>
+      </div>
     <div class="form-box">
       <h2>Register Your Project Topic</h2>
       <h4>Last date to create/update topics: <span style="color: red;">04-08-2025 @ 23:59:59</span></h4>
@@ -287,20 +304,33 @@
       <!-- Row 1: Roll No and Name -->
       <div class="form-row">
         <div class="form-group">
-          <label for="roll_no">Roll Number</label>
+          <label for="roll_no">Roll Number<span style="color: red;">*</span></label>
           <input type="text" id="roll_no" placeholder="TDS2526000" autocomplete="off">
         </div>
         <div class="form-group">
-          <label for="name">Name</label>
+          <label for="name">Name<span style="color: red;">*</span></label>
           <input type="text" id="name" placeholder="YOUR NAME" autocomplete="name">
         </div>
       </div>
 
       <!-- Full-width group for Topic -->
       <div class="form-group">
-        <label for="topic">Project Topic Can be from : [AI, ML, Web, IoT]</label>
+        <label for="topic">Project Topic Can be from : [AI, ML, Web, IoT]<span style="color: red;">*</span></label>
         <input type="text" id="topic" placeholder="e.g., Waste Segregation System using ML" autocomplete="off">
       </div>
+
+      <!-- Full-width group for Existing Solutions -->
+<div class="form-group">
+  <label for="existing">What Already Exists related to your project (if exits)</label>
+  <input type="text" id="existing" placeholder="e.g., Existing apps for waste sorting, basic ML classifiers" autocomplete="off">
+</div>
+
+<!-- Full-width group for Innovation -->
+<div class="form-group">
+  <label for="innovation">What Innovation You Made?<span style="color: red;">*</span></label>
+  <input type="text" id="innovation" placeholder="e.g., Real-time sorting with YOLO + Custom dataset" autocomplete="off">
+</div>
+
 
       <!-- Row 2: Software and Hardware -->
       <div class="form-row">
@@ -332,7 +362,7 @@
 
       <!-- Full-width group for Use Cases -->
       <div class="form-group">
-        <label for="usecases">Use Cases</label>
+        <label for="usecases">Use Cases<span style="color: red;">*</span></label>
         <input type="text" id="usecases" placeholder="e.g., useful for Municipal workers, waste management agencies"
           autocomplete="off">
       </div>
@@ -350,15 +380,6 @@
     </div>
 
 
-    <div class="rules-box">
-      <h3>Rules & Instructions</h3>
-      <ul>
-        <li>All fields are mandatory.</li>
-        <li>Topic must be unique.</li>
-        <li>Submit before deadline.</li>
-        <li>Do not refresh after submission until getting submited message !.</li>
-      </ul>
-    </div>
   </div>
   <!-- Secondary Link Container -->
   <div class="view-submission-box">
@@ -381,7 +402,10 @@
       const hardware = document.getElementById('hardware').value.trim() || 'None';
       const tools = document.getElementById('tools').value.trim() || 'None';
       const doability = document.getElementById('doability').value.trim();
-      const usecases = document.getElementById('usecases').value.trim() || 'General';
+      const usecases = document.getElementById('usecases').value.trim() || '';
+      const existing = document.getElementById('existing').value.trim() || 'Not specified';
+const innovation = document.getElementById('innovation').value.trim() || '';
+
 
       const messageDiv = document.getElementById('message');
       const spinner = document.getElementById('spinner');
@@ -400,12 +424,29 @@
         return;
       }
 
+      if (!innovation) {
+        spinner.style.display = "none";
+        msgText.textContent = 'Innovation field is required. Please describe your unique contribution.';
+        messageDiv.className = 'message error show';
+        return;
+  }
+
+  
+
       if (doability !== "Yes" && doability !== "No") {
         spinner.style.display = "none";
         msgText.textContent = 'Please select Do-ability as either "Yes" or "No".';
         messageDiv.className = 'message error show';
         return;
       }
+      if (!usecases) {
+        spinner.style.display = "none";
+        msgText.textContent = '⚠️ Warning: Without usecases your topic will not be approved !';
+        messageDiv.className = 'message warning show';
+        return;
+  }
+
+      
 
       const nameRegex = /^[A-Z\s]+$/;
       if (!nameRegex.test(name)) {
@@ -421,15 +462,18 @@
       fetch(scriptURL, {
         method: 'POST',
         body: new URLSearchParams({
-          roll_no,
-          name,
-          topic,
-          software,
-          hardware,
-          tools,
-          doability,
-          usecases
-        })
+  roll_no,
+  name,
+  topic,
+  software,
+  hardware,
+  tools,
+  doability,
+  usecases,
+  existing,
+  innovation
+})
+
       })
         .then(res => res.text())
         .then(text => {
