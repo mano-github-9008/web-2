@@ -1,266 +1,291 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Project Topic Submission</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <title>Student Skills & Experience Form</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Professional UI – Clean, Neutral, with Subtle Brand Accent */
+        :root {
+            --primary: #6f4ed6;
+            /* Refined violet-blue (brand accent) */
+            --primary-hover: #5c3fc1;
+            --accent: #aa00d4;
+            /* Teal highlight for focus states */
+            --bg: #f8f9fc;
+            /* Cool, clean background */
+            --card-bg: #ffffff;
+            --text: #2e2e2e;
+            --muted: #6b6b6b;
+            --border: #e2e5ec;
+            --radius: 10px;
+            --shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+            --transition: all 0.25s ease;
+        }
 
+        /* --- Base Reset --- */
+        * {
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Inter', 'Poppins', sans-serif;
+            background: var(--bg);
+            margin: 0;
+            padding: 50px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: var(--text);
+        }
 
-  <style>
-    /* Import a modern font from Google Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+        /* --- Card Layout --- */
+        .card {
+            width: 100%;
+            max-width: 850px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 48px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
 
-    * {
-      box-sizing: border-box;
-    }
+        .card:hover {
+            box-shadow: 0 8px 28px rgba(111, 78, 214, 0.08);
+        }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right top, #d4d3dd, #f1f1f3);
-      margin: 0;
-      padding: 40px 20px;
-      /* Add more vertical padding */
-      display: flex;
-      flex-direction: column;
-      /* Stack form and link vertically */
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
+        /* --- Headings --- */
+        h2 {
+            margin: 0 0 8px;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 2rem;
+            letter-spacing: -0.3px;
+        }
 
-    .form-box {
-      background-color: #ffffff;
-      padding: 30px 35px;
-      margin: 0 auto 20px auto;
-      /* Margin bottom to space out from link */
-      border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 420px;
-      /* Default max-width for mobile */
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: max-width 0.4s ease;
-      /* Smooth transition for resizing */
-    }
+        p.subtitle {
+            color: var(--muted);
+            margin: 0 0 35px;
+            font-size: 1rem;
+        }
 
-    .form-box h2 {
-      margin: 0 0 10px 0;
-      text-align: center;
-      color: #333;
-      font-weight: 600;
-    }
+        /* --- Grid Layout --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
 
-    .form-box h4 {
-      color: #8700b0;
-      text-align: center;
-      font-size: 0.9rem;
-      font-weight: 400;
-      margin-bottom: 30px;
-    }
+        .full {
+            grid-column: 1 / -1;
+        }
 
-    /* New layout classes */
-    .form-row {
-      display: flex;
-      flex-direction: column;
-      /* Stack on mobile by default */
-      gap: 0;
-      /* No gap on mobile stack */
-    }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 16px;
-      /* Consistent bottom margin */
-      flex: 1;
-      /* Allows group to grow */
-    }
+        /* --- Inputs --- */
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: #fdfdfd;
+            font-size: 1rem;
+            color: var(--text);
+            transition: var(--transition);
+        }
 
-    label {
-      margin-bottom: 8px;
-      font-weight: 500;
-      color: #555;
-      font-size: 0.9rem;
-    }
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(111, 78, 214, 0.15);
+            background: #fff;
+        }
 
-    /* Shared styles for input and select */
-    input,
-    select {
-      width: 100%;
-      padding: 12px 15px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-family: 'Poppins', sans-serif;
-      background-color: #f9f9f9;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-    }
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
 
-    select {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-      background-position: right 0.7rem center;
-      background-repeat: no-repeat;
-      background-size: 1.25em;
-      padding-right: 2.5rem;
-    }
+        /* --- Buttons --- */
+        button.primary {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: #fff;
+            border: none;
+            padding: 15px 36px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            letter-spacing: 0.3px;
+            transition: all 0.5s;
+            box-shadow: 0 5px 18px rgba(111, 78, 214, 0.25);
+        }
 
-    input:focus,
-    select:focus {
-      outline: none;
-      border-color: #6a11cb;
-      box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.15);
-    }
+        button.secondary {
+            background: linear-gradient(45deg, var(--border), var(--card-bg));
+            color: var(--text);
+            border: 1px solid rgb(196, 196, 196);
+            padding: 15px 36px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            letter-spacing: 0.3px;
+            transition: all 0.5s;
+            box-shadow: 0 5px 18px rgba(179, 177, 184, 0.25);
+        }
 
-    /* Primary Submit Button */
-    button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 1.05rem;
-      font-weight: 500;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-    }
+        button.primary:hover {
+            background: linear-gradient(75deg, var(--primary), var(--accent));
+            box-shadow: 0 8px 22px rgba(111, 78, 214, 0.3);
+            transform: translateY(-2px);
+        }
 
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      filter: brightness(1.1);
-    }
+        button.primary:active {
+            transform: scale(0.98);
+        }
 
-    /* Secondary Link Button */
-    .view-submission-box {
-      text-align: center;
-    }
+        /* --- Tag Styling --- */
+        .tag-list {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
 
-    .button-secondary {
-      display: inline-block;
-      padding: 10px 20px;
-      background: linear-gradient(45deg, #a24aff 0%, #fc25d5 100%);
-      ;
-      color: #ffffff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
+        .tag {
+            background: #f2f4ff;
+            color: var(--primary);
+            padding: 7px 14px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(111, 78, 214, 0.15);
+        }
 
-    .button-secondary:hover {
-      background-color: #dfdfe6;
-      color: #000;
-    }
+        /* --- Messages --- */
+        .message {
+            margin-top: 25px;
+            padding: 16px;
+            border-radius: var(--radius);
+            display: none;
+            font-size: 1rem;
+            font-weight: 500;
+        }
 
-    /* Message styling */
-    .message {
-      text-align: center;
-      font-weight: 500;
-      margin-top: 15px;
-      padding: 12px;
-      border-radius: 6px;
-      font-size: 0.95rem;
-      display: none;
-      /* Hide by default */
-    }
+        .message.show {
+            display: block;
+        }
 
-    .message.show {
-      display: block;
-      /* Show when needed */
-    }
+        .success {
+            background: #e6fff0;
+            color: #155724;
+            border: 1px solid #b7ebc1;
+        }
 
-    .success {
-      color: #155724;
-      background-color: #d4edda;
-      border: 1px solid #c3e6cb;
-    }
+        .error {
+            background: #fff0f0;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
 
-    .error {
-      color: #721c24;
-      background-color: #f8d7da;
-      border: 1px solid #f5c6cb;
-    }
+        .warning {
+            background: #fffceb;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
 
-    .warning {
-      color: #721c24;
-      background-color: #f8efd7;
-      border: 1px solid #f5ecc6;
-    }
+        .small-note {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-top: 6px;
+        }
 
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 25px;
+            }
 
-    /* Loader styling */
-    .loader {
-      border: 3px solid rgba(255, 255, 255, 0.4);
-      border-top: 3px solid #fff;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      animation: spin 1s linear infinite;
-    }
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
 
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
+            .card {
+                padding: 30px;
+            }
+        }
 
-      100% {
-        transform: rotate(360deg);
-      }
-    }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
 
-    /* Responsive adjustments for bigger screens */
-    @media (min-width: 768px) {
-      .form-box {
-        max-width: 800px;
-        /* Wider form on desktop */
-        padding: 40px 50px;
-      }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-      .form-row {
-        flex-direction: row;
-        /* Side-by-side layout */
-        gap: 20px;
-        /* Space between columns */
-      }
-    }
+        .loader {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ccc;
+            border-top: 2px solid #007bff;
+            /* Blue color for spin */
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            vertical-align: middle;
+            margin-right: 6px;
+        }
 
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 30px;
-      flex-wrap: wrap;
-      padding: 20px;
-    }
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
 
-    .rules-box {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .rules-box {
       border-radius: 16px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
       padding: 30px;
-      max-width: 600px;
-      width: 100%;
+      width: auto;
       transition: 0.3s;
       border-left: 5px solid #007bff;
+      border-right: 5px solid #007bff;
     }
 
-    .rules-box {
-      max-width: 600px;
-      background: #f9f9f9;
-      border-left: 5px solid #007bff;
-    }
 
     .rules-box h3 {
       margin-top: 0;
@@ -274,232 +299,285 @@
       line-height: 1.6;
     }
 
-    @media (max-width: 960px) {
-      .container {
-        flex-direction: column;
-        align-items: stretch;
-      }
-    }
-  </style>
+    </style>
+
 </head>
 
 <body>
-  <div class="container">
-    <!-- Main Form Container -->
-      <div class="rules-box">
-        <h3>Rules & Instructions</h3>
-        <ul>
-          <li><span style="color: red;">*</span> fields are mandatory.</li>
-          <li>Topic must be unique.</li>
-          <li>Submit before deadline.</li>
-          <li>Topic will not be approved if usecases is not mentioned</li>
-          <li>Do not refresh after submission until getting submited message !</li>
-          
-        </ul>
-      </div>
-    <div class="form-box">
-      <h2>Register Your Project Topic</h2>
-      <h4>Last date to create/update topics: <span style="color: red;">04-08-2025 @ 23:59:59</span></h4>
+    
+      
+    <div class="card">
+        <h2 style="text-align: center;">OJT Placement Requirement Form</h2>
+        <div class="rules-box">
+            <h3>Rules & Instructions</h3>
+            <ul>
+              <li><span style="color: red;">*</span> Fields marked with * are mandatory.</li>
+              <li>Ensure your <b>Roll Number</b> is entered correctly — it’s used for updates or duplicate checks.</li>
+              <li>Provide clear and specific details in your <b>Skills</b> and <b>Work Experience</b> sections.</li>
+              <li>Select your <b>Proficiency Level</b> and <b>Domain</b> carefully — this helps with project allocation.</li>
+              <li>Once submitted, the same Roll No can only be updated before the deadline.</li>
+              <li>The form will be automatically <b>disabled after the deadline</b>.</li>
+              <li>Do not refresh or close the page until you see the <b>“Form submitted successfully”</b> message.</li>
+            </ul>
+          </div><br>
+        <div class="grid">
+            <div>
+                <label>Roll Number <span style="color:red">*</span></label>
+                <input id="roll_no" type="text" placeholder="TDS2526000" onblur="tryFetch()" />
+                <!-- <div class="small-note">Enter Roll No and leave the field to auto-load existing record (if any).</div> -->
+            </div>
 
-      <!-- Row 1: Roll No and Name -->
-      <div class="form-row">
-        <div class="form-group">
-          <label for="roll_no">Roll Number<span style="color: red;">*</span></label>
-          <input type="text" id="roll_no" placeholder="TDS2526000" autocomplete="off">
+            <div>
+                <label>Student Name <span style="color:red">*</span></label>
+                <input id="name" type="text" placeholder="Full name" />
+            </div>
+
+            <div>
+                <label>Email (optional)</label>
+                <input id="email" type="email" placeholder="you@example.com" />
+            </div>
+
+            <div>
+                <label>Primary Domain Interest <span style="color:red">*</span></label>
+                <select id="domain">
+                    <option value="">Select domain</option>
+                    <option>AI</option>
+                    <option>ML</option>
+                    <option>Web Dev</option>
+                    <option>Data Science</option>
+                </select>
+            </div>
+
+            <div class="full">
+                <label>Skills (comma-separated) <span style="color:red">*</span></label>
+                <div class="small-note">Enter only the skills you currently have. Do not include skills you haven’t learned yet.</div>
+                <input id="skills" type="text" placeholder="Python, React, SQL, OpenCV" oninput="analyzeSkills()" />
+                <div id="skill-tags" class="tag-list" aria-hidden="true"></div>
+                
+            </div>
+
+            <div>
+                <label>Skill Proficiency <span style="color:red">*</span></label>
+                <select id="proficiency">
+                    <option value="">Select</option>
+                    <option>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Number of Projects Completed (optional)</label>
+                <input id="projects" type="number" min="0" placeholder="0" />
+            </div>
+
+            <div class="full">
+                <label>Certifications (optional)</label>
+                <input id="certifications" type="text" placeholder="e.g., AWS Certified, Coursera ML" />
+            </div>
+
+            <div class="full">
+                <label>Work Experience (if any) — Company, Duration, Role (optional)</label>
+                <textarea id="workexp" placeholder="Company - 2023 (6 months) - Intern, ..."></textarea>
+            </div>
+
+            <div>
+                <label>Interested in Group Projects? <span style="color:red">*</span></label>
+                <div class="row-inline">
+                    <label><input type="radio" name="group" value="Yes" checked /> Yes</label>
+                    <label><input type="radio" name="group" value="No" /> No</label>
+                </div>
+            </div>
+
+            <div>
+                <label>Preferred Project Type</label>
+                <select id="ptype">
+                    <option>Individual</option>
+                    <option>Group</option>
+                    <option>Either</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Available Hours/week (optional)</label>
+                <input id="hours" type="number" min="12" placeholder="Minimum 12Hrs per week" />
+            </div>
+
+            <div>
+                <label>Portfolio / GitHub Link (optional)</label>
+                <input id="portfolio" type="text" placeholder="https://github.com/yourusername" />
+            </div>
+
+            <div class="full">
+                <label>Additional Notes (optional)</label>
+                <textarea id="notes" placeholder="Anything else you want to mention..."></textarea>
+            </div>
         </div>
-        <div class="form-group">
-          <label for="name">Name<span style="color: red;">*</span></label>
-          <input type="text" id="name" placeholder="YOUR NAME" autocomplete="name">
+
+        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+            <button class="primary" id="submitBtn" onclick="submitForm()">
+                <span id="spinner" class="loader" style="display:none;"></span>
+                <span id="btnText">Submit / Update</span>
+            </button>
+            <button class="secondary" id="submitBtn" onclick="clearForm()">Clear</button>
+
+            <div style="margin-left:auto;color:#666;font-size:0.9rem" id="deadlineInfo"></div>
+
         </div>
-      </div>
-
-      <!-- Full-width group for Topic -->
-      <div class="form-group">
-        <label for="topic">Project Topic Can be from : [AI, ML, Web, IoT]<span style="color: red;">*</span></label>
-        <input type="text" id="topic" placeholder="e.g., Waste Segregation System using ML" autocomplete="off">
-      </div>
-
-      <!-- Full-width group for Existing Solutions -->
-<div class="form-group">
-  <label for="existing">What Already Exists related to your project (if exits)</label>
-  <input type="text" id="existing" placeholder="e.g., Existing apps for waste sorting, basic ML classifiers" autocomplete="off">
-</div>
-
-<!-- Full-width group for Innovation -->
-<div class="form-group">
-  <label for="innovation">What Innovation You Made?<span style="color: red;">*</span></label>
-  <input type="text" id="innovation" placeholder="e.g., Real-time sorting with YOLO + Custom dataset" autocomplete="off">
-</div>
-
-
-      <!-- Row 2: Software and Hardware -->
-      <div class="form-row">
-        <div class="form-group">
-          <label for="software">Software going to use :</label>
-          <input type="text" id="software" placeholder="e.g., VS Code, Google Colab, Python" autocomplete="off">
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="primary" id="submitBtn" 
+                onclick="window.location.href='https://docs.google.com/spreadsheets/d/1ntFvUVFDcHCwXVB7qyUCZsRa1_3adE5bFF-_AEeCkFU/edit?usp=sharing'">
+                <span id="btnText">View</span>
+            </button>
         </div>
-        <div class="form-group">
-          <label for="hardware">Hardware (if any)\ (if not give : NONE)</label>
-          <input type="text" id="hardware" placeholder="e.g., Raspberry Pi, Arduino, Sensors" autocomplete="off">
-        </div>
-      </div>
+        
 
-      <!-- Full-width group for Tools -->
-      <div class="form-group">
-        <label for="tools">Tools & Technologies</label>
-        <input type="text" id="tools" placeholder="e.g., TensorFlow, React, OpenCV" autocomplete="off">
-      </div>
-
-      <!-- Full-width group for Doability -->
-      <div class="form-group">
-        <label for="doability">Can you complete this by <span style="color: red;">Sept 30, 2025</span>?</label>
-        <select id="doability">
-          <option value="">Select an Option</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </div>
-
-      <!-- Full-width group for Use Cases -->
-      <div class="form-group">
-        <label for="usecases">Use Cases<span style="color: red;">*</span></label>
-        <input type="text" id="usecases" placeholder="e.g., useful for Municipal workers, waste management agencies"
-          autocomplete="off">
-      </div>
-
-      <!-- Submit Button -->
-      <button type="button" onclick="submitTopic()">
-        <span id="spinner" class="loader" style="display: none;"></span>
-        <span>Submit / Update</span>
-      </button>
-
-      <!-- Message Area -->
-      <div id="message" class="message">
-        <span id="msg-text"></span>
-      </div>
+        <div id="message" class="message"></div>
     </div>
 
+    <script>
+        // === CONFIG ===
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjxaBmlpak8T2nSFx-y4oPqRywqarQ79BmOURk-dLsjK0JMayLHWbkqXuF_xUwkYAvnQ/exec";
 
-  </div>
-  <!-- Secondary Link Container -->
-  <div class="view-submission-box">
-    <a class="button-secondary"
-      href="https://docs.google.com/spreadsheets/d/1ntFvUVFDcHCwXVB7qyUCZsRa1_3adE5bFF-_AEeCkFU/edit?usp=sharing"
-      target="_blank">View All Submissions</a>
-  </div>
+        const DEADLINE = new Date("2025-11-07T23:59:59");
+        document.getElementById('deadlineInfo').textContent = `Deadline: ${DEADLINE.toLocaleString()}`;
+
+        const SKILL_CATEGORIES = {
+            "python": "Programming", "java": "Programming", "c++": "Programming", "react": "Frontend",
+            "angular": "Frontend", "vue": "Frontend", "tensorflow": "ML", "pytorch": "ML", "opencv": "Vision",
+            "sql": "Database", "aws": "Cloud", "docker": "DevOps", "arduino": "Embedded"
+        };
+
+        function showMessage(text, type = "success") {
+            const el = document.getElementById('message');
+            el.textContent = text;
+            el.className = 'message show ' + (type === 'success' ? 'success' : (type === 'warning' ? 'warning' : 'error'));
+        }
+
+        function clearMessage() {
+            const el = document.getElementById('message');
+            el.textContent = "";
+            el.className = 'message';
+        }
+
+        function checkDeadline() {
+            const now = new Date();
+            if (now > DEADLINE) {
+                document.getElementById('submitBtn').disabled = true;
+                document.getElementById('submitBtn').style.opacity = '0.6';
+                showMessage("Form closed (deadline passed).", "warning");
+                return true;
+            }
+            return false;
+        }
+        checkDeadline();
+
+        function analyzeSkills() {
+            const skills = document.getElementById('skills').value;
+            const parts = skills.split(',').map(s => s.trim()).filter(Boolean);
+            const tags = new Set();
+            parts.forEach(s => {
+                const key = s.toLowerCase();
+                for (const k in SKILL_CATEGORIES) if (key.includes(k)) tags.add(SKILL_CATEGORIES[k]);
+            });
+            const container = document.getElementById('skill-tags');
+            container.innerHTML = "";
+            tags.forEach(t => {
+                const d = document.createElement('div');
+                d.className = 'tag'; d.textContent = t;
+                container.appendChild(d);
+            });
+        }
+
+        function clearForm() {
+            document.querySelectorAll('input, select, textarea').forEach(el => {
+                if (el.type === "radio") {
+                    if (el.value === "Yes") el.checked = true;
+                } else el.value = "";
+            });
+            analyzeSkills();
+            clearMessage();
+        }
+
+        function validateAll(fields) {
+            if (!fields.roll_no) return showMessage('Roll No required', 'error'), false;
+            if (!fields.name) return showMessage('Name required', 'error'), false;
+            if (!fields.skills) return showMessage('Enter skills', 'error'), false;
+            if (!fields.proficiency) return showMessage('Select proficiency', 'error'), false;
+            if (!fields.domain) return showMessage('Select domain', 'error'), false;
+            if (fields.email && !/^\S+@\S+\.\S+$/.test(fields.email)) return showMessage('Invalid email', 'error'), false;
+            if (checkDeadline()) return false;
+            return true;
+        }
+
+        function submitForm() {
+            clearMessage();
+            const spinner = document.getElementById('spinner');
+            const btnText = document.getElementById('btnText');
+            const btn = document.getElementById('submitBtn');
+            spinner.style.display = 'inline';
+            btnText.textContent = 'Submitting...';
+            btn.disabled = true;
+
+            const payload = {
+                roll_no: document.getElementById('roll_no').value.trim().toUpperCase(),
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                skills: document.getElementById('skills').value.trim(),
+                proficiency: document.getElementById('proficiency').value,
+                domain: document.getElementById('domain').value,
+                projects: document.getElementById('projects').value,
+                certifications: document.getElementById('certifications').value.trim(),
+                workexp: document.getElementById('workexp').value.trim(),
+                grouppref: document.querySelector('input[name="group"]:checked').value,
+                ptype: document.getElementById('ptype').value,
+                hours: document.getElementById('hours').value,
+                portfolio: document.getElementById('portfolio').value.trim(),
+                notes: document.getElementById('notes').value.trim()
+            };
+
+            if (!validateAll(payload)) {
+                spinner.style.display = 'none';
+                btnText.textContent = 'Submit / Update';
+                btn.disabled = false;
+                return;
+            }
+
+            // 🔸 Post data (no-cors prevents reading response, but it will submit)
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify(payload)
+            })
+                .then(() => {
+                    spinner.style.display = 'none';
+                    btnText.textContent = 'Submit / Update';
+                    btn.disabled = false;
+
+                    // ✅ Show animated success message
+                    const msg = document.getElementById('message');
+                    msg.innerHTML = "<b>Success!</b> Your details were submitted or updated successfully.";
+                    msg.className = "message show success";
+                    msg.style.animation = "fadeIn 0.6s ease";
+
+                    // Optional: auto-clear form after delay
+                    setTimeout(() => {
+                        clearForm();
+                        msg.classList.remove("show");
+                    }, 4000);
+                })
+                .catch(err => {
+                    spinner.style.display = 'none';
+                    btnText.textContent = 'Submit / Update';
+                    btn.disabled = false;
+                    showMessage('⚠️ Error submitting: ' + err.message, 'error');
+                });
+        }
 
 
+        analyzeSkills();
+    </script>
 
-
-  <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzjxaBmlpak8T2nSFx-y4oPqRywqarQ79BmOURk-dLsjK0JMayLHWbkqXuF_xUwkYAvnQ/exec';
-
-    function submitTopic() {
-      const roll_no = document.getElementById('roll_no').value.trim().toUpperCase();
-      const name = document.getElementById('name').value.trim().toUpperCase();
-      const topic = document.getElementById('topic').value.trim().toUpperCase();
-      const software = document.getElementById('software').value.trim() || 'None';
-      const hardware = document.getElementById('hardware').value.trim() || 'None';
-      const tools = document.getElementById('tools').value.trim() || 'None';
-      const doability = document.getElementById('doability').value.trim();
-      const usecases = document.getElementById('usecases').value.trim() || '';
-      const existing = document.getElementById('existing').value.trim() || 'Not specified';
-const innovation = document.getElementById('innovation').value.trim() || '';
-
-
-      const messageDiv = document.getElementById('message');
-      const spinner = document.getElementById('spinner');
-      const msgText = document.getElementById('msg-text');
-
-      // Reset message box
-      msgText.textContent = '';
-      messageDiv.className = 'message';
-      spinner.style.display = "inline-block";
-
-      // Validation
-      if (!roll_no || !name || !topic) {
-        spinner.style.display = "none";
-        msgText.textContent = 'Roll Number, Name, and Topic are required!';
-        messageDiv.className = 'message error show';
-        return;
-      }
-
-      if (!innovation) {
-        spinner.style.display = "none";
-        msgText.textContent = 'Innovation field is required. Please describe your unique contribution.';
-        messageDiv.className = 'message error show';
-        return;
-  }
-
-  
-
-      if (doability !== "Yes" && doability !== "No") {
-        spinner.style.display = "none";
-        msgText.textContent = 'Please select Do-ability as either "Yes" or "No".';
-        messageDiv.className = 'message error show';
-        return;
-      }
-      if (!usecases) {
-        spinner.style.display = "none";
-        msgText.textContent = '⚠️ Warning: Without usecases your topic will not be approved !';
-        messageDiv.className = 'message warning show';
-        return;
-  }
-
-      
-
-      const nameRegex = /^[A-Z\s]+$/;
-      if (!nameRegex.test(name)) {
-        spinner.style.display = "none";
-        msgText.textContent = 'Name must contain only letters and spaces.';
-        messageDiv.className = 'message error show';
-        return;
-      }
-
-      msgText.textContent = 'Checking for similarity...';
-
-      // Prepare and send form data
-      fetch(scriptURL, {
-        method: 'POST',
-        body: new URLSearchParams({
-  roll_no,
-  name,
-  topic,
-  software,
-  hardware,
-  tools,
-  doability,
-  usecases,
-  existing,
-  innovation
-})
-
-      })
-        .then(res => res.text())
-        .then(text => {
-          spinner.style.display = "none";
-          msgText.textContent = text;
-
-          const lower = text.toLowerCase();
-
-          if (lower.includes('success')) {
-            messageDiv.className = 'message success show';
-            // Optional: Reset form
-          } else if (lower.includes('error')) {
-            messageDiv.className = 'message error show';
-          } else {
-            messageDiv.className = 'message show';
-          }
-        })
-
-        .catch(err => {
-          spinner.style.display = "none";
-          msgText.textContent = 'Error: ' + err.message;
-          messageDiv.className = 'message error show';
-        });
-    }
-
-  </script>
 </body>
 
 </html>
