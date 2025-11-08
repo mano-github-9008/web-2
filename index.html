@@ -421,7 +421,7 @@
             </button>
             <button class="secondary" id="submitBtn" onclick="clearForm()">Clear</button>
 
-            <!-- <div style="margin-left:auto;color:#666;font-size:0.9rem" id="deadlineInfo"></div> -->
+            <div style="margin-left:auto;color:#666;font-size:0.9rem" id="deadlineInfo"></div>
 
         </div>
         <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
@@ -439,8 +439,8 @@
         // === CONFIG ===
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjxaBmlpak8T2nSFx-y4oPqRywqarQ79BmOURk-dLsjK0JMayLHWbkqXuF_xUwkYAvnQ/exec";
 
-        // const DEADLINE = new Date("2025-11-07T23:59:59");
-        // document.getElementById('deadlineInfo').textContent = `Deadline: ${DEADLINE.toLocaleString()}`;
+        const DEADLINE = new Date("2025-11-15T23:59:59");
+        document.getElementById('deadlineInfo').textContent = `Deadline: ${DEADLINE.toLocaleString()}`;
 
         const SKILL_CATEGORIES = {
             "python": "Programming", "java": "Programming", "c++": "Programming", "react": "Frontend",
